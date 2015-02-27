@@ -1,6 +1,3 @@
-<?php
-require 'views/header.php';
-?>  
 
 <link rel="stylesheet" type="text/css" href="public/css/buttonstyle.css">
 <link rel="stylesheet" type="text/css" href="public/css/hyperlinkstyle.css">
@@ -19,11 +16,8 @@ require 'views/header.php';
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script> <!--for the popup-->
-<script type="text/javascript" src="public/js/multizoom.js"></script>
-<script src="public/js/modernizr.js"></script>
-<script src="public/js/popup.js"></script> <!-- Resource jQuery -->
-<script type="text/javascript" src="public/js/resultspage.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+
 
 <script>
     function hidetracker() {

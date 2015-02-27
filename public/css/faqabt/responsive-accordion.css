@@ -1,0 +1,74 @@
+/*	Responsive Accordion v1.3, Copyright 2014, Joe Mottershaw, https://github.com/joemottershaw/
+//	============================================================================================ */
+
+/*	Table of Contents
+//	==================================================
+//		#Reset
+//		#Themes
+
+
+/*	#Reset
+//	================================================== */
+
+	.responsive-accordion {
+		margin: 0 0 20px 0;
+		padding: 0;
+		list-style-type: none;
+	}
+
+	.responsive-accordion li {
+		margin: 0 0 10px 0;
+		padding: 0;
+	}
+
+	.responsive-accordion li:last-child { margin-bottom: 0; }
+
+	.responsive-accordion li .responsive-accordion-head { cursor: pointer; 
+        
+        font-size: large;}
+.responsive-accordion li .responsive-accordion-head:hover { 
+border:solid 2px #1d6399;
+-moz-border-radius-topleft: 5px;
+-moz-border-radius-topright:5px;
+-moz-border-radius-bottomleft:5px;
+-moz-border-radius-bottomright:5px;
+-webkit-border-top-left-radius:5px;
+-webkit-border-top-right-radius:5px;
+-webkit-border-bottom-left-radius:5px;
+-webkit-border-bottom-right-radius:5px;
+border-top-left-radius:5px;
+border-top-right-radius:5px;
+border-bottom-left-radius:5px;
+border-bottom-right-radius:5px;
+-moz-box-shadow: 1px 0px 16px #7dbadb;
+-webkit-box-shadow: 1px 0px 16px #7dbadb;
+box-shadow: 1px 0px 16px #7dbadb;
+
+}
+	.responsive-accordion li .responsive-accordion-head.active { font-weight: bold; }
+
+
+/*	#Themes
+//	================================================== */
+
+	.responsive-accordion-default.responsive-accordion li .responsive-accordion-head {
+		border: 1px solid #DDD;
+		padding: 10px 30px 10px 10px;
+		background: #FFF;
+		color: #0b8593;
+		line-height: normal;
+		position: relative;
+	}
+
+	.responsive-accordion-default.responsive-accordion li .responsive-accordion-head i {
+		position: absolute;
+		top: 12px;
+		right: 10px;
+	}
+
+	.responsive-accordion-default.responsive-accordion li .responsive-accordion-panel {
+		border: 1px solid #DDD;
+		border-top: 0;
+		padding: 20px;
+		background: #FFF;
+	}

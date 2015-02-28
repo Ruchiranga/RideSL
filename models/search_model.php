@@ -1,6 +1,6 @@
 <?php
 
-class Login_Model extends Model {
+class Search_Model extends Model {
     
     private $location;
     
@@ -10,36 +10,48 @@ class Login_Model extends Model {
 
     public function run() {
         $this->location = $_POST['location'];
-        $sth = $this->db->prepare('Select privilege from account where username = :username and password =Password( :password )');
+        $sth = $this->db->prepare('select vehicle_reg_no,vehicle_type,manufacturer,model,capacity,vehicle_description,isActive,s.scheme_id,ac_availability,price,pricing_category,description from vehicle_scheme_location natural join location natural join scheme s natural join vehicle v where location = :location');
 
         $sth->execute(array(
-            ':username' => $this->username,
-            ':password' => $this->password
+            ':location' => $this->location,
         ));
 
 
-        $count = $sth->rowCount();
-        if ($count > 0) {
-
-            $data = $sth->fetch();
-            $this->privilege = $data['privilege'];
-            
-            $this->initSession();
-            
-            
-            if ($_SESSION['privilege'] == 'd') {
-                header('location: ../driverHome');
-            } else if ($_SESSION['privilege'] == 'p') {
-                header('location: ../index');
-            } else if ($_SESSION['privilege'] == 'a') {
-                header('location: ../admin');
-            } else {
-                header('location: ../error');
-            }
-            
-        } else {
-            header('location: ../login');
+        $results = $sth->fetchAll();
+        
+        
+        foreach ($results as $result){
+            print_r($result);
+            echo '<br><br>';
         }
+//        echo '<br>';
+//        $data = $sth->fetch();
+//        print_r($data);
+//        if ($count > 0) {
+//
+//            $data = $sth->fetch();
+//            $this->privilege = $data['privilege'];
+//            
+//            $this->initSession();
+//            
+//            
+//            if ($_SESSION['privilege'] == 'd') {
+//                header('location: ../driverHome');
+//            } else if ($_SESSION['privilege'] == 'p') {
+//                header('location: ../index');
+//            } else if ($_SESSION['privilege'] == 'a') {
+//                header('location: ../admin');
+//            } else {
+//                header('location: ../error');
+//            }
+//            
+//        } else {
+//            header('location: ../login');
+//        }
+    }
+    
+    private function createResult(){
+        
     }
 
 //    public function runUser($table) {

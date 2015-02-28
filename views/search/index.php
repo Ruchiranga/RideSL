@@ -141,7 +141,6 @@
 
                     <div class="result">
                         <hr>
-
                         <div style="margin-left: 6px; margin-right: 6px; ">
                             <font style="color: #2980b9; font-weight: bold; font-size: 17px">Chevrolet</font><font style="color: #2980b9; font-weight: bold; font-size: 17px"> Cruz<br></font>
                         </div>
@@ -154,50 +153,94 @@
                                 </td>
                                 <td style="vertical-align: top">
                                     <div style="float: left; padding-top: 10px">
-                                        <font style="color: #2980b9; margin-top: 10px">Registration No: </font><text>GA-2345</text><br>
-                                        <font style="color: #2980b9; ">Vehicle type: </font><text>Car</text><br>
-                                        <font style="color: #2980b9; ">Capacity: </font><text>4</text><br><br>
-                                        <font id="schemes" style="color: #2980b9; ">Registered Schemes:<br></font>
-                                        <text>City Taxi</text><br>
-                                        <text>Tours</text>
+
+                                        <table border="0">
+                                            <col width="180">
+                                            <col width="800">
+                                            <tr>
+                                                <td style="padding-bottom: 6px" valign="top">
+                                                    <font style="color: #2980b9;">Registration No: </font>
+                                                </td>
+                                                <td style="padding-bottom: 6px" valign="top">
+                                                    <text>GA-2345</text>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td style="padding-bottom: 6px" valign="top">
+                                                    <font style="color: #2980b9; ">Vehicle type: </font>
+                                                </td>
+                                                <td style="padding-bottom: 6px" valign="top">
+                                                    <text>Car</text>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-bottom: 6px" valign="top">
+                                                    <font style="color: #2980b9; ">Capacity: </font>
+                                                </td>
+                                                <td style="padding-bottom: 6px" valign="top">
+                                                    <text>4</text>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-bottom: 6px" valign="top">
+                                                    <font style="color: #2980b9; ">Description: </font>
+                                                </td>
+                                                <td style="padding-bottom: 6px" valign="top">
+                                                    <text>The car has an awesome sound system with full AC. Has so much leg space for the passengers to make the journey a comfortable one.</text>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-bottom: 6px" valign="top">
+                                                    <font style="color: #2980b9; ">AC Available: </font>
+                                                </td>
+                                                <td style="padding-bottom: 6px" valign="top">
+                                                    <text>Yes</text>
+                                                </td>
+                                            </tr>
+
+                                            <tr>
+                                                <td style="padding-bottom: 6px" valign="top">
+                                                    <font style="color: #2980b9; ">Price: </font>
+                                                </td>
+                                                <td style="padding-bottom: 6px" valign="top">
+                                                    <text style="font-weight: bold ">Rs. 40.00 per km</text>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-bottom: 6px" valign="top">
+                                                    <font style="color: #2980b9; ">Notes: </font>
+                                                </td>
+                                                <td style="padding-bottom: 6px" valign="top">
+                                                    <text>Safest mode of transport for the cheapest price.</text>
+                                                </td>
+                                            </tr>
+                                        </table>
+
+
+                                        <!--                                        <font id="schemes" style="color: #2980b9; ">Registered Schemes:<br></font>
+                                                                                <text>City Taxi</text><br>
+                                                                                <text>Tours</text>-->
                                     </div>
                                 </td>
                             </tr>
                             <tr>
                                 <td></td>
                                 <td>
-                                    <!--                                    <div class="starRating" style="float: right">
-                                                                            <div>
-                                                                                <div>
-                                                                                    <div>
-                                                                                        <div>
-                                                                                            <input class="starinput" id="rating1" type="radio" name="rating" value="1">
-                                                                                            <label class="starlabel" for="rating1"><span>1</span></label>
-                                                                                        </div>
-                                                                                        <input class="starinput" id="rating2" type="radio" name="rating" value="2">
-                                                                                        <label class="starlabel" for="rating2"><span>2</span></label>
-                                                                                    </div>
-                                                                                    <input class="starinput" id="rating3" type="radio" name="rating" value="3">
-                                                                                    <label class="starlabel" for="rating3"><span>3</span></label>
-                                                                                </div>
-                                                                                <input class="starinput" id="rating4" type="radio" name="rating" value="4">
-                                                                                <label class="starlabel" for="rating4"><span>4</span></label>
-                                                                            </div>
-                                                                            <input class="starinput" id="rating5" type="radio" name="rating" value="5">
-                                                                            <label class="starlabel" for="rating5"><span>5</span></label>
-                                                                        </div>-->
+
                                     <img href="#0" class="cd-popup-trigger" id="comment-icon" border="0" src="public/images/comment_icon.png" style="height: 20px;width: 24px; float: right; padding-left: 40px; padding-right: 40px; padding-top: 5px; ">
 
                                     <div class="cd-popup" role="alert">
                                         <div class="cd-popup-container">
-                                            <div style="margin-left: 6px; margin-right: 6px; ">
-                                                <text id="comments-header"><font style="color: #2980b9; cursor: pointer ">Comments</font></text>
+                                            <div style="margin-left: 6px; margin-right: 6px; margin-top: 20px">
+                                                <text id="comments-header"><font style="color: #2980b9; cursor: pointer;margin-left: auto;margin-right: auto; font-weight: bold;font-size: larger">Comments</font></text>
+                                                <hr>
                                                 <div id="comment_panel" style="margin-top: 20px">
                                                     <table border = "0">
                                                         <tr>
                                                             <td>
-                                                                <div style="height: auto; padding-top: 10px; padding-bottom: 10px">
-                                                                    <div><font style="color: #2980b9; ">MortalCombat_92</font></div>
+                                                                <div style="height: auto; padding-top: 10px;padding-bottom: 10px; margin-left: 30px">
+                                                                    <font style="color: #2980b9;">MortalCombat_92</font><br>
                                                                     A high fi radio set up is availiable. The windows are shaded so you can ride without pain of sunlight. As the seating capacity is 4, you can go without any trouble.
                                                                     <br><font style="color: #2980b9; font-size: 12px">December 17, 2014</font>
                                                                 </div>
@@ -206,7 +249,7 @@
                                                         </tr>
                                                         <tr>
                                                             <td>
-                                                                <div style="height: auto;padding-top: 10px; padding-bottom: 10px">
+                                                                <div style="height: auto;padding-top: 10px; padding-bottom: 10px; margin-left: 30px">
                                                                     <div><font style="color: #2980b9; ">Kitana</font></div>
                                                                     A high fi radio set up is availiable. The windows are shaded so you can ride without pain of sunlight. As the seating capacity is 4, you can go without any trouble.
                                                                     <br><font style="color: #2980b9; font-size: 12px">December 17, 2014</font>
@@ -215,7 +258,7 @@
                                                         </tr>
                                                         <tr>
                                                             <td>
-                                                                <div style="height: auto;padding-top: 10px; padding-bottom: 10px">
+                                                                <div style="height: auto;padding-top: 10px; padding-bottom: 10px; margin-left: 30px">
                                                                     <div><font style="color: #2980b9; ">Sheeva</font></div>
                                                                     A high fi radio set up is availiable. The windows are shaded so you can ride without pain of sunlight. As the seating capacity is 4, you can go without any trouble.
                                                                     <br><font style="color: #2980b9; font-size: 12px">December 17, 2014</font>

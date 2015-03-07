@@ -2,6 +2,15 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group/>
+        <group>
+            <file>file:/C:/xampp/htdocs/RideSL/views/index/index.php</file>
+            <file>file:/C:/xampp/htdocs/RideSL/views/login/index.php</file>
+            <file>file:/C:/xampp/htdocs/RideSL/controllers/search.php</file>
+            <file>file:/C:/xampp/htdocs/RideSL/controllers/login.php</file>
+            <file>file:/C:/xampp/htdocs/RideSL/models/login_model.php</file>
+            <file>file:/C:/xampp/htdocs/RideSL/models/search_model.php</file>
+            <file>file:/C:/xampp/htdocs/RideSL/views/search/index.php</file>
+            <file>file:/C:/xampp/htdocs/RideSL/controllers/index.php</file>
+        </group>
     </open-files>
 </project-private>

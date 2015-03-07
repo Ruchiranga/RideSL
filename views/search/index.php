@@ -143,12 +143,9 @@
 
                     <?php
                     if (isset($this->resultList)) {
-                        echo 'set';
                         foreach ($this->resultList as $key => $value) {
                             echo $value['vehicle_reg_no'];
                         }
-                    }else{
-                        echo 'notset';
                     }
                     
                     ?>
@@ -326,15 +323,6 @@
                                 </td>
                             </tr>
                         </table>
-
-
-
-
-
-
-
-
-
                     </div>
 
                     <div class="result">

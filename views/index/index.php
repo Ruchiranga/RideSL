@@ -13,7 +13,7 @@
 
     <div style=" height: 303px; width: 1230px; padding: 40px; text-align: center"> 
 
-        <form action="search/run" method="post">
+        <form action="search/resultList" method="post">
             <br>
             <img src="<?php echo URL;?>public/images/logo1.png" alt=""/>
             <br><br><input type="text" name="location" id="name" tabindex="1" placeholder="Enter pick up location" style="width: 350px; height: 40px;font-family: serif; font-size: 18px; text-align:center;"/>

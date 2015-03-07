@@ -1,17 +1,17 @@
 
-<link rel="stylesheet" type="text/css" href="public/css/buttonstyle.css">
-<link rel="stylesheet" type="text/css" href="public/css/hyperlinkstyle.css">
-<link rel="stylesheet" type="text/css" href="public/css/labelstyle.css">
-<link rel="stylesheet" type="text/css" href="public/css/paragraphstyle.css">
-<link rel="stylesheet" type="text/css" href="public/css/dualpanestyle.css">
-<link rel="stylesheet" type="text/css" href="public/css/tablestyle.css">
-<link rel="stylesheet" type="text/css" href="public/css/resultstyle.css">
-<link rel="stylesheet" type="text/css" href="public/css/combostyle.css">
-<link rel="stylesheet" type="text/css" href="public/css/normalize.css">
-<link rel="stylesheet" type="text/css" href="public/css/checkboxstyle.css">
-<link rel="stylesheet" type="text/css" href="public/css/commentpopupstyle.css">
-<link rel="stylesheet" type="text/css" href="public/css/commenticonstyle.css">
-<link id="zoomcss" rel="stylesheet" href="public/css/multizoom.css" type="text/css" />
+<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/buttonstyle.css">
+<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/hyperlinkstyle.css">
+<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/labelstyle.css">
+<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/paragraphstyle.css">
+<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/dualpanestyle.css">
+<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/tablestyle.css">
+<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/resultstyle.css">
+<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/combostyle.css">
+<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/normalize.css">
+<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/checkboxstyle.css">
+<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/commentpopupstyle.css">
+<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/commenticonstyle.css">
+<link id="zoomcss" rel="stylesheet" href="<?php echo URL; ?>public/css/multizoom.css" type="text/css" />
 <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
 
 <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8/jquery.min.js"></script>
@@ -27,6 +27,9 @@
 
 </head>
 <body>
+
+
+
     <div id='frame'>
         <div id='body'>
 
@@ -138,6 +141,18 @@
                         </select>
                     </div>
 
+                    <?php
+                    if (isset($this->resultList)) {
+                        echo 'set';
+                        foreach ($this->resultList as $key => $value) {
+                            echo $value['vehicle_reg_no'];
+                        }
+                    }else{
+                        echo 'notset';
+                    }
+                    
+                    ?>
+
 
                     <div class="result">
                         <hr>
@@ -148,7 +163,7 @@
                             <tr>
                                 <td style="width: 25%">
                                     <div width ="225px" style="margin-left: 6px; float: left; height: auto; ">
-                                        <img id="cruz" border="0" src="public/images/cruz.jpg" style="width:225px; height:225px; margin-top: 10px">
+                                        <img id="cruz" border="0" src="<?php echo URL; ?>public/images/cruz.jpg" style="width:225px; height:225px; margin-top: 10px">
                                     </div>
                                 </td>
                                 <td style="vertical-align: top">
@@ -215,6 +230,19 @@
                                                     <text>Safest mode of transport for the cheapest price.</text>
                                                 </td>
                                             </tr>
+                                            <tr>
+                                                <td rowspan="2" style="padding-bottom: 6px" valign="top">
+                                                    <font style="color: #2980b9; ">Contact No: </font>
+                                                </td>
+                                                <td style="padding-bottom: 6px" valign="top">
+                                                    <text style="font-weight: bold">0779273746</text>
+                                                </td>
+                                            </tr>
+                                            <tr>
+                                                <td style="padding-bottom: 6px" valign="top">
+                                                    <text style="font-weight: bold">0712273827</text>
+                                                </td>
+                                            </tr>
                                         </table>
 
 
@@ -228,7 +256,7 @@
                                 <td></td>
                                 <td>
 
-                                    <img href="#0" class="cd-popup-trigger" id="comment-icon" border="0" src="public/images/comment_icon.png" style="height: 20px;width: 24px; float: right; padding-left: 40px; padding-right: 40px; padding-top: 5px; ">
+                                    <img href="#0" class="cd-popup-trigger" id="comment-icon" border="0" src="<?php echo URL; ?>public/images/comment_icon.png" style="height: 20px;width: 24px; float: right; padding-left: 40px; padding-right: 40px; padding-top: 5px; ">
 
                                     <div class="cd-popup" role="alert">
                                         <div class="cd-popup-container">
@@ -319,7 +347,7 @@
                             <tr>
                                 <td>
                                     <div style="margin-left: 6px; float: left; width: 225px; height: auto; ">
-                                        <img id="prius" border="0" src="public/images/prius.jpg" style="width:225px;height:225px; margin-top: 10px;">
+                                        <img id="prius" border="0" src="<?php echo URL; ?>public/images/prius.jpg" style="width:225px;height:225px; margin-top: 10px;">
                                     </div>
                                 </td>
                                 <td>

@@ -1,16 +1,21 @@
 <?php
 
 class Search_Model extends Model {
-    
+
     private $location;
-    
+
     function __construct() {
         parent::__construct();
     }
 
-    public function run() {
-        $this->location = $_POST['location'];
-        $sth = $this->db->prepare('select vehicle_reg_no,vehicle_type,manufacturer,model,capacity,vehicle_description,isActive,s.scheme_id,ac_availability,price,pricing_category,description from vehicle_scheme_location natural join location natural join scheme s natural join vehicle v where location = :location');
+    public function resultList() {
+        if (isset($_POST['location'])) {
+            $this->location = $_POST['location'];
+        }else{
+            $this->location = '';
+        }
+
+        $sth = $this->db->prepare('select vehicle_reg_no,vehicle_type,manufacturer,model,capacity,vehicle_description,isActive,s.scheme_id,ac_availability,price,pricing_category,descrption from vehicle_scheme_location natural join location natural join scheme s natural join vehicle v where location = :location');
 
         $sth->execute(array(
             ':location' => $this->location,
@@ -18,12 +23,14 @@ class Search_Model extends Model {
 
 
         $results = $sth->fetchAll();
-        
-        
-        foreach ($results as $result){
-            print_r($result);
-            echo '<br><br>';
-        }
+
+        return $results;
+
+
+//        foreach ($results as $result){
+//            print_r($result);
+//            echo '<br><br>';
+//        }
 //        echo '<br>';
 //        $data = $sth->fetch();
 //        print_r($data);
@@ -49,8 +56,8 @@ class Search_Model extends Model {
 //            header('location: ../login');
 //        }
     }
-    
-    private function createResult(){
+
+    private function createResult() {
         
     }
 

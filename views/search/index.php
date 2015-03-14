@@ -19,12 +19,6 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
 
-<script>
-    function hidetracker() {
-        document.getElementsByClassName(".zoomtracker").style.display = 'none';
-    }
-</script>
-
 </head>
 <body>
 
@@ -142,25 +136,22 @@
                     </div>
 
                     <?php
+                    $count = 0;
                     if (isset($this->resultList)) {
                         foreach ($this->resultList as $key => $value) {
-                            echo $value['vehicle_reg_no'];
-                        }
-                    }
-                    
-                    ?>
-
-
-                    <div class="result">
+                            $count += 1;
+                            echo $count;
+                            echo
+                            '<div class="result">
                         <hr>
                         <div style="margin-left: 6px; margin-right: 6px; ">
-                            <font style="color: #2980b9; font-weight: bold; font-size: 17px">Chevrolet</font><font style="color: #2980b9; font-weight: bold; font-size: 17px"> Cruz<br></font>
+                            <font style="color: #2980b9; font-weight: bold; font-size: 17px">' . $value['manufacturer'] . '</font><font style="color: #2980b9; font-weight: bold; font-size: 17px"> ' . $value['model'] . '<br></font>
                         </div>
                         <table  style="width: 100%;" >
                             <tr>
                                 <td style="width: 25%">
                                     <div width ="225px" style="margin-left: 6px; float: left; height: auto; ">
-                                        <img id="cruz" border="0" src="<?php echo URL; ?>public/images/cruz.jpg" style="width:225px; height:225px; margin-top: 10px">
+                                        <img id="' . $count . '" border="0" src="' . URL . 'public/images/' . $value['file'] . '.jpg" style="width:225px; height:225px; margin-top: 10px">
                                     </div>
                                 </td>
                                 <td style="vertical-align: top">
@@ -174,7 +165,7 @@
                                                     <font style="color: #2980b9;">Registration No: </font>
                                                 </td>
                                                 <td style="padding-bottom: 6px" valign="top">
-                                                    <text>GA-2345</text>
+                                                    <text>' . $value['vehicle_reg_no'] . '</text>
                                                 </td>
                                             </tr>
 
@@ -183,7 +174,7 @@
                                                     <font style="color: #2980b9; ">Vehicle type: </font>
                                                 </td>
                                                 <td style="padding-bottom: 6px" valign="top">
-                                                    <text>Car</text>
+                                                    <text>' . $value['vehicle_type'] . '</text>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -191,7 +182,7 @@
                                                     <font style="color: #2980b9; ">Capacity: </font>
                                                 </td>
                                                 <td style="padding-bottom: 6px" valign="top">
-                                                    <text>4</text>
+                                                    <text>' . $value['capacity'] . '</text>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -199,7 +190,7 @@
                                                     <font style="color: #2980b9; ">Description: </font>
                                                 </td>
                                                 <td style="padding-bottom: 6px" valign="top">
-                                                    <text>The car has an awesome sound system with full AC. Has so much leg space for the passengers to make the journey a comfortable one.</text>
+                                                    <text>' . $value['vehicle_description'] . '</text>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -207,7 +198,7 @@
                                                     <font style="color: #2980b9; ">AC Available: </font>
                                                 </td>
                                                 <td style="padding-bottom: 6px" valign="top">
-                                                    <text>Yes</text>
+                                                    <text>' . $value['ac_availability'] . '</text>
                                                 </td>
                                             </tr>
 
@@ -216,7 +207,7 @@
                                                     <font style="color: #2980b9; ">Price: </font>
                                                 </td>
                                                 <td style="padding-bottom: 6px" valign="top">
-                                                    <text style="font-weight: bold ">Rs. 40.00 per km</text>
+                                                    <text style="font-weight: bold "> Rs. ' . $value['price'] . ' ' . $value['pricing_category'] . '</text>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -224,7 +215,7 @@
                                                     <font style="color: #2980b9; ">Notes: </font>
                                                 </td>
                                                 <td style="padding-bottom: 6px" valign="top">
-                                                    <text>Safest mode of transport for the cheapest price.</text>
+                                                    <text>' . $value['descrption'] . '</text>
                                                 </td>
                                             </tr>
                                             <tr>
@@ -232,20 +223,16 @@
                                                     <font style="color: #2980b9; ">Contact No: </font>
                                                 </td>
                                                 <td style="padding-bottom: 6px" valign="top">
-                                                    <text style="font-weight: bold">0779273746</text>
+                                                    <text style="font-weight: bold">NA</text>
                                                 </td>
                                             </tr>
                                             <tr>
                                                 <td style="padding-bottom: 6px" valign="top">
-                                                    <text style="font-weight: bold">0712273827</text>
+                                                    <text style="font-weight: bold">NA</text>
                                                 </td>
                                             </tr>
                                         </table>
 
-
-                                        <!--                                        <font id="schemes" style="color: #2980b9; ">Registered Schemes:<br></font>
-                                                                                <text>City Taxi</text><br>
-                                                                                <text>Tours</text>-->
                                     </div>
                                 </td>
                             </tr>
@@ -253,7 +240,7 @@
                                 <td></td>
                                 <td>
 
-                                    <img href="#0" class="cd-popup-trigger" id="comment-icon" border="0" src="<?php echo URL; ?>public/images/comment_icon.png" style="height: 20px;width: 24px; float: right; padding-left: 40px; padding-right: 40px; padding-top: 5px; ">
+                                    <img href="#0" class="cd-popup-trigger" id="comment-icon" border="0" src="' . URL . 'public/images/comment_icon.png" style="height: 20px;width: 24px; float: right; padding-left: 40px; padding-right: 40px; padding-top: 5px; ">
 
                                     <div class="cd-popup" role="alert">
                                         <div class="cd-popup-container">
@@ -294,28 +281,7 @@
                                                 </div>
                                                 <hr>
                                             </div>
-                                            <!--                                            <div>
-                                                                                            <div id="non_ac_city_taxi">
-                                                                                                <font style="color: #2980b9; ">Non AC</font><br>
-                                                                                                <font style="color: #2980b9; ">Price: </font><text>Rs.</text><text>50</text><text> per </text><text> km </text><br>
-                                                                                                <font style="color: #2980b9; ">Description: </font><div style="margin-left: 40px; margin-right: 20px; text-align: justify">A high fi radio set up is availiable. The windows are shaded so you can ride without pain of sunlight. As the seating capacity is 4, you can go without any trouble.</div><br>
-                                                                                            </div>
-                                                                                            <div id="non_ac_city_taxi">
-                                                                                                <font style="color: #2980b9; ">AC</font><br>
-                                                                                                <font style="color: #2980b9; ">Price: </font><text>Rs.</text><text>60</text><text> per </text><text> km </text><br>
-                                                                                                <font style="color: #2980b9; ">Description: </font><div style="margin-left: 40px; margin-right: 20px; text-align: justify">A high fi radio set up is availiable. The windows are shaded so you can ride without pain of sunlight. As the seating capacity is 4, you can go without any trouble.A high fi radio set up is availiable. The windows are shaded so you can ride without pain of sunlight. As the seating capacity is 4, you can go without any trouble.A high fi radio set up is availiable. The windows are shaded so you can ride without pain of sunlight. As the seating capacity is 4, you can go without any trouble.A high fi radio set up is availiable. The windows are shaded so you can ride without pain of sunlight. As the seating capacity is 4, you can go without any trouble.</div><br>
-                                                                                            </div>
-                                                                                                                                            <div id="avaliability_city_taxi">
-                                                                                                                                                <font style="color: #2980b9; ">Availiability</font><br><br>
-                                                                                                                                                <font style="color: #2980b9; ">mon</font><text style="margin-left: 20px">From </text><text>05:00</text><text> To </text><text> 17:00 </text><br>
-                                                                                                                                                <font style="color: #2980b9; ">tue</font><text style="margin-left: 29px">From </text><text>05:00</text><text> To </text><text> 17:00 </text><br>
-                                                                                                                                                <font style="color: #2980b9; ">wed</font><text style="margin-left: 22px">From </text><text>05:00</text><text> To </text><text> 17:00 </text><br>
-                                                                                                                                                <font style="color: #2980b9; ">thu</font><text style="margin-left: 28px">From </text><text>05:00</text><text> To </text><text> 17:00 </text><br>
-                                                                                                                                                <font style="color: #2980b9; ">fri</font><text style="margin-left: 34px">From </text><text>05:00</text><text> To </text><text> 17:00 </text><br>
-                                                                                                                                                <font style="color: #2980b9; ">sat</font><text style="margin-left: 31px">From </text><text>05:00</text><text> To </text><text> 17:00 </text><br>
-                                                                                                                                                <font style="color: #2980b9; ">sun</font><text style="margin-left: 26px">From </text><text>05:00</text><text> To </text><text> 17:00 </text><br>
-                                                                                                                                            </div>
-                                                                                        </div>      -->
+                                            
 
                                             <a href="#0" class="cd-popup-close img-replace">Close</a>
                                         </div> <!-- cd-popup-container -->
@@ -323,51 +289,246 @@
                                 </td>
                             </tr>
                         </table>
-                    </div>
-
-                    <div class="result">
-                        <hr>
-                        <div style="margin-left: 6px; margin-right: 6px; ">
-                            <font style="color: #2980b9; font-weight: bold; font-size: 17px">Toyota</font><font style="color: #2980b9; font-weight: bold; font-size: 17px"> Prius<br></font>
-                        </div>
-
-                        <table border = "0">
-                            <tr>
-                                <td>
-                                    <div style="margin-left: 6px; float: left; width: 225px; height: auto; ">
-                                        <img id="prius" border="0" src="<?php echo URL; ?>public/images/prius.jpg" style="width:225px;height:225px; margin-top: 10px;">
-                                    </div>
-                                </td>
-                                <td>
-                                    <div style="float: left; padding-top: 10px">
-                                        <font style="color: #2980b9; margin-top: 10px">Registration No: </font><text>GA-2345</text><br>
-                                        <font style="color: #2980b9; ">Vehicle type: </font><text>Car</text><br>
-                                        <font style="color: #2980b9; ">Capacity: </font><text>4</text><br><br>
-                                        <font style="color: #2980b9; ">Registered Schemes:<br></font>
-                                        <text>City Taxi</text><br>
-                                        <text>Tours</text>
-                                    </div>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
-
-                    <div id="padding" style="margin-top: 250px"><hr></div>
+                    </div>';
+                        }
+                    }
+                    ?>
+                    <br><br><br><br><br><br><br><br><br>
 
 
 
 
+                    <!--                    <div class="result">
+                                            <hr>
+                                            <div style="margin-left: 6px; margin-right: 6px; ">
+                                                <font style="color: #2980b9; font-weight: bold; font-size: 17px">Chevrolet</font><font style="color: #2980b9; font-weight: bold; font-size: 17px"> Cruz<br></font>
+                                            </div>
+                                            <table  style="width: 100%;" >
+                                                <tr>
+                                                    <td style="width: 25%">
+                                                        <div width ="225px" style="margin-left: 6px; float: left; height: auto; ">
+                                                            <img id="cruz" border="0" src="public/images/cruz.jpg" style="width:225px; height:225px; margin-top: 10px">
+                                                        </div>
+                                                    </td>
+                                                    <td style="vertical-align: top">
+                                                        <div style="float: left; padding-top: 10px">
+                    
+                                                            <table border="0">
+                                                                <col width="180">
+                                                                <col width="800">
+                                                                <tr>
+                                                                    <td style="padding-bottom: 6px" valign="top">
+                                                                        <font style="color: #2980b9;">Registration No: </font>
+                                                                    </td>
+                                                                    <td style="padding-bottom: 6px" valign="top">
+                                                                        <text>GA-2345</text>
+                                                                    </td>
+                                                                </tr>
+                    
+                                                                <tr>
+                                                                    <td style="padding-bottom: 6px" valign="top">
+                                                                        <font style="color: #2980b9; ">Vehicle type: </font>
+                                                                    </td>
+                                                                    <td style="padding-bottom: 6px" valign="top">
+                                                                        <text>Car</text>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td style="padding-bottom: 6px" valign="top">
+                                                                        <font style="color: #2980b9; ">Capacity: </font>
+                                                                    </td>
+                                                                    <td style="padding-bottom: 6px" valign="top">
+                                                                        <text>4</text>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td style="padding-bottom: 6px" valign="top">
+                                                                        <font style="color: #2980b9; ">Description: </font>
+                                                                    </td>
+                                                                    <td style="padding-bottom: 6px" valign="top">
+                                                                        <text>The car has an awesome sound system with full AC. Has so much leg space for the passengers to make the journey a comfortable one.</text>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td style="padding-bottom: 6px" valign="top">
+                                                                        <font style="color: #2980b9; ">AC Available: </font>
+                                                                    </td>
+                                                                    <td style="padding-bottom: 6px" valign="top">
+                                                                        <text>Yes</text>
+                                                                    </td>
+                                                                </tr>
+                    
+                                                                <tr>
+                                                                    <td style="padding-bottom: 6px" valign="top">
+                                                                        <font style="color: #2980b9; ">Price: </font>
+                                                                    </td>
+                                                                    <td style="padding-bottom: 6px" valign="top">
+                                                                        <text style="font-weight: bold ">Rs. 40.00 per km</text>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td style="padding-bottom: 6px" valign="top">
+                                                                        <font style="color: #2980b9; ">Notes: </font>
+                                                                    </td>
+                                                                    <td style="padding-bottom: 6px" valign="top">
+                                                                        <text>Safest mode of transport for the cheapest price.</text>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td rowspan="2" style="padding-bottom: 6px" valign="top">
+                                                                        <font style="color: #2980b9; ">Contact No: </font>
+                                                                    </td>
+                                                                    <td style="padding-bottom: 6px" valign="top">
+                                                                        <text style="font-weight: bold">0779273746</text>
+                                                                    </td>
+                                                                </tr>
+                                                                <tr>
+                                                                    <td style="padding-bottom: 6px" valign="top">
+                                                                        <text style="font-weight: bold">0712273827</text>
+                                                                    </td>
+                                                                </tr>
+                                                            </table>
+                    
+                    
+                                                                                                                                            <font id="schemes" style="color: #2980b9; ">Registered Schemes:<br></font>
+                                                                                                                                            <text>City Taxi</text><br>
+                                                                                                                                            <text>Tours</text>
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td></td>
+                                                    <td>
+                    
+                                                        <img href="#0" class="cd-popup-trigger" id="comment-icon" border="0" src="public/images/comment_icon.png" style="height: 20px;width: 24px; float: right; padding-left: 40px; padding-right: 40px; padding-top: 5px; ">
+                    
+                                                        <div class="cd-popup" role="alert">
+                                                            <div class="cd-popup-container">
+                                                                <div style="margin-left: 6px; margin-right: 6px; margin-top: 20px">
+                                                                    <text id="comments-header"><font style="color: #2980b9; cursor: pointer;margin-left: auto;margin-right: auto; font-weight: bold;font-size: larger">Comments</font></text>
+                                                                    <hr>
+                                                                    <div id="comment_panel" style="margin-top: 20px">
+                                                                        <table border = "0">
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <div style="height: auto; padding-top: 10px;padding-bottom: 10px; margin-left: 30px">
+                                                                                        <font style="color: #2980b9;">MortalCombat_92</font><br>
+                                                                                        A high fi radio set up is availiable. The windows are shaded so you can ride without pain of sunlight. As the seating capacity is 4, you can go without any trouble.
+                                                                                        <br><font style="color: #2980b9; font-size: 12px">December 17, 2014</font>
+                                                                                    </div>
+                    
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <div style="height: auto;padding-top: 10px; padding-bottom: 10px; margin-left: 30px">
+                                                                                        <div><font style="color: #2980b9; ">Kitana</font></div>
+                                                                                        A high fi radio set up is availiable. The windows are shaded so you can ride without pain of sunlight. As the seating capacity is 4, you can go without any trouble.
+                                                                                        <br><font style="color: #2980b9; font-size: 12px">December 17, 2014</font>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <div style="height: auto;padding-top: 10px; padding-bottom: 10px; margin-left: 30px">
+                                                                                        <div><font style="color: #2980b9; ">Sheeva</font></div>
+                                                                                        A high fi radio set up is availiable. The windows are shaded so you can ride without pain of sunlight. As the seating capacity is 4, you can go without any trouble.
+                                                                                        <br><font style="color: #2980b9; font-size: 12px">December 17, 2014</font>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </table>
+                                                                    </div>
+                                                                    <hr>
+                                                                </div>
+                                                                                                            <div>
+                                                                                                                <div id="non_ac_city_taxi">
+                                                                                                                    <font style="color: #2980b9; ">Non AC</font><br>
+                                                                                                                    <font style="color: #2980b9; ">Price: </font><text>Rs.</text><text>50</text><text> per </text><text> km </text><br>
+                                                                                                                    <font style="color: #2980b9; ">Description: </font><div style="margin-left: 40px; margin-right: 20px; text-align: justify">A high fi radio set up is availiable. The windows are shaded so you can ride without pain of sunlight. As the seating capacity is 4, you can go without any trouble.</div><br>
+                                                                                                                </div>
+                                                                                                                <div id="non_ac_city_taxi">
+                                                                                                                    <font style="color: #2980b9; ">AC</font><br>
+                                                                                                                    <font style="color: #2980b9; ">Price: </font><text>Rs.</text><text>60</text><text> per </text><text> km </text><br>
+                                                                                                                    <font style="color: #2980b9; ">Description: </font><div style="margin-left: 40px; margin-right: 20px; text-align: justify">A high fi radio set up is availiable. The windows are shaded so you can ride without pain of sunlight. As the seating capacity is 4, you can go without any trouble.A high fi radio set up is availiable. The windows are shaded so you can ride without pain of sunlight. As the seating capacity is 4, you can go without any trouble.A high fi radio set up is availiable. The windows are shaded so you can ride without pain of sunlight. As the seating capacity is 4, you can go without any trouble.A high fi radio set up is availiable. The windows are shaded so you can ride without pain of sunlight. As the seating capacity is 4, you can go without any trouble.</div><br>
+                                                                                                                </div>
+                                                                                                                <div id="avaliability_city_taxi">
+                                                                                                                    <font style="color: #2980b9; ">Availiability</font><br><br>
+                                                                                                                    <font style="color: #2980b9; ">mon</font><text style="margin-left: 20px">From </text><text>05:00</text><text> To </text><text> 17:00 </text><br>
+                                                                                                                    <font style="color: #2980b9; ">tue</font><text style="margin-left: 29px">From </text><text>05:00</text><text> To </text><text> 17:00 </text><br>
+                                                                                                                    <font style="color: #2980b9; ">wed</font><text style="margin-left: 22px">From </text><text>05:00</text><text> To </text><text> 17:00 </text><br>
+                                                                                                                    <font style="color: #2980b9; ">thu</font><text style="margin-left: 28px">From </text><text>05:00</text><text> To </text><text> 17:00 </text><br>
+                                                                                                                    <font style="color: #2980b9; ">fri</font><text style="margin-left: 34px">From </text><text>05:00</text><text> To </text><text> 17:00 </text><br>
+                                                                                                                    <font style="color: #2980b9; ">sat</font><text style="margin-left: 31px">From </text><text>05:00</text><text> To </text><text> 17:00 </text><br>
+                                                                                                                    <font style="color: #2980b9; ">sun</font><text style="margin-left: 26px">From </text><text>05:00</text><text> To </text><text> 17:00 </text><br>
+                                                                                                                </div>
+                                                                                                            </div>      
+                    
+                                                                <a href="#0" class="cd-popup-close img-replace">Close</a>
+                                                            </div>  
+                                                        </div> 
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </div>
+                    
+                    -->
 
 
-                </div>
+
+                    </body>
+                    <script>
 
 
-            </div>
+                        function hidetracker() {
+                            document.getElementsByClassName('.zoomtracker').style.display = 'none';
+                        }
+                        ;
 
-        </div><!-- End #body -->
-    </div><!-- End #frame -->
+
+<?php
+require 'views/search/js/multizoom.js';
+
+echo "jQuery(document).ready(function($) {\n";
+
+$i = 1;
+if (isset($this->resultList)) {
+    foreach ($this->resultList as $key => $value) {
+        echo "$('#" . $i . "').addimagezoom({
+                            zoomrange: [3, 10],
+                            magnifiersize: [400, 400],
+                            magnifierpos: 'right',
+                            cursorshade: true,
+                            largeimage:'http://localhost/RideSL/public/images/" . $value['file'] . ".jpg', 
+                            disablewheel: true//<-- No comma after last option!
+                        });\n";
+        $i++;
+    }
+}
+
+echo "});\n";
+
+echo '$(document).ready(function() {
+
+                        $("#check1").click(function() {
+                            $("#subfill1").slideToggle("slow");
+                        });
+                        $("#check2").click(function() {
+                            $("#subfill2").slideToggle("slow");
+                        });
+                        $("#check3").click(function() {
+                            $("#subfill3").slideToggle("slow");
+                        });
+                    });';
 
 
+if (isset($this->resultList)) {
+    foreach ($this->resultList as $key => $value) {
+        
+    }
+}
+?>
 
-</body>
-</html>
+                    </script>
+
+                    </html>

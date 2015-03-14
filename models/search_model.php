@@ -15,7 +15,7 @@ class Search_Model extends Model {
             $this->location = '';
         }
 
-        $sth = $this->db->prepare('select vehicle_reg_no,vehicle_type,manufacturer,model,capacity,vehicle_description,isActive,s.scheme_id,ac_availability,price,pricing_category,descrption from vehicle_scheme_location natural join location natural join scheme s natural join vehicle v where location = :location');
+        $sth = $this->db->prepare('select vehicle_reg_no,vehicle_type,manufacturer,model,capacity,vehicle_description,isActive,s.scheme_id,ac_availability,price,pricing_category,descrption,file from vehicle_scheme_location natural join location natural join scheme s natural join vehicle v natural join vehicle_image vi where location = :location');
 
         $sth->execute(array(
             ':location' => $this->location,

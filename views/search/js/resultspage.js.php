@@ -1,28 +1,24 @@
-jQuery(document).ready(function($) {
+<?php
 
+echo "jQuery(document).ready(function($) {";
 
-    $('#cruz').addimagezoom({// single image zoom
+$i = 1;
+if (isset($this->resultList)) {
+    foreach ($this->resultList as $key => $value) {
+        echo "$('#" . $i . "').addimagezoom({// single image zoom
         zoomrange: [3, 10],
         magnifiersize: [400, 400],
         magnifierpos: 'right',
         cursorshade: true,
         largeimage:'http://localhost/RideSL/public/images/cruz.jpg', 
         disablewheel: true//<-- No comma after last option!
-    });
+    });\n";
+    }
+}
 
-    $('#prius').addimagezoom({// single image zoom
-        zoomrange: [3, 10],
-        magnifiersize: [400, 400],
-        magnifierpos: 'right',
-        cursorshade: true,
-        disablewheel: true,
-        largeimage: 'http://localhost/RideSL/public/images/prius_large.jpg' //<-- No comma after last option!
-    });
+echo "});\n";
 
-
-
-});
-$(document).ready(function() {
+echo '$(document).ready(function() {
 
     $("#check1").click(function() {
         $("#subfill1").slideToggle("slow");
@@ -33,5 +29,5 @@ $(document).ready(function() {
     $("#check3").click(function() {
         $("#subfill3").slideToggle("slow");
     });
-});
+});';
 

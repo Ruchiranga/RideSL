@@ -17,6 +17,7 @@
             <br>
             <img src="<?php echo URL;?>public/images/logo1.png" alt=""/>
             <br><br><input type="text" name="location" id="name" tabindex="1" placeholder="Enter pick up location" style="width: 350px; height: 40px;font-family: serif; font-size: 18px; text-align:center;"/>
+            <input type="text" name="scheme_category" value="city_taxi_scheme" style="visibility: hidden; position: absolute;"/>
             <p><input type="submit" value="Find me a ride" class="belize-hole-flat-button" style="width: 200px"></p>
         </form>
 

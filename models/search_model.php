@@ -11,20 +11,43 @@ class Search_Model extends Model {
     public function resultList() {
         if (isset($_POST['location'])) {
             $this->location = $_POST['location'];
-        }else{
+        } else {
+            echo 'location not set';
             $this->location = '';
         }
+        if (isset($_POST['scheme_category'])) {
+            $this->scheme_category = $_POST['scheme_category'];
+        } else {
+            echo "scheme category not set";
+            $this->scheme_category = '';
+        }
 
-        $sth = $this->db->prepare('select vehicle_reg_no,vehicle_type,manufacturer,model,capacity,vehicle_description,isActive,s.scheme_id,ac_availability,price,pricing_category,descrption,file from vehicle_scheme_location natural join location natural join scheme s natural join vehicle v natural join vehicle_image vi where location = :location');
+//        $sth = $this->db->prepare('select vehicle_reg_no,vehicle_type,manufacturer,model,capacity,vehicle_description,isActive,s.scheme_id,ac_availability,price,pricing_category,descrption,file from vehicle_scheme_location natural join location natural join scheme s natural join vehicle v natural join vehicle_image vi where location = :location');
+        $sth = $this->db->prepare('drop view if exists results');
+        $sth->execute();
+
+        $sth = $this->db->prepare('create view results as select vehicle_reg_no,o.owner_id,vehicle_type,manufacturer,model,capacity,vehicle_description,isActive,s.scheme_id,ac_price,non_ac_price,pricing_category,descrption,image from scheme_location natural join scheme s natural join vehicle v natural join owner o where location = :location and s.category = :scheme_category');
 
         $sth->execute(array(
             ':location' => $this->location,
+            ':scheme_category' => $this->scheme_category
         ));
 
+        $sth = $this->db->prepare('select * from results');
+        $sth->execute();
 
         $results = $sth->fetchAll();
 
-        return $results;
+        $sth = $this->db->prepare('select vehicle_reg_no, telephone_number from telephone_number natural join (select owner_id,vehicle_reg_no from results) results');
+
+        $sth->execute();
+        $phnnumbers = $sth->fetchAll();
+
+        $sth = $this->db->prepare('select vehicle_reg_no,comment,comment_date,username from comment natural join (select vehicle_reg_no from results) results');
+        $sth->execute();
+        $comments = $sth->fetchAll();
+
+        return array('results'=> $results,'phone_numbers'=>$phnnumbers,'comments'=>$comments);
 
 
 //        foreach ($results as $result){

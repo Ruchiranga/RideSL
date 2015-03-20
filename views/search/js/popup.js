@@ -4,6 +4,7 @@ jQuery(document).ready(function($) {
     $('.cd-popup-trigger').on('click', function(event) {
         event.preventDefault();
         $('.cd-popup').addClass('is-visible');
+//        document.getElementById().add
         for (i = 0; i < elements.length; i++) {
             elements[i].style.visibility = 'hidden';
         }

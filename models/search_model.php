@@ -9,17 +9,28 @@ class Search_Model extends Model {
     }
 
     public function resultList() {
-        if (isset($_POST['location'])) {
-            $this->location = $_POST['location'];
+        if (isset($_GET['location'])) {
+            $this->location = $_GET['location'];
         } else {
             echo 'location not set';
             $this->location = '';
         }
-        if (isset($_POST['scheme_category'])) {
-            $this->scheme_category = $_POST['scheme_category'];
+        if (isset($_GET['scheme_category'])) {
+            $this->scheme_category = $_GET['scheme_category'];
         } else {
             echo "scheme category not set";
             $this->scheme_category = '';
+        }
+        if (isset($_GET['manufacturer'])) {
+            $this->manufacturer = $_GET['manufacturer'];
+        } else {
+            $this->manufacturer = '';
+        }
+        
+        if (isset($_GET['v_model'])) {
+            $this->v_model = $_GET['v_model'];
+        } else {
+            $this->v_model = '';
         }
 
 //        $sth = $this->db->prepare('select vehicle_reg_no,vehicle_type,manufacturer,model,capacity,vehicle_description,isActive,s.scheme_id,ac_availability,price,pricing_category,descrption,file from vehicle_scheme_location natural join location natural join scheme s natural join vehicle v natural join vehicle_image vi where location = :location');

@@ -68,7 +68,6 @@
 //        -moz-transition: opacity 0.3s 0s, visibility 0s 0s;
 //        transition: opacity 0.3s 0s, visibility 0s 0s;
 //        
-
     //        }';
     //        }
     //    }
@@ -125,48 +124,7 @@
                             echo '</div><br>';
                         }
                         ?>
-<!--                        <input id = "check1" class = "cbox" type = "checkbox" name = "check" value = "check1">
-                        <label for = "check1">Toyota</label>
-                        <div id = "subfill1" style = "display: none; padding-left: 30px">
-                            <input id = "check1-1" class = "cboxsub" type = "checkbox" name = "check" value = "check1-1">
-                            <label for = "check1-1">Prius</label>
-                            <br>
-                            <input id = "check1-2" class = "cboxsub" type = "checkbox" name = "check" value = "check1-2">
-                            <label for = "check1-2">Corolla</label>
-                            <br>
-                            <input id = "check1-3" class = "cboxsub" type = "checkbox" name = "check" value = "check1-3">
-                            <label for = "check1-3">Aqua</label>
-                            <br>
-                        </div>
-                        <br>
-                        <input id = "check2" class = "cbox" type = "checkbox" name = "check" value = "check2">
-                        <label for = "check2">Micro</label>
-                        <div id = "subfill2" style = "display: none; padding-left: 30px">
-                            <input id = "check2-1" class = "cboxsub" type = "checkbox" name = "check" value = "check1-1">
-                            <label for = "check2-1">Prius</label>
-                            <br>
-                            <input id = "check2-2" class = "cboxsub" type = "checkbox" name = "check" value = "check1-2">
-                            <label for = "check2-2">Corolla</label>
-                            <br>
-                            <input id = "check2-3" class = "cboxsub" type = "checkbox" name = "check" value = "check1-3">
-                            <label for = "check2-3">Aqua</label>
-                            <br>
-                        </div>
-                        <br>
-                        <input id = "check3" class = "cbox" type = "checkbox" name = "check" value = "check3">
-                        <label for = "check3">Zuzuki</label>
-                        <div id = "subfill3" style = "display: none; padding-left: 30px">
-                            <input id = "check3-1" class = "cboxsub" type = "checkbox" name = "check" value = "check1-1">
-                            <label for = "check3-1">Prius</label>
-                            <br>
-                            <input id = "check3-2" class = "cboxsub" type = "checkbox" name = "check" value = "check1-2">
-                            <label for = "check3-2">Corolla</label>
-                            <br>
-                            <input id = "check3-3" class = "cboxsub" type = "checkbox" name = "check" value = "check1-3">
-                            <label for = "check3-3">Aqua</label>
-                            <br>
-                        </div>
-                        <br>-->
+
                     </div>
                     <div style = "margin-top: 20px"><font style = "color: #2980b9;margin-left: 20px"> Availability</font></div>
 
@@ -198,9 +156,10 @@
 
             <div id = 'content'>
                 <div id = 'search'>
+                    <!--                    <form id="searchBar" action="search/xhrSearch" method="post">-->
                     <input type = "text" name = "search" id = "searchBox" tabindex = "1" value="<?php
-                    if (isset($_GET['location'])) {
-                        echo $_GET['location'];
+                    if (isset($_POST['location'])) {
+                        echo $_POST['location'];
                     } else {
                         echo '';
                     }
@@ -212,6 +171,7 @@
                         <option value = "audi">Audi</option>
                     </select>
                     <input type = "submit" value = "Search" id = "search-button">
+                    <!--                    </form>-->
                 </div>
                 <div id = 'categories'>
                     <table id = "category-table">
@@ -405,6 +365,18 @@
 require 'views/search/js/multizoom.js';
 ?>
 
+                        function resultModel(response) {
+                            var self = this;
+
+                            self.vehicles = ko.observableArray(response.results);
+                            self.phonenos = ko.observableArray(response.phone_numbers);
+                            self.comments = ko.observableArray(response.comments);
+
+                            ko.computed(function() {
+                                console.log(self.vehicles());
+                            });
+
+                        }
 
                         function hidetracker() {
                             document.getElementsByClassName('.zoomtracker').style.display = 'none';
@@ -423,6 +395,37 @@ require 'views/search/js/multizoom.js';
 //                            });
 
                         jQuery(document).ready(function($) {
+                            var results;
+                            var xmlhttp;
+                            if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+                                xmlhttp = new XMLHttpRequest();
+                            }
+                            else {// code for IE6, IE5
+                                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                            }
+                            xmlhttp.onreadystatechange = function() {
+                                if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
+                                {
+//                                    alert(1);
+//                                    console.log(xmlhttp.responseText);
+                                    results = jQuery.parseJSON(xmlhttp.responseText);
+                                    console.log(results);
+                                    ko.applyBindings(new resultModel(results));
+                                }
+                            }
+                            xmlhttp.open("POST", "getResultList", true);
+                            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+
+                            xmlhttp.send("location=" + $('#searchBox').val() + "&scheme_category=city_taxi_scheme");
+
+
+//                            $.get('getResultList', function(o) {
+//                                console.log("in the moter fucking func");
+//                                console.log(o);
+//                            },'json');
+//                            $('#search-button').click(function() {
+//
+//                            });
 
 //                                console.log($(this));
 //                                        $(".vehicleimg").addimagezoom({
@@ -456,15 +459,15 @@ require 'views/search/js/multizoom.js';
 //                                        });
 //                            });
 
-                            $(document).on("click", ".cbox", function() { 
+                            $(document).on("click", ".cbox", function() {
 
-                                    var parentid = $(this).attr('id');
-                                    console.log(parentid);
-                                    var num = parentid.replace(/^\D+/g, '');
-                                    var childid = "#subfill" + num;
-                                    console.log(childid);
-                                    $(childid).slideToggle("slow");
-                                    $(childid + " input").css("display", "none");
+                                var parentid = $(this).attr('id');
+                                console.log(parentid);
+                                var num = parentid.replace(/^\D+/g, '');
+                                var childid = "#subfill" + num;
+                                console.log(childid);
+                                $(childid).slideToggle("slow");
+                                $(childid + " input").css("display", "none");
 
                             })
 //                            $(".cbox").each(function(index) {
@@ -481,9 +484,9 @@ require 'views/search/js/multizoom.js';
 
                             var elements = document.getElementsByClassName('zoomtracker');
 
-                            $(document).on("click", ".cd-popup-trigger", function() { 
+                            $(document).on("click", ".cd-popup-trigger", function() {
                                 var regno = $(this).attr('name');
-                                
+
                                 event.preventDefault();
                                 $('#cd-popup' + regno).addClass('is-visible');
                                 disable_scroll();
@@ -491,7 +494,7 @@ require 'views/search/js/multizoom.js';
                                 for (i = 0; i < elements.length; i++) {
                                     elements[i].style.visibility = 'hidden';
                                 }
-                                
+
                             })
 //                            $(".cd-popup-trigger").each(function(index) {
 //                                var regno = $(this).attr('name');
@@ -508,14 +511,14 @@ require 'views/search/js/multizoom.js';
 
                             $(document).on("click", ".cd-popup", function() {
                                 if ($(event.target).is('.cd-popup-close') || $(event.target).is('.cd-popup')) {
-                                        event.preventDefault();
-                                        $(this).removeClass('is-visible');
-                                        enable_scroll();
-                                        $('body').css('overflow', 'auto');
-                                        for (i = 0; i < elements.length; i++) {
-                                            elements[i].style.visibility = 'visible';
-                                        }
+                                    event.preventDefault();
+                                    $(this).removeClass('is-visible');
+                                    enable_scroll();
+                                    $('body').css('overflow', 'auto');
+                                    for (i = 0; i < elements.length; i++) {
+                                        elements[i].style.visibility = 'visible';
                                     }
+                                }
                             })
 //                            $(".cd-popup").each(function(index) {
 //                                $(this).on('click', function(event) {
@@ -531,14 +534,14 @@ require 'views/search/js/multizoom.js';
 //                                });
 //                            });
                             $(document).keyup(function(event) {
-                                    if (event.which == '27') {
-                                        $('.cd-popup').removeClass('is-visible');
-                                        enable_scroll();
-                                        $('body').css('overflow', 'auto');
-                                        for (i = 0; i < elements.length; i++) {
-                                            elements[i].style.visibility = 'visible';
-                                        }
+                                if (event.which == '27') {
+                                    $('.cd-popup').removeClass('is-visible');
+                                    enable_scroll();
+                                    $('body').css('overflow', 'auto');
+                                    for (i = 0; i < elements.length; i++) {
+                                        elements[i].style.visibility = 'visible';
                                     }
+                                }
                             });
 
 

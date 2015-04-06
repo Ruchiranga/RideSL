@@ -16,10 +16,10 @@ class Search extends Controller {
     }
 
     function resultList() {
-        $data = $this->model->resultList();
-        $this->view->resultList = $data['results'];
-        $this->view->phoneNumbers = $data['phone_numbers'];
-        $this->view->comments = $data['comments'];
+//        $data = $this->model->resultList();
+//        $this->view->resultList = $data['results'];
+//        $this->view->phoneNumbers = $data['phone_numbers'];
+//        $this->view->comments = $data['comments'];
 //        $this->view->resultCount = $this->model->resultList().length;
         $this->view->render('search/index');
     }
@@ -28,22 +28,6 @@ class Search extends Controller {
         $data = $this->model->resultList();
         echo json_encode($data);
         return ;
-    }
-    
-    function filterMM() {
-         $args = func_get_args()[0];
-        echo $args;
-        echo $_POST['location'];
-//        $data = $this->model->resultList();
-//        $this->view->resultList = $data['results'];
-//        $this->view->phoneNumbers = $data['phone_numbers'];
-//        $this->view->comments = $data['comments'];
-////        $this->view->resultCount = $this->model->resultList().length;
-//        $this->view->render('search/index');
-    }
-    
-    function xhrSearch(){
-        
     }
 
 }

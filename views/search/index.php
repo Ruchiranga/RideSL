@@ -90,41 +90,15 @@
                     <div style = "margin-top: 20px"><font style = "color: #2980b9;;margin-left: 20px"> Manufacturer | Model</font></div>
 
 
-                    <div class = "checkbox" style = "padding-left: 40px;padding-top: 20px">
-
-                        <?php
-                        $manufacturers = array();
-                        if (isset($this->resultList)) {
-                            foreach ($this->resultList as $key => $value) {
-                                $manufacturers[] = $value['manufacturer'];
-                            }
-                        }
-                        $manufacturers = array_unique($manufacturers);
-
-
-                        foreach ($manufacturers as $manukey => $manuvalue) {
-                            echo '<input id = "check' . $manukey . '" class = "cbox" type = "checkbox" name = "' . $manuvalue . '" value = "check' . $manukey . '">
-                        <label for = "check' . $manukey . '">' . $manuvalue . '</label><div id = "subfill' . $manukey . '" style = "display: none; padding-left: 30px">';
-
-                            $models = array();
-                            if (isset($this->resultList)) {
-                                foreach ($this->resultList as $key => $value) {
-                                    if ($value['manufacturer'] == $manuvalue) {
-                                        $models[] = $value['model'];
-                                    }
-                                }
-                            }
-                            $models = array_unique($models);
-
-                            foreach ($models as $modelkey => $modelvalue) {
-                                echo '<input id = "check' . $manukey . '-' . $modelkey . '" class = "cboxsub" type = "checkbox" name = "check" value = "check' . $manukey . '-' . $modelkey . '">
-                            <label for = "check' . $manukey . '-' . $modelkey . '">' . $modelvalue . '</label>
-                            <br>';
-                            }
-                            echo '</div><br>';
-                        }
-                        ?>
-
+                    <div class = "checkbox" style = "padding-left: 40px;padding-top: 20px" data-bind="foreach: { data: manufacturers, as: 'manufacturer' } ">
+                        <input data-bind="attr :{id :'check'+$index(), name:$data,value :'check'+$index()}" class = "cbox" type = "checkbox">
+                        <label data-bind="attr :{for :'check'+$index()} , text:$data"></label>
+                        <div data-bind="attr :{id :'subfill'+$index()}, foreach: { data: $parent.models($data), as: 'model' } " style = "display: none; padding-left: 30px">
+                            <input data-bind="attr :{id :'checkmodel'+$data, value :'checkmodel'+$data} , text:$data" class = "cboxsub" type = "checkbox" name = "check">
+                            <label data-bind="attr :{for :'checkmodel'+$data} , text:$data" ></label>
+                            <br>
+                        </div>
+                        <br>
                     </div>
                     <div style = "margin-top: 20px"><font style = "color: #2980b9;margin-left: 20px"> Availability</font></div>
 
@@ -182,7 +156,7 @@
                         </tr>
                     </table>
                 </div>
-                <div class = 'results'>
+                <div class = 'resultsPane'>
 
                     <div id = "sort-bar">
                         <p style = "margin-left: 820px; display: inline-block">Sort : </p>
@@ -192,170 +166,300 @@
                             <option value = "location">Location: closest first</option>
                         </select>
                     </div>
+                    
+                    <div id="results" data-bind="foreach: { data: vehicles , as: 'vehicle' }">
+                        <div class="result">
+                            <hr>
+                            <div style="margin-left: 6px; margin-right: 6px; ">
+                                <font style="color: #2980b9; font-weight: bold; font-size: 17px" data-bind="text: vehicle.manufacturer"></font><font style="color: #2980b9; font-weight: bold; font-size: 17px" data-bind="text: vehicle.model"><br></font>
+                            </div>
+                            <table  style="width: 100%;" >
+                                <tr>
+                                    <td style="width: 25%">
+                                        <div width ="225px" style="margin-left: 6px; float: left; height: auto; ">
+                                            <img class="vehicleimg" data-bind="attr: { id: $index, src :$parent.url+'/public/images/'+vehicle.owner_id+'/'+vehicle.image}" border="0" style="width:225px; height:225px; margin-top: 10px">
+                                        </div>
+                                    </td>
+                                    <td style="vertical-align: top">
+                                        <div style="float: left; padding-top: 10px">
 
-                    <?php
-//                    print_r($this->comments);
+                                            <table border="0">
+                                                <col width="180">
+                                                <col width="800">
+                                                <tr>
+                                                    <td style="padding-bottom: 6px" valign="top">
+                                                        <font style="color: #2980b9;">Registration No: </font>
+                                                    </td>
+                                                    <td style="padding-bottom: 6px" valign="top">
+                                                        <text data-bind="text: vehicle.vehicle_reg_no"></text>
+                                                    </td>
+                                                </tr>
 
+                                                <tr>
+                                                    <td style="padding-bottom: 6px" valign="top">
+                                                        <font style="color: #2980b9; ">Vehicle type: </font>
+                                                    </td>
+                                                    <td style="padding-bottom: 6px" valign="top">
+                                                        <text data-bind="text: vehicle.vehicle_type"></text>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="padding-bottom: 6px" valign="top">
+                                                        <font style="color: #2980b9; ">Capacity: </font>
+                                                    </td>
+                                                    <td style="padding-bottom: 6px" valign="top">
+                                                        <text data-bind="text: vehicle.capacity"></text>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="padding-bottom: 6px" valign="top">
+                                                        <font style="color: #2980b9; ">Description: </font>
+                                                    </td>
+                                                    <td style="padding-bottom: 6px" valign="top">
+                                                        <text data-bind="text: vehicle.vehicle_description"></text>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="padding-bottom: 6px" valign="top">
+                                                        <font style="color: #2980b9; ">Price without AC: </font>
+                                                    </td>
+                                                    <td style="padding-bottom: 6px" valign="top">
+                                                        <text style="font-weight: bold " data-bind="text: 'Rs. '+vehicle.non_ac_price+' '+vehicle.pricing_category"></text>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="padding-bottom: 6px" valign="top">
+                                                        <font style="color: #2980b9; ">Price with AC: </font>
+                                                    </td>
+                                                    <td style="padding-bottom: 6px" valign="top">
+                                                        <text style="font-weight: bold " data-bind="text: (vehicle.ac_price == 'Null' || vehicle.ac_price == '' || vehicle.ac_price == '0.0' ) ? 'Not available' : 'Rs. '+vehicle.ac_price+' '+vehicle.pricing_category"> </text>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="padding-bottom: 6px" valign="top">
+                                                        <font style="color: #2980b9; ">Notes: </font>
+                                                    </td>
+                                                    <td style="padding-bottom: 6px" valign="top">
+                                                        <text data-bind="text: vehicle.descrption"></text>
+                                                    </td>
+                                                </tr>
+                                                
+                                                
+                                                <tr>
+                                                    <td style="padding-bottom: 6px" valign="top" data-bind="attr: { rowspan: $parent.getPhoneCount(vehicle.vehicle_reg_no)+1}">
+                                                        <font style="color: #2980b9; ">Contact No: </font>
+                                                    </td>
+                                                    
+                                                </tr>
+                                                    <!-- ko foreach: vehicle.phone_numbers -->
+                                                                <tr>
+                                                                    <td style="padding-bottom: 6px" valign="top">
+                                                                        <text style="font-weight: bold" data-bind="text: $data"></text>
+                                                                    </td>
+                                                                </tr>
+                                                    <!-- /ko -->    
+                                            </table>
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td></td>
+                                    <td>
+                                        <img href="#0" class="cd-popup-trigger" data-bind="attr: { id: 'comment-icon'+vehicle.vehicle_reg_no, src :$parent.url+'/public/images/comment_icon.png'}"  border="0" style="height: 20px;width: 24px; float: right; padding-left: 40px; padding-right: 40px; padding-top: 5px; ">
 
-
-                    $count = 0;
-                    if (isset($this->resultList)) {
-                        foreach ($this->resultList as $key => $value) {
-                            $count += 1;
-                            echo
-                            '<div class="result">
-                        <hr>
-                        <div style="margin-left: 6px; margin-right: 6px; ">
-                            <font style="color: #2980b9; font-weight: bold; font-size: 17px">' . $value['manufacturer'] . '</font><font style="color: #2980b9; font-weight: bold; font-size: 17px"> ' . $value['model'] . '<br></font>
-                        </div>
-                        <table  style="width: 100%;" >
-                            <tr>
-                                <td style="width: 25%">
-                                    <div width ="225px" style="margin-left: 6px; float: left; height: auto; ">
-                                        <img class="vehicleimg" id="' . $count . '" border="0" src="' . URL . 'public/images/' . $value['owner_id'] . "/" . $value['image'] . '" style="width:225px; height:225px; margin-top: 10px">
-                                    </div>
-                                </td>
-                                <td style="vertical-align: top">
-                                    <div style="float: left; padding-top: 10px">
-
-                                        <table border="0">
-                                            <col width="180">
-                                            <col width="800">
-                                            <tr>
-                                                <td style="padding-bottom: 6px" valign="top">
-                                                    <font style="color: #2980b9;">Registration No: </font>
-                                                </td>
-                                                <td style="padding-bottom: 6px" valign="top">
-                                                    <text>' . $value['vehicle_reg_no'] . '</text>
-                                                </td>
-                                            </tr>
-
-                                            <tr>
-                                                <td style="padding-bottom: 6px" valign="top">
-                                                    <font style="color: #2980b9; ">Vehicle type: </font>
-                                                </td>
-                                                <td style="padding-bottom: 6px" valign="top">
-                                                    <text>' . $value['vehicle_type'] . '</text>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="padding-bottom: 6px" valign="top">
-                                                    <font style="color: #2980b9; ">Capacity: </font>
-                                                </td>
-                                                <td style="padding-bottom: 6px" valign="top">
-                                                    <text>' . $value['capacity'] . '</text>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="padding-bottom: 6px" valign="top">
-                                                    <font style="color: #2980b9; ">Description: </font>
-                                                </td>
-                                                <td style="padding-bottom: 6px" valign="top">
-                                                    <text>' . $value['vehicle_description'] . '</text>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="padding-bottom: 6px" valign="top">
-                                                    <font style="color: #2980b9; ">Price without AC: </font>
-                                                </td>
-                                                <td style="padding-bottom: 6px" valign="top">
-                                                    <text style="font-weight: bold "> Rs. ' . $value['non_ac_price'] . ' ' . $value['pricing_category'] . '</text>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="padding-bottom: 6px" valign="top">
-                                                    <font style="color: #2980b9; ">Price with AC: </font>
-                                                </td>
-                                                <td style="padding-bottom: 6px" valign="top">
-                                                    <text style="font-weight: bold "> Rs. ' . ($ac_price = ($value['ac_price'] == 'Null' || $value['ac_price'] == '' || $value['ac_price'] == '0.0') ? 'Not available' : $value['ac_price']) . ' ' . $value['pricing_category'] . '</text>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <td style="padding-bottom: 6px" valign="top">
-                                                    <font style="color: #2980b9; ">Notes: </font>
-                                                </td>
-                                                <td style="padding-bottom: 6px" valign="top">
-                                                    <text>' . $value['descrption'] . '</text>
-                                                </td>
-                                            </tr>';
-
-                            $numbers = array();
-                            foreach ($this->phoneNumbers as $index => $pair) {
-                                if ($pair['vehicle_reg_no'] == $value['vehicle_reg_no']) {
-                                    $numbers[] = $pair['telephone_number'];
-                                }
-                            }
-
-                            echo '<tr>
-                                                <td rowspan="' . count($numbers) . '" style="padding-bottom: 6px" valign="top">
-                                                    <font style="color: #2980b9; ">Contact No: </font>
-                                                </td>';
-                            foreach ($numbers as $index => $number) {
-
-                                if ($index == 0) {
-                                    echo '<td style="padding-bottom: 6px" valign="top">
-                                                    <text style="font-weight: bold">' . $number . '</text>
-                                                </td>
-                                            </tr>';
-                                } else {
-                                    echo '<tr>
-                                                <td style="padding-bottom: 6px" valign="top">
-                                                    <text style="font-weight: bold">' . $number . '</text>
-                                                </td>
-                                            </tr>';
-                                }
-                            }
-
-
-                            echo '</table>
-
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td></td>
-                                <td>
-
-                                    <img href="#0" class="cd-popup-trigger" name = "' . $value['vehicle_reg_no'] . '" id="comment-icon' . $value['vehicle_reg_no'] . '" border="0" src="' . URL . 'public/images/comment_icon.png" style="height: 20px;width: 24px; float: right; padding-left: 40px; padding-right: 40px; padding-top: 5px; ">
-
-                                    <div class="cd-popup" id="cd-popup' . $value['vehicle_reg_no'] . '" role="alert">
-                                        <div class="cd-popup-container">
-                                            <div style="margin-left: 6px; margin-right: 6px; margin-top: 20px">
-                                                <text id="comments-header"><font style="color: #2980b9; cursor: pointer;margin-left: auto;margin-right: auto; font-weight: bold;font-size: larger">Comments</font></text>
-                                                <hr>
-                                                <div id="comment_panel" style="margin-top: 20px">
-                                                    <table border = "0" style="margin: 0 auto;">';
-
-                            foreach ($this->comments as $index => $commentdata) {
-                                if ($commentdata['vehicle_reg_no'] == $value['vehicle_reg_no']) {
-                                    echo '
-                                                        <tr>
-                                                            <td>
-                                                                <div style="height: auto; padding-top: 10px;padding-bottom: 10px; margin-left: 30px">
-                                                                    <font style="color: #2980b9;">' . $commentdata['username'] . ' wrote :</font><br>' . $commentdata['comment'] . '
-                                                                    <br><font style="color: #2980b9; font-size: 12px">on ' . $commentdata['comment_date'] . '</font>
-                                                                </div>
-
-                                                            </td>
-                                                        </tr>';
-                                }
-                            }
-                            echo '
-                                                    </table>
+                                        <div class="cd-popup" data-bind="attr: { id: 'cd-popup'+vehicle.vehicle_reg_no}" role="alert">
+                                            <div class="cd-popup-container">
+                                                <div style="margin-left: 6px; margin-right: 6px; margin-top: 20px">
+                                                    <text id="comments-header"><font style="color: #2980b9; cursor: pointer;margin-left: auto;margin-right: auto; font-weight: bold;font-size: larger">Comments</font></text>
+                                                    <hr>
+                                                    <div id="comment_panel" style="margin-top: 20px">
+                                                        <table border = "0" style="margin: 0 auto;" data-bind="foreach: vehicle.comments">
+                                                                <tr>
+                                                                    <td>
+                                                                        <div style="height: auto; padding-top: 10px;padding-bottom: 10px; margin-left: 30px">
+                                                                            <font style="color: #2980b9;" data-bind="text: $data.username+' wrote :'"></font>
+                                                                            <br>
+                                                                            <span data-bind="text: $data.comment"></span>
+                                                                            <br>
+                                                                            <font style="color: #2980b9; font-size: 12px" data-bind="text: 'on '+ $data.comment_date"></font>
+                                                                        </div>
+                                                                    </td>
+                                                                </tr>
+                                                        </table>
+                                                    </div>
+                                                    <hr>
                                                 </div>
-                                                <hr>
-                                            </div>
-                                            
 
-                                            <a href="#0" class="cd-popup-close img-replace">Close</a>
-                                        </div> <!-- cd-popup-container -->
-                                    </div> <!-- cd-popup -->
-                                </td>
-                            </tr>
-                        </table>
-                    </div>';
-                        }
-                    }
+
+                                                <a href="#0" class="cd-popup-close img-replace">Close</a>
+                                            </div> 
+                                        </div> 
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+                    </div>
+                    
+                    
+                    <?php
+//                    $count = 0;
+//                    if (isset($this->resultList)) {
+//                        foreach ($this->resultList as $key => $value) {
+//                            $count += 1;
+//                            echo
+//                            '<div class="result">
+//                        <hr>
+//                        <div style="margin-left: 6px; margin-right: 6px; ">
+//                            <font style="color: #2980b9; font-weight: bold; font-size: 17px">' . $value['manufacturer'] . '</font><font style="color: #2980b9; font-weight: bold; font-size: 17px"> ' . $value['model'] . '<br></font>
+//                        </div>
+//                        <table  style="width: 100%;" >
+//                            <tr>
+//                                <td style="width: 25%">
+//                                    <div width ="225px" style="margin-left: 6px; float: left; height: auto; ">
+//                                        <img class="vehicleimg" id="' . $count . '" border="0" src="' . URL . 'public/images/' . $value['owner_id'] . "/" . $value['image'] . '" style="width:225px; height:225px; margin-top: 10px">
+//                                    </div>
+//                                </td>
+//                                <td style="vertical-align: top">
+//                                    <div style="float: left; padding-top: 10px">
+//
+//                                        <table border="0">
+//                                            <col width="180">
+//                                            <col width="800">
+//                                            <tr>
+//                                                <td style="padding-bottom: 6px" valign="top">
+//                                                    <font style="color: #2980b9;">Registration No: </font>
+//                                                </td>
+//                                                <td style="padding-bottom: 6px" valign="top">
+//                                                    <text>' . $value['vehicle_reg_no'] . '</text>
+//                                                </td>
+//                                            </tr>
+//
+//                                            <tr>
+//                                                <td style="padding-bottom: 6px" valign="top">
+//                                                    <font style="color: #2980b9; ">Vehicle type: </font>
+//                                                </td>
+//                                                <td style="padding-bottom: 6px" valign="top">
+//                                                    <text>' . $value['vehicle_type'] . '</text>
+//                                                </td>
+//                                            </tr>
+//                                            <tr>
+//                                                <td style="padding-bottom: 6px" valign="top">
+//                                                    <font style="color: #2980b9; ">Capacity: </font>
+//                                                </td>
+//                                                <td style="padding-bottom: 6px" valign="top">
+//                                                    <text>' . $value['capacity'] . '</text>
+//                                                </td>
+//                                            </tr>
+//                                            <tr>
+//                                                <td style="padding-bottom: 6px" valign="top">
+//                                                    <font style="color: #2980b9; ">Description: </font>
+//                                                </td>
+//                                                <td style="padding-bottom: 6px" valign="top">
+//                                                    <text>' . $value['vehicle_description'] . '</text>
+//                                                </td>
+//                                            </tr>
+//                                            <tr>
+//                                                <td style="padding-bottom: 6px" valign="top">
+//                                                    <font style="color: #2980b9; ">Price without AC: </font>
+//                                                </td>
+//                                                <td style="padding-bottom: 6px" valign="top">
+//                                                    <text style="font-weight: bold "> Rs. ' . $value['non_ac_price'] . ' ' . $value['pricing_category'] . '</text>
+//                                                </td>
+//                                            </tr>
+//                                            <tr>
+//                                                <td style="padding-bottom: 6px" valign="top">
+//                                                    <font style="color: #2980b9; ">Price with AC: </font>
+//                                                </td>
+//                                                <td style="padding-bottom: 6px" valign="top">
+//                                                    <text style="font-weight: bold "> Rs. ' . ($ac_price = ($value['ac_price'] == 'Null' || $value['ac_price'] == '' || $value['ac_price'] == '0.0') ? 'Not available' : $value['ac_price']) . ' ' . $value['pricing_category'] . '</text>
+//                                                </td>
+//                                            </tr>
+//                                            <tr>
+//                                                <td style="padding-bottom: 6px" valign="top">
+//                                                    <font style="color: #2980b9; ">Notes: </font>
+//                                                </td>
+//                                                <td style="padding-bottom: 6px" valign="top">
+//                                                    <text>' . $value['descrption'] . '</text>
+//                                                </td>
+//                                            </tr>';
+//
+//                            $numbers = array();
+//                            foreach ($this->phoneNumbers as $index => $pair) {
+//                                if ($pair['vehicle_reg_no'] == $value['vehicle_reg_no']) {
+//                                    $numbers[] = $pair['telephone_number'];
+//                                }
+//                            }
+//
+//                            echo '<tr>
+//                                                <td rowspan="' . count($numbers) . '" style="padding-bottom: 6px" valign="top">
+//                                                    <font style="color: #2980b9; ">Contact No: </font>
+//                                                </td>';
+//                            foreach ($numbers as $index => $number) {
+//
+//                                if ($index == 0) {
+//                                    echo '<td style="padding-bottom: 6px" valign="top">
+//                                                    <text style="font-weight: bold">' . $number . '</text>
+//                                                </td>
+//                                            </tr>';
+//                                } else {
+//                                    echo '<tr>
+//                                                <td style="padding-bottom: 6px" valign="top">
+//                                                    <text style="font-weight: bold">' . $number . '</text>
+//                                                </td>
+//                                            </tr>';
+//                                }
+//                            }
+//
+//
+//                            echo '</table>
+//
+//                                    </div>
+//                                </td>
+//                            </tr>
+//                            <tr>
+//                                <td></td>
+//                                <td>
+//
+//                                    <img href="#0" class="cd-popup-trigger" name = "' . $value['vehicle_reg_no'] . '" id="comment-icon' . $value['vehicle_reg_no'] . '" border="0" src="' . URL . 'public/images/comment_icon.png" style="height: 20px;width: 24px; float: right; padding-left: 40px; padding-right: 40px; padding-top: 5px; ">
+//
+//                                    <div class="cd-popup" id="cd-popup' . $value['vehicle_reg_no'] . '" role="alert">
+//                                        <div class="cd-popup-container">
+//                                            <div style="margin-left: 6px; margin-right: 6px; margin-top: 20px">
+//                                                <text id="comments-header"><font style="color: #2980b9; cursor: pointer;margin-left: auto;margin-right: auto; font-weight: bold;font-size: larger">Comments</font></text>
+//                                                <hr>
+//                                                <div id="comment_panel" style="margin-top: 20px">
+//                                                    <table border = "0" style="margin: 0 auto;">';
+//
+//                            foreach ($this->comments as $index => $commentdata) {
+//                                if ($commentdata['vehicle_reg_no'] == $value['vehicle_reg_no']) {
+//                                    echo '
+//                                                        <tr>
+//                                                            <td>
+//                                                                <div style="height: auto; padding-top: 10px;padding-bottom: 10px; margin-left: 30px">
+//                                                                    <font style="color: #2980b9;">' . $commentdata['username'] . ' wrote :</font><br>' . $commentdata['comment'] . '
+//                                                                    <br><font style="color: #2980b9; font-size: 12px">on ' . $commentdata['comment_date'] . '</font>
+//                                                                </div>
+//
+//                                                            </td>
+//                                                        </tr>';
+//                                }
+//                            }
+//                            echo '
+//                                                    </table>
+//                                                </div>
+//                                                <hr>
+//                                            </div>
+//                                            
+//
+//                                            <a href="#0" class="cd-popup-close img-replace">Close</a>
+//                                        </div> <!-- cd-popup-container -->
+//                                    </div> <!-- cd-popup -->
+//                                </td>
+//                            </tr>
+//                        </table>
+//                    </div>';
+//                        }
+//                    }
                     ?>
                     <br><br><br><br><br><br><br><br><br>
 
@@ -367,14 +471,44 @@ require 'views/search/js/multizoom.js';
 
                         function resultModel(response) {
                             var self = this;
+                            var fullurl = document.URL;
+                            
+                            self.vehicles = ko.observableArray(response);
+//                            self.phonenos = ko.observableArray(response.phone_numbers);
+//                            self.comments = ko.observableArray(response.comments);
 
-                            self.vehicles = ko.observableArray(response.results);
-                            self.phonenos = ko.observableArray(response.phone_numbers);
-                            self.comments = ko.observableArray(response.comments);
-
-                            ko.computed(function() {
-                                console.log(self.vehicles());
+                            self.url = fullurl.substring(0, fullurl.indexOf("RideSL")+"RideSL".length);
+                            
+                            self.getPhoneCount = function(regno){
+                                for (i = 0; i < self.vehicles().length; i++) { 
+                                    if(self.vehicles()[i].vehicle_reg_no === regno){
+                                        return self.vehicles()[i].phone_numbers.length;
+                                    }
+                                }
+                                return 0;
+                            };
+                            
+                            self.manufacturers = ko.computed(function() {
+                                var manus = [];
+                                for (i = 0; i < response.length; i++) { 
+                                    if(manus.indexOf(response[i]['manufacturer']) === -1){
+                                        manus[manus.length] = response[i]['manufacturer'];
+                                    }
+                                }
+                                
+                                return manus;
                             });
+                            
+                            self.models = function(manufacturer) {
+                                var models = [];
+                                for (i = 0; i < response.length; i++) { 
+                                    if(response[i]['manufacturer'] === manufacturer){
+                                        models[models.length] = response[i]['model'];
+                                    }
+                                }
+                                return models;
+                            };
+                            
 
                         }
 
@@ -410,6 +544,8 @@ require 'views/search/js/multizoom.js';
 //                                    console.log(xmlhttp.responseText);
                                     results = jQuery.parseJSON(xmlhttp.responseText);
                                     console.log(results);
+//                                    var phone_nos = [];
+//                                    var phonenoResults = results.phone_numbers;
                                     ko.applyBindings(new resultModel(results));
                                 }
                             }
@@ -462,10 +598,8 @@ require 'views/search/js/multizoom.js';
                             $(document).on("click", ".cbox", function() {
 
                                 var parentid = $(this).attr('id');
-                                console.log(parentid);
                                 var num = parentid.replace(/^\D+/g, '');
                                 var childid = "#subfill" + num;
-                                console.log(childid);
                                 $(childid).slideToggle("slow");
                                 $(childid + " input").css("display", "none");
 
@@ -484,10 +618,12 @@ require 'views/search/js/multizoom.js';
 
                             var elements = document.getElementsByClassName('zoomtracker');
 
-                            $(document).on("click", ".cd-popup-trigger", function() {
-                                var regno = $(this).attr('name');
+                            $(document).on("click", ".cd-popup-trigger", function(o) {
+//                                console.log(o.target.id.replace("comment-icon", ""));
+                                var regno = o.target.id.replace("comment-icon", "");
 
                                 event.preventDefault();
+//                                console.log('#cd-popup' + regno);
                                 $('#cd-popup' + regno).addClass('is-visible');
                                 disable_scroll();
                                 $('body').css('overflow', 'hidden');

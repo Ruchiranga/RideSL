@@ -11,8 +11,17 @@
 <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/checkboxstyle.css">
 <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/commentpopupstyle.css">
 <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/commenticonstyle.css">
+<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/jquery-ui.css">
+<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/jquery-ui.theme.css">
+<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/jquery-ui.structure.css">
+<!--<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/bootstrap-theme.css">-->
 <link id="zoomcss" rel="stylesheet" href="<?php echo URL; ?>public/css/multizoom.css" type="text/css" />
 <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
+<script src="<?php echo URL; ?>views/search/js/jquery-ui.js"></script>
+<!--<script src="<?php echo URL; ?>views/search/js/bootstrap.js"></script>-->
+
+
 
 
 <style>
@@ -51,7 +60,7 @@
             <div id = 'panel'>
                 <div id = "filters" style = "margin-top: 85px;height: 500px;">
                     <div><font style = "color: #2980b9; margin-top: 10px;"> <b> Filter Results</b></font></div>
-                    
+
                     <div style = "margin-top: 20px"><font style = "color: #2980b9;;margin-left: 20px"> Vehicle Type</font></div>
 
 
@@ -60,7 +69,7 @@
                         <label data-bind="attr :{for :'typecheck'+$index()} , text:$data"></label>
                         <br>
                     </div>
-                    
+
 
                     <div style = "margin-top: 20px"><font style = "color: #2980b9;;margin-left: 20px"> Manufacturer | Model</font></div>
 
@@ -80,19 +89,11 @@
                     <div>
                         <table border = "0" style = "margin-top: 18px">
                             <tr>
-                                <td>
-                                    <font style = "margin-left: 40px;font-weight: bold;font-size: 13px;color: #2980b9;font-family: sans-serif">From</font>
+                                <td style="padding-right: 10px;">
+                                    <font style = "margin-left: 40px;font-weight: bold;font-size: 13px;color: #2980b9;font-family: sans-serif">On</font>
                                 </td>
                                 <td>
-                                    <input type = "text" name = "from" class = "fromtoBox" tabindex = "1"/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <font style = "margin-left: 40px;font-weight: bold;font-size: 13px;color: #2980b9;font-family: sans-serif">To</font>
-                                </td>
-                                <td>
-                                    <input type = "text" name = "to" class = "fromtoBox" tabindex = "1"/>
+                                    <input id="datepicktext" type="text" type="text" class="form-control" style="  width: 110px;  font-size: 80%;" readonly>
                                 </td>
                             </tr>
                         </table>
@@ -236,7 +237,7 @@
                                                         <font style="color: #2980b9; ">Availability: </font>
                                                     </td>
                                                     <td style="padding-bottom: 6px" valign="top">
-                                                        <text class="availability" data-bind="attr : {id:'av'+vehicle.vehicle_reg_no},text: 'show/hide' "></text>
+                                                        <text class="availability" style="cursor: pointer;" data-bind="attr : {id:'av'+vehicle.vehicle_reg_no},text: 'show/hide' "></text>
                                                     </td>
                                                 </tr>
                                                 <tr>
@@ -262,14 +263,14 @@
                                                                     </td>
                                                                     <!--<text style="margin-left: 15px; line-height: 25px;" data-bind="text: $root.capitalizeFirstLetter($data.day) + '  From  ' + $data.start_time + '  To  ' + $data.end_time"></text>-->
                                                                 </tr>
-                                                                
+
                                                             </table>
                                                         </div>
-                                                        
+
                                                         <br>
                                                     </td>
                                                 </tr>
-                                                
+
                                             </table>
                                         </div>
                                     </td>
@@ -331,7 +332,7 @@ require 'views/search/js/multizoom.js';
                                 }
                                 var daysref = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
                                 for (i = 0; i < self.response.length; i++) {
-                                    self.response[i].availability.sort(function(x, y){ 
+                                    self.response[i].availability.sort(function(x, y) {
                                         x = daysref.indexOf(x.day)
                                         y = daysref.indexOf(y.day)
                                         if (x < y) {
@@ -343,7 +344,7 @@ require 'views/search/js/multizoom.js';
                                         return 0;
                                     });
                                 }
-                                
+
                             });
 
                             self.vehicles = ko.observableArray(self.response);
@@ -371,7 +372,7 @@ require 'views/search/js/multizoom.js';
 
                                 return manus;
                             });
-                            
+
                             self.types = ko.computed(function() {
                                 var types = [];
                                 for (i = 0; i < response.length; i++) {
@@ -404,59 +405,130 @@ require 'views/search/js/multizoom.js';
                             var manuFilters = [];
                             var typeFilters = [];
                             var modelFilters = [];
-                            
-                            self.processFilters = function(){
-                                
-                                if (manuFilters.length === 0 && typeFilters.length === 0) {
+                            var dayFilter;
+
+                            self.processFilters = function() {
+                                if (dayFilter) {
+                                    var matches = [];
                                     for (i = 0; i < self.vehicles().length; i++) {
-                                        self.vehicles()[i]['visible'] = true;
-                                    }
-                                } else if(manuFilters.length === 0 && typeFilters.length > 0) {
-                                    for (i = 0; i < self.vehicles().length; i++) {
-                                        if (typeFilters.indexOf(self.vehicles()[i]['vehicle_type']) > -1 ) {
-                                            self.vehicles()[i]['visible'] = true;
-                                        } else {
-                                            self.vehicles()[i]['visible'] = false;
+                                        var match = false;
+                                        for (j = 0; j < self.vehicles()[i].availability.length; j++) {
+                                            if (self.vehicles()[i].availability[j].day === dayFilter) {
+                                                match = true;
+                                                break;
+                                            }
                                         }
+                                        matches.push(match);
                                     }
-                                }else if(manuFilters.length > 0 && modelFilters.length === 0 && typeFilters.length === 0 ) {
-                                    for (i = 0; i < self.vehicles().length; i++) {
-                                        if (manuFilters.indexOf(self.vehicles()[i]['manufacturer']) > -1 ) {
-                                            self.vehicles()[i]['visible'] = true;
-                                        } else {
-                                            self.vehicles()[i]['visible'] = false;
+                                    
+                                    console.log(matches);
+
+                                    if (manuFilters.length === 0 && typeFilters.length === 0) {
+                                        for (i = 0; i < self.vehicles().length; i++) {
+
+                                            if (matches[i]) {
+                                                self.vehicles()[i]['visible'] = true;
+                                            } else {
+                                                self.vehicles()[i]['visible'] = false;
+                                            }
                                         }
-                                    }
-                                }else if(manuFilters.length > 0 && modelFilters.length === 0 && typeFilters.length > 0 ) {
-                                    for (i = 0; i < self.vehicles().length; i++) {
-                                        if (manuFilters.indexOf(self.vehicles()[i]['manufacturer']) > -1 && typeFilters.indexOf(self.vehicles()[i]['vehicle_type']) > -1) {
-                                            self.vehicles()[i]['visible'] = true;
-                                        } else {
-                                            self.vehicles()[i]['visible'] = false;
+                                    } else if (manuFilters.length === 0 && typeFilters.length > 0) {
+                                        for (i = 0; i < self.vehicles().length; i++) {
+                                            if (typeFilters.indexOf(self.vehicles()[i]['vehicle_type']) > -1 && matches[i]) {
+                                                self.vehicles()[i]['visible'] = true;
+                                            } else {
+                                                self.vehicles()[i]['visible'] = false;
+                                            }
                                         }
-                                    }
-                                }else if(manuFilters.length > 0 && modelFilters.length > 0 && typeFilters.length === 0 ) {
-                                    for (i = 0; i < self.vehicles().length; i++) {
-                                        if (manuFilters.indexOf(self.vehicles()[i]['manufacturer']) > -1 && modelFilters.indexOf(self.vehicles()[i]['model']) > -1) {
-                                            self.vehicles()[i]['visible'] = true;
-                                        } else {
-                                            self.vehicles()[i]['visible'] = false;
+                                    } else if (manuFilters.length > 0 && modelFilters.length === 0 && typeFilters.length === 0) {
+                                        for (i = 0; i < self.vehicles().length; i++) {
+                                            if (manuFilters.indexOf(self.vehicles()[i]['manufacturer']) > -1 && matches[i]) {
+                                                self.vehicles()[i]['visible'] = true;
+                                            } else {
+                                                self.vehicles()[i]['visible'] = false;
+                                            }
                                         }
-                                    }
-                                }else if(manuFilters.length > 0 && modelFilters.length > 0 && typeFilters.length > 0 ) {
-                                    for (i = 0; i < self.vehicles().length; i++) {
-                                        if (manuFilters.indexOf(self.vehicles()[i]['manufacturer']) > -1 && modelFilters.indexOf(self.vehicles()[i]['model']) > -1 && typeFilters.indexOf(self.vehicles()[i]['vehicle_type']) > -1) {
-                                            self.vehicles()[i]['visible'] = true;
-                                        } else {
-                                            self.vehicles()[i]['visible'] = false;
+                                    } else if (manuFilters.length > 0 && modelFilters.length === 0 && typeFilters.length > 0) {
+                                        for (i = 0; i < self.vehicles().length; i++) {
+                                            if (manuFilters.indexOf(self.vehicles()[i]['manufacturer']) > -1 && typeFilters.indexOf(self.vehicles()[i]['vehicle_type']) > -1 && matches[i]) {
+                                                self.vehicles()[i]['visible'] = true;
+                                            } else {
+                                                self.vehicles()[i]['visible'] = false;
+                                            }
                                         }
+                                    } else if (manuFilters.length > 0 && modelFilters.length > 0 && typeFilters.length === 0) {
+                                        for (i = 0; i < self.vehicles().length; i++) {
+                                            if (manuFilters.indexOf(self.vehicles()[i]['manufacturer']) > -1 && modelFilters.indexOf(self.vehicles()[i]['model']) > -1 && matches[i]) {
+                                                self.vehicles()[i]['visible'] = true;
+                                            } else {
+                                                self.vehicles()[i]['visible'] = false;
+                                            }
+                                        }
+                                    } else if (manuFilters.length > 0 && modelFilters.length > 0 && typeFilters.length > 0) {
+                                        for (i = 0; i < self.vehicles().length; i++) {
+                                            if (manuFilters.indexOf(self.vehicles()[i]['manufacturer']) > -1 && modelFilters.indexOf(self.vehicles()[i]['model']) > -1 && typeFilters.indexOf(self.vehicles()[i]['vehicle_type']) > -1 && matches[i]) {
+                                                self.vehicles()[i]['visible'] = true;
+                                            } else {
+                                                self.vehicles()[i]['visible'] = false;
+                                            }
+                                        }
+                                    } else {
+                                        console.log('impossible!');
                                     }
-                                }else{
-                                    console.log('impossible!');
+
+                                } else {
+                                    if (manuFilters.length === 0 && typeFilters.length === 0) {
+                                        for (i = 0; i < self.vehicles().length; i++) {
+                                            self.vehicles()[i]['visible'] = true;
+                                        }
+                                    } else if (manuFilters.length === 0 && typeFilters.length > 0) {
+                                        for (i = 0; i < self.vehicles().length; i++) {
+                                            if (typeFilters.indexOf(self.vehicles()[i]['vehicle_type']) > -1) {
+                                                self.vehicles()[i]['visible'] = true;
+                                            } else {
+                                                self.vehicles()[i]['visible'] = false;
+                                            }
+                                        }
+                                    } else if (manuFilters.length > 0 && modelFilters.length === 0 && typeFilters.length === 0) {
+                                        for (i = 0; i < self.vehicles().length; i++) {
+                                            if (manuFilters.indexOf(self.vehicles()[i]['manufacturer']) > -1) {
+                                                self.vehicles()[i]['visible'] = true;
+                                            } else {
+                                                self.vehicles()[i]['visible'] = false;
+                                            }
+                                        }
+                                    } else if (manuFilters.length > 0 && modelFilters.length === 0 && typeFilters.length > 0) {
+                                        for (i = 0; i < self.vehicles().length; i++) {
+                                            if (manuFilters.indexOf(self.vehicles()[i]['manufacturer']) > -1 && typeFilters.indexOf(self.vehicles()[i]['vehicle_type']) > -1) {
+                                                self.vehicles()[i]['visible'] = true;
+                                            } else {
+                                                self.vehicles()[i]['visible'] = false;
+                                            }
+                                        }
+                                    } else if (manuFilters.length > 0 && modelFilters.length > 0 && typeFilters.length === 0) {
+                                        for (i = 0; i < self.vehicles().length; i++) {
+                                            if (manuFilters.indexOf(self.vehicles()[i]['manufacturer']) > -1 && modelFilters.indexOf(self.vehicles()[i]['model']) > -1) {
+                                                self.vehicles()[i]['visible'] = true;
+                                            } else {
+                                                self.vehicles()[i]['visible'] = false;
+                                            }
+                                        }
+                                    } else if (manuFilters.length > 0 && modelFilters.length > 0 && typeFilters.length > 0) {
+                                        for (i = 0; i < self.vehicles().length; i++) {
+                                            if (manuFilters.indexOf(self.vehicles()[i]['manufacturer']) > -1 && modelFilters.indexOf(self.vehicles()[i]['model']) > -1 && typeFilters.indexOf(self.vehicles()[i]['vehicle_type']) > -1) {
+                                                self.vehicles()[i]['visible'] = true;
+                                            } else {
+                                                self.vehicles()[i]['visible'] = false;
+                                            }
+                                        }
+                                    } else {
+                                        console.log('impossible!');
+                                    }
                                 }
+
                                 self.vehicles.valueHasMutated();
                             };
-                            
+
                             self.filterByManufacturer = function(manufacturer, checked) {
                                 if (checked) {
                                     manuFilters.push(manufacturer);
@@ -468,7 +540,7 @@ require 'views/search/js/multizoom.js';
                                 }
                                 self.processFilters();
                             };
-                            
+
                             self.filterByType = function(type, checked) {
                                 if (checked) {
                                     typeFilters.push(type);
@@ -480,7 +552,7 @@ require 'views/search/js/multizoom.js';
                                 }
                                 self.processFilters();
                             };
-                            
+
                             self.filterByModel = function(model, checked) {
                                 if (checked) {
                                     modelFilters.push(model);
@@ -492,6 +564,15 @@ require 'views/search/js/multizoom.js';
                                 }
                                 self.processFilters();
                             };
+
+                            self.filterByDate = function(day) {
+                                if (day) {
+                                    dayFilter = day;
+                                } else {
+                                    dayFilter = '';
+                                }
+                                self.processFilters();
+                            }
 //                            
 //                            self.toggleAvailability = function(parent){
 //                                var id = 'availability'+parent.vehicle_reg_no;
@@ -499,7 +580,7 @@ require 'views/search/js/multizoom.js';
 //
 //                                $(id).slideToggle(100, 'swing');
 //                            }
-                            
+
                             self.capitalizeFirstLetter = function(string) {
                                 return string.charAt(0).toUpperCase() + string.slice(1);
                             }
@@ -536,8 +617,66 @@ require 'views/search/js/multizoom.js';
 
                             xmlhttp.send("location=" + $('#searchBox').val() + "&scheme_category=city_taxi_scheme");
 
+                            function cleanDatepicker() {
+                                var old_fn = $.datepicker._updateDatepicker;
 
-                            
+                                $.datepicker._updateDatepicker = function(inst) {
+                                    old_fn.call(this, inst);
+
+                                    var buttonPane = $(this).datepicker("widget").find(".ui-datepicker-buttonpane");
+
+                                    $("<button type='button' class='ui-datepicker-clean ui-state-default ui-priority-primary ui-corner-all'>Clear</button>").appendTo(buttonPane).click(function(ev) {
+                                        $.datepicker._clearDate(inst.input);
+                                    });
+                                }
+                            }
+                            cleanDatepicker();
+                            $.datepicker._gotoToday = function(id) {
+                                var target = $(id);
+                                var inst = this._getInst(target[0]);
+                                if (this._get(inst, 'gotoCurrent') && inst.currentDay) {
+                                    inst.selectedDay = inst.currentDay;
+                                    inst.drawMonth = inst.selectedMonth = inst.currentMonth;
+                                    inst.drawYear = inst.selectedYear = inst.currentYear;
+                                }
+                                else {
+                                    var date = new Date();
+                                    inst.selectedDay = date.getDate();
+                                    inst.drawMonth = inst.selectedMonth = date.getMonth();
+                                    inst.drawYear = inst.selectedYear = date.getFullYear();
+                                    // the below two lines are new
+                                    this._setDateDatepicker(target, date);
+                                    this._selectDate(id, this._getDateDatepicker(target));
+                                }
+                                this._notifyChange(inst);
+                                this._adjustDate(target);
+                            }
+                            $('#filters input').datepicker({
+                                showButtonPanel: true,
+                                closeText: "Close",
+                                firstDay: 1,
+                                weekStart: 1,
+                                todayBtn: "linked",
+                                orientation: "bottum left",
+                                autoclose: true,
+                                todayHighlight: true
+                            });
+
+                            $('#filters input').datepicker('option', 'onSelect', function() {
+                                var date = $('#datepicktext').datepicker('getDate');
+                                if (date) {
+                                    var dayOfWeek = date.getUTCDay();
+                                    console.log($(this));
+                                    console.log(ko.contextFor($(this)[0].parentElement));
+                                    var daysref = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+                                    ko.contextFor($(this)[0].parentElement).$root.filterByDate(daysref[dayOfWeek]);
+                                } else {
+                                    ko.contextFor($(this)[0].parentElement).$root.filterByDate('');
+                                }
+
+
+                            });
+
                             $(document).on("click", ".cbox", function() {
                                 var parentid = $(this).attr('id');
                                 var num = parentid.replace(/^\D+/g, '');
@@ -547,14 +686,14 @@ require 'views/search/js/multizoom.js';
                                     for (j = 0; j < $($(childid)[0]).context.children.length; j += 3) {
                                         $($($(childid)[0]).context.children[j]).trigger("click");
                                     }
-                                }else{
+                                } else {
                                     for (j = 0; j < $($(childid)[0]).context.children.length; j += 3) {
-                                        if($($(childid)[0]).context.children[j].checked === true){
+                                        if ($($(childid)[0]).context.children[j].checked === true) {
                                             $($($(childid)[0]).context.children[j]).trigger("click");
                                         }
                                     }
                                 }
-                                
+
                                 $(childid + " input").css("display", "none");
 
                                 var context = ko.contextFor(this);
@@ -569,17 +708,17 @@ require 'views/search/js/multizoom.js';
 
 
                             })
-                            
+
                             $(document).on("click", ".availability", function() {
                                 console.log($(this).attr('id'));
-                                var id = '#availability'+$(this).attr('id').replace('av','');
-                                $($(id)).slideToggle(100, 'swing');
+                                var id = '#availability' + $(this).attr('id').replace('av', '');
+                                $($(id)).slideToggle(700, 'swing');
 //                                var context = ko.contextFor(this);
 //
 //                                context.$root.filterByType(context.$data, $(this).context.checked);
 
                             })
-                            
+
                             $(document).on("click", ".cboxtypes", function() {
                                 var context = ko.contextFor(this);
 

@@ -65,6 +65,16 @@ class Search_Model extends Model {
 //            echo '<br><br> comments for'.$value['vehicle_reg_no'].' are'.print_r($comments);
             
             $results[$key]['comments'] = $comments;
+            
+            $sth = $this->db->prepare('select day,start_time,end_time from scheme natural join availability where scheme_id = :scheme_id');
+            $sth->setFetchMode(PDO::FETCH_ASSOC);
+//            echo $value['scheme_id'];
+            $sth->execute(array(
+                ':scheme_id' => $value['scheme_id']
+            ));
+            $availability = $sth->fetchAll();
+            
+            $results[$key]['availability'] = $availability;
 
         } 
 //        print_r($results);

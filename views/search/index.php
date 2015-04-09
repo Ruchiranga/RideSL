@@ -148,9 +148,9 @@
                             </div>
                             <table  style="width: 100%;" >
                                 <tr>
-                                    <td style="width: 25%">
+                                    <td style="width: 25%" valign = "top">
                                         <div width ="225px" style="margin-left: 6px; float: left; height: auto; ">
-                                            <img class="vehicleimg" data-bind="attr: { id: $index, src :$parent.url+'/public/images/'+vehicle.owner_id+'/'+vehicle.image}" border="0" style="width:225px; height:225px; margin-top: 10px">
+                                            <img class="vehicleimg" data-bind="attr: { id: $index, src :$parent.url+'/public/images/'+vehicle.owner_id+'/'+vehicle.image}" border="0" style="width:225px; height:225px; margin-top: 15px">
                                         </div>
                                     </td>
                                     <td style="vertical-align: top">
@@ -230,7 +230,46 @@
                                                         <text style="font-weight: bold" data-bind="text: $data"></text>
                                                     </td>
                                                 </tr>
-                                                <!-- /ko -->    
+                                                <!-- /ko --> 
+                                                <tr>
+                                                    <td style="padding-bottom: 6px" valign="top">
+                                                        <font style="color: #2980b9; ">Availability: </font>
+                                                    </td>
+                                                    <td style="padding-bottom: 6px" valign="top">
+                                                        <text class="availability" data-bind="attr : {id:'av'+vehicle.vehicle_reg_no},text: 'show/hide' "></text>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <td style="padding-bottom: 6px" valign="top"></td>
+                                                    <td style="padding-bottom: 6px;width: 79%;" valign="top">
+                                                        <div  data-bind="attr :{id :'availability'+vehicle.vehicle_reg_no }" style="display: none" >
+                                                            <table data-bind="foreach:vehicle.availability" >
+                                                                <tr>
+                                                                    <td>
+                                                                        <text style="margin-left: 15px; line-height: 15px;" data-bind="text: $root.capitalizeFirstLetter($data.day)"></text>    
+                                                                    </td>
+                                                                    <td>
+                                                                        <text style="margin-left: 15px; line-height: 15px;">&nbsp;From&nbsp;</text>    
+                                                                    </td>
+                                                                    <td>
+                                                                        <text style="margin-left: 15px; line-height: 15px;" data-bind="text: $data.start_time"></text>    
+                                                                    </td>
+                                                                    <td>
+                                                                        <text style="margin-left: 15px; line-height: 15px;">&nbsp;To&nbsp;</text>    
+                                                                    </td>
+                                                                    <td>
+                                                                        <text style="margin-left: 15px; line-height: 15px;" data-bind="text: $data.end_time"></text>    
+                                                                    </td>
+                                                                    <!--<text style="margin-left: 15px; line-height: 25px;" data-bind="text: $root.capitalizeFirstLetter($data.day) + '  From  ' + $data.start_time + '  To  ' + $data.end_time"></text>-->
+                                                                </tr>
+                                                                
+                                                            </table>
+                                                        </div>
+                                                        
+                                                        <br>
+                                                    </td>
+                                                </tr>
+                                                
                                             </table>
                                         </div>
                                     </td>
@@ -290,7 +329,21 @@ require 'views/search/js/multizoom.js';
                                 for (i = 0; i < self.response.length; i++) {
                                     response[i]['visible'] = true;
                                 }
-
+                                var daysref = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+                                for (i = 0; i < self.response.length; i++) {
+                                    self.response[i].availability.sort(function(x, y){ 
+                                        x = daysref.indexOf(x.day)
+                                        y = daysref.indexOf(y.day)
+                                        if (x < y) {
+                                            return -1;
+                                        }
+                                        if (x > y) {
+                                            return 1;
+                                        }
+                                        return 0;
+                                    });
+                                }
+                                
                             });
 
                             self.vehicles = ko.observableArray(self.response);
@@ -439,6 +492,17 @@ require 'views/search/js/multizoom.js';
                                 }
                                 self.processFilters();
                             };
+//                            
+//                            self.toggleAvailability = function(parent){
+//                                var id = 'availability'+parent.vehicle_reg_no;
+//                                                                console.log(id);
+//
+//                                $(id).slideToggle(100, 'swing');
+//                            }
+                            
+                            self.capitalizeFirstLetter = function(string) {
+                                return string.charAt(0).toUpperCase() + string.slice(1);
+                            }
 
                         }
 
@@ -473,6 +537,7 @@ require 'views/search/js/multizoom.js';
                             xmlhttp.send("location=" + $('#searchBox').val() + "&scheme_category=city_taxi_scheme");
 
 
+                            
                             $(document).on("click", ".cbox", function() {
                                 var parentid = $(this).attr('id');
                                 var num = parentid.replace(/^\D+/g, '');
@@ -502,6 +567,16 @@ require 'views/search/js/multizoom.js';
 //                                console.log($($(childid)[0]).context.children);
 ////                                console.log($(this));
 
+
+                            })
+                            
+                            $(document).on("click", ".availability", function() {
+                                console.log($(this).attr('id'));
+                                var id = '#availability'+$(this).attr('id').replace('av','');
+                                $($(id)).slideToggle(100, 'swing');
+//                                var context = ko.contextFor(this);
+//
+//                                context.$root.filterByType(context.$data, $(this).context.checked);
 
                             })
                             

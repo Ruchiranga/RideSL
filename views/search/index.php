@@ -58,7 +58,7 @@
         <div id = 'body'>
 
             <div id = 'panel'>
-                <div id = "filters" style = "margin-top: 85px;height: 500px;">
+                <div id = "filters" style = "margin-top: 70px;height: 500px;">
                     <div><font style = "color: #2980b9; margin-top: 10px;"> <b> Filter Results</b></font></div>
 
                     <div style = "margin-top: 20px"><font style = "color: #2980b9;;margin-left: 20px"> Vehicle Type</font></div>
@@ -84,7 +84,7 @@
                         </div>
                         <br>
                     </div>
-                    <div style = "margin-top: 20px"><font style = "color: #2980b9;margin-left: 20px"> Availability</font></div>
+                    <div style = "margin-top: 20px"><font style = "color: #2980b9;margin-left: 20px"> Available</font></div>
 
                     <div>
                         <table border = "0" style = "margin-top: 18px">
@@ -121,7 +121,7 @@
                     </select>
                     <input type = "submit" value = "Search" id = "search-button">
                 </div>
-                <div id = 'categories'>
+<!--                <div id = 'categories'>
                     <table id = "category-table">
                         <tr>
                             <td>Car</td>
@@ -129,8 +129,8 @@
                             <td>Trishaw</td>
                         </tr>
                     </table>
-                </div>
-                <div class = 'resultsPane'>
+                </div>-->
+                <div class = 'resultsPane' style="margin-top: 10px;">
 
                     <div id = "sort-bar">
                         <p style = "margin-left: 820px; display: inline-block">Sort : </p>
@@ -312,6 +312,7 @@
                             </table>
                         </div>
                     </div>
+                </div>
 
                     <br><br><br><br><br><br><br><br><br>
 
@@ -673,8 +674,6 @@ require 'views/search/js/multizoom.js';
                                 } else {
                                     ko.contextFor($(this)[0].parentElement).$root.filterByDate('');
                                 }
-
-
                             });
 
                             $(document).on("click", ".cbox", function() {

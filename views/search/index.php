@@ -40,52 +40,27 @@
 
     }
 
-
-
-    <?php
-//    if (isset($this->resultList)) {
-//        foreach ($this->resultList as $key => $value) {
-//            echo '
-//.cd-popup' . $value['vehicle_reg_no'] . ' {
-//    position: fixed;
-//    left: 0;
-//    top: 0;
-//    height: 100%;
-//    width: 100%;
-//    background-color: rgba(94, 110, 141, 0.9);
-//    opacity: 0;
-//    visibility: hidden;
-//    -webkit-transition: opacity 0.3s 0s, visibility 0s 0.3s;
-//    -moz-transition: opacity 0.3s 0s, visibility 0s 0.3s;
-//    transition: opacity 0.3s 0s, visibility 0s 0.3s;
-//    baseline-shift: super;
-//}                
-//
-//.cd-popup' . $value['vehicle_reg_no'] . '.is-visible {
-//        opacity: 1;
-//        visibility: visible;
-//        -webkit-transition: opacity 0.3s 0s, visibility 0s 0s;
-//        -moz-transition: opacity 0.3s 0s, visibility 0s 0s;
-//        transition: opacity 0.3s 0s, visibility 0s 0s;
-//        
-    //        }';
-    //        }
-    //    }
-    ?>
 </style>
 
 
 </head>
 <body>
-
-
-
     <div id = 'frame'>
         <div id = 'body'>
 
             <div id = 'panel'>
                 <div id = "filters" style = "margin-top: 85px;height: 500px;">
                     <div><font style = "color: #2980b9; margin-top: 10px;"> <b> Filter Results</b></font></div>
+                    
+                    <div style = "margin-top: 20px"><font style = "color: #2980b9;;margin-left: 20px"> Vehicle Type</font></div>
+
+
+                    <div class = "checkbox" style = "padding-left: 40px;padding-top: 20px" data-bind="foreach: types ">
+                        <input data-bind="attr :{id :'typecheck'+$index(), name:$data,value :'typecheck'+$index()}" class = "cboxtypes" type = "checkbox">
+                        <label data-bind="attr :{for :'typecheck'+$index()} , text:$data"></label>
+                        <br>
+                    </div>
+                    
 
                     <div style = "margin-top: 20px"><font style = "color: #2980b9;;margin-left: 20px"> Manufacturer | Model</font></div>
 
@@ -130,7 +105,6 @@
 
             <div id = 'content'>
                 <div id = 'search'>
-                    <!--                    <form id="searchBar" action="search/xhrSearch" method="post">-->
                     <input type = "text" name = "search" id = "searchBox" tabindex = "1" value="<?php
                     if (isset($_POST['location'])) {
                         echo $_POST['location'];
@@ -145,7 +119,6 @@
                         <option value = "audi">Audi</option>
                     </select>
                     <input type = "submit" value = "Search" id = "search-button">
-                    <!--                    </form>-->
                 </div>
                 <div id = 'categories'>
                     <table id = "category-table">
@@ -166,12 +139,12 @@
                             <option value = "location">Location: closest first</option>
                         </select>
                     </div>
-                    
+
                     <div id="results" data-bind="foreach: { data: vehicles , as: 'vehicle' }">
-                        <div class="result">
+                        <div class="result" data-bind="visible: $parent.isVisible(vehicle.vehicle_reg_no)">
                             <hr>
                             <div style="margin-left: 6px; margin-right: 6px; ">
-                                <font style="color: #2980b9; font-weight: bold; font-size: 17px" data-bind="text: vehicle.manufacturer"></font><font style="color: #2980b9; font-weight: bold; font-size: 17px" data-bind="text: vehicle.model"><br></font>
+                                <font style="color: #2980b9; font-weight: bold; font-size: 17px" data-bind="text: vehicle.manufacturer"></font>&nbsp;<font style="color: #2980b9; font-weight: bold; font-size: 17px" data-bind="text: vehicle.model"><br></font>
                             </div>
                             <table  style="width: 100%;" >
                                 <tr>
@@ -243,21 +216,21 @@
                                                         <text data-bind="text: vehicle.descrption"></text>
                                                     </td>
                                                 </tr>
-                                                
-                                                
+
+
                                                 <tr>
                                                     <td style="padding-bottom: 6px" valign="top" data-bind="attr: { rowspan: $parent.getPhoneCount(vehicle.vehicle_reg_no)+1}">
                                                         <font style="color: #2980b9; ">Contact No: </font>
                                                     </td>
-                                                    
+
                                                 </tr>
-                                                    <!-- ko foreach: vehicle.phone_numbers -->
-                                                                <tr>
-                                                                    <td style="padding-bottom: 6px" valign="top">
-                                                                        <text style="font-weight: bold" data-bind="text: $data"></text>
-                                                                    </td>
-                                                                </tr>
-                                                    <!-- /ko -->    
+                                                <!-- ko foreach: vehicle.phone_numbers -->
+                                                <tr>
+                                                    <td style="padding-bottom: 6px" valign="top">
+                                                        <text style="font-weight: bold" data-bind="text: $data"></text>
+                                                    </td>
+                                                </tr>
+                                                <!-- /ko -->    
                                             </table>
                                         </div>
                                     </td>
@@ -274,17 +247,17 @@
                                                     <hr>
                                                     <div id="comment_panel" style="margin-top: 20px">
                                                         <table border = "0" style="margin: 0 auto;" data-bind="foreach: vehicle.comments">
-                                                                <tr>
-                                                                    <td>
-                                                                        <div style="height: auto; padding-top: 10px;padding-bottom: 10px; margin-left: 30px">
-                                                                            <font style="color: #2980b9;" data-bind="text: $data.username+' wrote :'"></font>
-                                                                            <br>
-                                                                            <span data-bind="text: $data.comment"></span>
-                                                                            <br>
-                                                                            <font style="color: #2980b9; font-size: 12px" data-bind="text: 'on '+ $data.comment_date"></font>
-                                                                        </div>
-                                                                    </td>
-                                                                </tr>
+                                                            <tr>
+                                                                <td>
+                                                                    <div style="height: auto; padding-top: 10px;padding-bottom: 10px; margin-left: 30px">
+                                                                        <font style="color: #2980b9;" data-bind="text: $data.username+' wrote :'"></font>
+                                                                        <br>
+                                                                        <span data-bind="text: $data.comment"></span>
+                                                                        <br>
+                                                                        <font style="color: #2980b9; font-size: 12px" data-bind="text: 'on '+ $data.comment_date"></font>
+                                                                    </div>
+                                                                </td>
+                                                            </tr>
                                                         </table>
                                                     </div>
                                                     <hr>
@@ -299,168 +272,7 @@
                             </table>
                         </div>
                     </div>
-                    
-                    
-                    <?php
-//                    $count = 0;
-//                    if (isset($this->resultList)) {
-//                        foreach ($this->resultList as $key => $value) {
-//                            $count += 1;
-//                            echo
-//                            '<div class="result">
-//                        <hr>
-//                        <div style="margin-left: 6px; margin-right: 6px; ">
-//                            <font style="color: #2980b9; font-weight: bold; font-size: 17px">' . $value['manufacturer'] . '</font><font style="color: #2980b9; font-weight: bold; font-size: 17px"> ' . $value['model'] . '<br></font>
-//                        </div>
-//                        <table  style="width: 100%;" >
-//                            <tr>
-//                                <td style="width: 25%">
-//                                    <div width ="225px" style="margin-left: 6px; float: left; height: auto; ">
-//                                        <img class="vehicleimg" id="' . $count . '" border="0" src="' . URL . 'public/images/' . $value['owner_id'] . "/" . $value['image'] . '" style="width:225px; height:225px; margin-top: 10px">
-//                                    </div>
-//                                </td>
-//                                <td style="vertical-align: top">
-//                                    <div style="float: left; padding-top: 10px">
-//
-//                                        <table border="0">
-//                                            <col width="180">
-//                                            <col width="800">
-//                                            <tr>
-//                                                <td style="padding-bottom: 6px" valign="top">
-//                                                    <font style="color: #2980b9;">Registration No: </font>
-//                                                </td>
-//                                                <td style="padding-bottom: 6px" valign="top">
-//                                                    <text>' . $value['vehicle_reg_no'] . '</text>
-//                                                </td>
-//                                            </tr>
-//
-//                                            <tr>
-//                                                <td style="padding-bottom: 6px" valign="top">
-//                                                    <font style="color: #2980b9; ">Vehicle type: </font>
-//                                                </td>
-//                                                <td style="padding-bottom: 6px" valign="top">
-//                                                    <text>' . $value['vehicle_type'] . '</text>
-//                                                </td>
-//                                            </tr>
-//                                            <tr>
-//                                                <td style="padding-bottom: 6px" valign="top">
-//                                                    <font style="color: #2980b9; ">Capacity: </font>
-//                                                </td>
-//                                                <td style="padding-bottom: 6px" valign="top">
-//                                                    <text>' . $value['capacity'] . '</text>
-//                                                </td>
-//                                            </tr>
-//                                            <tr>
-//                                                <td style="padding-bottom: 6px" valign="top">
-//                                                    <font style="color: #2980b9; ">Description: </font>
-//                                                </td>
-//                                                <td style="padding-bottom: 6px" valign="top">
-//                                                    <text>' . $value['vehicle_description'] . '</text>
-//                                                </td>
-//                                            </tr>
-//                                            <tr>
-//                                                <td style="padding-bottom: 6px" valign="top">
-//                                                    <font style="color: #2980b9; ">Price without AC: </font>
-//                                                </td>
-//                                                <td style="padding-bottom: 6px" valign="top">
-//                                                    <text style="font-weight: bold "> Rs. ' . $value['non_ac_price'] . ' ' . $value['pricing_category'] . '</text>
-//                                                </td>
-//                                            </tr>
-//                                            <tr>
-//                                                <td style="padding-bottom: 6px" valign="top">
-//                                                    <font style="color: #2980b9; ">Price with AC: </font>
-//                                                </td>
-//                                                <td style="padding-bottom: 6px" valign="top">
-//                                                    <text style="font-weight: bold "> Rs. ' . ($ac_price = ($value['ac_price'] == 'Null' || $value['ac_price'] == '' || $value['ac_price'] == '0.0') ? 'Not available' : $value['ac_price']) . ' ' . $value['pricing_category'] . '</text>
-//                                                </td>
-//                                            </tr>
-//                                            <tr>
-//                                                <td style="padding-bottom: 6px" valign="top">
-//                                                    <font style="color: #2980b9; ">Notes: </font>
-//                                                </td>
-//                                                <td style="padding-bottom: 6px" valign="top">
-//                                                    <text>' . $value['descrption'] . '</text>
-//                                                </td>
-//                                            </tr>';
-//
-//                            $numbers = array();
-//                            foreach ($this->phoneNumbers as $index => $pair) {
-//                                if ($pair['vehicle_reg_no'] == $value['vehicle_reg_no']) {
-//                                    $numbers[] = $pair['telephone_number'];
-//                                }
-//                            }
-//
-//                            echo '<tr>
-//                                                <td rowspan="' . count($numbers) . '" style="padding-bottom: 6px" valign="top">
-//                                                    <font style="color: #2980b9; ">Contact No: </font>
-//                                                </td>';
-//                            foreach ($numbers as $index => $number) {
-//
-//                                if ($index == 0) {
-//                                    echo '<td style="padding-bottom: 6px" valign="top">
-//                                                    <text style="font-weight: bold">' . $number . '</text>
-//                                                </td>
-//                                            </tr>';
-//                                } else {
-//                                    echo '<tr>
-//                                                <td style="padding-bottom: 6px" valign="top">
-//                                                    <text style="font-weight: bold">' . $number . '</text>
-//                                                </td>
-//                                            </tr>';
-//                                }
-//                            }
-//
-//
-//                            echo '</table>
-//
-//                                    </div>
-//                                </td>
-//                            </tr>
-//                            <tr>
-//                                <td></td>
-//                                <td>
-//
-//                                    <img href="#0" class="cd-popup-trigger" name = "' . $value['vehicle_reg_no'] . '" id="comment-icon' . $value['vehicle_reg_no'] . '" border="0" src="' . URL . 'public/images/comment_icon.png" style="height: 20px;width: 24px; float: right; padding-left: 40px; padding-right: 40px; padding-top: 5px; ">
-//
-//                                    <div class="cd-popup" id="cd-popup' . $value['vehicle_reg_no'] . '" role="alert">
-//                                        <div class="cd-popup-container">
-//                                            <div style="margin-left: 6px; margin-right: 6px; margin-top: 20px">
-//                                                <text id="comments-header"><font style="color: #2980b9; cursor: pointer;margin-left: auto;margin-right: auto; font-weight: bold;font-size: larger">Comments</font></text>
-//                                                <hr>
-//                                                <div id="comment_panel" style="margin-top: 20px">
-//                                                    <table border = "0" style="margin: 0 auto;">';
-//
-//                            foreach ($this->comments as $index => $commentdata) {
-//                                if ($commentdata['vehicle_reg_no'] == $value['vehicle_reg_no']) {
-//                                    echo '
-//                                                        <tr>
-//                                                            <td>
-//                                                                <div style="height: auto; padding-top: 10px;padding-bottom: 10px; margin-left: 30px">
-//                                                                    <font style="color: #2980b9;">' . $commentdata['username'] . ' wrote :</font><br>' . $commentdata['comment'] . '
-//                                                                    <br><font style="color: #2980b9; font-size: 12px">on ' . $commentdata['comment_date'] . '</font>
-//                                                                </div>
-//
-//                                                            </td>
-//                                                        </tr>';
-//                                }
-//                            }
-//                            echo '
-//                                                    </table>
-//                                                </div>
-//                                                <hr>
-//                                            </div>
-//                                            
-//
-//                                            <a href="#0" class="cd-popup-close img-replace">Close</a>
-//                                        </div> <!-- cd-popup-container -->
-//                                    </div> <!-- cd-popup -->
-//                                </td>
-//                            </tr>
-//                        </table>
-//                    </div>';
-//                        }
-//                    }
-                    ?>
+
                     <br><br><br><br><br><br><br><br><br>
 
                     </body>
@@ -472,61 +284,167 @@ require 'views/search/js/multizoom.js';
                         function resultModel(response) {
                             var self = this;
                             var fullurl = document.URL;
-                            
-                            self.vehicles = ko.observableArray(response);
-//                            self.phonenos = ko.observableArray(response.phone_numbers);
-//                            self.comments = ko.observableArray(response.comments);
 
-                            self.url = fullurl.substring(0, fullurl.indexOf("RideSL")+"RideSL".length);
-                            
-                            self.getPhoneCount = function(regno){
-                                for (i = 0; i < self.vehicles().length; i++) { 
-                                    if(self.vehicles()[i].vehicle_reg_no === regno){
+                            self.response = response;
+                            ko.computed(function() {
+                                for (i = 0; i < self.response.length; i++) {
+                                    response[i]['visible'] = true;
+                                }
+
+                            });
+
+                            self.vehicles = ko.observableArray(self.response);
+
+
+
+                            self.url = fullurl.substring(0, fullurl.indexOf("RideSL") + "RideSL".length);
+
+                            self.getPhoneCount = function(regno) {
+                                for (i = 0; i < self.vehicles().length; i++) {
+                                    if (self.vehicles()[i].vehicle_reg_no === regno) {
                                         return self.vehicles()[i].phone_numbers.length;
                                     }
                                 }
                                 return 0;
                             };
-                            
+
                             self.manufacturers = ko.computed(function() {
                                 var manus = [];
-                                for (i = 0; i < response.length; i++) { 
-                                    if(manus.indexOf(response[i]['manufacturer']) === -1){
+                                for (i = 0; i < response.length; i++) {
+                                    if (manus.indexOf(response[i]['manufacturer']) === -1) {
                                         manus[manus.length] = response[i]['manufacturer'];
                                     }
                                 }
-                                
+
                                 return manus;
                             });
                             
+                            self.types = ko.computed(function() {
+                                var types = [];
+                                for (i = 0; i < response.length; i++) {
+                                    if (types.indexOf(response[i]['vehicle_type']) === -1) {
+                                        types[types.length] = response[i]['vehicle_type'];
+                                    }
+                                }
+
+                                return types;
+                            });
+
                             self.models = function(manufacturer) {
                                 var models = [];
-                                for (i = 0; i < response.length; i++) { 
-                                    if(response[i]['manufacturer'] === manufacturer){
+                                for (i = 0; i < response.length; i++) {
+                                    if (response[i]['manufacturer'] === manufacturer) {
                                         models[models.length] = response[i]['model'];
                                     }
                                 }
                                 return models;
                             };
+
+                            self.isVisible = function(vehicle_reg_no) {
+                                for (i = 0; i < self.vehicles().length; i++) {
+                                    if (self.vehicles()[i]['vehicle_reg_no'] === vehicle_reg_no) {
+                                        return self.vehicles()[i]['visible'];
+                                    }
+                                }
+                            };
+
+                            var manuFilters = [];
+                            var typeFilters = [];
+                            var modelFilters = [];
                             
+                            self.processFilters = function(){
+                                
+                                if (manuFilters.length === 0 && typeFilters.length === 0) {
+                                    for (i = 0; i < self.vehicles().length; i++) {
+                                        self.vehicles()[i]['visible'] = true;
+                                    }
+                                } else if(manuFilters.length === 0 && typeFilters.length > 0) {
+                                    for (i = 0; i < self.vehicles().length; i++) {
+                                        if (typeFilters.indexOf(self.vehicles()[i]['vehicle_type']) > -1 ) {
+                                            self.vehicles()[i]['visible'] = true;
+                                        } else {
+                                            self.vehicles()[i]['visible'] = false;
+                                        }
+                                    }
+                                }else if(manuFilters.length > 0 && modelFilters.length === 0 && typeFilters.length === 0 ) {
+                                    for (i = 0; i < self.vehicles().length; i++) {
+                                        if (manuFilters.indexOf(self.vehicles()[i]['manufacturer']) > -1 ) {
+                                            self.vehicles()[i]['visible'] = true;
+                                        } else {
+                                            self.vehicles()[i]['visible'] = false;
+                                        }
+                                    }
+                                }else if(manuFilters.length > 0 && modelFilters.length === 0 && typeFilters.length > 0 ) {
+                                    for (i = 0; i < self.vehicles().length; i++) {
+                                        if (manuFilters.indexOf(self.vehicles()[i]['manufacturer']) > -1 && typeFilters.indexOf(self.vehicles()[i]['vehicle_type']) > -1) {
+                                            self.vehicles()[i]['visible'] = true;
+                                        } else {
+                                            self.vehicles()[i]['visible'] = false;
+                                        }
+                                    }
+                                }else if(manuFilters.length > 0 && modelFilters.length > 0 && typeFilters.length === 0 ) {
+                                    for (i = 0; i < self.vehicles().length; i++) {
+                                        if (manuFilters.indexOf(self.vehicles()[i]['manufacturer']) > -1 && modelFilters.indexOf(self.vehicles()[i]['model']) > -1) {
+                                            self.vehicles()[i]['visible'] = true;
+                                        } else {
+                                            self.vehicles()[i]['visible'] = false;
+                                        }
+                                    }
+                                }else if(manuFilters.length > 0 && modelFilters.length > 0 && typeFilters.length > 0 ) {
+                                    for (i = 0; i < self.vehicles().length; i++) {
+                                        if (manuFilters.indexOf(self.vehicles()[i]['manufacturer']) > -1 && modelFilters.indexOf(self.vehicles()[i]['model']) > -1 && typeFilters.indexOf(self.vehicles()[i]['vehicle_type']) > -1) {
+                                            self.vehicles()[i]['visible'] = true;
+                                        } else {
+                                            self.vehicles()[i]['visible'] = false;
+                                        }
+                                    }
+                                }else{
+                                    console.log('impossible!');
+                                }
+                                self.vehicles.valueHasMutated();
+                            };
+                            
+                            self.filterByManufacturer = function(manufacturer, checked) {
+                                if (checked) {
+                                    manuFilters.push(manufacturer);
+                                } else {
+                                    var index = manuFilters.indexOf(manufacturer);
+                                    if (index > -1) {
+                                        manuFilters.splice(index, 1);
+                                    }
+                                }
+                                self.processFilters();
+                            };
+                            
+                            self.filterByType = function(type, checked) {
+                                if (checked) {
+                                    typeFilters.push(type);
+                                } else {
+                                    var index = typeFilters.indexOf(type);
+                                    if (index > -1) {
+                                        typeFilters.splice(index, 1);
+                                    }
+                                }
+                                self.processFilters();
+                            };
+                            
+                            self.filterByModel = function(model, checked) {
+                                if (checked) {
+                                    modelFilters.push(model);
+                                } else {
+                                    var index = modelFilters.indexOf(model);
+                                    if (index > -1) {
+                                        modelFilters.splice(index, 1);
+                                    }
+                                }
+                                self.processFilters();
+                            };
 
                         }
 
                         function hidetracker() {
                             document.getElementsByClassName('.zoomtracker').style.display = 'none';
                         }
-
-//                        $(".vehicleimg").each(function(){
-//                                console.log($(this));
-//                                        $(this).addimagezoom({
-//                                            zoomrange: [3, 10],
-//                                            magnifiersize: [400, 400],
-//                                            magnifierpos: 'right',
-//                                            cursorshade: true,
-//                                            largeimage:'http://localhost/RideSL/public/images/cruz.jpg', 
-//                                            disablewheel: true//<-- No comma after last option!
-//                                        });
-//                            });
 
                         jQuery(document).ready(function($) {
                             var results;
@@ -555,66 +473,49 @@ require 'views/search/js/multizoom.js';
                             xmlhttp.send("location=" + $('#searchBox').val() + "&scheme_category=city_taxi_scheme");
 
 
-//                            $.get('getResultList', function(o) {
-//                                console.log("in the moter fucking func");
-//                                console.log(o);
-//                            },'json');
-//                            $('#search-button').click(function() {
-//
-//                            });
-
-//                                console.log($(this));
-//                                        $(".vehicleimg").addimagezoom({
-//                                            zoomrange: [3, 10],
-//                                            magnifiersize: [400, 400],
-//                                            magnifierpos: 'right',
-//                                            cursorshade: true,
-//                                            largeimage:'http://localhost/RideSL/public/images/cruz.jpg', 
-//                                            disablewheel: true//<-- No comma after last option!
-//                                        });
-//                            $.each($('.vehicleimg'), function() { 
-//                                $(this).addimagezoom({
-//                                            zoomrange: [3, 10],
-//                                            magnifiersize: [400, 400],
-//                                            magnifierpos: 'right',
-//                                            cursorshade: true,
-//                                            largeimage:'http://localhost/RideSL/public/images/cruz.jpg', 
-//                                            disablewheel: true//<-- No comma after last option!
-//                                        });
-//                            });
-
-//                            $(".vehicleimg").each(function(){
-//                                console.log($(this));
-//                                        $(this).addimagezoom({
-//                                            zoomrange: [3, 10],
-//                                            magnifiersize: [400, 400],
-//                                            magnifierpos: 'right',
-//                                            cursorshade: true,
-//                                            largeimage:'http://localhost/RideSL/public/images/cruz.jpg', 
-//                                            disablewheel: true//<-- No comma after last option!
-//                                        });
-//                            });
-
                             $(document).on("click", ".cbox", function() {
-
                                 var parentid = $(this).attr('id');
                                 var num = parentid.replace(/^\D+/g, '');
                                 var childid = "#subfill" + num;
-                                $(childid).slideToggle("slow");
+                                $(childid).slideToggle(100, 'swing');
+                                if ($(this).context.checked) {
+                                    for (j = 0; j < $($(childid)[0]).context.children.length; j += 3) {
+                                        $($($(childid)[0]).context.children[j]).trigger("click");
+                                    }
+                                }else{
+                                    for (j = 0; j < $($(childid)[0]).context.children.length; j += 3) {
+                                        if($($(childid)[0]).context.children[j].checked === true){
+                                            $($($(childid)[0]).context.children[j]).trigger("click");
+                                        }
+                                    }
+                                }
+                                
                                 $(childid + " input").css("display", "none");
 
+                                var context = ko.contextFor(this);
+
+                                context.$root.filterByManufacturer(context.$data, $(this).context.checked);
+
+////                                console.log(context);
+//                                
+//                                console.log($($(childid)[0]).context.children[0].checked = false);
+//                                console.log($($(childid)[0]).context.children);
+////                                console.log($(this));
+
+
                             })
-//                            $(".cbox").each(function(index) {
-//                                $(this).on("click", function() {
-//                                    var parentid = $(this).attr('id');
-//                                    console.log(parentid);
-//                                    var num = parentid.replace(/^\D+/g, '');
-//                                    var childid = "#subfill" + num;
-//                                    console.log(childid);
-//                                    $(childid).slideToggle("slow");
-//                                    $(childid + " input").css("display", "none");
-//                                });
-//                            });
+                            
+                            $(document).on("click", ".cboxtypes", function() {
+                                var context = ko.contextFor(this);
+
+                                context.$root.filterByType(context.$data, $(this).context.checked);
+
+                            })
+
+                            $(document).on("click", ".cboxsub", function() {
+                                var context = ko.contextFor(this);
+                                context.$root.filterByModel(context.$data, $(this).context.checked);
+                            })
 
                             var elements = document.getElementsByClassName('zoomtracker');
 
@@ -632,18 +533,6 @@ require 'views/search/js/multizoom.js';
                                 }
 
                             })
-//                            $(".cd-popup-trigger").each(function(index) {
-//                                var regno = $(this).attr('name');
-//                                $(this).on('click', function(event) {
-//                                    event.preventDefault();
-//                                    $('#cd-popup' + regno).addClass('is-visible');
-//                                    disable_scroll();
-//                                    $('body').css('overflow', 'hidden');
-//                                    for (i = 0; i < elements.length; i++) {
-//                                        elements[i].style.visibility = 'hidden';
-//                                    }
-//                                });
-//                            });
 
                             $(document).on("click", ".cd-popup", function() {
                                 if ($(event.target).is('.cd-popup-close') || $(event.target).is('.cd-popup')) {
@@ -656,19 +545,7 @@ require 'views/search/js/multizoom.js';
                                     }
                                 }
                             })
-//                            $(".cd-popup").each(function(index) {
-//                                $(this).on('click', function(event) {
-//                                    if ($(event.target).is('.cd-popup-close') || $(event.target).is('.cd-popup')) {
-//                                        event.preventDefault();
-//                                        $(this).removeClass('is-visible');
-//                                        enable_scroll();
-//                                        $('body').css('overflow', 'auto');
-//                                        for (i = 0; i < elements.length; i++) {
-//                                            elements[i].style.visibility = 'visible';
-//                                        }
-//                                    }
-//                                });
-//                            });
+
                             $(document).keyup(function(event) {
                                 if (event.which == '27') {
                                     $('.cd-popup').removeClass('is-visible');
@@ -685,83 +562,6 @@ require 'views/search/js/multizoom.js';
 
                         });
 
-<?php
-//
-//echo "jQuery(document).ready(function($) {\n";
-//
-//$i = 1;
-//if (isset($this->resultList)) {
-//    foreach ($this->resultList as $key => $value) {
-//        echo "$('#" . $i . "').addimagezoom({
-//                                        zoomrange: [3, 10],
-//                                        magnifiersize: [400, 400],
-//                                        magnifierpos: 'right',
-//                                        cursorshade: true,
-//                                        largeimage:'http://localhost/RideSL/public/images/" . $value['owner_id'] . "/" . $value['image'] . "', 
-//                                        disablewheel: true//<-- No comma after last option!
-//                                    });\n";
-//        $i++;
-//    }
-//}
-//
-////echo "});\n";
-////
-////echo '$(document).ready(function() {';
-//foreach ($manufacturers as $key => $value) {
-//    echo '
-//                                    $("#check' . $key . '").click(function() {
-//                                        $("#subfill' . $key . '").slideToggle("slow");
-//                                        //window.location.replace("'.URL.'search/resultList?location='.$_GET['location'].'&scheme_category='.$_GET['scheme_category'].'&manufacturer="+'.'$("#check' . $key . '").attr("name"));    
-//                                        
-//                                    });';
-//}
-////echo '});';
-//
-////echo "jQuery(document).ready(function($) {";
-//                echo "var elements = document.getElementsByClassName('zoomtracker');\n";
-//
-//
-//if (isset($this->resultList)) {
-//    foreach ($this->resultList as $key => $value) {
-//        echo "
-//                //open popup
-//                $('#comment-icon" . $value['vehicle_reg_no'] . "').on('click', function(event) {
-//                    event.preventDefault();
-//                    $('.cd-popup" . $value['vehicle_reg_no'] . "').addClass('is-visible');
-//                    disable_scroll();
-//                    $('body').css('overflow', 'hidden');
-//                    for (i = 0; i < elements.length; i++) {
-//                        elements[i].style.visibility = 'hidden';
-//                    }
-//                });
-//
-//                //close popup
-//                $('.cd-popup" . $value['vehicle_reg_no'] . "').on('click', function(event) {
-//                    if ($(event.target).is('.cd-popup-close') || $(event.target).is('.cd-popup" . $value['vehicle_reg_no'] . "')) {
-//                        event.preventDefault();
-//                        $(this).removeClass('is-visible');
-//                        enable_scroll();
-//                        $('body').css('overflow', 'auto');
-//                        for (i = 0; i < elements.length; i++) {
-//                            elements[i].style.visibility = 'visible';
-//                        }
-//                    }
-//                });
-//                //close popup when clicking the esc keyboard button
-//                $(document).keyup(function(event) {
-//                    if (event.which == '27') {
-//                        $('.cd-popup" . $value['vehicle_reg_no'] . "').removeClass('is-visible');
-//                        enable_scroll();
-//                        $('body').css('overflow', 'auto');
-//                        for (i = 0; i < elements.length; i++) {
-//                            elements[i].style.visibility = 'visible';
-//                        }
-//                    }
-//                });";
-//    }
-//    echo "});";
-//}
-?>
                         var keys = [37, 38, 39, 40];
                         function preventDefault(e) {
                             e = e || window.event;

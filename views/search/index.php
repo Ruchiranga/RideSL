@@ -14,11 +14,13 @@
 <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/jquery-ui.css">
 <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/jquery-ui.theme.css">
 <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/jquery-ui.structure.css">
+<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/jquery-ui-timepicker-addon.css">
 <!--<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/bootstrap-theme.css">-->
 <link id="zoomcss" rel="stylesheet" href="<?php echo URL; ?>public/css/multizoom.css" type="text/css" />
 <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
 <script src="<?php echo URL; ?>views/search/js/jquery-ui.js"></script>
+<script src="<?php echo URL; ?>views/search/js/timepicker.js"></script>
 <!--<script src="<?php echo URL; ?>views/search/js/bootstrap.js"></script>-->
 
 
@@ -96,6 +98,11 @@
                                     <input id="datepicktext" type="text" type="text" class="form-control" style="  width: 110px;  font-size: 80%;" readonly>
                                 </td>
                             </tr>
+<!--                            <tr>
+                                <td>
+                                    <input type="time" name="start_day" id="start_day">
+                                </td>
+                            </tr>-->
                         </table>
 
 
@@ -402,6 +409,14 @@ require 'views/search/js/multizoom.js';
                                     }
                                 }
                             };
+                            
+                            self.isTimeInRange = function(target, start, end){
+                                target = new Date('2013/01/01 '+target);
+                                start = new Date('2013/01/01 '+start);
+                                end = new Date('2013/01/01 '+end);
+
+                                return target >= start && target <= end;
+                            }
 
                             var manuFilters = [];
                             var typeFilters = [];
@@ -410,11 +425,12 @@ require 'views/search/js/multizoom.js';
 
                             self.processFilters = function() {
                                 if (dayFilter) {
+                                    filter = dayFilter.split('|')
                                     var matches = [];
                                     for (i = 0; i < self.vehicles().length; i++) {
                                         var match = false;
                                         for (j = 0; j < self.vehicles()[i].availability.length; j++) {
-                                            if (self.vehicles()[i].availability[j].day === dayFilter) {
+                                            if (self.vehicles()[i].availability[j].day === filter[0] && self.isTimeInRange(filter[1],self.vehicles()[i].availability[j].start_time,self.vehicles()[i].availability[j].end_time)) {
                                                 match = true;
                                                 break;
                                             }
@@ -422,7 +438,7 @@ require 'views/search/js/multizoom.js';
                                         matches.push(match);
                                     }
                                     
-                                    console.log(matches);
+//                                    console.log(matches);
 
                                     if (manuFilters.length === 0 && typeFilters.length === 0) {
                                         for (i = 0; i < self.vehicles().length; i++) {
@@ -632,27 +648,27 @@ require 'views/search/js/multizoom.js';
                                 }
                             }
                             cleanDatepicker();
-                            $.datepicker._gotoToday = function(id) {
-                                var target = $(id);
-                                var inst = this._getInst(target[0]);
-                                if (this._get(inst, 'gotoCurrent') && inst.currentDay) {
-                                    inst.selectedDay = inst.currentDay;
-                                    inst.drawMonth = inst.selectedMonth = inst.currentMonth;
-                                    inst.drawYear = inst.selectedYear = inst.currentYear;
-                                }
-                                else {
-                                    var date = new Date();
-                                    inst.selectedDay = date.getDate();
-                                    inst.drawMonth = inst.selectedMonth = date.getMonth();
-                                    inst.drawYear = inst.selectedYear = date.getFullYear();
-                                    // the below two lines are new
-                                    this._setDateDatepicker(target, date);
-                                    this._selectDate(id, this._getDateDatepicker(target));
-                                }
-                                this._notifyChange(inst);
-                                this._adjustDate(target);
-                            }
-                            $('#filters input').datepicker({
+//                            $.datepicker._gotoToday = function(id) {
+//                                var target = $(id);
+//                                var inst = this._getInst(target[0]);
+//                                if (this._get(inst, 'gotoCurrent') && inst.currentDay) {
+//                                    inst.selectedDay = inst.currentDay;
+//                                    inst.drawMonth = inst.selectedMonth = inst.currentMonth;
+//                                    inst.drawYear = inst.selectedYear = inst.currentYear;
+//                                }
+//                                else {
+//                                    var date = new Date();
+//                                    inst.selectedDay = date.getDate();
+//                                    inst.drawMonth = inst.selectedMonth = date.getMonth();
+//                                    inst.drawYear = inst.selectedYear = date.getFullYear();
+//                                    // the below two lines are new
+//                                    this._setDateDatepicker(target, date);
+//                                    this._selectDate(id, this._getDateDatepicker(target));
+//                                }
+//                                this._notifyChange(inst);
+//                                this._adjustDate(target);
+//                            }
+                            $('#filters input').datetimepicker({
                                 showButtonPanel: true,
                                 closeText: "Close",
                                 firstDay: 1,
@@ -666,12 +682,16 @@ require 'views/search/js/multizoom.js';
                             $('#filters input').datepicker('option', 'onSelect', function() {
                                 var date = $('#datepicktext').datepicker('getDate');
                                 if (date) {
+//                                    console.log(date);
                                     var dayOfWeek = date.getUTCDay();
-                                    console.log($(this));
-                                    console.log(ko.contextFor($(this)[0].parentElement));
-                                    var daysref = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
-                                    ko.contextFor($(this)[0].parentElement).$root.filterByDate(daysref[dayOfWeek]);
+                                    var time = date.getHours()+':'+date.getMinutes()+':'+date.getSeconds();
+//                                    console.log(time);
+//                                    console.log(ko.contextFor($(this)[0].parentElement));
+                                    var daysref = ['sun','mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+//                                    console.log(daysref[dayOfWeek]);
+                                    ko.contextFor($(this)[0].parentElement).$root.filterByDate(daysref[dayOfWeek]+'|'+date.getHours()+':'+date.getMinutes()+':'+date.getSeconds());
                                 } else {
+//                                    console.log('cleared');
                                     ko.contextFor($(this)[0].parentElement).$root.filterByDate('');
                                 }
                             });
@@ -709,7 +729,7 @@ require 'views/search/js/multizoom.js';
                             })
 
                             $(document).on("click", ".availability", function() {
-                                console.log($(this).attr('id'));
+//                                console.log($(this).attr('id'));
                                 var id = '#availability' + $(this).attr('id').replace('av', '');
                                 $($(id)).slideToggle(700, 'swing');
 //                                var context = ko.contextFor(this);

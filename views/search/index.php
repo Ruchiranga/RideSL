@@ -95,7 +95,7 @@
                                     <font style = "margin-left: 40px;font-weight: bold;font-size: 13px;color: #2980b9;font-family: sans-serif">On</font>
                                 </td>
                                 <td>
-                                    <input id="datepicktext" type="text" type="text" class="form-control" style="  width: 110px;  font-size: 80%;" readonly>
+                                    <input id="datepicktext" type="text" type="text" class="form-control" style="  width: 110px;  font-size: 80%;   border: 1px solid #DDD;" readonly>
                                 </td>
                             </tr>
 <!--                            <tr>
@@ -113,30 +113,48 @@
 
             <div id = 'content'>
                 <div id = 'search'>
-                    <input type = "text" name = "search" id = "searchBox" tabindex = "1" value="<?php
+                    <!--<form action="" method="post">-->
+
+                    <input type = "text" style="padding-left: 10px;" name = "location" id = "searchBox" tabindex = "1" value="<?php
                     if (isset($_POST['location'])) {
                         echo $_POST['location'];
                     } else {
                         echo '';
                     }
                     ?>"/>
-                    <select name = "search" id = "categoryCombo">
-                        <option value = "volvo">Volvo</option>
-                        <option value = "saab">Saab</option>
-                        <option value = "mercedes">Mercedes</option>
-                        <option value = "audi">Audi</option>
-                    </select>
-                    <input type = "submit" value = "Search" id = "search-button">
+
+                    <input type = "text" name = "scheme_category" id = "schemeCategory" value="<?php
+                    if (isset($_POST['scheme_category'])) {
+                        echo $_POST['scheme_category'];
+                    } else {
+                        echo '';
+                    }
+                    ?>" style="visibility: hidden; position: absolute" data-bind="value:selectedScheme "/>
+
+                    <select  id = "categoryCombo" data-bind="options: schemes,value: selectedScheme,valueAllowUnset: true"></select>
+
+
+<!--                    <select name = "search" id = "categoryCombo">
+    <option value = "city_taxi_scheme">City Taxi</option>
+    <option value = "tour_scheme">Tours</option>
+    <option value = "ceramonial_scheme">Ceramonial</option>
+    <option value = "airport_drop_pickup_sceheme">Airport Drop/Pickup</option>
+    <option value = "station_drop_pickup_sceheme">Station Drop/Pickup</option>
+    <option value = "cargo_sceheme">Cargo</option>
+    <option value = "construction_sceheme">Construction</option>
+</select>-->
+                    <input type = "submit" value = "Search" id = "search-button" class="rslbutton">
+                    <!--</form>-->
                 </div>
-<!--                <div id = 'categories'>
-                    <table id = "category-table">
-                        <tr>
-                            <td>Car</td>
-                            <td>Nano</td>
-                            <td>Trishaw</td>
-                        </tr>
-                    </table>
-                </div>-->
+                <!--                <div id = 'categories'>
+                                    <table id = "category-table">
+                                        <tr>
+                                            <td>Car</td>
+                                            <td>Nano</td>
+                                            <td>Trishaw</td>
+                                        </tr>
+                                    </table>
+                                </div>-->
                 <div class = 'resultsPane' style="margin-top: 10px;">
 
                     <div id = "sort-bar">
@@ -297,7 +315,7 @@
                                                             <tr>
                                                                 <td>
                                                                     <div style="height: auto; padding-top: 10px;padding-bottom: 10px; margin-left: 30px">
-                                                                        <font style="color: #2980b9;" data-bind="text: $data.username+' wrote :'"></font>
+                                                                        <font style="color: #2980b9;" data-bind="text: $data.username===<?php if (Session::get('loggedIn') == true && isset($_SESSION['username'])) echo "'".$_SESSION['username']."'" ?>?'You wrote :':$data.username +' wrote :'"></font>
                                                                         <br>
                                                                         <span data-bind="text: $data.comment"></span>
                                                                         <br>
@@ -306,6 +324,14 @@
                                                                 </td>
                                                             </tr>
                                                         </table>
+                                                        <hr>
+                                                        <div style="background-color: #DCE5F0;border-radius: 10px;" data-bind="attr:{id:'addcomment'+vehicle.vehicle_reg_no} ">
+                                                            <?php if (Session::get('loggedIn') == true && isset($_SESSION['username'])) : ?>
+                                                                <font style="color: #2980b9; margin-top: 15px; font-weight: bold" >Add Your Comment</font><br>
+                                                                <textarea name="comment" data-bind="attr:{id:'comment'+vehicle.vehicle_reg_no}" rows="3" cols="90" style="resize: none;margin-top: 5px;margin-bottom: 5px;"></textarea><br>
+                                                                <input type="submit" value="Post" id="postbutton"class="rslbutton" style="margin-bottom: 15px">
+                                                            <?php endif; ?>
+                                                        </div>
                                                     </div>
                                                     <hr>
                                                 </div>
@@ -321,275 +347,298 @@
                     </div>
                 </div>
 
-                    <br><br><br><br><br><br><br><br><br>
+                <br><br><br><br><br><br><br><br><br>
 
-                    </body>
-                    <script>
+                </body>
+                <script>
 <?php
 require 'views/search/js/multizoom.js';
 ?>
 
-                        function resultModel(response) {
-                            var self = this;
-                            var fullurl = document.URL;
+                    function resultModel(response) {
+                        var self = this;
+                        var fullurl = document.URL;
 
-                            self.response = response;
-                            ko.computed(function() {
-                                for (i = 0; i < self.response.length; i++) {
-                                    response[i]['visible'] = true;
-                                }
-                                var daysref = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
-                                for (i = 0; i < self.response.length; i++) {
-                                    self.response[i].availability.sort(function(x, y) {
-                                        x = daysref.indexOf(x.day)
-                                        y = daysref.indexOf(y.day)
-                                        if (x < y) {
-                                            return -1;
-                                        }
-                                        if (x > y) {
-                                            return 1;
-                                        }
-                                        return 0;
-                                    });
-                                }
-
-                            });
-
-                            self.vehicles = ko.observableArray(self.response);
-
-
-
-                            self.url = fullurl.substring(0, fullurl.indexOf("RideSL") + "RideSL".length);
-
-                            self.getPhoneCount = function(regno) {
-                                for (i = 0; i < self.vehicles().length; i++) {
-                                    if (self.vehicles()[i].vehicle_reg_no === regno) {
-                                        return self.vehicles()[i].phone_numbers.length;
+                        self.response = response;
+                        ko.computed(function() {
+                            for (i = 0; i < self.response.length; i++) {
+                                response[i]['visible'] = true;
+                            }
+                            var daysref = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+                            for (i = 0; i < self.response.length; i++) {
+                                self.response[i].availability.sort(function(x, y) {
+                                    x = daysref.indexOf(x.day)
+                                    y = daysref.indexOf(y.day)
+                                    if (x < y) {
+                                        return -1;
                                     }
-                                }
-                                return 0;
-                            };
-
-                            self.manufacturers = ko.computed(function() {
-                                var manus = [];
-                                for (i = 0; i < response.length; i++) {
-                                    if (manus.indexOf(response[i]['manufacturer']) === -1) {
-                                        manus[manus.length] = response[i]['manufacturer'];
+                                    if (x > y) {
+                                        return 1;
                                     }
-                                }
-
-                                return manus;
-                            });
-
-                            self.types = ko.computed(function() {
-                                var types = [];
-                                for (i = 0; i < response.length; i++) {
-                                    if (types.indexOf(response[i]['vehicle_type']) === -1) {
-                                        types[types.length] = response[i]['vehicle_type'];
-                                    }
-                                }
-
-                                return types;
-                            });
-
-                            self.models = function(manufacturer) {
-                                var models = [];
-                                for (i = 0; i < response.length; i++) {
-                                    if (response[i]['manufacturer'] === manufacturer) {
-                                        models[models.length] = response[i]['model'];
-                                    }
-                                }
-                                return models;
-                            };
-
-                            self.isVisible = function(vehicle_reg_no) {
-                                for (i = 0; i < self.vehicles().length; i++) {
-                                    if (self.vehicles()[i]['vehicle_reg_no'] === vehicle_reg_no) {
-                                        return self.vehicles()[i]['visible'];
-                                    }
-                                }
-                            };
-                            
-                            self.isTimeInRange = function(target, start, end){
-                                target = new Date('2013/01/01 '+target);
-                                start = new Date('2013/01/01 '+start);
-                                end = new Date('2013/01/01 '+end);
-
-                                return target >= start && target <= end;
+                                    return 0;
+                                });
                             }
 
-                            var manuFilters = [];
-                            var typeFilters = [];
-                            var modelFilters = [];
-                            var dayFilter;
+                        });
 
-                            self.processFilters = function() {
-                                if (dayFilter) {
-                                    filter = dayFilter.split('|')
-                                    var matches = [];
-                                    for (i = 0; i < self.vehicles().length; i++) {
-                                        var match = false;
-                                        for (j = 0; j < self.vehicles()[i].availability.length; j++) {
-                                            if (self.vehicles()[i].availability[j].day === filter[0] && self.isTimeInRange(filter[1],self.vehicles()[i].availability[j].start_time,self.vehicles()[i].availability[j].end_time)) {
-                                                match = true;
-                                                break;
-                                            }
+                        self.vehicles = ko.observableArray(self.response);
+                        self.schemes = ['City Taxi', 'Tours', 'Ceremonial', 'Air port drop/pickup', 'Station drop/pickup', 'Cargo', 'Construction'];
+
+                        self.selectedScheme = ko.observable(<?php
+$schemes = ['City Taxi', 'Tours', 'Ceremonial', 'Air port drop/pickup', 'Station drop/pickup', 'Cargo', 'Construction'];
+$scheme_names = ['city_taxi_scheme', 'tour_scheme', 'ceremonial_scheme', ' air_port_drop_pickup_scheme', 'station_drop_pickup_scheme', 'cargo_scheme', 'construction_scheme'];
+if (isset($_POST['scheme_category'])) {
+
+    echo '"' . $schemes[array_search($_POST['scheme_category'], $scheme_names)] . '"';
+//                                echo '"'.$_POST['scheme_category'].'"';
+} else {
+    echo '"City Taxi"';
+}
+?>);
+
+
+                        self.url = fullurl.substring(0, fullurl.indexOf("RideSL") + "RideSL".length);
+
+                        self.username = <?php echo isset($_SESSION['username']) ? '"' . $_SESSION['username'] . '"' : ''; ?>
+
+                        self.getPhoneCount = function(regno) {
+                            for (i = 0; i < self.vehicles().length; i++) {
+                                if (self.vehicles()[i].vehicle_reg_no === regno) {
+                                    return self.vehicles()[i].phone_numbers.length;
+                                }
+                            }
+                            return 0;
+                        };
+
+                        self.dummyob = ko.observable();
+
+                        self.manufacturers = ko.computed(function() {
+                            self.dummyob();
+                            var manus = [];
+                            for (i = 0; i < response.length; i++) {
+                                if (manus.indexOf(response[i]['manufacturer']) === -1) {
+                                    manus[manus.length] = response[i]['manufacturer'];
+                                }
+                            }
+
+                            return manus;
+                        });
+
+                        self.types = ko.computed(function() {
+                            self.dummyob();
+                            var types = [];
+                            for (i = 0; i < response.length; i++) {
+                                if (types.indexOf(response[i]['vehicle_type']) === -1) {
+                                    types[types.length] = response[i]['vehicle_type'];
+                                }
+                            }
+
+                            return types;
+                        });
+
+                        self.models = function(manufacturer) {
+                            self.dummyob();
+                            var models = [];
+                            for (i = 0; i < response.length; i++) {
+                                if (response[i]['manufacturer'] === manufacturer) {
+                                    models[models.length] = response[i]['model'];
+                                }
+                            }
+                            return models;
+                        };
+
+                        self.recalcFilters = function() {
+                            self.dummyob.notifySubscribers();
+                        };
+
+                        self.isVisible = function(vehicle_reg_no) {
+                            for (i = 0; i < self.vehicles().length; i++) {
+                                if (self.vehicles()[i]['vehicle_reg_no'] === vehicle_reg_no) {
+                                    return self.vehicles()[i]['visible'];
+                                }
+                            }
+                        };
+
+                        self.isTimeInRange = function(target, start, end) {
+                            target = new Date('2013/01/01 ' + target);
+                            start = new Date('2013/01/01 ' + start);
+                            end = new Date('2013/01/01 ' + end);
+
+                            return target >= start && target <= end;
+                        }
+
+                        var manuFilters = [];
+                        var typeFilters = [];
+                        var modelFilters = [];
+                        var dayFilter;
+
+                        self.processFilters = function() {
+                            if (dayFilter) {
+                                filter = dayFilter.split('|')
+                                var matches = [];
+                                for (i = 0; i < self.vehicles().length; i++) {
+                                    var match = false;
+                                    for (j = 0; j < self.vehicles()[i].availability.length; j++) {
+                                        if (self.vehicles()[i].availability[j].day === filter[0] && self.isTimeInRange(filter[1], self.vehicles()[i].availability[j].start_time, self.vehicles()[i].availability[j].end_time)) {
+                                            match = true;
+                                            break;
                                         }
-                                        matches.push(match);
                                     }
-                                    
+                                    matches.push(match);
+                                }
+
 //                                    console.log(matches);
 
-                                    if (manuFilters.length === 0 && typeFilters.length === 0) {
-                                        for (i = 0; i < self.vehicles().length; i++) {
+                                if (manuFilters.length === 0 && typeFilters.length === 0) {
+                                    for (i = 0; i < self.vehicles().length; i++) {
 
-                                            if (matches[i]) {
-                                                self.vehicles()[i]['visible'] = true;
-                                            } else {
-                                                self.vehicles()[i]['visible'] = false;
-                                            }
-                                        }
-                                    } else if (manuFilters.length === 0 && typeFilters.length > 0) {
-                                        for (i = 0; i < self.vehicles().length; i++) {
-                                            if (typeFilters.indexOf(self.vehicles()[i]['vehicle_type']) > -1 && matches[i]) {
-                                                self.vehicles()[i]['visible'] = true;
-                                            } else {
-                                                self.vehicles()[i]['visible'] = false;
-                                            }
-                                        }
-                                    } else if (manuFilters.length > 0 && modelFilters.length === 0 && typeFilters.length === 0) {
-                                        for (i = 0; i < self.vehicles().length; i++) {
-                                            if (manuFilters.indexOf(self.vehicles()[i]['manufacturer']) > -1 && matches[i]) {
-                                                self.vehicles()[i]['visible'] = true;
-                                            } else {
-                                                self.vehicles()[i]['visible'] = false;
-                                            }
-                                        }
-                                    } else if (manuFilters.length > 0 && modelFilters.length === 0 && typeFilters.length > 0) {
-                                        for (i = 0; i < self.vehicles().length; i++) {
-                                            if (manuFilters.indexOf(self.vehicles()[i]['manufacturer']) > -1 && typeFilters.indexOf(self.vehicles()[i]['vehicle_type']) > -1 && matches[i]) {
-                                                self.vehicles()[i]['visible'] = true;
-                                            } else {
-                                                self.vehicles()[i]['visible'] = false;
-                                            }
-                                        }
-                                    } else if (manuFilters.length > 0 && modelFilters.length > 0 && typeFilters.length === 0) {
-                                        for (i = 0; i < self.vehicles().length; i++) {
-                                            if (manuFilters.indexOf(self.vehicles()[i]['manufacturer']) > -1 && modelFilters.indexOf(self.vehicles()[i]['model']) > -1 && matches[i]) {
-                                                self.vehicles()[i]['visible'] = true;
-                                            } else {
-                                                self.vehicles()[i]['visible'] = false;
-                                            }
-                                        }
-                                    } else if (manuFilters.length > 0 && modelFilters.length > 0 && typeFilters.length > 0) {
-                                        for (i = 0; i < self.vehicles().length; i++) {
-                                            if (manuFilters.indexOf(self.vehicles()[i]['manufacturer']) > -1 && modelFilters.indexOf(self.vehicles()[i]['model']) > -1 && typeFilters.indexOf(self.vehicles()[i]['vehicle_type']) > -1 && matches[i]) {
-                                                self.vehicles()[i]['visible'] = true;
-                                            } else {
-                                                self.vehicles()[i]['visible'] = false;
-                                            }
-                                        }
-                                    } else {
-                                        console.log('impossible!');
-                                    }
-
-                                } else {
-                                    if (manuFilters.length === 0 && typeFilters.length === 0) {
-                                        for (i = 0; i < self.vehicles().length; i++) {
+                                        if (matches[i]) {
                                             self.vehicles()[i]['visible'] = true;
+                                        } else {
+                                            self.vehicles()[i]['visible'] = false;
                                         }
-                                    } else if (manuFilters.length === 0 && typeFilters.length > 0) {
-                                        for (i = 0; i < self.vehicles().length; i++) {
-                                            if (typeFilters.indexOf(self.vehicles()[i]['vehicle_type']) > -1) {
-                                                self.vehicles()[i]['visible'] = true;
-                                            } else {
-                                                self.vehicles()[i]['visible'] = false;
-                                            }
-                                        }
-                                    } else if (manuFilters.length > 0 && modelFilters.length === 0 && typeFilters.length === 0) {
-                                        for (i = 0; i < self.vehicles().length; i++) {
-                                            if (manuFilters.indexOf(self.vehicles()[i]['manufacturer']) > -1) {
-                                                self.vehicles()[i]['visible'] = true;
-                                            } else {
-                                                self.vehicles()[i]['visible'] = false;
-                                            }
-                                        }
-                                    } else if (manuFilters.length > 0 && modelFilters.length === 0 && typeFilters.length > 0) {
-                                        for (i = 0; i < self.vehicles().length; i++) {
-                                            if (manuFilters.indexOf(self.vehicles()[i]['manufacturer']) > -1 && typeFilters.indexOf(self.vehicles()[i]['vehicle_type']) > -1) {
-                                                self.vehicles()[i]['visible'] = true;
-                                            } else {
-                                                self.vehicles()[i]['visible'] = false;
-                                            }
-                                        }
-                                    } else if (manuFilters.length > 0 && modelFilters.length > 0 && typeFilters.length === 0) {
-                                        for (i = 0; i < self.vehicles().length; i++) {
-                                            if (manuFilters.indexOf(self.vehicles()[i]['manufacturer']) > -1 && modelFilters.indexOf(self.vehicles()[i]['model']) > -1) {
-                                                self.vehicles()[i]['visible'] = true;
-                                            } else {
-                                                self.vehicles()[i]['visible'] = false;
-                                            }
-                                        }
-                                    } else if (manuFilters.length > 0 && modelFilters.length > 0 && typeFilters.length > 0) {
-                                        for (i = 0; i < self.vehicles().length; i++) {
-                                            if (manuFilters.indexOf(self.vehicles()[i]['manufacturer']) > -1 && modelFilters.indexOf(self.vehicles()[i]['model']) > -1 && typeFilters.indexOf(self.vehicles()[i]['vehicle_type']) > -1) {
-                                                self.vehicles()[i]['visible'] = true;
-                                            } else {
-                                                self.vehicles()[i]['visible'] = false;
-                                            }
-                                        }
-                                    } else {
-                                        console.log('impossible!');
                                     }
-                                }
-
-                                self.vehicles.valueHasMutated();
-                            };
-
-                            self.filterByManufacturer = function(manufacturer, checked) {
-                                if (checked) {
-                                    manuFilters.push(manufacturer);
-                                } else {
-                                    var index = manuFilters.indexOf(manufacturer);
-                                    if (index > -1) {
-                                        manuFilters.splice(index, 1);
+                                } else if (manuFilters.length === 0 && typeFilters.length > 0) {
+                                    for (i = 0; i < self.vehicles().length; i++) {
+                                        if (typeFilters.indexOf(self.vehicles()[i]['vehicle_type']) > -1 && matches[i]) {
+                                            self.vehicles()[i]['visible'] = true;
+                                        } else {
+                                            self.vehicles()[i]['visible'] = false;
+                                        }
                                     }
-                                }
-                                self.processFilters();
-                            };
-
-                            self.filterByType = function(type, checked) {
-                                if (checked) {
-                                    typeFilters.push(type);
-                                } else {
-                                    var index = typeFilters.indexOf(type);
-                                    if (index > -1) {
-                                        typeFilters.splice(index, 1);
+                                } else if (manuFilters.length > 0 && modelFilters.length === 0 && typeFilters.length === 0) {
+                                    for (i = 0; i < self.vehicles().length; i++) {
+                                        if (manuFilters.indexOf(self.vehicles()[i]['manufacturer']) > -1 && matches[i]) {
+                                            self.vehicles()[i]['visible'] = true;
+                                        } else {
+                                            self.vehicles()[i]['visible'] = false;
+                                        }
                                     }
-                                }
-                                self.processFilters();
-                            };
-
-                            self.filterByModel = function(model, checked) {
-                                if (checked) {
-                                    modelFilters.push(model);
-                                } else {
-                                    var index = modelFilters.indexOf(model);
-                                    if (index > -1) {
-                                        modelFilters.splice(index, 1);
+                                } else if (manuFilters.length > 0 && modelFilters.length === 0 && typeFilters.length > 0) {
+                                    for (i = 0; i < self.vehicles().length; i++) {
+                                        if (manuFilters.indexOf(self.vehicles()[i]['manufacturer']) > -1 && typeFilters.indexOf(self.vehicles()[i]['vehicle_type']) > -1 && matches[i]) {
+                                            self.vehicles()[i]['visible'] = true;
+                                        } else {
+                                            self.vehicles()[i]['visible'] = false;
+                                        }
                                     }
-                                }
-                                self.processFilters();
-                            };
-
-                            self.filterByDate = function(day) {
-                                if (day) {
-                                    dayFilter = day;
+                                } else if (manuFilters.length > 0 && modelFilters.length > 0 && typeFilters.length === 0) {
+                                    for (i = 0; i < self.vehicles().length; i++) {
+                                        if (manuFilters.indexOf(self.vehicles()[i]['manufacturer']) > -1 && modelFilters.indexOf(self.vehicles()[i]['model']) > -1 && matches[i]) {
+                                            self.vehicles()[i]['visible'] = true;
+                                        } else {
+                                            self.vehicles()[i]['visible'] = false;
+                                        }
+                                    }
+                                } else if (manuFilters.length > 0 && modelFilters.length > 0 && typeFilters.length > 0) {
+                                    for (i = 0; i < self.vehicles().length; i++) {
+                                        if (manuFilters.indexOf(self.vehicles()[i]['manufacturer']) > -1 && modelFilters.indexOf(self.vehicles()[i]['model']) > -1 && typeFilters.indexOf(self.vehicles()[i]['vehicle_type']) > -1 && matches[i]) {
+                                            self.vehicles()[i]['visible'] = true;
+                                        } else {
+                                            self.vehicles()[i]['visible'] = false;
+                                        }
+                                    }
                                 } else {
-                                    dayFilter = '';
+                                    console.log('impossible!');
                                 }
-                                self.processFilters();
+
+                            } else {
+                                if (manuFilters.length === 0 && typeFilters.length === 0) {
+                                    for (i = 0; i < self.vehicles().length; i++) {
+                                        self.vehicles()[i]['visible'] = true;
+                                    }
+                                } else if (manuFilters.length === 0 && typeFilters.length > 0) {
+                                    for (i = 0; i < self.vehicles().length; i++) {
+                                        if (typeFilters.indexOf(self.vehicles()[i]['vehicle_type']) > -1) {
+                                            self.vehicles()[i]['visible'] = true;
+                                        } else {
+                                            self.vehicles()[i]['visible'] = false;
+                                        }
+                                    }
+                                } else if (manuFilters.length > 0 && modelFilters.length === 0 && typeFilters.length === 0) {
+                                    for (i = 0; i < self.vehicles().length; i++) {
+                                        if (manuFilters.indexOf(self.vehicles()[i]['manufacturer']) > -1) {
+                                            self.vehicles()[i]['visible'] = true;
+                                        } else {
+                                            self.vehicles()[i]['visible'] = false;
+                                        }
+                                    }
+                                } else if (manuFilters.length > 0 && modelFilters.length === 0 && typeFilters.length > 0) {
+                                    for (i = 0; i < self.vehicles().length; i++) {
+                                        if (manuFilters.indexOf(self.vehicles()[i]['manufacturer']) > -1 && typeFilters.indexOf(self.vehicles()[i]['vehicle_type']) > -1) {
+                                            self.vehicles()[i]['visible'] = true;
+                                        } else {
+                                            self.vehicles()[i]['visible'] = false;
+                                        }
+                                    }
+                                } else if (manuFilters.length > 0 && modelFilters.length > 0 && typeFilters.length === 0) {
+                                    for (i = 0; i < self.vehicles().length; i++) {
+                                        if (manuFilters.indexOf(self.vehicles()[i]['manufacturer']) > -1 && modelFilters.indexOf(self.vehicles()[i]['model']) > -1) {
+                                            self.vehicles()[i]['visible'] = true;
+                                        } else {
+                                            self.vehicles()[i]['visible'] = false;
+                                        }
+                                    }
+                                } else if (manuFilters.length > 0 && modelFilters.length > 0 && typeFilters.length > 0) {
+                                    for (i = 0; i < self.vehicles().length; i++) {
+                                        if (manuFilters.indexOf(self.vehicles()[i]['manufacturer']) > -1 && modelFilters.indexOf(self.vehicles()[i]['model']) > -1 && typeFilters.indexOf(self.vehicles()[i]['vehicle_type']) > -1) {
+                                            self.vehicles()[i]['visible'] = true;
+                                        } else {
+                                            self.vehicles()[i]['visible'] = false;
+                                        }
+                                    }
+                                } else {
+                                    console.log('impossible!');
+                                }
                             }
+
+                            self.vehicles.valueHasMutated();
+                        };
+
+                        self.filterByManufacturer = function(manufacturer, checked) {
+                            if (checked) {
+                                manuFilters.push(manufacturer);
+                            } else {
+                                var index = manuFilters.indexOf(manufacturer);
+                                if (index > -1) {
+                                    manuFilters.splice(index, 1);
+                                }
+                            }
+                            self.processFilters();
+                        };
+
+                        self.filterByType = function(type, checked) {
+                            if (checked) {
+                                typeFilters.push(type);
+                            } else {
+                                var index = typeFilters.indexOf(type);
+                                if (index > -1) {
+                                    typeFilters.splice(index, 1);
+                                }
+                            }
+                            self.processFilters();
+                        };
+
+                        self.filterByModel = function(model, checked) {
+                            if (checked) {
+                                modelFilters.push(model);
+                            } else {
+                                var index = modelFilters.indexOf(model);
+                                if (index > -1) {
+                                    modelFilters.splice(index, 1);
+                                }
+                            }
+                            self.processFilters();
+                        };
+
+                        self.filterByDate = function(day) {
+                            if (day) {
+                                dayFilter = day;
+                            } else {
+                                dayFilter = '';
+                            }
+                            self.processFilters();
+                        }
 //                            
 //                            self.toggleAvailability = function(parent){
 //                                var id = 'availability'+parent.vehicle_reg_no;
@@ -598,56 +647,60 @@ require 'views/search/js/multizoom.js';
 //                                $(id).slideToggle(100, 'swing');
 //                            }
 
-                            self.capitalizeFirstLetter = function(string) {
-                                return string.charAt(0).toUpperCase() + string.slice(1);
-                            }
-
+                        self.capitalizeFirstLetter = function(string) {
+                            return string.charAt(0).toUpperCase() + string.slice(1);
                         }
 
-                        function hidetracker() {
-                            document.getElementsByClassName('.zoomtracker').style.display = 'none';
-                        }
+                    }
 
-                        jQuery(document).ready(function($) {
-                            var results;
-                            var xmlhttp;
-                            if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
-                                xmlhttp = new XMLHttpRequest();
-                            }
-                            else {// code for IE6, IE5
-                                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-                            }
-                            xmlhttp.onreadystatechange = function() {
-                                if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
-                                {
+
+                    function hidetracker() {
+                        document.getElementsByClassName('.zoomtracker').style.display = 'none';
+                    }
+                    var viewModel;
+
+                    jQuery(document).ready(function($) {
+                        var results;
+                        var xmlhttp;
+                        if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+                            xmlhttp = new XMLHttpRequest();
+                        }
+                        else {// code for IE6, IE5
+                            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                        }
+                        xmlhttp.onreadystatechange = function() {
+                            if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
+                            {
 //                                    alert(1);
 //                                    console.log(xmlhttp.responseText);
-                                    results = jQuery.parseJSON(xmlhttp.responseText);
-                                    console.log(results);
+                                results = jQuery.parseJSON(xmlhttp.responseText);
+                                console.log(results);
 //                                    var phone_nos = [];
 //                                    var phonenoResults = results.phone_numbers;
-                                    ko.applyBindings(new resultModel(results));
-                                }
+                                viewModel = new resultModel(results);
+//                                    ko.applyBindings(new resultModel(results));
+                                ko.applyBindings(viewModel);
                             }
-                            xmlhttp.open("POST", "getResultList", true);
-                            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                        }
+                        xmlhttp.open("POST", "getResultList", true);
+                        xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
-                            xmlhttp.send("location=" + $('#searchBox').val() + "&scheme_category=city_taxi_scheme");
+                        xmlhttp.send("location=" + $('#searchBox').val() + "&scheme_category=" + $('#schemeCategory').val());
 
-                            function cleanDatepicker() {
-                                var old_fn = $.datepicker._updateDatepicker;
+                        function cleanDatepicker() {
+                            var old_fn = $.datepicker._updateDatepicker;
 
-                                $.datepicker._updateDatepicker = function(inst) {
-                                    old_fn.call(this, inst);
+                            $.datepicker._updateDatepicker = function(inst) {
+                                old_fn.call(this, inst);
 
-                                    var buttonPane = $(this).datepicker("widget").find(".ui-datepicker-buttonpane");
+                                var buttonPane = $(this).datepicker("widget").find(".ui-datepicker-buttonpane");
 
-                                    $("<button type='button' class='ui-datepicker-clean ui-state-default ui-priority-primary ui-corner-all'>Clear</button>").appendTo(buttonPane).click(function(ev) {
-                                        $.datepicker._clearDate(inst.input);
-                                    });
-                                }
+                                $("<button type='button' class='ui-datepicker-clean ui-state-default ui-priority-primary ui-corner-all'>Clear</button>").appendTo(buttonPane).click(function(ev) {
+                                    $.datepicker._clearDate(inst.input);
+                                });
                             }
-                            cleanDatepicker();
+                        }
+                        cleanDatepicker();
 //                            $.datepicker._gotoToday = function(id) {
 //                                var target = $(id);
 //                                var inst = this._getInst(target[0]);
@@ -668,56 +721,58 @@ require 'views/search/js/multizoom.js';
 //                                this._notifyChange(inst);
 //                                this._adjustDate(target);
 //                            }
-                            $('#filters input').datetimepicker({
-                                showButtonPanel: true,
-                                closeText: "Close",
-                                firstDay: 1,
-                                weekStart: 1,
-                                todayBtn: "linked",
-                                orientation: "bottum left",
-                                autoclose: true,
-                                todayHighlight: true
-                            });
+                        $('#filters input').datetimepicker({
+                            showButtonPanel: true,
+                            closeText: "Close",
+                            firstDay: 1,
+                            weekStart: 1,
+                            todayBtn: "linked",
+                            orientation: "bottum left",
+                            autoclose: true,
+                            todayHighlight: true
+                        });
 
-                            $('#filters input').datepicker('option', 'onSelect', function() {
-                                var date = $('#datepicktext').datepicker('getDate');
-                                if (date) {
+                        $('#filters input').datepicker('option', 'onSelect', function() {
+                            var date = $('#datepicktext').datepicker('getDate');
+                            if (date) {
 //                                    console.log(date);
-                                    var dayOfWeek = date.getUTCDay();
-                                    var time = date.getHours()+':'+date.getMinutes()+':'+date.getSeconds();
+                                var dayOfWeek = date.getUTCDay();
+                                var time = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds();
 //                                    console.log(time);
 //                                    console.log(ko.contextFor($(this)[0].parentElement));
-                                    var daysref = ['sun','mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
+                                var daysref = ['sun', 'mon', 'tue', 'wed', 'thu', 'fri', 'sat'];
 //                                    console.log(daysref[dayOfWeek]);
-                                    ko.contextFor($(this)[0].parentElement).$root.filterByDate(daysref[dayOfWeek]+'|'+date.getHours()+':'+date.getMinutes()+':'+date.getSeconds());
-                                } else {
+                                ko.contextFor($(this)[0].parentElement).$root.filterByDate(daysref[dayOfWeek] + '|' + date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds());
+                            } else {
 //                                    console.log('cleared');
-                                    ko.contextFor($(this)[0].parentElement).$root.filterByDate('');
-                                }
-                            });
+                                ko.contextFor($(this)[0].parentElement).$root.filterByDate('');
+                            }
+                        });
 
-                            $(document).on("click", ".cbox", function() {
-                                var parentid = $(this).attr('id');
-                                var num = parentid.replace(/^\D+/g, '');
-                                var childid = "#subfill" + num;
-                                $(childid).slideToggle(100, 'swing');
-                                if ($(this).context.checked) {
-                                    for (j = 0; j < $($(childid)[0]).context.children.length; j += 3) {
+
+
+                        $(document).on("click", ".cbox", function() {
+                            var parentid = $(this).attr('id');
+                            var num = parentid.replace(/^\D+/g, '');
+                            var childid = "#subfill" + num;
+                            $(childid).slideToggle(100, 'swing');
+                            if ($(this).context.checked) {
+                                for (j = 0; j < $($(childid)[0]).context.children.length; j += 3) {
+                                    $($($(childid)[0]).context.children[j]).trigger("click");
+                                }
+                            } else {
+                                for (j = 0; j < $($(childid)[0]).context.children.length; j += 3) {
+                                    if ($($(childid)[0]).context.children[j].checked === true) {
                                         $($($(childid)[0]).context.children[j]).trigger("click");
                                     }
-                                } else {
-                                    for (j = 0; j < $($(childid)[0]).context.children.length; j += 3) {
-                                        if ($($(childid)[0]).context.children[j].checked === true) {
-                                            $($($(childid)[0]).context.children[j]).trigger("click");
-                                        }
-                                    }
                                 }
+                            }
 
-                                $(childid + " input").css("display", "none");
+                            $(childid + " input").css("display", "none");
 
-                                var context = ko.contextFor(this);
+                            var context = ko.contextFor(this);
 
-                                context.$root.filterByManufacturer(context.$data, $(this).context.checked);
+                            context.$root.filterByManufacturer(context.$data, $(this).context.checked);
 
 ////                                console.log(context);
 //                                
@@ -726,110 +781,226 @@ require 'views/search/js/multizoom.js';
 ////                                console.log($(this));
 
 
-                            })
+                        })
 
-                            $(document).on("click", ".availability", function() {
+                        $(document).on("click", ".availability", function() {
 //                                console.log($(this).attr('id'));
-                                var id = '#availability' + $(this).attr('id').replace('av', '');
-                                $($(id)).slideToggle(700, 'swing');
+                            var id = '#availability' + $(this).attr('id').replace('av', '');
+                            $($(id)).slideToggle(700, 'swing');
 //                                var context = ko.contextFor(this);
 //
 //                                context.$root.filterByType(context.$data, $(this).context.checked);
 
-                            })
+                        })
 
-                            $(document).on("click", ".cboxtypes", function() {
-                                var context = ko.contextFor(this);
+                        $(document).on("click", "#search-button", function() {
+                            console.log('clicked');
+                            var xmlhttp;
+                            if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+                                xmlhttp = new XMLHttpRequest();
+                            }
+                            else {// code for IE6, IE5
+                                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                            }
+                            var context = ko.contextFor(this);
+                            xmlhttp.onreadystatechange = function() {
+                                if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
+                                {
+//                                    alert(1);
+//                                    console.log(xmlhttp.responseText);
+                                    results = jQuery.parseJSON(xmlhttp.responseText);
+                                    console.log(results);
+//                                    var phone_nos = [];
+//                                    var phonenoResults = results.phone_numbers;
 
-                                context.$root.filterByType(context.$data, $(this).context.checked);
+                                    for (i = 0; i < results.length; i++) {
+                                        results[i]['visible'] = true;
+                                    }
+                                    var daysref = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+                                    for (i = 0; i < results.length; i++) {
+                                        results[i].availability.sort(function(x, y) {
+                                            x = daysref.indexOf(x.day)
+                                            y = daysref.indexOf(y.day)
+                                            if (x < y) {
+                                                return -1;
+                                            }
+                                            if (x > y) {
+                                                return 1;
+                                            }
+                                            return 0;
+                                        });
+                                    }
 
-                            })
+                                    console.log(context);
+                                    context.$root.vehicles.removeAll();
+                                    for (var v = 0; v < results.length; v++) {
+                                        console.log(results[v]);
+                                        context.$root.vehicles.push(results[v]);
+                                        context.$root.vehicles.valueHasMutated();
+                                    }
+                                    context.$root.recalcFilters();
 
-                            $(document).on("click", ".cboxsub", function() {
-                                var context = ko.contextFor(this);
-                                context.$root.filterByModel(context.$data, $(this).context.checked);
-                            })
-
-                            var elements = document.getElementsByClassName('zoomtracker');
-
-                            $(document).on("click", ".cd-popup-trigger", function(o) {
-//                                console.log(o.target.id.replace("comment-icon", ""));
-                                var regno = o.target.id.replace("comment-icon", "");
-
-                                event.preventDefault();
-//                                console.log('#cd-popup' + regno);
-                                $('#cd-popup' + regno).addClass('is-visible');
-                                disable_scroll();
-                                $('body').css('overflow', 'hidden');
-                                for (i = 0; i < elements.length; i++) {
-                                    elements[i].style.visibility = 'hidden';
+                                    console.log('clicked and results set');
+//                                        ko.applyBindings(new resultModel(results));
                                 }
+                            }
+                            var schemes = ['City Taxi', 'Tours', 'Ceremonial', 'Air port drop/pickup', 'Station drop/pickup', 'Cargo', 'Construction'];
+                            var scheme_names = ['city_taxi_scheme', 'tour_scheme', 'ceremonial_scheme', ' air_port_drop_pickup_scheme', 'station_drop_pickup_scheme', 'cargo_scheme', 'construction_scheme'];
+                            var scheme = scheme_names[schemes.indexOf($('#schemeCategory').val())];
 
-                            })
+                            console.log(scheme);
+                            xmlhttp.open("POST", "getResultList", true);
+                            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                                
+                            xmlhttp.send("location=" + $('#searchBox').val() + "&scheme_category=" + scheme);
+                        })
 
-                            $(document).on("click", ".cd-popup", function() {
-                                if ($(event.target).is('.cd-popup-close') || $(event.target).is('.cd-popup')) {
-                                    event.preventDefault();
-                                    $(this).removeClass('is-visible');
-                                    enable_scroll();
-                                    $('body').css('overflow', 'auto');
-                                    for (i = 0; i < elements.length; i++) {
-                                        elements[i].style.visibility = 'visible';
+                        $(document).on("click", "#postbutton", function() {
+                            console.log('clicked');
+                            var xmlhttp;
+                            if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+                                xmlhttp = new XMLHttpRequest();
+                            }
+                            else {// code for IE6, IE5
+                                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                            }
+                            var context = ko.contextFor(this);
+                            console.log($(this)[0].parentElement.id.replace('addcomment', ''));
+                            var reg_no = $(this)[0].parentElement.id.replace('addcomment', '');
+                            xmlhttp.onreadystatechange = function() {
+                                if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
+                                {
+
+                                    results = xmlhttp.responseText;
+                                    console.log(results);
+                                    if (results) {
+                                        for (var v = 0; v < context.$root.vehicles().length; v++) {
+
+                                            if (context.$root.vehicles()[v].vehicle_reg_no === reg_no) {
+                                                var cmt = ($('#comment' + reg_no).val());
+                                                var date = (new Date().toJSON().slice(0, 10));
+                                                var user = (context.$root.username);
+                                                var commentob = {comment: cmt, comment_date: date, username: user};
+                                                context.$root.vehicles()[v].comments.push(commentob);
+//                                                context.$root.vehicles.valueHasMutated();
+                                                var tempvehicleob = context.$root.vehicles.splice(v , 1)[0]; // removes the item from the array
+                                                context.$root.vehicles.splice(v , 0, tempvehicleob); // adds it back
+                                                $('#comment-icon'+reg_no).click();
+                                                break;
+                                            }
+                                            
+                                        }
+                                    }else{
+                                        console.log('erorrrr');
                                     }
                                 }
-                            })
+                            }
 
-                            $(document).keyup(function(event) {
-                                if (event.which == '27') {
-                                    $('.cd-popup').removeClass('is-visible');
-                                    enable_scroll();
-                                    $('body').css('overflow', 'auto');
-                                    for (i = 0; i < elements.length; i++) {
-                                        elements[i].style.visibility = 'visible';
-                                    }
-                                }
-                            });
+                            xmlhttp.open("POST", "addComment", true);
+                            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                            xmlhttp.send("vehicle_reg_no=" + reg_no + "&username=" + context.$root.username + "&comment=" + $('#comment' + reg_no).val());
+                        })
 
 
-
-
+                        $('#searchBox').keypress(function(e) {
+                            if (e.keyCode == 13)
+                                $('#search-button').click();
                         });
 
-                        var keys = [37, 38, 39, 40];
-                        function preventDefault(e) {
-                            e = e || window.event;
-                            if (e.preventDefault)
-                                e.preventDefault();
-                            e.returnValue = false;
-                        }
 
-                        function keydown(e) {
-                            for (var i = keys.length; i--; ) {
-                                if (e.keyCode === keys[i]) {
-                                    preventDefault(e);
-                                    return;
+                        $(document).on("click", ".cboxtypes", function() {
+                            var context = ko.contextFor(this);
+
+                            context.$root.filterByType(context.$data, $(this).context.checked);
+
+                        })
+
+                        $(document).on("click", ".cboxsub", function() {
+                            var context = ko.contextFor(this);
+                            context.$root.filterByModel(context.$data, $(this).context.checked);
+                        })
+
+                        var elements = document.getElementsByClassName('zoomtracker');
+
+                        $(document).on("click", ".cd-popup-trigger", function(o) {
+//                                console.log(o.target.id.replace("comment-icon", ""));
+console.log('triggered');
+                            var regno = o.target.id.replace("comment-icon", "");
+
+                            event.preventDefault();
+//                                console.log('#cd-popup' + regno);
+                            $('#cd-popup' + regno).addClass('is-visible');
+                            disable_scroll();
+                            $('body').css('overflow', 'hidden');
+                            for (i = 0; i < elements.length; i++) {
+                                elements[i].style.visibility = 'hidden';
+                            }
+
+                        })
+
+                        $(document).on("click", ".cd-popup", function() {
+                            if ($(event.target).is('.cd-popup-close') || $(event.target).is('.cd-popup')) {
+                                event.preventDefault();
+                                $(this).removeClass('is-visible');
+                                enable_scroll();
+                                $('body').css('overflow', 'auto');
+                                for (i = 0; i < elements.length; i++) {
+                                    elements[i].style.visibility = 'visible';
                                 }
                             }
-                        }
+                        })
 
-                        function wheel(e) {
-                            preventDefault(e);
-                        }
-                        function disable_scroll() {
-                            if (window.addEventListener) {
-                                window.addEventListener('DOMMouseScroll', wheel, false);
+                        $(document).keyup(function(event) {
+                            if (event.which == '27') {
+                                $('.cd-popup').removeClass('is-visible');
+                                enable_scroll();
+                                $('body').css('overflow', 'auto');
+                                for (i = 0; i < elements.length; i++) {
+                                    elements[i].style.visibility = 'visible';
+                                }
                             }
-                            window.onmousewheel = document.onmousewheel = wheel;
-                            document.onkeydown = keydown;
-                        }
+                        });
 
-                        function enable_scroll() {
-                            if (window.removeEventListener) {
-                                window.removeEventListener('DOMMouseScroll', wheel, false);
+
+
+
+                    });
+
+                    var keys = [37, 38, 39, 40];
+                    function preventDefault(e) {
+                        e = e || window.event;
+                        if (e.preventDefault)
+                            e.preventDefault();
+                        e.returnValue = false;
+                    }
+
+                    function keydown(e) {
+                        for (var i = keys.length; i--; ) {
+                            if (e.keyCode === keys[i]) {
+                                preventDefault(e);
+                                return;
                             }
-                            window.onmousewheel = document.onmousewheel = document.onkeydown = null;
                         }
+                    }
 
-                    </script>
+                    function wheel(e) {
+                        preventDefault(e);
+                    }
+                    function disable_scroll() {
+                        if (window.addEventListener) {
+                            window.addEventListener('DOMMouseScroll', wheel, false);
+                        }
+                        window.onmousewheel = document.onmousewheel = wheel;
+                        document.onkeydown = keydown;
+                    }
 
-                    </html>
+                    function enable_scroll() {
+                        if (window.removeEventListener) {
+                            window.removeEventListener('DOMMouseScroll', wheel, false);
+                        }
+                        window.onmousewheel = document.onmousewheel = document.onkeydown = null;
+                    }
+
+                </script>
+
+                </html>

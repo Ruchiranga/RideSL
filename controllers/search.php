@@ -29,5 +29,20 @@ class Search extends Controller {
         echo json_encode($data);
         return ;
     }
+    
+    function addComment(){
+        if(isset($_POST['vehicle_reg_no']) && isset($_POST['username']) && isset($_POST['comment'])){
+//            $this->model->addComment('"'.$_POST['vehicle_reg_no'].'"','"'.$_POST['username'].'"','"'.$_POST['comment'].'"');
+//            echo 'Comment posted successfully';
+            if($this->model->addComment($_POST['vehicle_reg_no'],$_POST['username'],$_POST['comment'])){
+                echo 'success';
+            }else{
+                echo '';
+            }
+        }else{
+            echo '';
+        }
+        return ;
+    }
 
 }

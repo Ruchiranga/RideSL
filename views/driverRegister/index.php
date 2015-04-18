@@ -30,7 +30,7 @@
     <!--create connection-->
     <?php
     mysql_connect('localhost', 'root', '');
-    mysql_select_db('ridesl');
+    mysql_select_db('ridesl'); 
     ?>
 
     <script type="text/javascript">
@@ -114,11 +114,13 @@
                                 while ($row = mysql_fetch_array($result)) {
                                     echo "<option style='font-family: Times New Roman; font-size: 18px;' value='" . $row['model'] . "'>" . $row['model'] . "</option>";
                                 }
+                                
                                 echo '</select>';
                                 ?>      
                             </div>
                         </li>
 
+                  
                         <!--Capacity-->
                         <li>
                             <div>
@@ -140,7 +142,9 @@
                         <br>
                         
                         <!--Image-->
-                        <a href="http://localhost/ridesl/views/driverRegister/image_cropper/upload_crop.php?number=" onclick="location.href=this.href+ document.getElementById('regNoin').value ;return false;" style="color: #0b75b2; font-size: 14px;"><b>Upload images</b></a>
+                        <a href="http://localhost/ridesl/views/driverRegister/image_cropper/upload_crop.php?number=" onclick="location.href=this.href+ document.getElementById('regNoin').value ;return false;" style="color: #0b75b2; font-size: 14px;">
+                                                   
+                            <b>Upload Images >></b></a>
                         <br> <br> <br> 
                         </li>
                         </div>

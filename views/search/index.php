@@ -315,7 +315,13 @@
                                                             <tr>
                                                                 <td>
                                                                     <div style="height: auto; padding-top: 10px;padding-bottom: 10px; margin-left: 30px">
-                                                                        <font style="color: #2980b9;" data-bind="text: $data.username===<?php if (Session::get('loggedIn') == true && isset($_SESSION['username'])) echo "'".$_SESSION['username']."'" ?>?'You wrote :':$data.username +' wrote :'"></font>
+                                                                        <font style="color: #2980b9;" data-bind="text: <?php
+                                                                        if (Session::get('loggedIn') == true && isset($_SESSION['username'])){ 
+                                                                            echo "$data.username==='".$_SESSION['username']."'"; 
+                                                                        }else{ 
+                                                                            echo "0";
+                                                                        }
+                                                                        ?>?'You wrote :':$data.username +' wrote :'"></font>
                                                                         <br>
                                                                         <span data-bind="text: $data.comment"></span>
                                                                         <br>

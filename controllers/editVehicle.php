@@ -12,7 +12,7 @@ class editVehicle extends Controller {
             header('location: ' . URL . 'login');
             exit();
         }
-        $this->view->js = array('editVehicle/js/default.js');
+//        $this->view->js = array('editVehicle/js/default.js');
     }
 
     public function index() {

@@ -6,8 +6,8 @@
 <link href="<?php echo URL; ?>public/css/faqabt/responsive-accordion.css" rel="stylesheet" type="text/css" media="all" />
 
 <!-- Javascript -->
-
-<!--<script src=".URL;?>public/js/driverhome.js"></script>-->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="<?php echo URL; ?>views/driverHome/js/default.js"></script>
 
 <script type="text/javascript" src="<?php echo URL; ?>public/js/faqabt/jquery.min.js"></script>
 <script type="text/javascript" src="<?php echo URL; ?>public/js/faqabt/jquery.ssd-vertical-navigation.min.js"></script>

@@ -1,15 +1,6 @@
-
-<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/schemestyle.css">
-<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/buttonstyle.css">
-<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/hyperlinkstyle.css">
-<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/paragraphstyle.css">
-<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/ratingstyle.css">
-<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/tooltipstyle.css">
-
+<!-- css -->
 <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>views/driverHome/css/default.css">
 <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>views/editVehicle/css/default.css">
-
-<!--<script src=".URL;?>public/js/driverhome.js"></script>-->
 
 <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/faqabt/helpsuport.css">
 <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/faqabt/helpsuport.css">
@@ -32,16 +23,17 @@
 <!--Faq acordian-->
 <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" type="text/css" media="all" />
 <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css" media="all" />
-
 <link href="<?php echo URL; ?>public/css/faqabt/normalize.css" rel="stylesheet" type="text/css" media="all" />
 <link href="<?php echo URL; ?>public/css/faqabt/responsive-accordion.css" rel="stylesheet" type="text/css" media="all" />
 
+<!-- Java Script-->
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script src="<?php echo URL; ?>views/editVehicle/js/default.js"></script>
 
 <script type="text/javascript" src="<?php echo URL; ?>public/js/faqabt/jquery.min.js"></script>
 <script type="text/javascript" src="<?php echo URL; ?>public/js/faqabt/jquery.ssd-vertical-navigation.min.js"></script>
 <!--<script type="text/javascript" src="public/js/faqabt/app.js"></script>-->
 <script type="text/javascript" src="<?php echo URL; ?>public/js/faqabt/helpsupport.js"></script>
-
 <script src="<?php echo URL; ?>public/js/faqabt/smoothscroll.min.js" type="text/javascript"></script>
 <!--<script src="public/js/faqabt/backbone.js" type="text/javascript"></script>-->
 <script src="<?php echo URL; ?>public/js/faqabt/responsive-accordion.min.js" type="text/javascript"></script>
@@ -49,13 +41,10 @@
 <!-- tag-it -->
 <link href="<?php echo URL; ?>views/editVehicle/css/jquery.tagit.css" rel="stylesheet" type="text/css">
 <link href="<?php echo URL; ?>views/editVehicle/css/tagit.ui-zendesk.css" rel="stylesheet" type="text/css">
-
-
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 <!-- locations -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.9.2/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
-
 <!-- The real deal -->
 <script src="<?php echo URL; ?>views/editVehicle/js/tag-it.js" type="text/javascript" charset="utf-8"></script>
 

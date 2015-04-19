@@ -13,7 +13,7 @@ class DriverHome extends Controller {
             exit();
         }
         
-        $this->view->js = array('driverHome/js/default.js');
+//        $this->view->js = array('driverHome/js/default.js');
     }
 
     function index() {

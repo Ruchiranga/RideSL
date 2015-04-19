@@ -11,9 +11,6 @@
         <link href="<?php echo URL; ?>public/css/faqabt/app.css" rel="stylesheet" type="text/css">
         <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css" media="all" />
 
-        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        <!--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>-->
-
         <?php
         if (isset($this->js)) {
             foreach ($this->js as $js)

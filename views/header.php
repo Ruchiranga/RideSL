@@ -9,7 +9,7 @@
 
 
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+        <!--<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>-->
 
         <?php
         if (isset($this->js)) {
@@ -56,6 +56,7 @@
                 <a href="<?php echo URL; ?>login">Sign in</a>
             <?php endif; ?>
             &nbsp;&nbsp;
+            
 
 <!--            <div id="dd" class="wrapper-dropdown-3" tabindex="1" style="height: 30px; float:right; line-height: 38px;">
                 <span>|&nbsp;&nbsp;Account Settings&nbsp;&nbsp;|</span>
@@ -67,9 +68,12 @@
 
         </div>
         
+        <?php if (Session::get('loggedIn') == true): ?>
+            <div style=" width: 1310px; height: 30px; text-align: right; float: right; line-height: 30px;">   
+                You are logged in as <?php echo Session::get('username'); ?>&nbsp&nbsp;
+            </div>
+        <?php endif; ?>
         
-<!--        <div style=" width: 1310px; height: 30px; text-align: right; float: right; line-height: 30px; float: left">   
-            You are logged in as <text>Driver&nbsp;</text>
-        </div>-->
+        
 
     </div>

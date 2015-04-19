@@ -53,6 +53,7 @@ class driverSignup_Model extends Model {
             $sth = $this->db->prepare('insert into telephone_number(owner_id,telephone_number) values(:owner_id,:telephone_number)');
             $sth->execute([':owner_id' => $this->owner_id,':telephone_number' => $this->telephone_number]);
 
+            mail($this->email, 'Your registration with RideSL', 'You have successfully registered with RideSL.\n Thanks you\r\n\r\nRegards,\r\nRideSL Team\r\n', 'From: zetacseuom@gmail.com');
              header('location: ../login');
             }
 

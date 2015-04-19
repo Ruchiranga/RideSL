@@ -54,7 +54,7 @@ class DriverHome extends Controller {
         exit();
     }
     
-    function addPhoneNo() {
+    /*function addPhoneNo() {
         $phoneNo = $_POST['phone_no'];
         //TODO error checking
         
@@ -82,7 +82,7 @@ class DriverHome extends Controller {
         
         $this->model->editEmail($email);
         header('location: '.URL.'driverHome');
-    }
+    }*/
 
     
 

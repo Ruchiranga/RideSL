@@ -10,15 +10,6 @@
         <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/paragraphstyle.css">
         <link rel="stylesheet" type="password/css" href="<?php echo URL; ?>views\login\css\default.css">
 
-        <!--    <div class="menu">
-                <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">Register vehicle</a></li>
-                    <li><a href="#">Log in</a></li>
-                </ul>
-                <br style="clear:left"/>
-            </div>-->
-
 
     </head>
     <body>

@@ -43,46 +43,10 @@ class PassengerSignup_Model extends Model {
                 ':email_address' => $this->email_address,
                 ':username' => $this->username
             ));
-            $this->SendUserConfirmationEmail();
+            mail($this->email_address, 'Your registration with RideSL', 'You have successfully registered with RideSL.\n Thanks you\r\n\r\nRegards,\r\nRideSL Team\r\n', 'From: zetacseuom@gmail.com');
             header('location: ../login');
             
-        }
-        
+        }        
     }
     
-    public function SendUserConfirmationEmail()
-{
-    $mailer = new PHPMailer();
-     
-    $mailer->CharSet = 'utf-8';
-     
-    $mailer->AddAddress($this->email_address,$this->firstname);
-     
-    $mailer->Subject = "Your registration with RideSL";
- 
-    $mailer->From = "upekka.12@cse.mrt.ac.lk";        
-     
-    //$confirmcode = urlencode($this->MakeConfirmationMd5($formvars['firstname']));
-     
-    //$confirm_url = $this->GetAbsoluteURLFolder().'/confirmreg.php?code='.$confirmcode;
-     
-    $mailer->Body ="Hello ".$this->firstname."\r\n\r\n".
-    "You have successfully registered with RideSL.\n Thanks you\r\n".
-    //"Please click the link below to confirm your registration.\r\n".
-    //"$confirm_url\r\n".
-    "\r\n".
-    "Regards,\r\n".
-    "RideSL Team\r\n";
- 
-    if(!$mailer->Send())
-    {
-        //$this->HandleError("Failed sending registration confirmation email.");
-        echo "Failed to send the confirmation email";
-        return false;
-    }
-    return true;
 }
-
-}
-
-

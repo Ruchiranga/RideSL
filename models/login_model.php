@@ -42,9 +42,16 @@ class Login_Model extends Model {
             }
             
         } else {
-            header('location: ../login');
+            $message = "Username and/or Password incorrect.\\nTry again.";
+            echo "<script type='text/javascript'>alert('$message');window.location = \"../login\";</script>";
+         
+            //header('location: ../login');
+            //echo "<script type='text/javascript'>document.getElementById('alertbox\").innerHTML = \"Username and/or Password incorrect.\\nTry again.\";</script>";
+       
         }
     }
+    
+    
 
 //    public function runUser($table) {
 //        $sth = $this->db->prepare("Select * from " . $table . " natural join account where username = '" . $this->username."'");

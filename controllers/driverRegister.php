@@ -10,4 +10,8 @@ class driverRegister extends Controller {
         $this->view->render('driverRegister/index');
     }
 
+    public function changeManufacturer($manufacturer) {
+        $models = $this->model->getNewModels($manufacturer);
+    }
+
 }

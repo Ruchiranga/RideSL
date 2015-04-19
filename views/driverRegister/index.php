@@ -30,7 +30,7 @@
     <!--create connection-->
     <?php
     mysql_connect('localhost', 'root', '');
-    mysql_select_db('ridesl'); 
+    mysql_select_db('ridesl');
     ?>
 
     <script type="text/javascript">
@@ -90,6 +90,8 @@
                         <!--Manufacturer-->
                         <li id="manufacturer"><label class="description" style="color: #0b75b2; font-size: 14px;">Manufacturer</label>
                             <div>
+
+
                                 <?php
                                 $sql = "SELECT manufacturer FROM brand_model";
                                 $result = mysql_query($sql);
@@ -114,13 +116,13 @@
                                 while ($row = mysql_fetch_array($result)) {
                                     echo "<option style='font-family: Times New Roman; font-size: 18px;' value='" . $row['model'] . "'>" . $row['model'] . "</option>";
                                 }
-                                
+
                                 echo '</select>';
                                 ?>      
                             </div>
                         </li>
 
-                  
+
                         <!--Capacity-->
                         <li>
                             <div>
@@ -140,10 +142,11 @@
 
                         </li>
                         <br>
-                        
+
                         <!--Image-->
-                        <a href="http://localhost/ridesl/views/driverRegister/image_cropper/upload_crop.php?number=" onclick="location.href=this.href+ document.getElementById('regNoin').value ;return false;" style="color: #0b75b2; font-size: 14px;">
-                                                   
+                        <a href="http://localhost/ridesl/views/driverRegister/image_cropper/upload_crop.php?number=" onclick="location.href = this.href + document.getElementById('regNoin').value;
+                                return false;" style="color: #0b75b2; font-size: 14px;">
+
                             <b>Upload Images >></b></a>
                         <br> <br> <br> 
                         </li>
@@ -1967,8 +1970,40 @@
 //    
 
 
+    $("‪#‎manufacturer").change(function () {
+        var xmlhttp;
+        if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        }
+        else {// code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function () {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
+            {
+                var model_list = xmlhttp.responseText;
+                var jsonobj = eval("(" + model_list + ")");
+                var x = document.getElementById("model");
+                x.innerHTML = "";
+                for (var i = 0; i < jsonobj.length; i++) {
+                    var option = document.createElement("option");
+                    option.text = jsonobj[i]['model'];
+                    try
+                    {
+                        x.add(option, x.options[null]);
+                    }
+                    catch (e)
+                    {
+                        x.add(option, null);
+                    }
+                }
+            }
+        }
+        
+        xmlhttp.open("GET", "driverRegister/changeManufacturer/" + this.value, true);
+        xmlhttp.send();
+    });
 </script>
-
 
 
 

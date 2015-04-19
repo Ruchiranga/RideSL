@@ -1,4 +1,8 @@
 
+<?php
+?>
+
+
 <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/buttonstyle.css">
 <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/hyperlinkstyle.css">
 <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/labelstyle.css">
@@ -18,6 +22,7 @@
 <!--<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/bootstrap.css">
 <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/bootstrap-theme.css">-->
 <link id="zoomcss" rel="stylesheet" href="<?php echo URL; ?>public/css/multizoom.css" type="text/css" />
+
 <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700' rel='stylesheet' type='text/css'>
 <script src="<?php echo URL; ?>views/search/js/jquery-ui.js"></script>
 <script src="<?php echo URL; ?>views/search/js/timepicker.js"></script>

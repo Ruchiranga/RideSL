@@ -20,11 +20,26 @@
         <group/>
 =======
         <group>
+<<<<<<< HEAD
+            <file>file:/C:/xampp/htdocs/HTML/RideSL_master/RideSL/controllers/admin.php</file>
+            <file>file:/C:/xampp/htdocs/HTML/RideSL_master/RideSL/controllers/faq.php</file>
+            <file>file:/C:/xampp/htdocs/HTML/RideSL_master/RideSL/public/css/faqabt/contactForm.css</file>
+            <file>file:/C:/xampp/htdocs/HTML/RideSL_master/RideSL/views/faq/index.php</file>
+            <file>file:/C:/xampp/htdocs/HTML/RideSL_master/RideSL/views/header.php</file>
+            <file>file:/C:/xampp/htdocs/HTML/RideSL_master/RideSL/views/contactUs/index.php</file>
+            <file>file:/C:/xampp/htdocs/HTML/RideSL_master/RideSL/views/admin/index.php</file>
+            <file>file:/C:/xampp/htdocs/HTML/RideSL_master/RideSL/public/js/faqabt/helpsupport.js</file>
+            <file>file:/C:/xampp/htdocs/HTML/RideSL_master/RideSL/public/css/faqabt/admin.css</file>
+            <file>file:/C:/xampp/htdocs/HTML/RideSL_master/RideSL/views/premium/index.php</file>
+            <file>file:/C:/xampp/htdocs/HTML/RideSL_master/RideSL/views/aboutUs/index.php</file>
+            <file>file:/C:/xampp/htdocs/HTML/RideSL_master/RideSL/views/recentlyAdded/index.php</file>
+=======
             <file>file:/C:/xampp/htdocs/RideSL/views/index/index.php</file>
             <file>file:/C:/xampp/htdocs/RideSL/views/header.php</file>
             <file>file:/C:/xampp/htdocs/RideSL/controllers/search.php</file>
             <file>file:/C:/xampp/htdocs/RideSL/models/login_model.php</file>
             <file>file:/C:/xampp/htdocs/RideSL/views/search/index.php</file>
+>>>>>>> a10cf8b6049f02fd73f8b7b2e08246046007cd30
         </group>
 >>>>>>> a10cf8b6049f02fd73f8b7b2e08246046007cd30
     </open-files>

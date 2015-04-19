@@ -1,8 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
-    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="2">
+        <file>
+            <url>views/search/index.php</url>
+            <bookmark id="1">
+                <name/>
+                <line>868</line>
+                <key/>
+            </bookmark>
+            <bookmark id="2">
+                <name/>
+                <line>935</line>
+                <key/>
+            </bookmark>
+        </file>
+    </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
+<<<<<<< HEAD
             <file>file:/C:/xampp/htdocs/RideSL/libs/View.php</file>
             <file>file:/C:/xampp/htdocs/RideSL/views/driverHome/index.php</file>
             <file>file:/C:/xampp/htdocs/RideSL/views/login/index.php</file>
@@ -29,6 +44,13 @@
             <file>file:/C:/xampp/htdocs/RideSL/controllers/driverHome.php</file>
             <file>file:/C:/xampp/htdocs/RideSL/views/header.php</file>
             <file>file:/C:/xampp/htdocs/RideSL/controllers/searchResult.php</file>
+=======
+            <file>file:/C:/xampp/htdocs/RideSL/views/index/index.php</file>
+            <file>file:/C:/xampp/htdocs/RideSL/views/header.php</file>
+            <file>file:/C:/xampp/htdocs/RideSL/controllers/search.php</file>
+            <file>file:/C:/xampp/htdocs/RideSL/models/login_model.php</file>
+            <file>file:/C:/xampp/htdocs/RideSL/views/search/index.php</file>
+>>>>>>> a10cf8b6049f02fd73f8b7b2e08246046007cd30
         </group>
     </open-files>
 </project-private>

@@ -26,6 +26,7 @@ class Login_Model extends Model {
 
             $data = $sth->fetch();
             $this->privilege = $data['privilege'];
+            $this->authusername = $this->username;
             
             $this->initSession();
             
@@ -61,6 +62,7 @@ class Login_Model extends Model {
         Session::set('username', $this->username);
         Session::set('privilege', $this->privilege);
         Session::set('loggedIn', true);
+        Session::set('username', $this->authusername);
     }
 
 }

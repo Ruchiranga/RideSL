@@ -1,5 +1,5 @@
-input[type=text], textarea {
-    font-family: "RobotoDraft","Roboto",sans-serif;
+input[type=text], textarea {    
+    /*width: 200px;*/
     -moz-transition: all 0.3s ease-in-out;
     -o-transition: all 0.3s ease-in-out;
     -webkit-transition: all 0.3s ease-in-out;
@@ -8,9 +8,9 @@ input[type=text], textarea {
     padding: 3px 0px 3px 3px;
     margin: 5px 1px 3px 0px;
     border: 1px solid #DDDDDD;
-    -webkit-border-radius: 55px;
-    -moz-border-radius: 55px;
-    border-radius: 55px;
+    /*-webkit-border-radius: 55px;*/
+    /*-moz-border-radius: 55px;*/
+/*    border-radius: 55px;*/
 }
 
 input[type=text]:focus, textarea:focus {

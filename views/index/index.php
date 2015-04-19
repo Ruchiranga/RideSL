@@ -1,11 +1,11 @@
 
 
-<link rel="stylesheet" type="text/css" href="<?php echo URL;?>public/css/textboxstyle.css">
+
 <link rel="stylesheet" type="text/css" href="<?php echo URL;?>public/css/schemestyle.css">
 <link rel="stylesheet" type="text/css" href="<?php echo URL;?>public/css/labelstyle.css">
 <link rel="stylesheet" type="text/css" href="<?php echo URL;?>public/css/paragraphstyle.css">
 <link rel="stylesheet" type="text/css" href="<?php echo URL;?>public/css/ratingstyle.css">
-
+<link rel="stylesheet" type="text/css" href="<?php echo URL;?>public/css/textboxstyle.css">
 
 
 
@@ -21,8 +21,8 @@
         <form action="#" method="post">
             <br>
             <img src="<?php echo URL;?>public/images/logo1.png" alt=""/>
-            <br><br><input type="text" name="name" id="name" tabindex="1" placeholder="Enter pick up location" style="width: 350px; height: 40px;font-family: serif; font-size: 18px; text-align:center;"/>
-            <p><input type="submit" value="Find me a ride" class="belize-hole-flat-button" style="width: 200px"></p>
+            <br><br><input type="text" name="name" id="name" tabindex="1" placeholder="Enter pick up location" style="width: 350px; height: 40px; font-size: 16px; text-align:center;"/>
+            <br><br><p><input type="submit" value="Find me a ride" class="belize-hole-flat-button" style="width: 200px"></p>
         </form>
 
         <br>
@@ -32,7 +32,7 @@
         <ul id="sdt_menu" class="sdt_menu">
             <li>
                 <a href="#">
-                    <img src="<?php echo URL;?>pubic/images/1.jpg" alt=""/>
+                    <img src="<?php echo URL;?>public/images/1.jpg" alt=""/>
                     <span class="sdt_active"></span>
                     <span class="sdt_wrap">
                         <span class="sdt_link">City Taxi</span>
@@ -42,7 +42,7 @@
             </li>
             <li>
                 <a href="#">
-                    <img src="<?php echo URL;?>pubic/images/2.jpg" alt=""/>
+                    <img src="<?php echo URL;?>public/images/2.jpg" alt=""/>
                     <span class="sdt_active"></span>
                     <span class="sdt_wrap">
                         <span class="sdt_link" >Tours</span>
@@ -52,7 +52,7 @@
             </li>
             <li>
                 <a href="#">
-                    <img src="<?php echo URL;?>pubic/images/3.jpg" alt=""/>
+                    <img src="<?php echo URL;?>public/images/3.jpg" alt=""/>
                     <span class="sdt_active"></span>
                     <span class="sdt_wrap">
                         <span class="sdt_link">Ceremonial</span>
@@ -62,7 +62,7 @@
             </li>
             <li>
                 <a href="#">
-                    <img src="<?php echo URL;?>pubic/images/4.jpg" alt=""/>
+                    <img src="<?php echo URL;?>public/images/4.jpg" alt=""/>
                     <span class="sdt_active"></span>
                     <span class="sdt_wrap">
                         <span class="sdt_link">Air port</span>
@@ -72,7 +72,7 @@
             </li>
             <li>
                 <a href="#">
-                    <img src="<?php echo URL;?>pubic/images/5.jpg" alt=""/>
+                    <img src="<?php echo URL;?>public/images/5.jpg" alt=""/>
                     <span class="sdt_active"></span>
                     <span class="sdt_wrap">
                         <span class="sdt_link">Station</span>
@@ -82,7 +82,7 @@
             </li>
             <li>
                 <a href="#">
-                    <img src="<?php echo URL;?>pubic/images/6.jpg" alt=""/>
+                    <img src="<?php echo URL;?>public/images/6.jpg" alt=""/>
                     <span class="sdt_active"></span>
                     <span class="sdt_wrap">
                         <span class="sdt_link">Cargo</span>
@@ -93,7 +93,7 @@
             </li>
             <li>
                 <a href="#">
-                    <img src="<?php echo URL;?>pubic/images/1.jpg" alt=""/>
+                    <img src="<?php echo URL;?>public/images/1.jpg" alt=""/>
                     <span class="sdt_active"></span>
                     <span class="sdt_wrap">
                         <span class="sdt_link">Construction</span>

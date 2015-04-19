@@ -11,6 +11,12 @@ class admin extends Controller {
         $this->view->render('admin/index');
        
     }
+     function logout() {
+        Session::destroy();
+        header('location: '.URL.'index');
+        exit();
+    }
+
   function vehicleList(){
         $this->view->vehicleBasicInfo=$this->model->vehicleList();
        

@@ -74,7 +74,7 @@
                                 <input type="submit"  id ="go" name="Go"></input>
                             </form>
                             <?php
-                            if (isset($this->vehicleBasicInfo)) {
+                            if (isset($this->vehicleBasicInfo)&& count($this->vehicleBasicInfo)>0) {
                                 $count = 0;
                                 ?>
                                 <div class="container" style="width: 100%; padding-top: 40px;">
@@ -155,7 +155,7 @@
 
                                 </div>
                             <?php }
-                            if(count($this->vehicleBasicInfo)==0){?>
+                            if(isset($this->vehicleBasicInfo ) &&(count($this->vehicleBasicInfo)==0) ){?>
                                  <div class="container" style="width: 100%; padding-top: 40px; padding-left: 200px;"><h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NO VEHICLES<i class="fa fa-exclamation-triangle"></i></h1></div>
                                 
                                 

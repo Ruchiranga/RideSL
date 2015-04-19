@@ -2,10 +2,10 @@
 <html>
     <head>
 
-        <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/buttonstyle.css">
+        <link rel="stylesheet" type="text/css" href="<?php  echo URL; ?>public/css/buttonstyle.css">
         <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/hyperlinkstyle.css">        
         <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/combostyle.css">
-        <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/font/font-awesome.css">
+        <!--<link rel="stylesheet" type="text/css" href="<?php // echo URL; ?>public/font/font-awesome.css">-->
 
 
 

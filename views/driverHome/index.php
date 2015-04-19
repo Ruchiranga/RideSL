@@ -1,17 +1,5 @@
 <!-- css -->
 
-<<<<<<< HEAD
-<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/schemestyle.css">
-<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/buttonstyle.css">
-<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/hyperlinkstyle.css">
-<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/paragraphstyle.css">
-<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/ratingstyle.css">
-<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/tooltipstyle.css">
-
-<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>views/driverHome/css/default.css">
-
-        <!--<script src=".URL;?>public/js/driverhome.js"></script>-->
-=======
 <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>views/driverHome/css/default.css">
 <!--scheme list acordian-->
 <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" type="text/css" media="all" />
@@ -35,7 +23,6 @@
 <script type="text/javascript">
     var URL = <?php echo URL; ?>;
 </script>
->>>>>>> 6b836b49ac38fe3e0b8db0a4ac4c6656ef0026a5
 
 <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/faqabt/helpsuport.css">
 <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/faqabt/helpsuport.css">

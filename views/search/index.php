@@ -159,10 +159,10 @@
 
                     <div id = "sort-bar">
                         <p style = "margin-left: 820px; display: inline-block">Sort : </p>
-                        <select name = "search" id = "sort-combo">
-                            <option value = "Best Match">Best Match</option>
+                        <select name = "search" id = "sort-combo" data-bind="options : sortOp, value:sortBy">
+<!--                            <option value = "Best Match">Best Match</option>
                             <option value = "Rating">Rating: highest fisrt</option>
-                            <option value = "location">Location: closest first</option>
+                            <option value = "location">Location: closest first</option>-->
                         </select>
                     </div>
 
@@ -379,6 +379,17 @@ require 'views/search/js/multizoom.js';
                                 });
                             }
 
+                        });
+                        
+                        self.sortOp = ['nonacprice','acprice'];
+                        self.sortBy = ko.observable();
+                        
+                        ko.computed(function (){
+                            if(self.sortBy() === 'acprice'){
+                                self.vehicles.sort(function(left, right) {
+                                    return parseFloat(left.ac_price) === parseFloat(right.ac_price) ? 0 : (parseFloat(left.ac_price) < parseFloat(right.ac_price) ? -1 : 1) 
+                                });
+                            }
                         });
 
                         self.vehicles = ko.observableArray(self.response);

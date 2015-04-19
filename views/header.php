@@ -7,10 +7,7 @@
         <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/combostyle.css">
         <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/font/font-awesome.css">
 
-        <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/body.css">
-        <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/faqabt/aboutUs.css">
-        <link href="<?php echo URL; ?>public/css/faqabt/app.css" rel="stylesheet" type="text/css">
-        <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css" media="all"/>
+
 
 
         <?php
@@ -23,7 +20,7 @@
 
         <?php Session::init(); ?>
 
-    <div style=" height: 80px; text-align: right;">
+    <div style=" height: 80px; text-align: right; margin-left: 28px; margin-right: 29px; margin-top: 10px;">
         <div style=" width: 310px; height: 40px; text-align: left; float: left;">
             <img src="<?php echo URL; ?>public/images/logo1.png" alt="" style="text-align: left; height: 40px"/>
         </div>

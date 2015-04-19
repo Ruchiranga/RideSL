@@ -27,7 +27,7 @@
  
 }
 
-#search-button{
+.rslbutton{
     position: relative;
     vertical-align: top;
     width: 100px;
@@ -49,10 +49,12 @@
     border-radius: 3px;
 }
 
-#search-button:active {
+.rslbutton:active {
     top: 1px;
     outline: none;
     -webkit-box-shadow: none;
     box-shadow: none;
  
 }
+
+

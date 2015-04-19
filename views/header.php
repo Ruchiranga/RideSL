@@ -6,15 +6,18 @@
         <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/hyperlinkstyle.css">        
         <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/combostyle.css">
         <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/font/font-awesome.css">
+
         <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/body.css">
         <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/faqabt/aboutUs.css">
         <link href="<?php echo URL; ?>public/css/faqabt/app.css" rel="stylesheet" type="text/css">
-        <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css" media="all" />
+        <link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css" media="all"/>
+
 
         <?php
         if (isset($this->js)) {
-            foreach ($this->js as $js)
+            foreach ($this->js as $js){
                 echo '<script type = "text/javascript" src="' . URL . 'views/' . $js . '"></script>';
+            }
         }
         ?>
 

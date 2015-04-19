@@ -80,7 +80,7 @@
                     ?>
                     </font>
                 </div>
-                <img id = "add_phone" src="<?php echo URL; ?>public/images/add.png" alt="" style="height: 20px; width: 20px"/>
+                <img id = "add_phone" src="<?php echo URL; ?>public/images/add.png" alt="" style="height: 20px; width: 20px; cursor:pointer"/>
                 <br><br><font style="color: #2980b9; font-weight: bold">Email &nbsp;</font><img id = "pencil3" src="<?php echo URL; ?>public/images/pencil.png" alt="" style="height: 13px; width: 13px; cursor:pointer"/>
                 <br><font id="edit_email"><?php echo $this->owner['email']; ?></font>
             </div>

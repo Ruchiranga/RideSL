@@ -313,7 +313,10 @@
         <script src="<?php echo URL; ?>public/js/faqabt/smoothscroll.min.js" type="text/javascript"></script>
         <script src="<?php echo URL; ?>public/js/faqabt/backbone.js" type="text/javascript"></script>
         <script src="<?php echo URL; ?>public/js/faqabt/responsive-accordion.min.js" type="text/javascript"></script>
-
+        
+        
     </body>
+    
+    
 
 </html>

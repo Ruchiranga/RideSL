@@ -59,6 +59,7 @@ class Login_Model extends Model {
 
     public function initSession() {
         Session::init();
+        Session::set('username', $this->username);
         Session::set('privilege', $this->privilege);
         Session::set('loggedIn', true);
         Session::set('username', $this->authusername);

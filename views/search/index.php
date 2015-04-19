@@ -315,13 +315,21 @@
                                                             <tr>
                                                                 <td>
                                                                     <div style="height: auto; padding-top: 10px;padding-bottom: 10px; margin-left: 30px">
-                                                                        <font style="color: #2980b9;" data-bind="text: <?php
-                                                                        if (Session::get('loggedIn') == true && isset($_SESSION['username'])){ 
-                                                                            echo "$data.username==='".$_SESSION['username']."'"; 
-                                                                        }else{ 
-                                                                            echo "0";
-                                                                        }
-                                                                        ?>?'You wrote :':$data.username +' wrote :'"></font>
+                                                                        <?php if (Session::get('loggedIn') == true && isset($_SESSION['username'])): ?>
+                                                                            <font style="color: #2980b9;" data-bind="text: $data.username===<?php echo "'".$_SESSION['username']."'";?>?'You wrote :':$data.username +' wrote :'"></font>
+                                                                        <?php else: ?>
+                                                                            <font style="color: #2980b9;" data-bind="text: $data.username +' wrote :'"></font>
+                                                                        <?php endif; ?>
+                                                                        
+                                                                        
+<!--                                                                        <font style="color: #2980b9;" data-bind="text: 
+                                                                                                                        <?php
+//                                                                        if (Session::get('loggedIn') == true && isset($_SESSION['username'])){ 
+//                                                                            echo "$data.username==='".$_SESSION['username']."'"; 
+//                                                                        }else{ 
+//                                                                            echo "0";
+//                                                                        }
+                                                                        ?>?'You wrote :':$data.username +' wrote :'"></font>-->
                                                                         <br>
                                                                         <span data-bind="text: $data.comment"></span>
                                                                         <br>
@@ -403,7 +411,7 @@ require 'views/search/js/multizoom.js';
 
                         self.selectedScheme = ko.observable(<?php
 $schemes = ['City Taxi', 'Tours', 'Ceremonial', 'Air port drop/pickup', 'Station drop/pickup', 'Cargo', 'Construction'];
-$scheme_names = ['city_taxi_scheme', 'tour_scheme', 'ceremonial_scheme', ' air_port_drop_pickup_scheme', 'station_drop_pickup_scheme', 'cargo_scheme', 'construction_scheme'];
+$scheme_names = ['City Taxi Scheme', 'Tour Scheme', 'Ceremonial Scheme', 'Airport Drop Pickup Scheme', 'Station Drop Pickup Scheme', 'Cargo Scheme', 'Construction Scheme'];
 if (isset($_POST['scheme_category'])) {
 
     echo '"' . $schemes[array_search($_POST['scheme_category'], $scheme_names)] . '"';
@@ -862,7 +870,8 @@ if (isset($_POST['scheme_category'])) {
                                 }
                             }
                             var schemes = ['City Taxi', 'Tours', 'Ceremonial', 'Air port drop/pickup', 'Station drop/pickup', 'Cargo', 'Construction'];
-                            var scheme_names = ['city_taxi_scheme', 'tour_scheme', 'ceremonial_scheme', ' air_port_drop_pickup_scheme', 'station_drop_pickup_scheme', 'cargo_scheme', 'construction_scheme'];
+                            var scheme_names = ['City Taxi Scheme', 'Tour Scheme', 'Ceremonial Scheme', 'Airport Drop Pickup Scheme', 'Station Drop Pickup Scheme', 'Cargo Scheme', 'Construction Scheme'];
+                            
                             var scheme = scheme_names[schemes.indexOf($('#schemeCategory').val())];
 
                             console.log(scheme);

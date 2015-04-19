@@ -11,5 +11,9 @@ class DriverSignup extends Controller {
 //        $model = new Login_Model();
         $this->view->render('driverSignup/index');
     }
+    
+    function run(){
+        $this->model->run();
+    }
 
 }

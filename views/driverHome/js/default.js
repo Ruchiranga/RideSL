@@ -90,6 +90,7 @@ function fullNameCancel() {
     });
 }
 
+
 function emailCancel() {
     $('#edit_email_form').replaceWith(function() {
         return '<text id="edit_email">' + email + '</text>';
@@ -102,6 +103,7 @@ function phoneNoCancel() {
         return '';
     });
 }
+
 
 function updatePhoneNoCancel($id, $index) {
     var dltNo = document.getElementById('dltNo'+$id).value;
@@ -122,6 +124,7 @@ function limitText(limitField, limitNum) {
         limitField.value = limitField.value.substring(0, limitNum);
     }
 }
+
 
 function isNumber(evt) {
     evt = (evt) ? evt : window.event;
@@ -181,6 +184,7 @@ function checkEmail() {
 
     var email = document.getElementById('email_text');
     var filter = /^([a-zA-Z0-9_\.\-])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+
 
     if (!filter.test(email.value)) {
         document.getElementById('email_validate').innerHTML = "Please provide a valid email address.";
@@ -245,7 +249,4 @@ $(function() {
     });
 
 });
-
-
-
 

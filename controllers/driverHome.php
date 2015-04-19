@@ -20,7 +20,7 @@ class DriverHome extends Controller {
         
         $this->view->owner = $this->model->run();
         $this->view->phoneNoList = $this->model->getPhoneNoList();
-        
+
         $vehicleList = $this->model->getVehicleList();
         $this->view->vehicleList = $vehicleList;
         
@@ -42,6 +42,7 @@ class DriverHome extends Controller {
             $this->view->suspendedSchemeAvailabilityList = $this->model->initSchemeAvailability($suspendedVehicleSchemeList);
             $this->view->suspendedSchemeLocationList = $this->model->initSchemeLocation($suspendedVehicleSchemeList);
         }
+
         
         $this->view->render('driverHome/index');
         
@@ -52,6 +53,38 @@ class DriverHome extends Controller {
         header('location: '.URL.'index');
         exit();
     }
+    
+    /*function addPhoneNo() {
+        $phoneNo = $_POST['phone_no'];
+        //TODO error checking
+        
+        $this->model->addPhoneNo($phoneNo);
+        header('location: '.URL.'driverHome');
+    }
+    
+    function editName() {
+        $fullName = $_POST['full_name'];
+        $array = explode(' ',$fullName,2);
+        
+        $data = array();
+        
+        $data['firstName'] = $array[0];
+        $data['lastName'] = $array[1];
+        //TODO error checking
+        
+        $this->model->editName($data);
+        header('location: '.URL.'driverHome');
+    }
+    
+    function editEmail() {
+        $email = $_POST['email'];
+        //TODO error checking
+        
+        $this->model->editEmail($email);
+        header('location: '.URL.'driverHome');
+    }*/
+
+    
 
     //profile details edit
     

@@ -30,6 +30,7 @@ class Search extends Controller {
         return ;
     }
     
+
     function addComment(){
         if(isset($_POST['vehicle_reg_no']) && isset($_POST['username']) && isset($_POST['comment'])){
 //            $this->model->addComment('"'.$_POST['vehicle_reg_no'].'"','"'.$_POST['username'].'"','"'.$_POST['comment'].'"');
@@ -43,6 +44,7 @@ class Search extends Controller {
             echo '';
         }
         return ;
+
     }
 
 }

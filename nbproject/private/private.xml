@@ -21,6 +21,7 @@
 =======
         <group>
 <<<<<<< HEAD
+<<<<<<< HEAD
             <file>file:/C:/xampp/htdocs/RideSL/libs/View.php</file>
             <file>file:/C:/xampp/htdocs/RideSL/views/driverHome/index.php</file>
             <file>file:/C:/xampp/htdocs/RideSL/views/login/index.php</file>
@@ -47,6 +48,20 @@
             <file>file:/C:/xampp/htdocs/RideSL/controllers/driverHome.php</file>
             <file>file:/C:/xampp/htdocs/RideSL/views/header.php</file>
             <file>file:/C:/xampp/htdocs/RideSL/controllers/searchResult.php</file>
+=======
+            <file>file:/C:/xampp/htdocs/HTML/RideSL_master/RideSL/controllers/admin.php</file>
+            <file>file:/C:/xampp/htdocs/HTML/RideSL_master/RideSL/controllers/faq.php</file>
+            <file>file:/C:/xampp/htdocs/HTML/RideSL_master/RideSL/public/css/faqabt/contactForm.css</file>
+            <file>file:/C:/xampp/htdocs/HTML/RideSL_master/RideSL/views/faq/index.php</file>
+            <file>file:/C:/xampp/htdocs/HTML/RideSL_master/RideSL/views/header.php</file>
+            <file>file:/C:/xampp/htdocs/HTML/RideSL_master/RideSL/views/contactUs/index.php</file>
+            <file>file:/C:/xampp/htdocs/HTML/RideSL_master/RideSL/views/admin/index.php</file>
+            <file>file:/C:/xampp/htdocs/HTML/RideSL_master/RideSL/public/js/faqabt/helpsupport.js</file>
+            <file>file:/C:/xampp/htdocs/HTML/RideSL_master/RideSL/public/css/faqabt/admin.css</file>
+            <file>file:/C:/xampp/htdocs/HTML/RideSL_master/RideSL/views/premium/index.php</file>
+            <file>file:/C:/xampp/htdocs/HTML/RideSL_master/RideSL/views/aboutUs/index.php</file>
+            <file>file:/C:/xampp/htdocs/HTML/RideSL_master/RideSL/views/recentlyAdded/index.php</file>
+>>>>>>> a40abd5e94f714c4d477286c2ba9e78b0d9fd81f
 =======
             <file>file:/C:/xampp/htdocs/RideSL/views/index/index.php</file>
             <file>file:/C:/xampp/htdocs/RideSL/views/header.php</file>

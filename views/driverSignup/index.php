@@ -30,7 +30,7 @@
         <p><input required type="text" name="first_name" id="name" tabindex="1" placeholder="First Name" style="width: 350px; height: 30px;font-family: serif; font-size: 18px; text-align:center;"/>
         <input type="text" name="last_name" id="name" tabindex="1" placeholder="Last Name" style="width: 350px; height: 30px;font-family: serif; font-size: 18px; text-align:center;"/></p>
         
-        <p>Phone Number</p><input required type="text" name="telephone_number" id="name" tabindex="1" placeholder="XXXXXXXXXX" style="width: 350px; height: 30px;font-family: serif; font-size: 18px; text-align:center;"/>
+        <p>Phone Number</p><input required type="text" name="telephone_number" id="name" onkeypress="limitText(this,10)" tabindex="1" placeholder="XXXXXXXXXX" style="width: 350px; height: 30px;font-family: serif; font-size: 18px; text-align:center;"/>
         <p>Email</p><input required type="text" name="email" id="name" tabindex="1" placeholder="name@example.com" style="width: 350px; height: 30px;font-family: serif; font-size: 18px; text-align:center;"/>
         
         <p>User Name</p><input required type="text" name="username" id="name" tabindex="1" placeholder="Enter user name" style="width: 350px; height: 30px;font-family: serif; font-size: 18px; text-align:center;"/>

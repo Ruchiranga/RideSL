@@ -21,6 +21,34 @@
 =======
         <group>
 <<<<<<< HEAD
+<<<<<<< HEAD
+            <file>file:/C:/xampp/htdocs/RideSL/libs/View.php</file>
+            <file>file:/C:/xampp/htdocs/RideSL/views/driverHome/index.php</file>
+            <file>file:/C:/xampp/htdocs/RideSL/views/login/index.php</file>
+            <file>file:/C:/xampp/htdocs/RideSL/models/passengersignup_model.php</file>
+            <file>file:/C:/xampp/htdocs/RideSL/models/login_model.php</file>
+            <file>file:/C:/xampp/htdocs/RideSL/views/login/css/default.css</file>
+            <file>file:/C:/xampp/htdocs/RideSL/models/driverHome_model.php</file>
+            <file>file:/C:/xampp/htdocs/RideSL/models/PHPMailer.php</file>
+            <file>file:/C:/xampp/htdocs/RideSL/views/index/index.php</file>
+            <file>file:/C:/xampp/htdocs/RideSL/views/passengerSignup/css/default.css</file>
+            <file>file:/C:/xampp/htdocs/RideSL/views/driverSignup/index.php</file>
+            <file>file:/C:/xampp/htdocs/RideSL/libs/Bootstrap.php</file>
+            <file>file:/C:/xampp/htdocs/RideSL/libs/Model.php</file>
+            <file>file:/C:/xampp/htdocs/RideSL/public/css/textboxstyle.css</file>
+            <file>file:/C:/xampp/htdocs/RideSL/controllers/login.php</file>
+            <file>file:/C:/xampp/htdocs/RideSL/models/driversignup_model.php</file>
+            <file>file:/C:/xampp/htdocs/RideSL/libs/Controller.php</file>
+            <file>file:/C:/xampp/htdocs/RideSL/config/database.php</file>
+            <file>file:/C:/xampp/htdocs/RideSL/controllers/driverSignup.php</file>
+            <file>file:/C:/xampp/htdocs/RideSL/views/passengerSignup/index.php</file>
+            <file>file:/C:/xampp/htdocs/RideSL/controllers/index.php</file>
+            <file>file:/C:/xampp/htdocs/RideSL/config/paths.php</file>
+            <file>file:/C:/xampp/htdocs/RideSL/controllers/passengerSignup.php</file>
+            <file>file:/C:/xampp/htdocs/RideSL/controllers/driverHome.php</file>
+            <file>file:/C:/xampp/htdocs/RideSL/views/header.php</file>
+            <file>file:/C:/xampp/htdocs/RideSL/controllers/searchResult.php</file>
+=======
             <file>file:/C:/xampp/htdocs/HTML/RideSL_master/RideSL/controllers/admin.php</file>
             <file>file:/C:/xampp/htdocs/HTML/RideSL_master/RideSL/controllers/faq.php</file>
             <file>file:/C:/xampp/htdocs/HTML/RideSL_master/RideSL/public/css/faqabt/contactForm.css</file>
@@ -33,6 +61,7 @@
             <file>file:/C:/xampp/htdocs/HTML/RideSL_master/RideSL/views/premium/index.php</file>
             <file>file:/C:/xampp/htdocs/HTML/RideSL_master/RideSL/views/aboutUs/index.php</file>
             <file>file:/C:/xampp/htdocs/HTML/RideSL_master/RideSL/views/recentlyAdded/index.php</file>
+>>>>>>> a40abd5e94f714c4d477286c2ba9e78b0d9fd81f
 =======
             <file>file:/C:/xampp/htdocs/RideSL/views/index/index.php</file>
             <file>file:/C:/xampp/htdocs/RideSL/views/header.php</file>

@@ -22,6 +22,44 @@
 
 
 
+<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/faqabt/helpsuport.css">
+<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/faqabt/helpsuport.css">
+<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/faqabt/app.css">
+<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/faqabt/paragraphstyle.css">
+<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/faqabt/font-awesome.css">
+<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/faqabt/aboutUs.css">
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400">
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans">
+<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lobster">
+
+<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Open+Sans' rel='stylesheet' type='text/css'>
+
+<!--side bar-->
+<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700,600" rel="stylesheet" type="text/css">
+<link href="<?php echo URL; ?>public/css/faqabt/font-awesome.min.css" rel="stylesheet">
+
+<link href="<?php echo URL; ?>public/css/faqabt/app.css" rel="stylesheet" type="text/css">
+<!--Faq acordian-->
+<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" type="text/css" media="all" />
+<link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css" media="all" />
+<link href="<?php echo URL; ?>public/css/faqabt/normalize.css" rel="stylesheet" type="text/css" media="all" />
+<link href="<?php echo URL; ?>public/css/faqabt/responsive-accordion.css" rel="stylesheet" type="text/css" media="all" />
+
+<script type="text/javascript" src="<?php echo URL; ?>public/js/faqabt/jquery.min.js"></script>
+<script type="text/javascript" src="<?php echo URL; ?>public/js/faqabt/jquery.ssd-vertical-navigation.min.js"></script>
+<script type="text/javascript" src="<?php echo URL; ?>public/js/faqabt/app.js"></script>
+<script type="text/javascript" src="<?php echo URL; ?>public/js/faqabt/helpsupport.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+<script src="<?php echo URL; ?>public/js/faqabt/smoothscroll.min.js" type="text/javascript"></script>
+<script src="<?php echo URL; ?>public/js/faqabt/backbone.js" type="text/javascript"></script>
+<script src="<?php echo URL; ?>public/js/faqabt/responsive-accordion.min.js" type="text/javascript"></script>
+
+
+<script type="text/javascript">
+    var URL = <?php echo URL; ?>;
+</script>
+
 
 </head>
 <body>
@@ -29,14 +67,17 @@
         <div id='body'>
             <div id='panel' align='left'>
                 <font style="color: #2980b9; font-size: 18px; font-weight: bold">Personal Profile</font>
+
                 <br><br><font style="color: #2980b9; font-weight: bold">Name &nbsp;</font><img id = "pencil1" src="<?php echo URL; ?>public/images/pencil.png" alt="" style="height: 13px; width: 13px; cursor:pointer"/>
                 <br><div id="edit_name"><font id="edit_first_name"><?php echo $this->owner['first_name'] . '</font> <font id="edit_last_name">' . $this->owner['last_name']; ?></font></div>
                 <br><br><font style="color: #2980b9; font-weight: bold">Telphone &nbsp;</font><br><br>
+
                 <div id='phone_numbers'>
                     <font>
                     <?php
                     $i = 0;
                     if ($this->phoneNoList != NULL) {
+
                         $no = 0;
                         foreach ($this->phoneNoList as $key => $value) {
                             echo '<input type="hidden" id="dltNo' . $no . '" value="'.$value['telephone_number'].'">';
@@ -71,6 +112,7 @@
                         echo $title;
                     }
                     ?>
+
                 </div>
                 <?php
                 if ($this->vehicleList != NULL) {
@@ -92,6 +134,7 @@
                         <font>Rating</font><br>
                         <span class="star-rating">';
                         for ($m = 1; $m <= 5; $m++) {
+
 
                             if ($m == $value['rating']) {
                                 $content .= '<input checked type="radio" name="rating' . $m . '" disabled><i></i>';
@@ -267,11 +310,13 @@
                     </div>';
                         $content .= '<div id="yui-main">                
                         <div class="yui-b" style="margin-left: 25%;">
+
                         <div class="content" id="rightContent" style="padding-top: 0px;">
                         <table style="width: 100%">
                         <tr>
                         <td width="22%"><font style="color: #2980b9;">Registration No </font></td>
                         <td><font>' . $value['vehicle_reg_no'] . '</font></td>
+
                         </tr>
                         <tr>
                         <td><font style="color: #2980b9; ">Vehicle type </font></td>
@@ -281,6 +326,7 @@
                         <td><font style="color: #2980b9; ">Capacity</font></td>
                         <td><font>' . $value['capacity'] . '</font></td>
                         </tr>
+
                         </table>  
                         <br><font style="color: #2980b9; ">Vehicle Description</font><br><br>
                         <div style="width:600px;"><font>' . $value['vehicle_description'] . '</font></div>
@@ -339,10 +385,12 @@
                                     foreach ($this->suspendedSchemeLocationList[$valueScheme['scheme_id']] as $key => $valueAvailability) {
                                         $content .= '<td>' . $valueAvailability['location'] . '</td>';
                                         if ($j > 4) {
+
                                             $content .= '</tr><tr>';
                                         }
                                         $j++;
                                     }
+
                                     $content .= '</tr>';
                                 }
                                 $content .= '</table></font><br>
@@ -378,17 +426,20 @@
                             }
                         }
                         $content .= '</ul>
+
                         </div>
                         </div>
                         </div>
                         </div>
                         ';
+
                         $content .= '</div>';
                         echo $content;
                         $veh_index++;
                     }
                 }
                 ?>
+
             </div>
         </div><!-- End #body -->
     </div><!-- End #frame -->

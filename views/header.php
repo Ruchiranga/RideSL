@@ -6,10 +6,6 @@
         <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/hyperlinkstyle.css">        
         <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/combostyle.css">
         <!--<link rel="stylesheet" type="text/css" href="<?php // echo URL; ?>public/font/font-awesome.css">-->
-
-
-
-
         <?php
         if (isset($this->js)) {
             foreach ($this->js as $js) {
@@ -65,10 +61,14 @@
                 <a href="<?php echo URL; ?>login">Sign in</a>
         <?php endif; ?>
             &nbsp;&nbsp;
+
         </div>
+
         <?php if (Session::get('loggedIn') == true): ?>
             <div style=" width: 1310px; height: 30px; text-align: right; float: right; line-height: 30px;">   
                 You are logged in as <?php echo Session::get('username'); ?>&nbsp&nbsp;
             </div>
+
 <?php endif; ?>
+
     </div>

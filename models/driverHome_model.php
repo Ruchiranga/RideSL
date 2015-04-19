@@ -3,6 +3,7 @@
 class driverHome_Model extends Model {
 
     private $username;
+
     private $vList;
 
     function __construct() {
@@ -12,7 +13,9 @@ class driverHome_Model extends Model {
     public function run() {
         $this->username = $_SESSION['username'];
 
+
         $sth = $this->db->prepare("Select owner_id, first_name, last_name, email from owner natural join account where username = '" . $this->username . "'");
+
         $sth->execute();
 
         $count = $sth->rowCount();
@@ -41,6 +44,7 @@ class driverHome_Model extends Model {
     }
 
     public function getVehicleList() {
+
         $sth = $this->db->prepare("Select vehicle_reg_no, vehicle_type, manufacturer, model, capacity, vehicle_description, image, rating from owner o natural join vehicle v where o.owner_id = '" . $_SESSION['owner_id'] . "' and isActive='1'");
         $sth->execute();
 
@@ -56,6 +60,7 @@ class driverHome_Model extends Model {
     
     public function getSuspendedVehicleList() {
         $sth = $this->db->prepare("Select vehicle_reg_no, vehicle_type, manufacturer, model, capacity, vehicle_description, image, rating from owner o natural join vehicle v where o.owner_id = '" . $_SESSION['owner_id'] . "' and isActive='0'");
+
         $sth->execute();
 
         $count = $sth->rowCount();
@@ -98,12 +103,14 @@ class driverHome_Model extends Model {
         $i = 0;
 
         foreach ($schemeList as $key => $value) {
+
             if ($value['category'] === 'Station Drop Pickup Scheme' || $value['category'] === 'Airport Drop Pickup Scheme') {
                 if($value['category'] === 'Station Drop Pickup Scheme'){
                      $sth2 = $this->db->prepare("Select * from scheme natural join station_drop_pickup_scheme where vehicle_reg_no = '" . $vehicle_reg_no . "'");
                 }else{
                     $sth2 = $this->db->prepare("Select * from scheme natural join air_port_drop_pickup_scheme where vehicle_reg_no = '" . $vehicle_reg_no . "'");
                 }
+
                 $sth2->execute();
                 $count2 = $sth2->rowCount();
 
@@ -115,6 +122,7 @@ class driverHome_Model extends Model {
                     $schemeList[$i]['waiting_charge'] = $schemeDetails[0]['waiting_charge'];
                 }
             }
+
 
             $i++;
         }
@@ -135,7 +143,9 @@ class driverHome_Model extends Model {
     }
 
     public function getSchemeAvaliabilityDetails($scheme_id) {
+
         $sth = $this->db->prepare("Select day, DATE_FORMAT(start_time,'%h:%i %p') AS start_time, DATE_FORMAT(end_time,'%h:%i %p') AS end_time from availability where scheme_id = '" . $scheme_id . "'");
+
         $sth->execute();
 
         $count = $sth->rowCount();
@@ -186,6 +196,7 @@ class driverHome_Model extends Model {
         }
     }
 
+
     public function editName($firstName, $lastName) {
 
         $sth = $this->db->prepare("update owner set first_name = '" . $firstName . "', last_name = '" . $lastName . "' where owner_id = '" . $_SESSION['owner_id'] . "'");
@@ -211,6 +222,7 @@ class driverHome_Model extends Model {
             echo 'update failed';
         }
     }
+
     
     public function deleteScheme($scheme_id){
         $sth = $this->db->prepare("delete from scheme where scheme_id = '" . $scheme_id . "'");
@@ -267,6 +279,7 @@ class driverHome_Model extends Model {
             return false;
         }
     }
+
 
 }
 ?>

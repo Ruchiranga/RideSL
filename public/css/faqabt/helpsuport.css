@@ -119,7 +119,8 @@ body{text-align:center;}
 .yui-gc:after, 
 .yui-gd:after, 
 .yui-ge:after, 
-.yui-gf:after{content:".";display:block;height:0;clear:both;visibility:hidden;}
+.yui-gf:after{content:".";display:block;height:0;clear:both;visibility:hidden;
+}
 #bd,
 .yui-g, 
 .yui-gb, 

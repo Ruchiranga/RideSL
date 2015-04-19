@@ -68,7 +68,7 @@
                                         </div>
                                     </li>
                                     <li>
-                                        <div class="responsive-accordion-head">How to register in RideSL? <i class="fa fa-chevron-down responsive-accordion-plus fa-fw"></i><i class="fa fa-chevron-up responsive-accordion-minus fa-fw"></i></div>
+                                        <div class="responsive-accordion-head">How to become a member in RideSL? <i class="fa fa-chevron-down responsive-accordion-plus fa-fw"></i><i class="fa fa-chevron-up responsive-accordion-minus fa-fw"></i></div>
                                         <div class="responsive-accordion-panel">
                                             <p>
                                                 Cras sagittis neque id tortor dictum tincidunt. Nulla volutpat cursus metus, sed pulvinar nibh vulputate a. Curabitur tristique pharetra elit quis tincidunt.
@@ -89,8 +89,27 @@
                                             </p>
                                         </div>
                                     </li>
-                                    <li>
-                                        <div class="responsive-accordion-head">How to register more than one vehicle? <i class="fa fa-chevron-down responsive-accordion-plus fa-fw"></i><i class="fa fa-chevron-up responsive-accordion-minus fa-fw"></i></div>
+                                     <li>
+                                        <div class="responsive-accordion-head">How to search a vehicle?<i class="fa fa-chevron-down responsive-accordion-plus fa-fw"></i><i class="fa fa-chevron-up responsive-accordion-minus fa-fw"></i></div>
+                                        <div class="responsive-accordion-panel">
+                                            <p>
+                                                Mauris vel placerat dolor. Morbi mattis venenatis feugiat. Vivamus nunc diam, luctus id ipsum ut, tempor pharetra augue. Ut sagittis orci at posuere venenatis.
+                                                Fusce at aliquam lacus. Sed id augue nisl. Nunc vitae ultricies dolor. Etiam rhoncus felis eget vulputate suscipit.
+                                                Praesent convallis bibendum urna, ultricies consequat enim ullamcorper et. Fusce scelerisque dolor ut porta bibendum.
+                                                Sed felis quam, vulputate cursus massa ac, sodales ullamcorper mauris.
+                                            </p>
+
+                                            <p class="bm-remove">
+                                                Maecenas sit amet tincidunt felis. Maecenas ut tortor posuere, faucibus leo non, auctor ante. Vivamus egestas lectus in mi aliquam, a sodales felis feugiat.
+                                                Fusce eget pulvinar augue. Sed in leo id nibh egestas sollicitudin. Praesent a consectetur sem. Morbi posuere nisl libero, sed tempor quam viverra vitae.
+                                                Nulla placerat semper tortor sollicitudin ultricies. Curabitur ac nunc felis. Nunc interdum convallis egestas.
+                                                Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce et erat condimentum lorem mattis dignissim volutpat eget erat.
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus consectetur varius arcu vitae rhoncus.
+                                            </p>
+                                        </div>
+                                    </li>
+                                     <li>
+                                        <div class="responsive-accordion-head">How to search a vehicle?<i class="fa fa-chevron-down responsive-accordion-plus fa-fw"></i><i class="fa fa-chevron-up responsive-accordion-minus fa-fw"></i></div>
                                         <div class="responsive-accordion-panel">
                                             <p>
                                                 Mauris vel placerat dolor. Morbi mattis venenatis feugiat. Vivamus nunc diam, luctus id ipsum ut, tempor pharetra augue. Ut sagittis orci at posuere venenatis.
@@ -109,7 +128,26 @@
                                         </div>
                                     </li>
                                     <li>
-                                        <div class="responsive-accordion-head">How to add a vehicle?<i class="fa fa-chevron-down responsive-accordion-plus fa-fw"></i><i class="fa fa-chevron-up responsive-accordion-minus fa-fw"></i></div>
+                                        <div class="responsive-accordion-head">How to filter vehicle list?<i class="fa fa-chevron-down responsive-accordion-plus fa-fw"></i><i class="fa fa-chevron-up responsive-accordion-minus fa-fw"></i></div>
+                                        <div class="responsive-accordion-panel">
+                                            <p>
+                                                Mauris vel placerat dolor. Morbi mattis venenatis feugiat. Vivamus nunc diam, luctus id ipsum ut, tempor pharetra augue. Ut sagittis orci at posuere venenatis.
+                                                Fusce at aliquam lacus. Sed id augue nisl. Nunc vitae ultricies dolor. Etiam rhoncus felis eget vulputate suscipit.
+                                                Praesent convallis bibendum urna, ultricies consequat enim ullamcorper et. Fusce scelerisque dolor ut porta bibendum.
+                                                Sed felis quam, vulputate cursus massa ac, sodales ullamcorper mauris.
+                                            </p>
+
+                                            <p class="bm-remove">
+                                                Maecenas sit amet tincidunt felis. Maecenas ut tortor posuere, faucibus leo non, auctor ante. Vivamus egestas lectus in mi aliquam, a sodales felis feugiat.
+                                                Fusce eget pulvinar augue. Sed in leo id nibh egestas sollicitudin. Praesent a consectetur sem. Morbi posuere nisl libero, sed tempor quam viverra vitae.
+                                                Nulla placerat semper tortor sollicitudin ultricies. Curabitur ac nunc felis. Nunc interdum convallis egestas.
+                                                Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce et erat condimentum lorem mattis dignissim volutpat eget erat.
+                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus consectetur varius arcu vitae rhoncus.
+                                            </p>
+                                        </div>
+                                    </li>
+                                    <li>
+                                        <div class="responsive-accordion-head">How to add more than one vehicle?<i class="fa fa-chevron-down responsive-accordion-plus fa-fw"></i><i class="fa fa-chevron-up responsive-accordion-minus fa-fw"></i></div>
                                         <div class="responsive-accordion-panel">
                                             <p>
                                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac fringilla nulla, sit amet consequat eros. Pellentesque pharetra blandit commodo.
@@ -131,7 +169,7 @@
                                         </div>
                                     </li>
                                     <li>
-                                        <div class="responsive-accordion-head">How to add a vehicle?<i class="fa fa-chevron-down responsive-accordion-plus fa-fw"></i><i class="fa fa-chevron-up responsive-accordion-minus fa-fw"></i></div>
+                                        <div class="responsive-accordion-head">How to become a premium member?<i class="fa fa-chevron-down responsive-accordion-plus fa-fw"></i><i class="fa fa-chevron-up responsive-accordion-minus fa-fw"></i></div>
                                         <div class="responsive-accordion-panel">
                                             <p>
                                                 Cras sagittis neque id tortor dictum tincidunt. Nulla volutpat cursus metus, sed pulvinar nibh vulputate a. Curabitur tristique pharetra elit quis tincidunt.
@@ -172,7 +210,7 @@
                                         </div>
                                     </li>
                                     <li>
-                                        <div class="responsive-accordion-head">How to add a vehicle?<i class="fa fa-chevron-down responsive-accordion-plus fa-fw"></i><i class="fa fa-chevron-up responsive-accordion-minus fa-fw"></i></div>
+                                        <div class="responsive-accordion-head">What are the advantage of being a premium member?<i class="fa fa-chevron-down responsive-accordion-plus fa-fw"></i><i class="fa fa-chevron-up responsive-accordion-minus fa-fw"></i></div>
                                         <div class="responsive-accordion-panel">
                                             <p>
                                                 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac fringilla nulla, sit amet consequat eros. Pellentesque pharetra blandit commodo.
@@ -194,7 +232,7 @@
                                         </div>
                                     </li>
                                     <li>
-                                        <div class="responsive-accordion-head">How to add a vehicle?<i class="fa fa-chevron-down responsive-accordion-plus fa-fw"></i><i class="fa fa-chevron-up responsive-accordion-minus fa-fw"></i></div>
+                                        <div class="responsive-accordion-head">How to suspend our account temporaly?<i class="fa fa-chevron-down responsive-accordion-plus fa-fw"></i><i class="fa fa-chevron-up responsive-accordion-minus fa-fw"></i></div>
                                         <div class="responsive-accordion-panel">
                                             <p>
                                                 Cras sagittis neque id tortor dictum tincidunt. Nulla volutpat cursus metus, sed pulvinar nibh vulputate a. Curabitur tristique pharetra elit quis tincidunt.
@@ -216,7 +254,7 @@
                                         </div>
                                     </li>
                                     <li>
-                                        <div class="responsive-accordion-head">How to add a vehicle?<i class="fa fa-chevron-down responsive-accordion-plus fa-fw"></i><i class="fa fa-chevron-up responsive-accordion-minus fa-fw"></i></div>
+                                        <div class="responsive-accordion-head">How to define a scheme for a vehicle?<i class="fa fa-chevron-down responsive-accordion-plus fa-fw"></i><i class="fa fa-chevron-up responsive-accordion-minus fa-fw"></i></div>
                                         <div class="responsive-accordion-panel">
                                             <p>
                                                 Cras sagittis neque id tortor dictum tincidunt. Nulla volutpat cursus metus, sed pulvinar nibh vulputate a. Curabitur tristique pharetra elit quis tincidunt.
@@ -237,36 +275,11 @@
                                             </p>
                                         </div>
                                     </li>
-                                    <li>
-                                        <div class="responsive-accordion-head">How to prevent our vehicle being seeing in RideSL?<i class="fa fa-chevron-down responsive-accordion-plus fa-fw"></i><i class="fa fa-chevron-up responsive-accordion-minus fa-fw"></i></div>
-                                        <div class="responsive-accordion-panel">
-                                            <p>
-                                                Mauris vel placerat dolor. Morbi mattis venenatis feugiat. Vivamus nunc diam, luctus id ipsum ut, tempor pharetra augue. Ut sagittis orci at posuere venenatis.
-                                                Fusce at aliquam lacus. Sed id augue nisl. Nunc vitae ultricies dolor. Etiam rhoncus felis eget vulputate suscipit.
-                                                Praesent convallis bibendum urna, ultricies consequat enim ullamcorper et. Fusce scelerisque dolor ut porta bibendum.
-                                                Sed felis quam, vulputate cursus massa ac, sodales ullamcorper mauris.
-                                            </p>
-
-                                            <p class="bm-remove">
-                                                Maecenas sit amet tincidunt felis. Maecenas ut tortor posuere, faucibus leo non, auctor ante. Vivamus egestas lectus in mi aliquam, a sodales felis feugiat.
-                                                Fusce eget pulvinar augue. Sed in leo id nibh egestas sollicitudin. Praesent a consectetur sem. Morbi posuere nisl libero, sed tempor quam viverra vitae.
-                                                Nulla placerat semper tortor sollicitudin ultricies. Curabitur ac nunc felis. Nunc interdum convallis egestas.
-                                                Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce et erat condimentum lorem mattis dignissim volutpat eget erat.
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus consectetur varius arcu vitae rhoncus.
-                                            </p>
-                                        </div>
-                                    </li>
+                                   
                                 </ul>
 
 
                             </div>
-
-
-
-
-
-
-
 
 
 
@@ -284,15 +297,15 @@
 
                                 </li>
                                 <li id="FAQ" onclick="contentChangeFAQ(this)">
-                                    <a href="#" ><i class="fa fa-flask leftNavIcon"></i> FAQ</a>
+                                    <a href="<?php echo URL; ?>faq"  style="padding-left: 10px;"><i class="fa fa-question-circle"></i> FAQ</a>
 
                                 </li>
                                 <li id="ContactUs" onclick="contentChangeContact(this)">
-                                    <a href="#"><i class="fa fa-envelope-o leftNavIcon"></i> Contact Us</a>
+                                    <a href="<?php echo URL; ?>contactUs"><i class="fa fa-envelope-o leftNavIcon"></i> Contact Us</a>
 
                                 </li>
-                                <li id="Terms" onclick="contentChangeTerms(this)">
-                                    <a href="#"><i class="fa fa-envelope-o leftNavIcon"></i> Terms & Conditions</a>
+                                <li id="Terms" onclick="contentChangeTerms(this)"  >
+                                    <a href="#" style="padding-left: 12px;"><i class="fa fa-bullseye" ></i> Terms & Conditions</a>
 
                                 </li>
 

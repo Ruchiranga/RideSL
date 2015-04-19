@@ -1,6 +1,5 @@
 <?php
-require 'views/header.php';
-?>  
+?>
 
 <link rel="stylesheet" type="text/css" href="public/css/buttonstyle.css">
 <link rel="stylesheet" type="text/css" href="public/css/hyperlinkstyle.css">

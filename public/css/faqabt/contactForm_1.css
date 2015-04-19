@@ -45,13 +45,6 @@ color: black;
  margin-top: 0px;
  margin-bottom: 0px;
 }
-#faqContact{
- padding-left: 10px;
-}
-#termsContact{
- padding-left: 12px;
-}
-
 .form input, textarea {
 	padding: 10px;
 	border: 1px solid #E5E5E5;
@@ -112,7 +105,7 @@ box-shadow: 0px 0px 7px #545bde;
 }
 .form .submit{
     
-    //padding-left: 62%;
+    padding-left: 62%;
    
 }
 /* ===========================

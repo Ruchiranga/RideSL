@@ -1,5 +1,5 @@
 <?php
-class SearchResult extends Controller {
+class Search extends Controller {
 
     function __construct() {
         parent::__construct();
@@ -8,7 +8,7 @@ class SearchResult extends Controller {
     }
     
     function index(){
-        $this->view-> render('searchResult/index');
+        $this->view-> render('search/index');
     }
 
 }

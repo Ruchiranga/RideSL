@@ -11,7 +11,7 @@
   function contentChangewhat(id){
      
     
-        $('#rightContent').html('<h1> What is RideSL?<h1><p>RideSL is a website which helps users to find a vehicle for hire.This is totally free service.Drivers can register their vehicle in RideSL freely  and passengers can view them.Passengers can simply enter their location and search for vehicles as they desire.Passengers can filter result sets  by using various categories provided.Basic idea behind is \n\
+        $('#rightContent').html('<h1 style="padding-left:35px; margin-top:0px;"> What is RideSL?<h1><p>RideSL is a website which helps users to find a vehicle for hire.This is totally free service.Drivers can register their vehicle in RideSL freely  and passengers can view them.Passengers can simply enter their location and search for vehicles as they desire.Passengers can filter result sets  by using various categories provided.Basic idea behind is \n\
   to provide a open platform to vehicle owners and customers to negotiate thei transactions.</p>');
         
   

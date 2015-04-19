@@ -1,0 +1,12 @@
+.scheme{
+    font-weight: bold;
+}
+
+#cancel_btn{
+    height: 40px;
+    width: 70px;
+}
+
+#back_btn{
+    height: 40px;
+}

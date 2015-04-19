@@ -66,7 +66,7 @@
 
                                 <p class="text">
                                     <label for="email">Message</label>
-                                    <textarea name="text" placeholder="Your message" id="message"></textarea>
+                                    <textarea name="message" placeholder="Your message" id="message"></textarea>
                                 </p>
 
                                 <p class="submit" >

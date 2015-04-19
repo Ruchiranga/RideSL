@@ -1,0 +1,14 @@
+#sliding_panel, #sliding_comment_panel {
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 10px;
+    display: none;
+    border:windowframe thin solid;
+    border-radius: 3px;
+    box-shadow: 5px 5px 2px #eeeeee;
+}
+
+
+
+
+

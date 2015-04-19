@@ -22,6 +22,7 @@ class PassengerSignup_Model extends Model {
         $this->username = $_POST['username'];
         $this->password = $_POST['password'];
         
+        
         //check whether the username already exists
         $sth = $this->db->prepare('Select * from account where username = :username');
         $sth->execute(array(':username' => $this->username));
@@ -48,5 +49,7 @@ class PassengerSignup_Model extends Model {
             
         }        
     }
+    
+   
     
 }

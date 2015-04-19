@@ -22,10 +22,10 @@
     margin-right: auto;"> 
             
 
-                <p>User Name</p><input type="text" name="username" id="name" tabindex="1" placeholder="Enter user name" style="width: 350px; height: 30px;font-family: serif; font-size: 18px; text-align:center;"/>
+                <p>User Name</p><input required type="text" name="username" id="name" tabindex="1" placeholder="Enter user name" style="width: 350px; height: 30px;font-family: serif; font-size: 18px; text-align:center;"/>
 
                 <br>
-                <p>Password</p><input type="password" name="password" id="name" tabindex="1" placeholder="Enter password" style="width: 350px; height: 30px;font-family: serif; font-size: 18px; text-align:center;"/>
+                <p>Password</p><input required type="password" name="password" id="name" tabindex="1" placeholder="Enter password" style="width: 350px; height: 30px;font-family: serif; font-size: 18px; text-align:center;"/>
                 <p><a href="#">Forgot your password?</a></p>
                 <p><input type="submit" value="Sign in" class="belize-hole-flat-button" style="width: 200px"></p>
                 <br>

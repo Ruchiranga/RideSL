@@ -25,13 +25,13 @@
     margin-right: auto;"> 
        
        <p>Name</p>
-        <p><input type="text" name="firstname" id="name" tabindex="1" placeholder="First Name" style="width: 350px; height: 30px;font-family: serif; font-size: 18px; text-align:center;"/>
+        <p><input required type="text" name="firstname" id="name" tabindex="1" placeholder="First Name" style="width: 350px; height: 30px;font-family: serif; font-size: 18px; text-align:center;"/>
         <input type="text" name="lastname" id="name" tabindex="1" placeholder="Last Name" style="width: 350px; height: 30px;font-family: serif; font-size: 18px; text-align:center;"/></p>
         
-        <p>Email</p><input type="text" name="email_address" id="name" tabindex="1" placeholder="name@example.com" style="width: 350px; height: 30px;font-family: serif; font-size: 18px; text-align:center;"/>
-        <p>User Name</p><p><input type="text" name="username" id="name" tabindex="1" placeholder="Enter user name" style="width: 350px; height: 30px;font-family: serif; font-size: 18px; text-align:center;"/>
+        <p>Email</p><input required type="text" name="email_address" id="name" tabindex="1" placeholder="name@example.com" style="width: 350px; height: 30px;font-family: serif; font-size: 18px; text-align:center;"/>
+        <p>User Name</p><p><input required type="text" name="username" id="name" tabindex="1" placeholder="Enter user name" style="width: 350px; height: 30px;font-family: serif; font-size: 18px; text-align:center;"/>
         
-        <br><p>Password</p><input type="password" name="password" id="name" tabindex="1" placeholder="At least 5 characters" style="width: 350px; height: 30px;font-family: serif; font-size: 18px; text-align:center;"/>
+        <br><p>Password</p><input required type="password" name="password" id="name" tabindex="1" placeholder="At least 5 characters" style="width: 350px; height: 30px;font-family: serif; font-size: 18px; text-align:center;"/>
         <br>
         
         <p><input type="submit" value="Create Account" class="belize-hole-flat-button" style="width: 300px"></p>

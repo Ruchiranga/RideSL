@@ -12,7 +12,9 @@
  * @author ruchiranga
  */
 class View {
+   
 
+   
     public function __construct() {
         
     }

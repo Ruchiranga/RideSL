@@ -1,15 +1,11 @@
 
 
-<link rel="stylesheet" type="text/css" href="<?php echo URL;?>public/css/textboxstyle.css">
-<link rel="stylesheet" type="text/css" href="<?php echo URL;?>public/css/schemestyle.css">
-<link rel="stylesheet" type="text/css" href="<?php echo URL;?>public/css/labelstyle.css">
-<link rel="stylesheet" type="text/css" href="<?php echo URL;?>public/css/paragraphstyle.css">
-<link rel="stylesheet" type="text/css" href="<?php echo URL;?>public/css/ratingstyle.css">
 
-
-
-
-<!--<script src="http://tympanus.net/codrops/adpacks/demoad.js"></script>-->
+<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/textboxstyle.css">
+<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/schemestyle.css">
+<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/labelstyle.css">
+<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/paragraphstyle.css">
+<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/ratingstyle.css">
 
 </head>
 
@@ -18,10 +14,12 @@
 
     <div style=" height: 303px; width: 1230px; padding: 40px; text-align: center"> 
 
-        <form action="#" method="post">
+        <form action="search/resultList" method="post">
             <br>
-            <img src="<?php echo URL;?>public/images/logo1.png" alt=""/>
-            <br><br><input type="text" name="name" id="name" tabindex="1" placeholder="Enter pick up location" style="width: 350px; height: 40px;font-family: serif; font-size: 18px; text-align:center;"/>
+
+            <img src="<?php echo URL; ?>public/images/logo1.png" alt="" style="max-width:100%; height:auto;" />
+            <br><br><input type="text" name="location" id="name" tabindex="1" placeholder="Enter pick up location" style="width: 350px; height: 40px;font-family: serif; font-size: 18px; text-align:center;"/>
+            <input type="text" name="scheme_category" value="City Taxi Scheme" style="visibility: hidden; position: absolute;"/>
             <p><input type="submit" value="Find me a ride" class="belize-hole-flat-button" style="width: 200px"></p>
         </form>
 
@@ -30,85 +28,124 @@
 
     <div class="content">
         <ul id="sdt_menu" class="sdt_menu">
-            <li>
-                <a href="#">
-                    <img src="<?php echo URL;?>pubic/images/1.jpg" alt=""/>
-                    <span class="sdt_active"></span>
-                    <span class="sdt_wrap">
-                        <span class="sdt_link">City Taxi</span>
-                        <span class="sdt_descr">Find a taxi</span>
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <img src="<?php echo URL;?>pubic/images/2.jpg" alt=""/>
-                    <span class="sdt_active"></span>
-                    <span class="sdt_wrap">
-                        <span class="sdt_link" >Tours</span>
-                        <span class="sdt_descr">Best choices</span>
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <img src="<?php echo URL;?>pubic/images/3.jpg" alt=""/>
-                    <span class="sdt_active"></span>
-                    <span class="sdt_wrap">
-                        <span class="sdt_link">Ceremonial</span>
-                        <span class="sdt_descr">Luxury vehicles</span>
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <img src="<?php echo URL;?>pubic/images/4.jpg" alt=""/>
-                    <span class="sdt_active"></span>
-                    <span class="sdt_wrap">
-                        <span class="sdt_link">Air port</span>
-                        <span class="sdt_descr">Best service</span>
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <img src="<?php echo URL;?>pubic/images/5.jpg" alt=""/>
-                    <span class="sdt_active"></span>
-                    <span class="sdt_wrap">
-                        <span class="sdt_link">Station</span>
-                        <span class="sdt_descr">Ideal travel</span>
-                    </span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <img src="<?php echo URL;?>pubic/images/6.jpg" alt=""/>
-                    <span class="sdt_active"></span>
-                    <span class="sdt_wrap">
-                        <span class="sdt_link">Cargo</span>
-                        <span class="sdt_descr">Best rated</span>
-                    </span>
-                </a>
+            <form action="search/resultList" method="post" id="formcity_taxi_scheme">
+                <li id="city_taxi_scheme">
 
-            </li>
-            <li>
-                <a href="#">
-                    <img src="<?php echo URL;?>pubic/images/1.jpg" alt=""/>
-                    <span class="sdt_active"></span>
-                    <span class="sdt_wrap">
-                        <span class="sdt_link">Construction</span>
-                        <span class="sdt_descr">Economical</span>
-                    </span>
-                </a>
+                    <a type="submit">
+                        <img src="<?php echo URL; ?>public/images/1.jpg" alt=""/>
+                        <span class="sdt_active"></span>
+                        <span class="sdt_wrap">
+                            <span class="sdt_link">City Taxi</span>
+                            <span class="sdt_descr">Find a taxi</span>
+                        </span>
+                    </a>
+                    <input value="City Taxi Scheme" style="visibility: hidden; position: absolute" name="scheme_category">
+                    <input value="" style="visibility: hidden; position: absolute" name="location">
+                </li>
+            </form>
+            <form action="search/resultList" method="post" id="formtour_scheme">
+                <li id="tour_scheme">
+                    <a>
+                        <img src="<?php echo URL; ?>public/images/2.jpg" alt=""/>
+                        <span class="sdt_active"></span>
+                        <span class="sdt_wrap">
+                            <span class="sdt_link" >Tours</span>
+                            <span class="sdt_descr">Best choices</span>
+                        </span>
+                    </a>
+                    <input value="Tour Scheme" style="visibility: hidden; position: absolute" name="scheme_category">
+                    <input value="" style="visibility: hidden; position: absolute" name="location">
+                </li>
+            </form>
+            <form action="search/resultList" method="post" id="formceremonial_scheme">
 
-            </li>
+                <li id="ceremonial_scheme">
+                    <a>
+                        <img src="<?php echo URL; ?>public/images/3.jpg" alt=""/>
+                        <span class="sdt_active"></span>
+                        <span class="sdt_wrap">
+                            <span class="sdt_link">Ceremonial</span>
+                            <span class="sdt_descr">Luxury vehicles</span>
+                        </span>
+                    </a>
+                    <input value="Ceremonial Scheme" style="visibility: hidden; position: absolute" name="scheme_category">
+                    <input value="" style="visibility: hidden; position: absolute" name="location">                
+                </li>
+            </form>
+            <form action="search/resultList" method="post" id="formair_port_drop_pickup_scheme">
+                <li id="air_port_drop_pickup_scheme">
+                    <a>
+                        <img src="<?php echo URL; ?>public/images/4.jpg" alt=""/>
+                        <span class="sdt_active"></span>
+                        <span class="sdt_wrap">
+                            <span class="sdt_link">Air port</span>
+                            <span class="sdt_descr">Best service</span>
+                        </span>
+                    </a>
+                    <input value="Airport Drop Pickup Scheme" style="visibility: hidden; position: absolute" name="scheme_category">
+                    <input value="" style="visibility: hidden; position: absolute" name="location">
+                </li>
+            </form>
+            <form action="search/resultList" method="post" id="formstation_drop_pickup_scheme">
+                <li id="station_drop_pickup_scheme">
+                    <a>
+                        <img src="<?php echo URL; ?>public/images/5.jpg" alt=""/>
+                        <span class="sdt_active"></span>
+                        <span class="sdt_wrap">
+                            <span class="sdt_link">Station</span>
+                            <span class="sdt_descr">Ideal travel</span>
+                        </span>
+                    </a>
+                    <input value="Station Drop Pickup Scheme" style="visibility: hidden; position: absolute" name="scheme_category">
+                    <input value="" style="visibility: hidden; position: absolute" name="location">
+                </li>
+            </form>
+            <form action="search/resultList" method="post" id="formcargo_scheme">
+                <li id="cargo_scheme">
+                    <a >
+                        <img src="<?php echo URL; ?>public/images/6.jpg" alt=""/>
+                        <span class="sdt_active"></span>
+                        <span class="sdt_wrap">
+                            <span class="sdt_link">Cargo</span>
+                            <span class="sdt_descr">Best rated</span>
+                        </span>
+                    </a>
+                    <input value="Cargo Scheme" style="visibility: hidden; position: absolute" name="scheme_category">
+                    <input value="" style="visibility: hidden; position: absolute" name="location">
+                </li>
+            </form>
+            <form action="search/resultList" method="post" id="formconstruction_scheme">
+                <li id="construction_scheme">
+                    <a >
+                        <img src="<?php echo URL; ?>public/images/1.jpg" alt=""/>
+                        <span class="sdt_active"></span>
+                        <span class="sdt_wrap">
+                            <span class="sdt_link">Construction</span>
+                            <span class="sdt_descr">Economical</span>
+                        </span>
+                    </a>
+                    <input value="Construction Scheme" style="visibility: hidden; position: absolute" name="scheme_category">
+                    <input value="" style="visibility: hidden; position: absolute" name="location">
+                </li>
+            </form>
         </ul>
     </div>
 
     <!-- The JavaScript -->
     <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js"></script>
-    <script type="text/javascript" src="<?php echo URL;?>public/js/jquery.easing.1.3.js"></script>
+    <script type="text/javascript" src="<?php echo URL; ?>public/js/jquery.easing.1.3.js"></script>
     <script type="text/javascript">
+
+        $(document).ready(function() {
+            $('li').click(function() {
+                console.log($(this));
+                document.getElementById("form"+$(this)[0].id).submit();
+                console.log($(this)[0].id);
+//                alert("The paragraph was clicked.");
+            });
+        })
+
+
         $(function() {
             /**
              * for each menu element, on mouseenter, 
@@ -117,7 +154,8 @@
              * then we slide it - if the element is the last one in the menu
              * we slide it to the left, otherwise to the right
              */
-            $('#sdt_menu > li').bind('mouseenter', function() {
+//            $('#sdt_menu > li').bind('mouseenter', function() {
+            $('li').bind('mouseenter', function() {
                 var $elem = $(this);
                 $elem.find('img')
                         .stop(true)

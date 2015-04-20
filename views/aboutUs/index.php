@@ -10,6 +10,7 @@
         <link rel="stylesheet" type="text/css" href="<?php echo URL;?>public/css/faqabt/font-awesome.css">
         <link rel="stylesheet" type="text/css" href="<?php echo URL;?>public/css/faqabt/aboutUs.css">
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans">
         <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lobster">
         <link rel="stylesheet" href="<?php echo URL;?>public/css/faqabt/bootstrap.min.css">
@@ -58,66 +59,67 @@
                         <div class="row" style="">	            	
                             <div class="col-sm-3" style="padding-left: 10px;">
                                 <div class="team-box wow fadeInUp">
-                                    <img src="<?php echo URL;?>public/images/1_1.jpg" alt="" data-at2x="<?php echo URL;?>public/images/team.jpg">
-                                    <h3>John Doe</h3>
-                                    <p>Department of Computer science,<br>Faculty of Engineering,<br >Universit of Moratuwa. </p>
+                                    <img src="<?php echo URL;?>public/images/ruchiranga.jpg" alt="" data-at2x="<?php echo URL;?>public/images/ruchiranga.jpg">
+                                    <h3>Thanuditha Ruchiranga</h3>
+                                    <p>Department of Computer science,<br>Faculty of Engineering,<br >Universit of Moratuwa.<br >ruchiranga.12@mrt.ac.lk </p>
                                     <div class="team-social">		                        
-                                        <a href="#"><i class="fa fa-facebook"></i></a>
-                                        <a href="#"><i class="fa fa-twitter"></i></a>
-                                        <a href="#"><i class="fa fa-linkedin"></i></a>
-                                        <a href="#"><i class="fa fa-envelope"></i></a>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="col-sm-3">
-                                <div class="team-box wow fadeInUp">
-                                    <img src="<?php echo URL;?>public/images/1_1.jpg" alt="" data-at2x="<?php echo URL;?>public/images/team.jpg">
-                                    <h3>John Doe</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor...</p>
-                                    <div class="team-social">		                        
-                                        <a href="#"><i class="fa fa-facebook"></i></a>
-                                        <a href="#"><i class="fa fa-twitter"></i></a>
-                                        <a href="#"><i class="fa fa-linkedin"></i></a>
-                                        <a href="#"><i class="fa fa-envelope"></i></a>
+                                      <a href="#" target="_blank"><i class="fa fa-facebook-square"></i></a>
+                                        <a href="" target="_blank"><i class="fa fa-twitter-square"></i></a>
+                                        <a href="#"><i class="fa fa-linkedin-square" target="_blank"></i></a>
+                                        
                                     </div>
                                 </div>
                             </div>
                             <div class="col-sm-3">
                                 <div class="team-box wow fadeInDown">
-                                    <img src="<?php echo URL;?>public/images/team.jpg" alt="" data-at2x="<?php echo URL;?>public/images/team.jpg">
-                                    <h3>Jane Doe</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor...</p>
+                                    <img src="<?php echo URL;?>public/images/prasad.jpg" alt="" data-at2x="<?php echo URL;?>public/images/prasad.jpg">
+                                    <h3>Prasad Maduranga</h3>
+                                    <p>Department of Computer science,<br>Faculty of Engineering,<br >Universit of Moratuwa.<br >prasad.12@mrt.ac.lk </p>
                                     <div class="team-social">		                        
-                                        <a href="#"><i class="fa fa-facebook"></i></a>
-                                        <a href="#"><i class="fa fa-twitter"></i></a>
-                                        <a href="#"><i class="fa fa-linkedin"></i></a>
-                                        <a href="#"><i class="fa fa-envelope"></i></a>
+                                        <a href="https://www.facebook.com/prasad.maduranga.378" target="_blank"><i class="fa fa-facebook-square"></i></a>
+                                        <a href="https://twitter.com/prasadmadurang1" target="_blank"><i class="fa fa-twitter-square"></i></a>
+                                        <a href="http://lk.linkedin.com/in/prasadmaduranga" target="_blank"><i class="fa fa-linkedin-square" target="_blank"></i></a>
+                                        
                                     </div>
                                 </div>
                             </div>
                             <div class="col-sm-3">
                                 <div class="team-box wow fadeInUp">
-                                    <img src="<?php echo URL;?>public/images/team.jpg" alt="" data-at2x="<?php echo URL;?>public/images/team.jpg">
-                                    <h3>Tim Brown</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor...</p>
+                                    <img src="<?php echo URL;?>public/images/nanduni.jpg" alt="" data-at2x="<?php echo URL;?>public/images/nanduni.jpg">
+                                    <h3>Nanduni Nimalsiri</h3>
+                                    <p>Department of Computer science,<br>Faculty of Engineering,<br >Universit of Moratuwa.<br >nanduni.12@mrt.ac.lk </p>
                                     <div class="team-social">		                        
-                                        <a href="#"><i class="fa fa-facebook"></i></a>
-                                        <a href="#"><i class="fa fa-twitter"></i></a>
-                                        <a href="#"><i class="fa fa-linkedin"></i></a>
-                                        <a href="#"><i class="fa fa-envelope"></i></a>
+                                       <a href="#" target="_blank"><i class="fa fa-facebook-square"></i></a>
+                                        <a href="" target="_blank"><i class="fa fa-twitter-square"></i></a>
+                                        <a href="#"><i class="fa fa-linkedin-square" target="_blank"></i></a>
+                                       
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="col-sm-3">
+                                <div class="team-box wow fadeInUp">
+                                    <img src="<?php echo URL;?>public/images/anuradha.jpg" alt="" data-at2x="<?php echo URL;?>public/images/anuradha.jpg">
+                                    <h3>Anuradha Welivita</h3>
+                                    <p>Department of Computer science,<br>Faculty of Engineering,<br >Universit of Moratuwa.<br >anuradha.12@mrt.ac.lk </p>
+                                    <div class="team-social">		                        
+                                         <a href="#" target="_blank"><i class="fa fa-facebook-square"></i></a>
+                                        <a href="" target="_blank"><i class="fa fa-twitter-square"></i></a>
+                                        <a href="#"><i class="fa fa-linkedin-square" target="_blank"></i></a>
+                                        
                                     </div>
                                 </div>
                             </div>
                             <div class="col-sm-3">
                                 <div class="team-box wow fadeInDown">
-                                    <img src="<?php echo URL;?>public/images/team.jpg" alt="" data-at2x="<?php echo URL;?>public/images/team.jpg">
-                                    <h3>Sarah Red</h3>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor...</p>
+                                    <img src="<?php echo URL;?>public/images/upekka.jpg" alt="" data-at2x="<?php echo URL;?>public/images/upekka.jpg">
+                                    <h3>Upekka Anuruddhi</h3>
+                                    <p>Department of Computer science,<br>Faculty of Engineering,<br >Universit of Moratuwa.<br >upekka.12@mrt.ac.lk </p>
                                     <div class="team-social">		                        
-                                        <a href="#"><i class="fa fa-facebook"></i></a>
-                                        <a href="#"><i class="fa fa-twitter"></i></a>
-                                        <a href="#"><i class="fa fa-linkedin"></i></a>
-                                        <a href="#"><i class="fa fa-envelope"></i></a>
+                                        <a href="#" target="_blank"><i class="fa fa-facebook-square"></i></a>
+                                        <a href="" target="_blank"><i class="fa fa-twitter-square"></i></a>
+                                        <a href="#"><i class="fa fa-linkedin-square" target="_blank"></i></a>
+                                       
                                     </div>
                                 </div>
                             </div>

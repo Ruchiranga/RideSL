@@ -1,10 +1,10 @@
-#comment-icon {
+.cd-popup-trigger {
     opacity: 1;
     filter: alpha(opacity=100);
     -webkit-transition: opacity 0.2s linear;
 }	
 
-#comment-icon:hover {
+.cd-popup-trigger:hover {
     opacity: 0.5;
     filter: alpha(opacity=50);
     -webkit-transition: opacity 0.2s linear;

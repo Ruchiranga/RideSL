@@ -9,7 +9,7 @@ class driverRegister extends Controller {
     public function index() {
         $this->view->render('driverRegister/index');
     }
-
+    
     public function changeManufacturer($manufacturer) {
         $models = $this->model->getNewModels($manufacturer);
     }

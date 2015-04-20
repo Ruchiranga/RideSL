@@ -1,4 +1,4 @@
-input[type=text], textarea {
+input[type=text], textarea ,.dropdownList{
     -moz-transition: all 0.3s ease-in-out;
     -o-transition: all 0.3s ease-in-out;
     -webkit-transition: all 0.3s ease-in-out;
@@ -10,17 +10,28 @@ input[type=text], textarea {
     -webkit-border-radius: 55px;
     -moz-border-radius: 55px;
     border-radius: 55px;
+   
+    
+  
 }
 
-input[type=text]:focus, textarea:focus {
+input[type=text]:focus, textarea:focus  ,.dropdownList:focus{
     -moz-box-shadow: 0 0 5px #51cbee;
     -webkit-box-shadow: 0 0 5px #51cbee;
     box-shadow: 0 0 5px #51cbee;
-    padding: 3px 0px 3px 3px;
+  //  padding: 3px 0px 3px 3px;
     margin: 5px 1px 3px 0px;
     border: 1px solid #51cbee;
 }
-
+.dropdownList{
+    
+    border:solid 1px #ccc0cc;
+-moz-border-radius: 20px;
+-webkit-border-radius: 20px;
+border-radius: 20px;
+width :170px;
+padding-left: 40px;
+}
 label {
     width: 150px;
     float: left;

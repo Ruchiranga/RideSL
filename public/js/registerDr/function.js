@@ -8,8 +8,7 @@ function showHide()
     {
         document.getElementById('pricingSchemeTaxi').style.display = 'none';
     }
-}
-;
+};
 
 function showHideTour()
 {

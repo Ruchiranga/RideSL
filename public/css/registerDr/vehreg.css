@@ -7,9 +7,6 @@ body
 	text-align:center;
 }
 
-
-
-
 #form_container
 {
 	background:#fff;	
@@ -136,6 +133,7 @@ form li:after
 	height:0;
 	visibility:hidden;
         color: #0b75b2;
+
 }
 
 .buttons:after
@@ -179,6 +177,7 @@ form li div
 form li span
 {
 	color: #0b75b2;
+
 	float:left;
 	margin:0 4px 0 0;
 	padding:0 0 8px;
@@ -228,6 +227,7 @@ form li span label
 {
 	clear:both;
 	color: #0b75b2;
+
 	display:block;
 	font-size:9px;
 	line-height:9px;
@@ -894,3 +894,4 @@ span.help {
   color:#660000;
   font-style:italic;
 }
+

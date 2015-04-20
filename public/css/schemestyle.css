@@ -3,7 +3,7 @@ ul.sdt_menu{
 	padding:0;
 	list-style: none;
 /*	font-family:"Myriad Pro", "Trebuchet MS", sans-serif;*/
-        font-family:"Times new Roman", "Times new Roman", serif;
+        font-family: "RobotoDraft","Roboto",sans-serif;
 /*        font-family:"Times new roman", "Trebuchet MS", sans-serif;*/
 	font-size:12px;
 	width:1309px;
@@ -32,9 +32,9 @@ position:relative;
 width:25%;
 }*/
 
-img{
+/*img{
     width: 187px;
-}
+}*/
 
 ul.sdt_menu li > a{
 	position:absolute;

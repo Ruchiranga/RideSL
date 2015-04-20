@@ -1123,6 +1123,7 @@
                 </div>
                 <img src="<?php echo URL; ?>public/images/registerDr/bottom.png" alt="" style=" width: 660px;"/>
         </div>
+
 </body>
 </html>
 
@@ -1217,6 +1218,7 @@
     }
 
 
+
     //-------------------------------------------------------------------------------------
     //
     //******************************************************************City Taxi*****************************************************
@@ -1246,7 +1248,11 @@
     }
 
     function showWithoutAcCt() {
+
         if (document.getElementById('WithoutAcCt').checked)
+
+
+        
         {
             document.getElementById("pricewithoutacInCt").disabled = false;
             document.getElementById("pricewithoutacOptCt").disabled = false;
@@ -1380,6 +1386,7 @@
 
     function showWithoutAcT() {
         if (document.getElementById('WithoutAcT').checked)
+
         {
             document.getElementById("pricewithoutacInT").disabled = false;
             document.getElementById("pricewithoutacOptT").disabled = false;
@@ -1514,6 +1521,7 @@
 
     function showWithoutAcAp() {
         if (document.getElementById('WithoutAcAp').checked)
+
         {
             document.getElementById("pricewithoutacInAp").disabled = false;
             document.getElementById("pricewithoutacOptAp").disabled = false;
@@ -1530,6 +1538,7 @@
             document.getElementById("waitingChargeOptAp").disabled = false;
         } else {
             document.getElementById("waitingAp").disabled = true;
+
             document.getElementById("waitingChargeOptAp").disabled = true;
         }
     }
@@ -1649,6 +1658,7 @@
 
     function showWithoutAcSt() {
         if (document.getElementById('WithoutAcSt').checked)
+       
         {
             document.getElementById("pricewithoutacInSt").disabled = false;
             document.getElementById("pricewithoutacOptSt").disabled = false;
@@ -1665,6 +1675,7 @@
             document.getElementById("waitingChargeOptSt").disabled = false;
         } else {
             document.getElementById("waitingSt").disabled = true;
+
             document.getElementById("waitingChargeOptSt").disabled = true;
         }
     }
@@ -1782,6 +1793,7 @@
 
     function showWithoutAcC() {
         if (document.getElementById('WithoutAcC').checked)
+        
         {
             document.getElementById("pricewithoutacInC").disabled = false;
             document.getElementById("pricewithoutacOptC").disabled = false;

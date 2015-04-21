@@ -9,21 +9,21 @@
 <body>
 
 
-    <div style=" height: 303px; width: 1230px; padding: 40px; text-align: center"> 
+    <div style=" height: 303px;  padding: 40px; text-align: center; padding-top: 55px;"> 
 
         <form action="search/resultList" method="post">
             <br>
 
-            <img src="<?php echo URL; ?>public/images/logo1.png" alt=""/>
+            <img src="<?php echo URL; ?>public/images/logo1.png" alt="" style="max-width:100%; height:auto;" />
             <br><br><input type="text" name="location" id="name" tabindex="1" placeholder="Enter pick up location" style="width: 350px; height: 40px;font-family: serif; font-size: 18px; text-align:center;"/>
-            <input type="text" name="scheme_category" value="city_taxi_scheme" style="visibility: hidden; position: absolute;"/>
+            <input type="text" name="scheme_category" value="City Taxi Scheme" style="visibility: hidden; position: absolute;"/>
             <p><input type="submit" value="Find me a ride" class="belize-hole-flat-button" style="width: 200px"></p>
         </form>
 
         <br>
     </div>
 
-    <div class="content">
+    <div class="content" style="margin-left: 20px;">
         <ul id="sdt_menu" class="sdt_menu">
             <form action="search/resultList" method="post" id="formcity_taxi_scheme">
                 <li id="city_taxi_scheme">
@@ -36,7 +36,7 @@
                             <span class="sdt_descr">Find a taxi</span>
                         </span>
                     </a>
-                    <input value="city_taxi_scheme" style="visibility: hidden; position: absolute" name="scheme_category">
+                    <input value="City Taxi Scheme" style="visibility: hidden; position: absolute" name="scheme_category">
                     <input value="" style="visibility: hidden; position: absolute" name="location">
                 </li>
             </form>
@@ -50,7 +50,7 @@
                             <span class="sdt_descr">Best choices</span>
                         </span>
                     </a>
-                    <input value="tour_scheme" style="visibility: hidden; position: absolute" name="scheme_category">
+                    <input value="Tour Scheme" style="visibility: hidden; position: absolute" name="scheme_category">
                     <input value="" style="visibility: hidden; position: absolute" name="location">
                 </li>
             </form>
@@ -65,7 +65,7 @@
                             <span class="sdt_descr">Luxury vehicles</span>
                         </span>
                     </a>
-                    <input value="ceremonial_scheme" style="visibility: hidden; position: absolute" name="scheme_category">
+                    <input value="Ceremonial Scheme" style="visibility: hidden; position: absolute" name="scheme_category">
                     <input value="" style="visibility: hidden; position: absolute" name="location">                
                 </li>
             </form>
@@ -79,7 +79,7 @@
                             <span class="sdt_descr">Best service</span>
                         </span>
                     </a>
-                    <input value="air_port_drop_pickup_scheme" style="visibility: hidden; position: absolute" name="scheme_category">
+                    <input value="Airport Drop Pickup Scheme" style="visibility: hidden; position: absolute" name="scheme_category">
                     <input value="" style="visibility: hidden; position: absolute" name="location">
                 </li>
             </form>
@@ -93,7 +93,7 @@
                             <span class="sdt_descr">Ideal travel</span>
                         </span>
                     </a>
-                    <input value="station_drop_pickup_scheme" style="visibility: hidden; position: absolute" name="scheme_category">
+                    <input value="Station Drop Pickup Scheme" style="visibility: hidden; position: absolute" name="scheme_category">
                     <input value="" style="visibility: hidden; position: absolute" name="location">
                 </li>
             </form>
@@ -107,7 +107,7 @@
                             <span class="sdt_descr">Best rated</span>
                         </span>
                     </a>
-                    <input value="cargo_scheme" style="visibility: hidden; position: absolute" name="scheme_category">
+                    <input value="Cargo Scheme" style="visibility: hidden; position: absolute" name="scheme_category">
                     <input value="" style="visibility: hidden; position: absolute" name="location">
                 </li>
             </form>
@@ -121,7 +121,7 @@
                             <span class="sdt_descr">Economical</span>
                         </span>
                     </a>
-                    <input value="construction_scheme" style="visibility: hidden; position: absolute" name="scheme_category">
+                    <input value="Construction Scheme" style="visibility: hidden; position: absolute" name="scheme_category">
                     <input value="" style="visibility: hidden; position: absolute" name="location">
                 </li>
             </form>

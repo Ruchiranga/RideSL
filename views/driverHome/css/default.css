@@ -42,7 +42,9 @@
  
 }
 
+
 input[type=text], textarea, checkbox, select {
+
     font-size: 16px;
     -moz-transition: all 0.3s ease-in-out;
     -o-transition: all 0.3s ease-in-out;
@@ -57,7 +59,9 @@ input[type=text], textarea, checkbox, select {
     border-radius: 55px;*/
 }
 
+
 input[type=text]:focus, textarea:focus, checkbox:focus, select:focus {
+
     -moz-box-shadow: 0 0 5px #51cbee;
     -webkit-box-shadow: 0 0 5px #51cbee;
     box-shadow: 0 0 5px #51cbee;
@@ -112,6 +116,7 @@ h1 {
     font-family: 'Open Sans Condensed', sans-serif;     
 
 }
+
 
 .star-rating {
   font-size: 0;

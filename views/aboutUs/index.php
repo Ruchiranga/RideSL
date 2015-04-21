@@ -39,11 +39,11 @@
             
             <div id="navigation"> 
                 <h2 id="aboutus" style=" font-family: 'Open Sans Condensed', sans-serif;"> About Us</h2>
-                <P style="margin-top: 10px; font-family: 'Open Sans', sans-serif; font-size: 110%;text-align: justify;">This is  a  practice web site for Database module done by a group of student.This is  a  practice web site for Database module done by a group of student.This is  a  practice web All of the fonts are Open Source. This means that you are free to share your favorites with friends and colleagues. You can even customize them for your own use, or collaborate with the original designer to improve them. And you can use them in every way you want, privately or commercially — in print, on your computer, or in your websites.
-
-                    We are working with designers around the world to publish quality typeface designs that are made for the web. If you are a type designer and would like to discuss this, please get in touch.
-
-                    Many of Google's own web pages are already using Google Fonts, such as Google's About page and Google's World Wonders Project which use Open Sans.site for Database module done by a group of student</p>
+                <P style="margin-top: 10px; font-family: 'Open Sans', sans-serif; font-size: 110%;text-align: justify;">Team Zeta is a group of five undergraduates from Department of Computer Science and Engineering, University of Moratuwa. They are inspired by the new tech world and are exploring the arena of computer science to facilitate the humanity with their knowledge.
+We combine the computer expertise of us with the innovative technology to deliver efficient and fast solutions to crucial problems in the society.
+We are making a difference in the world through our innovation and compelling vision of the future. Our products apply powerful technology that helps the users of our software to have better user experience and reliability. Our products dramatically improve the productivity of the software we deliver. We provide better customer satisfaction and better service. We provide after support for comparatively lower rates in order to delight our customers and stay ahead of the competitors.
+Message from Ruchiranga Wickramasignhe, the cofounder of the team:
+We always think ways and means by which we can benefit millions of people in the society. As computer scientists and engineers it is our responsibility to drive the world towards success through technology. And it is our vision and mission to accomplish this goal as a team.</p>
 
             </div>
             <div id="content">
@@ -63,9 +63,9 @@
                                     <h3>Thanuditha Ruchiranga</h3>
                                     <p>Department of Computer science,<br>Faculty of Engineering,<br >Universit of Moratuwa.<br >ruchiranga.12@mrt.ac.lk </p>
                                     <div class="team-social">		                        
-                                      <a href="#" target="_blank"><i class="fa fa-facebook-square"></i></a>
-                                        <a href="" target="_blank"><i class="fa fa-twitter-square"></i></a>
-                                        <a href="#"><i class="fa fa-linkedin-square" target="_blank"></i></a>
+                                      <a href="https://www.facebook.com/ruchiranga" target="_blank"><i class="fa fa-facebook-square"></i></a>
+                                        <a href="https://twitter.com/thanurw" target="_blank"><i class="fa fa-twitter-square"></i></a>
+                                        <a href="https://www.linkedin.com/in/ruchirangawickramasinghe" target="_blank"><i class="fa fa-linkedin-square" target="_blank"></i></a>
                                         
                                     </div>
                                 </div>
@@ -89,9 +89,9 @@
                                     <h3>Nanduni Nimalsiri</h3>
                                     <p>Department of Computer science,<br>Faculty of Engineering,<br >Universit of Moratuwa.<br >nanduni.12@mrt.ac.lk </p>
                                     <div class="team-social">		                        
-                                       <a href="#" target="_blank"><i class="fa fa-facebook-square"></i></a>
-                                        <a href="" target="_blank"><i class="fa fa-twitter-square"></i></a>
-                                        <a href="#"><i class="fa fa-linkedin-square" target="_blank"></i></a>
+                                       <a href="https://www.facebook.com/nanduni.indeewaree" target="_blank"><i class="fa fa-facebook-square"></i></a>
+                                        <a href="https://twitter.com/nanduni" target="_blank"><i class="fa fa-twitter-square"></i></a>
+                                        <a href="https://lk.linkedin.com/in/nanduni" target="_blank"><i class="fa fa-linkedin-square" target="_blank"></i></a>
                                        
                                     </div>
                                 </div>
@@ -103,9 +103,9 @@
                                     <h3>Anuradha Welivita</h3>
                                     <p>Department of Computer science,<br>Faculty of Engineering,<br >Universit of Moratuwa.<br >anuradha.12@mrt.ac.lk </p>
                                     <div class="team-social">		                        
-                                         <a href="#" target="_blank"><i class="fa fa-facebook-square"></i></a>
-                                        <a href="" target="_blank"><i class="fa fa-twitter-square"></i></a>
-                                        <a href="#"><i class="fa fa-linkedin-square" target="_blank"></i></a>
+                                         <a href="https://www.facebook.com/profile.php?id=100001493076557" target="_blank"><i class="fa fa-facebook-square"></i></a>
+                                        <a href="https://twitter.com/AnuradhaKW" target="_blank"><i class="fa fa-twitter-square"></i></a>
+                                        <a href="https://lk.linkedin.com/in/anuradhawelivita" target="_blank"><i class="fa fa-linkedin-square" target="_blank"></i></a>
                                         
                                     </div>
                                 </div>
@@ -116,9 +116,9 @@
                                     <h3>Upekka Anuruddhi</h3>
                                     <p>Department of Computer science,<br>Faculty of Engineering,<br >Universit of Moratuwa.<br >upekka.12@mrt.ac.lk </p>
                                     <div class="team-social">		                        
-                                        <a href="#" target="_blank"><i class="fa fa-facebook-square"></i></a>
-                                        <a href="" target="_blank"><i class="fa fa-twitter-square"></i></a>
-                                        <a href="#"><i class="fa fa-linkedin-square" target="_blank"></i></a>
+                                        <a href="https://www.facebook.com/upekka.anuruddhi" target="_blank"><i class="fa fa-facebook-square"></i></a>
+                                        <a href="https://mobile.twitter.com/UpekkaAnuruddhi" target="_blank"><i class="fa fa-twitter-square"></i></a>
+                                        <a href="https://lk.linkedin.com/pub/upekka-anuruddhi/90/56a/82a" target="_blank"><i class="fa fa-linkedin-square" target="_blank"></i></a>
                                        
                                     </div>
                                 </div>
@@ -137,6 +137,8 @@
 
 
         </div>
+        
+       
     </body>
 
 </html>

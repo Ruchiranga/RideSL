@@ -13,7 +13,7 @@ class contactUs extends Controller {
          
          //sending mail part goes here
        
-         $from='FROM: '.$_POST['email'];
+         $from='FROM: '.$_POST['name'].'  Reply:'.$_POST['email'];
          mail('zetacseuom@gmail.com','Mail from user',$_POST['message'],$from);
          
         $this->view->render('contactUs/index');

@@ -55,11 +55,11 @@
 
 
                                 <div>
-                                    <label style="width:150px;">Tel. No </label>
+                                    <label style="width:200px;"><input type="checkbox" name="regNo" onclick='telClick();' id="regNoCheck"> Tel. No </label>
                                     <input id ="tel" calss="tableInput" value="" size="10" maxlength="10" type="text" name ="telephoneNo" >
                                 </div> <label></label><br>
                                 <div>
-                                    <label>Vehicle Reg.No</label>
+                                   <label style="width:200px;"><input type="checkbox" name="regNo" onclick='regClick();' id="regNoCheck"> Vehicle Reg.No</label>
                                     <input id ="regNo" calss="tableInput" style="width:180px;" value="" size="10" maxlength="10" type="text" name ="regNo"><br>
                                 </div>
 
@@ -195,7 +195,7 @@
             </div>
 
         </div>
-
+        
         <script type="text/javascript" src="<?php echo URL; ?>public/js/faqabt/jquery.min.js"></script>
         <script src="<?php echo URL; ?>public/js/faqabt/admin.js" type="text/javascript"></script>
         <script type="text/javascript" src="<?php echo URL; ?>public/js/faqabt/jquery.ssd-vertical-navigation.min.js"></script>
@@ -211,6 +211,33 @@
         <script src="http://code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
         <script>
 
+$(document).ready(function(){
+ $('#tel').prop('disabled', true);
+    $('#regNo').prop('disabled', true);
+      
+  });
+  
+  function telClick() {
+ if( document.getElementById("tel").disabled){
+   $('#tel').prop('disabled', false);
+ }
+ else{
+     $('#tel').prop('disabled', true); 
+     $('#tel').val('');
+     
+ }
+}
+   function regClick() {
+   if( document.getElementById("regNo").disabled){
+   $('#regNo').prop('disabled', false);
+ }
+ else{
+     $('#regNo').prop('disabled', true); 
+     $('#regNo').val('');
+ }
+}
+  
+  
             $("#searchForm").submit(function(e) {
                 var telephoneNo = $('#tel').val();
                 var registerNo = $('#regNo').val();
@@ -221,15 +248,32 @@
 
 
                 }
-                else if (isNaN($('#tel').val()) || ($('#tel').val()).length != 10 || (($('#regNo').val().length < 6 || $('#regNo').val().length > 8) && $('#regNo').val() != '')) {
+                
+                else if ($('#tel').val()=='' &&  (($('#regNo').val().length < 6 || $('#regNo').val().length > 8) && $('#regNo').val() != '')) {
 
                     alert('Invalid inputs!');
                     e.preventDefault(e);
                     $('#searchForm')[0].reset();
                 }
+                
+            
+              else if ((isNaN($('#tel').val()) || ($('#tel').val()).length != 10) && $('#regNo').val() == '')) {
+
+                    alert('Invalid inputs!');
+                    e.preventDefault(e);
+                    $('#searchForm')[0].reset();
+                }}/*
+else if (($('#regNo').val()!='' && ($('#regNo').val().length < 6 || $('#regNo').val().length > 8))||($('#tel').val()!='' &&(isNaN($('#tel').val()) || ($('#tel').val()).length != 10))) {
+
+                    alert('Invalid inputs!');
+                    e.preventDefault(e);
+                    $('#searchForm')[0].reset();
+                }
+            };
+*/
 
 
-            });
+
 
 
 

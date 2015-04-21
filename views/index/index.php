@@ -1,6 +1,3 @@
-
-
-
 <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/textboxstyle.css">
 <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/schemestyle.css">
 <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/labelstyle.css">
@@ -32,7 +29,7 @@
                 <li id="city_taxi_scheme">
 
                     <a type="submit">
-                        <img src="<?php echo URL; ?>public/images/1.jpg" alt=""/>
+                        <img src="<?php echo URL; ?>public/images/city_taxi.jpg" alt=""/>
                         <span class="sdt_active"></span>
                         <span class="sdt_wrap">
                             <span class="sdt_link">City Taxi</span>
@@ -46,7 +43,7 @@
             <form action="search/resultList" method="post" id="formtour_scheme">
                 <li id="tour_scheme">
                     <a>
-                        <img src="<?php echo URL; ?>public/images/2.jpg" alt=""/>
+                        <img src="<?php echo URL; ?>public/images/tours.jpg" alt=""/>
                         <span class="sdt_active"></span>
                         <span class="sdt_wrap">
                             <span class="sdt_link" >Tours</span>
@@ -61,7 +58,7 @@
 
                 <li id="ceremonial_scheme">
                     <a>
-                        <img src="<?php echo URL; ?>public/images/3.jpg" alt=""/>
+                        <img src="<?php echo URL; ?>public/images/wedding.jpg" alt=""/>
                         <span class="sdt_active"></span>
                         <span class="sdt_wrap">
                             <span class="sdt_link">Ceremonial</span>
@@ -75,7 +72,7 @@
             <form action="search/resultList" method="post" id="formair_port_drop_pickup_scheme">
                 <li id="air_port_drop_pickup_scheme">
                     <a>
-                        <img src="<?php echo URL; ?>public/images/4.jpg" alt=""/>
+                        <img src="<?php echo URL; ?>public/images/airport.jpg" alt=""/>
                         <span class="sdt_active"></span>
                         <span class="sdt_wrap">
                             <span class="sdt_link">Air port</span>
@@ -89,7 +86,7 @@
             <form action="search/resultList" method="post" id="formstation_drop_pickup_scheme">
                 <li id="station_drop_pickup_scheme">
                     <a>
-                        <img src="<?php echo URL; ?>public/images/5.jpg" alt=""/>
+                        <img src="<?php echo URL; ?>public/images/station.jpg" alt=""/>
                         <span class="sdt_active"></span>
                         <span class="sdt_wrap">
                             <span class="sdt_link">Station</span>
@@ -103,7 +100,7 @@
             <form action="search/resultList" method="post" id="formcargo_scheme">
                 <li id="cargo_scheme">
                     <a >
-                        <img src="<?php echo URL; ?>public/images/6.jpg" alt=""/>
+                        <img src="<?php echo URL; ?>public/images/cargo.jpg" alt=""/>
                         <span class="sdt_active"></span>
                         <span class="sdt_wrap">
                             <span class="sdt_link">Cargo</span>
@@ -117,7 +114,7 @@
             <form action="search/resultList" method="post" id="formconstruction_scheme">
                 <li id="construction_scheme">
                     <a >
-                        <img src="<?php echo URL; ?>public/images/1.jpg" alt=""/>
+                        <img src="<?php echo URL; ?>public/images/construction.jpg" alt=""/>
                         <span class="sdt_active"></span>
                         <span class="sdt_wrap">
                             <span class="sdt_link">Construction</span>

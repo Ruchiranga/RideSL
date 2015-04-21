@@ -4,6 +4,8 @@
 <!--scheme list acordian-->
 <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" type="text/css" media="all" />
 <link href="<?php echo URL; ?>public/css/faqabt/responsive-accordion.css" rel="stylesheet" type="text/css" media="all" />
+<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/commentpopupstyle.css">
+<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/commenticonstyle.css">
 
 <!-- Javascript -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -16,13 +18,8 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 <script src="<?php echo URL; ?>public/js/faqabt/smoothscroll.min.js" type="text/javascript"></script>
-<script src="<?php echo URL; ?>public/js/faqabt/backbone.js" type="text/javascript"></script>
+<!--<script src="<?php echo URL; ?>public/js/faqabt/backbone.js" type="text/javascript"></script>-->
 <script src="<?php echo URL; ?>public/js/faqabt/responsive-accordion.min.js" type="text/javascript"></script>
-
-
-<script type="text/javascript">
-    var URL = <?php echo URL; ?>;
-</script>
 
 
 </head>
@@ -103,6 +100,8 @@
                         }
                         $content .='</span>
                         <br>
+                        
+
                     </div>';
                         $content .= '<div id="yui-main">                
                         <div class="yui-b" style="margin-left: 25%;">

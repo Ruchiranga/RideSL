@@ -7,7 +7,12 @@
         </data>
         <spellchecker-wordlist xmlns="http://www.netbeans.org/ns/spellchecker-wordlist/1">
             <word>Audi</word>
+<<<<<<< HEAD
+            <word>fffffffffffffffffffffffffffff</word>
+            <word>fhfhjfhfjfhf</word>
+=======
             <word>Ceramonial</word>
+>>>>>>> d2ec70386cf914c807a485db2306f70565b378b9
             <word>Zuzuki</word>
         </spellchecker-wordlist>
     </configuration>

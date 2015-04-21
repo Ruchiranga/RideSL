@@ -28,14 +28,14 @@ class Search_Model extends Model {
         $sth->execute();
 
         if ($this->location) {
-            $sth = $this->db->prepare('create view results as select vehicle_reg_no,o.owner_id,vehicle_type,manufacturer,model,capacity,vehicle_description,isActive,s.scheme_id,ac_price,non_ac_price,pricing_category,descrption,image from scheme_location natural join scheme s natural join vehicle v natural join owner o where location = :location and s.category = :scheme_category');
+            $sth = $this->db->prepare('create view results as select vehicle_reg_no,o.owner_id,vehicle_type,manufacturer,model,capacity,vehicle_description,thumbs_up,thumbs_down,s.scheme_id,ac_price,non_ac_price,pricing_category,descrption,image from scheme_location natural join scheme s natural join vehicle v natural join owner o where location = :location and s.category = :scheme_category and isActive = 1');
             $sth->setFetchMode(PDO::FETCH_ASSOC);
             $sth->execute(array(
                 ':location' => $this->location,
                 ':scheme_category' => $this->scheme_category
             ));
         } else {
-            $sth = $this->db->prepare('create view results as select distinct vehicle_reg_no,o.owner_id,vehicle_type,manufacturer,model,capacity,vehicle_description,isActive,s.scheme_id,ac_price,non_ac_price,pricing_category,descrption,image from scheme_location natural join scheme s natural join vehicle v natural join owner o where s.category = :scheme_category');
+            $sth = $this->db->prepare('create view results as select distinct vehicle_reg_no,o.owner_id,vehicle_type,manufacturer,model,capacity,vehicle_description,thumbs_up,thumbs_down,s.scheme_id,ac_price,non_ac_price,pricing_category,descrption,image from scheme_location natural join scheme s natural join vehicle v natural join owner o where s.category = :scheme_category and isActive = 1');
             $sth->setFetchMode(PDO::FETCH_ASSOC);
             $sth->execute(array(
                 ':scheme_category' => $this->scheme_category
@@ -95,6 +95,14 @@ class Search_Model extends Model {
             ':reg_no' => $regno,
             ':comment' => $comment,
             ':username' => $username
+        ));
+    }
+    public function thumbUp($regno,$count) {
+//        echo 'int he model';
+        $sth = $this->db->prepare('UPDATE vehicle SET thumbs_up = :count WHERE vehicle_reg_no = :reg_no');
+        return $sth->execute(array(
+            ':reg_no' => $regno,
+            ':count' => $count
         ));
     }
 

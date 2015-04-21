@@ -349,6 +349,8 @@
                                                                 <font style="color: #2980b9; margin-top: 15px; font-weight: bold" >Add Your Comment</font><br>
                                                                 <textarea name="comment" data-bind="attr:{id:'comment'+vehicle.vehicle_reg_no}" rows="3" cols="90" style="resize: none;margin-top: 5px;margin-bottom: 5px;"></textarea><br>
                                                                 <input type="submit" value="Post" id="postbutton"class="rslbutton" style="margin-bottom: 15px">
+                                                            <?php else: ?>
+                                                                <font style="color: #2980b9; margin-top: 15px; font-weight: bold" >Login to add your Comment...</font><br>
                                                             <?php endif; ?>
                                                         </div>
                                                     </div>

@@ -1,0 +1,589 @@
+-- MySQL dump 10.13  Distrib 5.6.16, for Win32 (x86)
+--
+-- Host: localhost    Database: ridesl
+-- ------------------------------------------------------
+-- Server version	5.6.16
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
+/*!40103 SET @OLD_TIME_ZONE=@@TIME_ZONE */;
+/*!40103 SET TIME_ZONE='+00:00' */;
+/*!40014 SET @OLD_UNIQUE_CHECKS=@@UNIQUE_CHECKS, UNIQUE_CHECKS=0 */;
+/*!40014 SET @OLD_FOREIGN_KEY_CHECKS=@@FOREIGN_KEY_CHECKS, FOREIGN_KEY_CHECKS=0 */;
+/*!40101 SET @OLD_SQL_MODE=@@SQL_MODE, SQL_MODE='NO_AUTO_VALUE_ON_ZERO' */;
+/*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
+
+--
+-- Table structure for table `account`
+--
+
+DROP TABLE IF EXISTS `account`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `account` (
+  `username` varchar(20) NOT NULL,
+  `password` varchar(100) NOT NULL,
+  `privilege` char(1) DEFAULT NULL,
+  PRIMARY KEY (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `account`
+--
+
+LOCK TABLES `account` WRITE;
+/*!40000 ALTER TABLE `account` DISABLE KEYS */;
+INSERT INTO `account` VALUES ('anu','*8DDB62AE133C93750650642B7B5D0AF21644B0A2','d'),('nandz','*755893402E8242148B523CC69A4E6F6FAB0E3900','d'),('prasad','*CAEF0DAD92CEB37AC21BA41AA7DB5D3EC023E83B','a'),('Praz','*0BF96B000FA155A78768AEB9D6E4DFCD5A688DEA','p'),('ruchi','*5D453C6E04C4A5313674D8FFD462DF87E820C0C3','p'),('Ruchzz','*F1C5F303D886673C1B7F83D1D2ADE6CCB4E3ABAD','d');
+/*!40000 ALTER TABLE `account` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `air_port_drop_pickup_scheme`
+--
+
+DROP TABLE IF EXISTS `air_port_drop_pickup_scheme`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `air_port_drop_pickup_scheme` (
+  `scheme_id` int(11) NOT NULL,
+  `luggage_charge` decimal(12,2) DEFAULT '0.00',
+  `waiting_charge` decimal(12,2) DEFAULT '0.00',
+  PRIMARY KEY (`scheme_id`),
+  CONSTRAINT `air_port_drop_pickup_scheme_ibfk_1` FOREIGN KEY (`scheme_id`) REFERENCES `scheme` (`scheme_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `air_port_drop_pickup_scheme`
+--
+
+LOCK TABLES `air_port_drop_pickup_scheme` WRITE;
+/*!40000 ALTER TABLE `air_port_drop_pickup_scheme` DISABLE KEYS */;
+INSERT INTO `air_port_drop_pickup_scheme` VALUES (4,30.00,NULL);
+/*!40000 ALTER TABLE `air_port_drop_pickup_scheme` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `availability`
+--
+
+DROP TABLE IF EXISTS `availability`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `availability` (
+  `scheme_id` int(11) NOT NULL DEFAULT '0',
+  `day` varchar(3) NOT NULL,
+  `start_time` time DEFAULT NULL,
+  `end_time` time DEFAULT NULL,
+  PRIMARY KEY (`scheme_id`,`day`),
+  CONSTRAINT `availability_ibfk_1` FOREIGN KEY (`scheme_id`) REFERENCES `scheme` (`scheme_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `availability`
+--
+
+LOCK TABLES `availability` WRITE;
+/*!40000 ALTER TABLE `availability` DISABLE KEYS */;
+INSERT INTO `availability` VALUES (1,'Fri','08:00:00','23:00:00'),(1,'Mon','08:00:00','23:01:22'),(1,'Sat','07:00:00','00:00:00'),(1,'Sun','07:00:00','00:00:00'),(2,'Fri','06:00:00','21:00:00'),(2,'Mon','06:00:00','21:00:00'),(2,'Sat','06:00:00','21:00:00'),(2,'Sun','06:00:00','21:00:00'),(2,'Thu','06:00:00','21:00:00'),(2,'Tue','06:00:00','21:00:00'),(2,'Wed','06:00:00','21:00:00'),(3,'sat','06:00:00','23:00:00'),(3,'sun','06:00:00','23:00:00'),(4,'Mon','01:00:00','21:00:00'),(5,'mon','10:00:00','20:00:00'),(6,'mon','06:00:00','21:00:00'),(6,'tue','06:00:00','21:00:00'),(6,'wed','06:00:00','21:00:00');
+/*!40000 ALTER TABLE `availability` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `brand_model`
+--
+
+DROP TABLE IF EXISTS `brand_model`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `brand_model` (
+  `manufacturer` varchar(30) NOT NULL,
+  `model` varchar(30) NOT NULL,
+  PRIMARY KEY (`manufacturer`,`model`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `brand_model`
+--
+
+LOCK TABLES `brand_model` WRITE;
+/*!40000 ALTER TABLE `brand_model` DISABLE KEYS */;
+INSERT INTO `brand_model` VALUES ('Honda','Civic'),('Honda','Prius'),('Toyota','Corolla'),('Zuzuki','Alto'),('Zuzuki','Swift');
+/*!40000 ALTER TABLE `brand_model` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `comment`
+--
+
+DROP TABLE IF EXISTS `comment`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `comment` (
+  `comment_id` int(11) NOT NULL AUTO_INCREMENT,
+  `vehicle_reg_no` varchar(10) NOT NULL,
+  `comment` longtext NOT NULL,
+  `comment_date` date NOT NULL,
+  `username` varchar(20) NOT NULL,
+  PRIMARY KEY (`comment_id`,`vehicle_reg_no`),
+  KEY `username` (`username`),
+  KEY `vehicle_reg_no` (`vehicle_reg_no`),
+  CONSTRAINT `comment_ibfk_3` FOREIGN KEY (`username`) REFERENCES `account` (`username`),
+  CONSTRAINT `comment_ibfk_4` FOREIGN KEY (`vehicle_reg_no`) REFERENCES `vehicle` (`vehicle_reg_no`) ON DELETE CASCADE
+) ENGINE=InnoDB AUTO_INCREMENT=31 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `comment`
+--
+
+LOCK TABLES `comment` WRITE;
+/*!40000 ALTER TABLE `comment` DISABLE KEYS */;
+INSERT INTO `comment` VALUES (1,'AAA-0232','Pathetic driving. Very bad','2015-03-19','anu'),(2,'AAA-0232','Very unpolite driver. Worst driver ever','2015-03-19','nandz'),(3,'AAA-0232','the vehicle does not have the facilites mentioned in the site','2015-03-19','ruchi'),(4,'KG-3324','Nice exerience. Great driving','2015-03-19','anu'),(5,'KG-3324','Nice vehicle. Works on time. recomend for any one','2015-03-24','ruchi'),(28,'AAA-0232','I hate this','2015-04-19','ruchi'),(29,'AAA-0232','Awesome ride','2015-04-19','ruchi'),(30,'AA-4433','Nice vehicle','2015-04-21','anu');
+/*!40000 ALTER TABLE `comment` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `customer`
+--
+
+DROP TABLE IF EXISTS `customer`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `customer` (
+  `customer_id` int(11) NOT NULL AUTO_INCREMENT,
+  `firstname` longtext NOT NULL,
+  `lastname` longtext NOT NULL,
+  `email_address` varchar(100) NOT NULL,
+  `date_of_registratio` date NOT NULL,
+  `username` varchar(20) NOT NULL,
+  PRIMARY KEY (`customer_id`),
+  KEY `username` (`username`),
+  CONSTRAINT `customer_ibfk_1` FOREIGN KEY (`username`) REFERENCES `account` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `customer`
+--
+
+LOCK TABLES `customer` WRITE;
+/*!40000 ALTER TABLE `customer` DISABLE KEYS */;
+INSERT INTO `customer` VALUES (1,'Thanu','Ruchi','truchiranga@gmail.com','2015-02-27','ruchi'),(2,'Prassad','Madu','prasad@gmail.com','2015-04-19','Praz');
+/*!40000 ALTER TABLE `customer` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `owner`
+--
+
+DROP TABLE IF EXISTS `owner`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `owner` (
+  `owner_id` int(11) NOT NULL AUTO_INCREMENT,
+  `first_name` longtext NOT NULL,
+  `last_name` longtext,
+  `email` varchar(60) NOT NULL,
+  `date_of_registration` date NOT NULL,
+  `username` varchar(20) NOT NULL,
+  PRIMARY KEY (`owner_id`),
+  KEY `username` (`username`),
+  CONSTRAINT `owner_ibfk_1` FOREIGN KEY (`username`) REFERENCES `account` (`username`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `owner`
+--
+
+LOCK TABLES `owner` WRITE;
+/*!40000 ALTER TABLE `owner` DISABLE KEYS */;
+INSERT INTO `owner` VALUES (1,'Kalpani','Welivita','anu.welivita@gmail.com','2015-02-25','anu'),(2,'Ruchiranga','Wickramasinghe','truchiranga@gmail.com','2015-02-25','nandz'),(3,'Thanuditha','Wiki','truchiranga@gmail.com','2015-04-19','Ruchzz');
+/*!40000 ALTER TABLE `owner` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `premiumpayment`
+--
+
+DROP TABLE IF EXISTS `premiumpayment`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `premiumpayment` (
+  `payment_id` int(11) NOT NULL AUTO_INCREMENT,
+  `amount` decimal(12,2) DEFAULT '0.00',
+  `category` tinyint(2) NOT NULL,
+  `commencing_date` date DEFAULT NULL,
+  `vehicle_reg_no` varchar(10) NOT NULL,
+  `owner_id` int(11) NOT NULL,
+  `period` int(11) DEFAULT NULL,
+  `end_date` date DEFAULT NULL,
+  PRIMARY KEY (`payment_id`,`vehicle_reg_no`,`owner_id`),
+  KEY `owner_id` (`owner_id`),
+  KEY `vehicle_reg_no` (`vehicle_reg_no`),
+  CONSTRAINT `premiumpayment_ibfk_2` FOREIGN KEY (`owner_id`) REFERENCES `owner` (`owner_id`),
+  CONSTRAINT `premiumpayment_ibfk_3` FOREIGN KEY (`vehicle_reg_no`) REFERENCES `vehicle` (`vehicle_reg_no`) ON DELETE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `premiumpayment`
+--
+
+LOCK TABLES `premiumpayment` WRITE;
+/*!40000 ALTER TABLE `premiumpayment` DISABLE KEYS */;
+/*!40000 ALTER TABLE `premiumpayment` ENABLE KEYS */;
+UNLOCK TABLES;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = cp850 */ ;
+/*!50003 SET character_set_results = cp850 */ ;
+/*!50003 SET collation_connection  = cp850_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 trigger trigger1 before insert on premiumpayment for each row set NEW.end_date = DATE_ADD(NEW.commencing_date,INTERVAL NEW.period MONTH) */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = cp850 */ ;
+/*!50003 SET character_set_results = cp850 */ ;
+/*!50003 SET collation_connection  = cp850_general_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+/*!50003 CREATE*/ /*!50017 DEFINER=`root`@`localhost`*/ /*!50003 trigger trigger2 before update on premiumpayment for each row set NEW.end_date = DATE_ADD(NEW.commencing_date,INTERVAL NEW.period MONTH) */;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Temporary table structure for view `results`
+--
+
+DROP TABLE IF EXISTS `results`;
+/*!50001 DROP VIEW IF EXISTS `results`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `results` (
+  `vehicle_reg_no` tinyint NOT NULL,
+  `owner_id` tinyint NOT NULL,
+  `vehicle_type` tinyint NOT NULL,
+  `manufacturer` tinyint NOT NULL,
+  `model` tinyint NOT NULL,
+  `capacity` tinyint NOT NULL,
+  `vehicle_description` tinyint NOT NULL,
+  `thumbs_up` tinyint NOT NULL,
+  `thumbs_down` tinyint NOT NULL,
+  `scheme_id` tinyint NOT NULL,
+  `ac_price` tinyint NOT NULL,
+  `non_ac_price` tinyint NOT NULL,
+  `pricing_category` tinyint NOT NULL,
+  `descrption` tinyint NOT NULL,
+  `image` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Table structure for table `scheme`
+--
+
+DROP TABLE IF EXISTS `scheme`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `scheme` (
+  `scheme_id` int(11) NOT NULL AUTO_INCREMENT,
+  `pricing_category` varchar(30) DEFAULT NULL,
+  `descrption` longtext,
+  `category` varchar(30) DEFAULT NULL,
+  `vehicle_reg_no` varchar(10) NOT NULL,
+  `ac_price` decimal(10,2) DEFAULT NULL,
+  `non_ac_price` decimal(10,2) DEFAULT NULL,
+  PRIMARY KEY (`scheme_id`),
+  KEY `vehicle_reg_no` (`vehicle_reg_no`),
+  KEY `category` (`category`),
+  CONSTRAINT `scheme_ibfk_1` FOREIGN KEY (`vehicle_reg_no`) REFERENCES `vehicle` (`vehicle_reg_no`) ON DELETE CASCADE,
+  CONSTRAINT `scheme_ibfk_2` FOREIGN KEY (`category`) REFERENCES `scheme_category` (`category`)
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `scheme`
+--
+
+LOCK TABLES `scheme` WRITE;
+/*!40000 ALTER TABLE `scheme` DISABLE KEYS */;
+INSERT INTO `scheme` VALUES (1,'Per km','Safest mode of transport for the cheapest price. ','City Taxi Scheme','AAA-0232',100.00,80.00),(2,'Per day','Safest mode of transport for the chapest price for long journeys and trips','Tour Scheme','AAA-0232',5000.00,4000.00),(3,'Per km','Safest mode of transport for the cheapest price. ','City Taxi Scheme','KG-3324',90.00,80.00),(4,'Per km','Go to airport with us.','Airport Drop Pickup Scheme','AAA-0232',500.00,NULL),(5,'Per km','Good city taxi','City Taxi Scheme','GS-3456',650.00,700.00),(6,'Per km','Best service for the cheapest prices','City Taxi Scheme','AA-4433',80.00,70.00);
+/*!40000 ALTER TABLE `scheme` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `scheme_category`
+--
+
+DROP TABLE IF EXISTS `scheme_category`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `scheme_category` (
+  `category` varchar(30) NOT NULL,
+  PRIMARY KEY (`category`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `scheme_category`
+--
+
+LOCK TABLES `scheme_category` WRITE;
+/*!40000 ALTER TABLE `scheme_category` DISABLE KEYS */;
+INSERT INTO `scheme_category` VALUES ('Airport Drop Pickup Scheme'),('Cargo Scheme'),('Ceremonial Scheme'),('City Taxi Scheme'),('Construction Scheme'),('Station Drop Pickup Scheme'),('Tour Scheme');
+/*!40000 ALTER TABLE `scheme_category` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `scheme_location`
+--
+
+DROP TABLE IF EXISTS `scheme_location`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `scheme_location` (
+  `scheme_id` int(11) NOT NULL,
+  `location` varchar(50) NOT NULL,
+  PRIMARY KEY (`scheme_id`,`location`),
+  CONSTRAINT `scheme_location_ibfk_1` FOREIGN KEY (`scheme_id`) REFERENCES `scheme` (`scheme_id`) ON DELETE CASCADE ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `scheme_location`
+--
+
+LOCK TABLES `scheme_location` WRITE;
+/*!40000 ALTER TABLE `scheme_location` DISABLE KEYS */;
+INSERT INTO `scheme_location` VALUES (1,'Katubedda'),(1,'Moratuwa'),(1,'Rawathawaththa'),(2,'Anuradhapura'),(2,'Dambulla'),(2,'Galle'),(2,'Hambanthota'),(2,'Katharagama'),(2,'Katubedda'),(2,'Kithulgala'),(2,'Matara'),(2,'Welipanna'),(3,'Hikkaduwa'),(3,'Katubedda'),(3,'Rathmalana'),(3,'Rawathawaththa'),(4,'Colombo'),(4,'Gampaha'),(4,'Katubedda'),(5,'Katubedda'),(5,'Piliyandala'),(5,'Rathmalana'),(5,'Rawathawaththa'),(6,'Galle'),(6,'Karapitiya'),(6,'Kithulampitiya'),(6,'Labuduwa');
+/*!40000 ALTER TABLE `scheme_location` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `station_drop_pickup_scheme`
+--
+
+DROP TABLE IF EXISTS `station_drop_pickup_scheme`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `station_drop_pickup_scheme` (
+  `scheme_id` int(11) NOT NULL,
+  `luggage_charge` decimal(12,2) DEFAULT '0.00',
+  `waiting_charge` decimal(12,2) DEFAULT '0.00',
+  PRIMARY KEY (`scheme_id`),
+  CONSTRAINT `station_drop_pickup_scheme_ibfk_1` FOREIGN KEY (`scheme_id`) REFERENCES `scheme` (`scheme_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `station_drop_pickup_scheme`
+--
+
+LOCK TABLES `station_drop_pickup_scheme` WRITE;
+/*!40000 ALTER TABLE `station_drop_pickup_scheme` DISABLE KEYS */;
+/*!40000 ALTER TABLE `station_drop_pickup_scheme` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `telephone_number`
+--
+
+DROP TABLE IF EXISTS `telephone_number`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `telephone_number` (
+  `owner_id` int(11) NOT NULL,
+  `telephone_number` varchar(10) NOT NULL,
+  PRIMARY KEY (`owner_id`,`telephone_number`),
+  CONSTRAINT `telephone_number_ibfk_1` FOREIGN KEY (`owner_id`) REFERENCES `owner` (`owner_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `telephone_number`
+--
+
+LOCK TABLES `telephone_number` WRITE;
+/*!40000 ALTER TABLE `telephone_number` DISABLE KEYS */;
+INSERT INTO `telephone_number` VALUES (1,'0725647394'),(1,'0778372437'),(1,'0779977666'),(2,'0779283741'),(2,'0785744437'),(3,'0783924439');
+/*!40000 ALTER TABLE `telephone_number` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `vehicle`
+--
+
+DROP TABLE IF EXISTS `vehicle`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `vehicle` (
+  `vehicle_reg_no` varchar(10) NOT NULL,
+  `vehicle_type` varchar(30) NOT NULL,
+  `manufacturer` varchar(30) NOT NULL,
+  `model` varchar(30) NOT NULL,
+  `capacity` int(11) DEFAULT NULL,
+  `vehicle_description` longtext,
+  `isActive` tinyint(1) DEFAULT '1',
+  `owner_id` int(11) NOT NULL,
+  `image` varchar(50) DEFAULT NULL,
+  `register_date` date DEFAULT NULL,
+  `thumbs_up` int(11) DEFAULT '0',
+  `thumbs_down` int(11) DEFAULT '0',
+  PRIMARY KEY (`vehicle_reg_no`),
+  KEY `vehicle_type` (`vehicle_type`),
+  KEY `owner_id` (`owner_id`),
+  KEY `manufacturer` (`manufacturer`,`model`),
+  CONSTRAINT `vehicle_ibfk_1` FOREIGN KEY (`vehicle_type`) REFERENCES `vehicle_type` (`vehicle_type`),
+  CONSTRAINT `vehicle_ibfk_2` FOREIGN KEY (`owner_id`) REFERENCES `owner` (`owner_id`),
+  CONSTRAINT `vehicle_ibfk_3` FOREIGN KEY (`manufacturer`, `model`) REFERENCES `brand_model` (`manufacturer`, `model`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `vehicle`
+--
+
+LOCK TABLES `vehicle` WRITE;
+/*!40000 ALTER TABLE `vehicle` DISABLE KEYS */;
+INSERT INTO `vehicle` VALUES ('AA-4433','Cab','Honda','Civic',3,'Good condition',1,2,'AA-4433.jpg','2015-04-21',8,5),('AAA-0232','Car','Toyota','Corolla',4,'The car has an awesome sound system with full AC. Has so much leg space for the passengers to make the journey a comfortable one.',1,1,'AAA-0232.jpeg','2015-04-10',7,3),('GS-3456','Cab','Zuzuki','Swift',5,'Hi fi vehicle',1,2,'GS-3456.jpg','2015-04-21',6,0),('KG-3324','Car','Zuzuki','Swift',4,'The car has an awesome sound system with full AC. Has so much leg space for the passengers to make the journey a comfortable one.',1,1,'KG-3324.jpeg','2015-04-06',6,5);
+/*!40000 ALTER TABLE `vehicle` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Temporary table structure for view `vehicle_owner_tp`
+--
+
+DROP TABLE IF EXISTS `vehicle_owner_tp`;
+/*!50001 DROP VIEW IF EXISTS `vehicle_owner_tp`*/;
+SET @saved_cs_client     = @@character_set_client;
+SET character_set_client = utf8;
+/*!50001 CREATE TABLE `vehicle_owner_tp` (
+  `vehicle_reg_no` tinyint NOT NULL,
+  `isactive` tinyint NOT NULL,
+  `vehicle_Type` tinyint NOT NULL,
+  `ownerName` tinyint NOT NULL,
+  `date_of_registration` tinyint NOT NULL,
+  `telephone_number` tinyint NOT NULL,
+  `manufacturer` tinyint NOT NULL,
+  `model` tinyint NOT NULL
+) ENGINE=MyISAM */;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Table structure for table `vehicle_thumbs`
+--
+
+DROP TABLE IF EXISTS `vehicle_thumbs`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `vehicle_thumbs` (
+  `vehicle_reg_no` varchar(10) NOT NULL DEFAULT '',
+  `username` varchar(20) NOT NULL DEFAULT '',
+  PRIMARY KEY (`vehicle_reg_no`,`username`),
+  KEY `username` (`username`),
+  CONSTRAINT `vehicle_thumbs_ibfk_1` FOREIGN KEY (`vehicle_reg_no`) REFERENCES `vehicle` (`vehicle_reg_no`),
+  CONSTRAINT `vehicle_thumbs_ibfk_2` FOREIGN KEY (`username`) REFERENCES `account` (`username`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `vehicle_thumbs`
+--
+
+LOCK TABLES `vehicle_thumbs` WRITE;
+/*!40000 ALTER TABLE `vehicle_thumbs` DISABLE KEYS */;
+INSERT INTO `vehicle_thumbs` VALUES ('AA-4433','prasad'),('AA-4433','ruchi');
+/*!40000 ALTER TABLE `vehicle_thumbs` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Table structure for table `vehicle_type`
+--
+
+DROP TABLE IF EXISTS `vehicle_type`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `vehicle_type` (
+  `vehicle_type` varchar(30) NOT NULL,
+  PRIMARY KEY (`vehicle_type`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+/*!40101 SET character_set_client = @saved_cs_client */;
+
+--
+-- Dumping data for table `vehicle_type`
+--
+
+LOCK TABLES `vehicle_type` WRITE;
+/*!40000 ALTER TABLE `vehicle_type` DISABLE KEYS */;
+INSERT INTO `vehicle_type` VALUES ('Cab'),('Car'),('Nano Car');
+/*!40000 ALTER TABLE `vehicle_type` ENABLE KEYS */;
+UNLOCK TABLES;
+
+--
+-- Final view structure for view `results`
+--
+
+/*!50001 DROP TABLE IF EXISTS `results`*/;
+/*!50001 DROP VIEW IF EXISTS `results`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = latin1 */;
+/*!50001 SET character_set_results     = latin1 */;
+/*!50001 SET collation_connection      = latin1_swedish_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `results` AS select distinct `s`.`vehicle_reg_no` AS `vehicle_reg_no`,`o`.`owner_id` AS `owner_id`,`v`.`vehicle_type` AS `vehicle_type`,`v`.`manufacturer` AS `manufacturer`,`v`.`model` AS `model`,`v`.`capacity` AS `capacity`,`v`.`vehicle_description` AS `vehicle_description`,`v`.`thumbs_up` AS `thumbs_up`,`v`.`thumbs_down` AS `thumbs_down`,`s`.`scheme_id` AS `scheme_id`,`s`.`ac_price` AS `ac_price`,`s`.`non_ac_price` AS `non_ac_price`,`s`.`pricing_category` AS `pricing_category`,`s`.`descrption` AS `descrption`,`v`.`image` AS `image` from (((`scheme_location` join `scheme` `s` on((`scheme_location`.`scheme_id` = `s`.`scheme_id`))) join `vehicle` `v` on((`s`.`vehicle_reg_no` = `v`.`vehicle_reg_no`))) join `owner` `o` on((`v`.`owner_id` = `o`.`owner_id`))) where ((`s`.`category` = 'City Taxi Scheme') and (`v`.`isActive` = 1)) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `vehicle_owner_tp`
+--
+
+/*!50001 DROP TABLE IF EXISTS `vehicle_owner_tp`*/;
+/*!50001 DROP VIEW IF EXISTS `vehicle_owner_tp`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8 */;
+/*!50001 SET character_set_results     = utf8 */;
+/*!50001 SET collation_connection      = utf8_general_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `vehicle_owner_tp` AS select `vehicle`.`vehicle_reg_no` AS `vehicle_reg_no`,`vehicle`.`isActive` AS `isactive`,`vehicle`.`vehicle_type` AS `vehicle_Type`,concat(`owner`.`first_name`,' ',`owner`.`last_name`) AS `ownerName`,`owner`.`date_of_registration` AS `date_of_registration`,`telephone_number`.`telephone_number` AS `telephone_number`,`vehicle`.`manufacturer` AS `manufacturer`,`vehicle`.`model` AS `model` from ((`vehicle` join `owner` on((`vehicle`.`owner_id` = `owner`.`owner_id`))) join `telephone_number` on((`vehicle`.`owner_id` = `telephone_number`.`owner_id`))) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+/*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
+
+/*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
+/*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;
+/*!40014 SET UNIQUE_CHECKS=@OLD_UNIQUE_CHECKS */;
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
+/*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
+
+-- Dump completed on 2015-04-22 18:32:15

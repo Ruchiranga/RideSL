@@ -64,7 +64,7 @@
             </div>
             <div id = "vehiclePane" class="box">
                 <div style = 'width: 96%; padding: 2px; padding-bottom: 0px; padding-top: 20px; padding-left: 20px'>
-                    <a href="<?php echo URL; ?>driverRegister"><input type="submit" value="Add new vehicle" class="button" style="float: left"></a>
+                    <a href="<?php echo URL; ?>vehicleRegister"><input type="submit" value="Add new vehicle" class="button" style="float: left"></a>
                     <br><br><br>
                     <?php
                     if ($this->vehicleList != NULL) {

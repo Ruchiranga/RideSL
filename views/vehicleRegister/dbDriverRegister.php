@@ -688,3 +688,5 @@ if (isset($_POST['cargo'])) {
         die('Error: ' . mysql_error());
     }
 }
+
+header('Location: http://localhost/RideSL/driverhome');  

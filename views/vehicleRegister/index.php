@@ -34,8 +34,7 @@
     ?>
 
     <script type="text/javascript">
-        var URL = <?php echo URL; ?>;
-    </script>
+        var URL = <?php echo URL; ?>;</script>
 </head
 
 
@@ -55,7 +54,7 @@
         <div id = "form_container" style = " border-left: 1px solid #CCCCCC;  border-right: 1px solid #CCCCCC;  border-top: 1px solid #CCCCCC;  border-bottom: 1px solid #CCCCCC;">
             <h1><a> Add New Vehicle </a></h1>
 
-            <form id = "driverRegister" class = "appnitro" method = "POST" action = "views/driverRegister/dbDriverRegister.php"  onsubmit="return checkForm(this);">
+            <form id = "vehicleRegister" name = "vehicleRegister" class = "appnitro" method = "POST" action = "views/vehicleRegister/dbDriverRegister.php"  onsubmit="return checkForm(this);">
                 <div class = "form_description" style="color: #0b75b2; font-size: 30px; font-family: Times New Roman;">
                     <center> Add New Vehicle </center>
                 </div>
@@ -87,17 +86,23 @@
                             </div>	
                         </li>
 
+
+
                         <!--Manufacturer-->
-                        <li id="manufacturer"><label class="description" style="color: #0b75b2; font-size: 14px;">Manufacturer</label>
+                        <li><label class = "description" style = "color: #0b75b2; font-size: 14px;">Manufacturer</label>
                             <div>
-
-
                                 <?php
-                                $sql = "SELECT manufacturer FROM brand_model";
+                                $sql = "SELECT distinct manufacturer FROM brand_model";
                                 $result = mysql_query($sql);
-
-                                echo "<select id = 'manufacturer' name = 'manufacturer' style='width: 150px; height: 28px; font-family: Times New Roman; font-size: 18px;'>";
-                                while ($row = mysql_fetch_array($result)) {
+                                $sql = "SELECT model FROM brand_model WHERE manufacturer = "."Toyota";
+//                                echo $sql;
+                                ?>
+                                
+                                
+                                <select id = 'manufacturer' name = 'manufacturer' style='width: 150px; height: 28px; font-family: Times New Roman; font-size: 18px;' >";
+                                
+                                    <?php
+                                        while ($row = mysql_fetch_array($result)) {
                                     echo "<option style='font-family: Times New Roman; font-size: 18px;' value='" . $row['manufacturer'] . "'>" . $row['manufacturer'] . "</option>";
                                 }
                                 echo '</select>';
@@ -105,8 +110,16 @@
                             </div>
                         </li>
 
+<!--                        <select name="opttwo" size="1">
+                            <option value=" " selected="selected"> Please select one of the options above</option>
+                        </select>-->
+
+<!--                        <select name="selectmodel" size="1"> 
+                            <option value=" " selected>First select a car</option> 
+                        </select><br><br> -->
+
                         <!--Model-->
-                        <li id="model"><label class="description" style="color: #0b75b2; font-size: 14px;">Model</label>
+                        <li><label class="description" style="color: #0b75b2; font-size: 14px;">Model</label>
                             <div id="modelPane">
                                 <?php
                                 $sql = "SELECT model FROM brand_model";
@@ -144,7 +157,7 @@
                         <br>
 
                         <!--Image-->
-                        <a href="http://localhost/ridesl/views/driverRegister/image_cropper/upload_crop.php?number=" onclick="location.href = this.href + document.getElementById('regNoin').value;
+                        <a href="http://localhost/ridesl/views/vehicleRegister/image_cropper/upload_crop.php?number=" onclick="location.href = this.href + document.getElementById('regNoin').value;
                                 return false;" style="color: #0b75b2; font-size: 14px;">
 
                             <b>Upload Images >></b></a>
@@ -216,7 +229,7 @@
                             <li class="section_break">
                                 <h3 style="color: #0b75b2; font-size: 13px">
                                     <b>Availability</b>
-                                    <p align = "center" style = "font-size: 13px"> Enter duration in the format hh:mm:ss</p>
+                                    <p align = "center" style = "font-size: 13px"></p>
                                 </h3>
                             </li>
 
@@ -229,8 +242,7 @@
                                         </span>
                                         <span>
                                             From 
-                                            <!--12:45:56-->
-                                            <input type="text" style="width: 100px" name="start_time_mondayCt" id ="start_time_mondayCt" disabled=true/> To <input type="text" style="width: 100px" id="end_time_mondayCt" name="end_time_mondayCt" id ="end_time_mondayCt" disabled=true/>
+                                            <input type="time" name="start_time_mondayCt" id ="start_time_mondayCt" disabled=true>To <input type="time" style="width: 100px" id="end_time_mondayCt" name="end_time_mondayCt" disabled=true/>
                                         </span>  
                                     </span>
                                 </li>
@@ -243,7 +255,7 @@
                                         </span>
                                         <span>
                                             From 
-                                            <input type="text" style="width: 100px" name="start_time_tuesdayCt" id ="start_time_tuesdayCt" disabled=true> To <input type="text" style="width: 100px" name="end_time_tuesdayCt" id ="end_time_tuesdayCt" disabled=true>
+                                            <input type="time" style="width: 100px" name="start_time_tuesdayCt" id ="start_time_tuesdayCt" disabled=true> To <input type="time" style="width: 100px" name="end_time_tuesdayCt" id ="end_time_tuesdayCt" disabled=true>
                                         </span>  
                                     </span>                   
                                 </li>
@@ -256,7 +268,7 @@
                                         </span>
                                         <span>
                                             From 
-                                            <input type="text" style="width: 100px" name="start_time_wednesdayCt" id ="start_time_wednesdayCt" disabled=true> To <input type="text" style="width: 100px" name="end_time_wednesdayCt" id ="end_time_wednesdayCt" disabled=true>
+                                            <input type="time" style="width: 100px" name="start_time_wednesdayCt" id ="start_time_wednesdayCt" disabled=true> To <input type="time" style="width: 100px" name="end_time_wednesdayCt" id ="end_time_wednesdayCt" disabled=true>
                                         </span>  
                                     </span>                
                                 </li>
@@ -269,8 +281,7 @@
                                         </span>
                                         <span>
                                             From 
-
-                                            <input type="text" style="width: 100px" name="start_time_thursdayCt" id ="start_time_thursdayCt" disabled=true> To <input type="text" style="width: 100px" name="end_time_thursdayCt" id ="end_time_thursdayCt" disabled=true>
+                                            <input type="time" style="width: 100px" name="start_time_thursdayCt" id ="start_time_thursdayCt" disabled=true> To <input type="time" style="width: 100px" name="end_time_thursdayCt" id ="end_time_thursdayCt" disabled=true>
                                         </span>  
                                     </span>                
                                 </li>
@@ -283,7 +294,7 @@
                                         </span>
                                         <span>
                                             From 
-                                            <input type="text" style="width: 100px" name="start_time_fridayCt" id ="start_time_fridayCt" disabled=true> To <input type="text" style="width: 100px" name="end_time_fridayCt" id ="end_time_fridayCt" disabled=true>
+                                            <input type="time" style="width: 100px" name="start_time_fridayCt" id ="start_time_fridayCt" disabled=true> To <input type="time" style="width: 100px" name="end_time_fridayCt" id ="end_time_fridayCt" disabled=true>
                                         </span>  
                                     </span>                   
                                 </li>
@@ -296,7 +307,7 @@
                                         </span>
                                         <span>
                                             From 
-                                            <input type="text" style="width: 100px" name="start_time_saturdayCt" id ="start_time_saturdayCt" disabled=true> To <input type="text" style="width: 100px" name="end_time_saturdayCt" id ="end_time_saturdayCt" disabled=true>
+                                            <input type="time" style="width: 100px" name="start_time_saturdayCt" id ="start_time_saturdayCt" disabled=true> To <input type="time" style="width: 100px" name="end_time_saturdayCt" id ="end_time_saturdayCt" disabled=true>
                                         </span>  
                                     </span>                    
                                 </li>
@@ -309,7 +320,7 @@
                                         </span>
                                         <span>
                                             From 
-                                            <input type="text" style="width: 100px" name="start_time_sundayCt" id ="start_time_sundayCt" disabled=true> To <input type="text" style="width: 100px" name="end_time_sundayCt" id ="end_time_sundayCt" disabled=true>
+                                            <input type="time" style="width: 100px" name="start_time_sundayCt" id ="start_time_sundayCt" disabled=true> To <input type="time" style="width: 100px" name="end_time_sundayCt" id ="end_time_sundayCt" disabled=true>
                                         </span>  
                                     </span>               
                                 </li>
@@ -376,7 +387,7 @@
                             <li class="section_break">
                                 <h3 style="color: #0b75b2; font-size: 13px;">
                                     <b>Availability</b>
-                                    <p align = "center" style = "font-size: 13px"> Enter duration in the format hh:mm:ss</p>
+                                    <p align = "center" style = "font-size: 13px"></p>
                                 </h3>
                             </li>
 
@@ -389,7 +400,7 @@
                                         </span>
                                         <span>
                                             From 
-                                            <input type="text" style="width: 100px" name="start_time_mondayT" id ="start_time_mondayT" disabled=true/> To <input type="text" style="width: 100px" name="end_time_mondayT" id ="end_time_mondayT" disabled=true/>
+                                            <input type="time" style="width: 100px" name="start_time_mondayT" id ="start_time_mondayT" disabled=true/> To <input type="time" style="width: 100px" name="end_time_mondayT" id ="end_time_mondayT" disabled=true/>
                                         </span>  
                                     </span>
                                 </li>
@@ -402,7 +413,7 @@
                                         </span>
                                         <span>
                                             From 
-                                            <input type="text" style="width: 100px" name="start_time_tuesdayT" id ="start_time_tuesdayT" disabled=true> To <input type="text" style="width: 100px" name="end_time_tuesdayT" id ="end_time_tuesdayT" disabled=true>
+                                            <input type="time" style="width: 100px" name="start_time_tuesdayT" id ="start_time_tuesdayT" disabled=true> To <input type="time" style="width: 100px" name="end_time_tuesdayT" id ="end_time_tuesdayT" disabled=true>
                                         </span>  
                                     </span>                   
                                 </li>
@@ -415,7 +426,7 @@
                                         </span>
                                         <span>
                                             From 
-                                            <input type="text" style="width: 100px" name="start_time_wednesdayT" id ="start_time_wednesdayT" disabled=true> To <input type="text" style="width: 100px" name="end_time_wednesdayT" id ="end_time_wednesdayT" disabled=true>
+                                            <input type="time" style="width: 100px" name="start_time_wednesdayT" id ="start_time_wednesdayT" disabled=true> To <input type="time" style="width: 100px" name="end_time_wednesdayT" id ="end_time_wednesdayT" disabled=true>
                                         </span>  
                                     </span>                
                                 </li>
@@ -428,7 +439,7 @@
                                         </span>
                                         <span>
                                             From 
-                                            <input type="text" style="width: 100px" name="start_time_thursdayT" id ="start_time_thursdayT" disabled=true> To <input type="text" style="width: 100px" name="end_time_thursdayT" id ="end_time_thursdayT" disabled=true>
+                                            <input type="time" style="width: 100px" name="start_time_thursdayT" id ="start_time_thursdayT" disabled=true> To <input type="time" style="width: 100px" name="end_time_thursdayT" id ="end_time_thursdayT" disabled=true>
                                         </span>  
                                     </span>                
                                 </li>
@@ -441,7 +452,7 @@
                                         </span>
                                         <span>
                                             From 
-                                            <input type="text" style="width: 100px" name="start_time_fridayT" id ="start_time_fridayT" disabled=true> To <input type="text" style="width: 100px" name="end_time_fridayT" id ="end_time_fridayT" disabled=true>
+                                            <input type="time" style="width: 100px" name="start_time_fridayT" id ="start_time_fridayT" disabled=true> To <input type="time" style="width: 100px" name="end_time_fridayT" id ="end_time_fridayT" disabled=true>
                                         </span>  
                                     </span>                   
                                 </li>
@@ -454,7 +465,7 @@
                                         </span>
                                         <span>
                                             From 
-                                            <input type="text" style="width: 100px" name="start_time_saturdayT" id ="start_time_saturdayT" disabled=true> To <input type="text" style="width: 100px" name="end_time_saturdayT" id ="end_time_saturdayT" disabled=true>
+                                            <input type="time" style="width: 100px" name="start_time_saturdayT" id ="start_time_saturdayT" disabled=true> To <input type="time" style="width: 100px" name="end_time_saturdayT" id ="end_time_saturdayT" disabled=true>
                                         </span>  
                                     </span>                    
                                 </li>
@@ -467,7 +478,7 @@
                                         </span>
                                         <span>
                                             From 
-                                            <input type="text" style="width: 100px" name="start_time_sundayT" id ="start_time_sundayT" disabled=true> To <input type="text" style="width: 100px" name="end_time_sundayT" id ="end_time_sundayT" disabled=true>
+                                            <input type="time" style="width: 100px" name="start_time_sundayT" id ="start_time_sundayT" disabled=true> To <input type="time" style="width: 100px" name="end_time_sundayT" id ="end_time_sundayT" disabled=true>
                                         </span>  
                                     </span>               
                                 </li>
@@ -573,7 +584,7 @@
                             <li class="section_break">
                                 <h3 style="color: #0b75b2; font-size: 13px;">
                                     <b>Availability</b>
-                                    <p align = "center" style = "font-size: 13px"> Enter duration in the format hh:mm:ss</p>
+                                    <p align = "center" style = "font-size: 13px"></p>
                                 </h3>
                             </li>
 
@@ -586,7 +597,7 @@
                                         </span>
                                         <span>
                                             From 
-                                            <input type="text" style="width: 100px" name="start_time_mondayAp" id ="start_time_mondayAp" disabled=true/> To <input type="text" style="width: 100px" name="end_time_mondayAp" id ="end_time_mondayAp" disabled=true/>
+                                            <input type="time" style="width: 100px" name="start_time_mondayAp" id ="start_time_mondayAp" disabled=true/> To <input type="time" style="width: 100px" name="end_time_mondayAp" id ="end_time_mondayAp" disabled=true/>
                                         </span>  
                                     </span>
                                 </li>
@@ -599,7 +610,7 @@
                                         </span>
                                         <span>
                                             From 
-                                            <input type="text" style="width: 100px" name="start_time_tuesdayAp" id ="start_time_tuesdayAp" disabled=true> To <input type="text" style="width: 100px" name="end_time_tuesdayAp" id ="end_time_tuesdayAp" disabled=true>
+                                            <input type="time" style="width: 100px" name="start_time_tuesdayAp" id ="start_time_tuesdayAp" disabled=true> To <input type="time" style="width: 100px" name="end_time_tuesdayAp" id ="end_time_tuesdayAp" disabled=true>
                                         </span>  
                                     </span>                   
                                 </li>
@@ -612,7 +623,7 @@
                                         </span>
                                         <span>
                                             From 
-                                            <input type="text" style="width: 100px" name="start_time_wednesdayAp" id ="start_time_wednesdayAp" disabled=true> To <input type="text" style="width: 100px" name="end_time_wednesdayAp" id ="end_time_wednesdayAp" disabled=true>
+                                            <input type="time" style="width: 100px" name="start_time_wednesdayAp" id ="start_time_wednesdayAp" disabled=true> To <input type="time" style="width: 100px" name="end_time_wednesdayAp" id ="end_time_wednesdayAp" disabled=true>
                                         </span>  
                                     </span>                
                                 </li>
@@ -625,7 +636,7 @@
                                         </span>
                                         <span>
                                             From 
-                                            <input type="text" style="width: 100px" name="start_time_thursdayAp" id ="start_time_thursdayAp" disabled=true> To <input type="text" style="width: 100px" name="end_time_thursdayAp" id ="end_time_thursdayAp" disabled=true>
+                                            <input type="time" style="width: 100px" name="start_time_thursdayAp" id ="start_time_thursdayAp" disabled=true> To <input type="time" style="width: 100px" name="end_time_thursdayAp" id ="end_time_thursdayAp" disabled=true>
                                         </span>  
                                     </span>                
                                 </li>
@@ -638,7 +649,7 @@
                                         </span>
                                         <span>
                                             From 
-                                            <input type="text" style="width: 100px" name="start_time_fridayAp" id ="start_time_fridayAp" disabled=true> To <input type="text" style="width: 100px" name="end_time_fridayAp" id ="end_time_fridayAp" disabled=true>
+                                            <input type="time" style="width: 100px" name="start_time_fridayAp" id ="start_time_fridayAp" disabled=true> To <input type="time" style="width: 100px" name="end_time_fridayAp" id ="end_time_fridayAp" disabled=true>
                                         </span>  
                                     </span>                   
                                 </li>
@@ -651,7 +662,7 @@
                                         </span>
                                         <span>
                                             From 
-                                            <input type="text" style="width: 100px" name="start_time_saturdayAp" id ="start_time_saturdayAp" disabled=true> To <input type="text" style="width: 100px" name="end_time_saturdayAp" id ="end_time_saturdayAp" disabled=true>
+                                            <input type="time" style="width: 100px" name="start_time_saturdayAp" id ="start_time_saturdayAp" disabled=true> To <input type="time" style="width: 100px" name="end_time_saturdayAp" id ="end_time_saturdayAp" disabled=true>
                                         </span>  
                                     </span>                    
                                 </li>
@@ -664,7 +675,7 @@
                                         </span>
                                         <span>
                                             From 
-                                            <input type="text" style="width: 100px" name="start_time_sundayAp" id ="start_time_sundayAp" disabled=true> To <input type="text" style="width: 100px" name="end_time_sundayAp" id ="end_time_sundayAp" disabled=true>
+                                            <input type="time" style="width: 100px" name="start_time_sundayAp" id ="start_time_sundayAp" disabled=true> To <input type="time" style="width: 100px" name="end_time_sundayAp" id ="end_time_sundayAp" disabled=true>
                                         </span>  
                                     </span>               
                                 </li>
@@ -769,7 +780,7 @@
                             <li class="section_break">
                                 <h3 style="color: #0b75b2; font-size: 13px;">
                                     <b>Availability</b>
-                                    <p align = "center" style = "font-size: 13px"> Enter duration in the format hh:mm:ss</p>
+                                    <p align = "center" style = "font-size: 13px"></p>
                                 </h3>
                             </li>
 
@@ -782,7 +793,7 @@
                                         </span>
                                         <span>
                                             From 
-                                            <input type="text" style="width: 100px" name="start_time_mondaySt" id ="start_time_mondaySt" disabled=true/> To <input type="text" style="width: 100px" name="end_time_mondaySt" id ="end_time_mondaySt" disabled=true/>
+                                            <input type="time" style="width: 100px" name="start_time_mondaySt" id ="start_time_mondaySt" disabled=true/> To <input type="time" style="width: 100px" name="end_time_mondaySt" id ="end_time_mondaySt" disabled=true/>
                                         </span>  
                                     </span>
                                 </li>
@@ -795,7 +806,7 @@
                                         </span>
                                         <span>
                                             From 
-                                            <input type="text" style="width: 100px" name="start_time_tuesdaySt" id ="start_time_tuesdaySt" disabled=true> To <input type="text" style="width: 100px" name="end_time_tuesdaySt" id ="end_time_tuesdaySt" disabled=true>
+                                            <input type="time" style="width: 100px" name="start_time_tuesdaySt" id ="start_time_tuesdaySt" disabled=true> To <input type="time" style="width: 100px" name="end_time_tuesdaySt" id ="end_time_tuesdaySt" disabled=true>
                                         </span>  
                                     </span>                   
                                 </li>
@@ -808,7 +819,7 @@
                                         </span>
                                         <span>
                                             From 
-                                            <input type="text" style="width: 100px" name="start_time_wednesdaySt" id ="start_time_wednesdaySt" disabled=true> To <input type="text" style="width: 100px" name="end_time_wednesdaySt" id ="end_time_wednesdaySt" disabled=true>
+                                            <input type="time" style="width: 100px" name="start_time_wednesdaySt" id ="start_time_wednesdaySt" disabled=true> To <input type="time" style="width: 100px" name="end_time_wednesdaySt" id ="end_time_wednesdaySt" disabled=true>
                                         </span>  
                                     </span>                
                                 </li>
@@ -821,7 +832,7 @@
                                         </span>
                                         <span>
                                             From 
-                                            <input type="text" style="width: 100px" name="start_time_thursdaySt" id ="start_time_thursdaySt" disabled=true> To <input type="text" style="width: 100px" name="end_time_thursdaySt" id ="end_time_thursdaySt" disabled=true>
+                                            <input type="time" style="width: 100px" name="start_time_thursdaySt" id ="start_time_thursdaySt" disabled=true> To <input type="time" style="width: 100px" name="end_time_thursdaySt" id ="end_time_thursdaySt" disabled=true>
                                         </span>  
                                     </span>                
                                 </li>
@@ -834,7 +845,7 @@
                                         </span>
                                         <span>
                                             From 
-                                            <input type="text" style="width: 100px" name="start_time_fridaySt" id ="start_time_fridaySt" disabled=true> To <input type="text" style="width: 100px" name="end_time_fridaySt" id ="end_time_fridaySt" disabled=true>
+                                            <input type="time" style="width: 100px" name="start_time_fridaySt" id ="start_time_fridaySt" disabled=true> To <input type="time" style="width: 100px" name="end_time_fridaySt" id ="end_time_fridaySt" disabled=true>
                                         </span>  
                                     </span>                   
                                 </li>
@@ -847,7 +858,7 @@
                                         </span>
                                         <span>
                                             From 
-                                            <input type="text" style="width: 100px" name="start_time_saturdaySt" id ="start_time_saturdaySt" disabled=true> To <input type="text" style="width: 100px" name="end_time_saturdaySt" id ="end_time_saturdaySt" disabled=true>
+                                            <input type="time" style="width: 100px" name="start_time_saturdaySt" id ="start_time_saturdaySt" disabled=true> To <input type="time" style="width: 100px" name="end_time_saturdaySt" id ="end_time_saturdaySt" disabled=true>
                                         </span>  
                                     </span>                    
                                 </li>
@@ -860,7 +871,7 @@
                                         </span>
                                         <span>
                                             From 
-                                            <input type="text" style="width: 100px" name="start_time_sundaySt" id ="start_time_sundaySt" disabled=true> To <input type="text" style="width: 100px" name="end_time_sundaySt" id ="end_time_sundaySt" disabled=true>
+                                            <input type="time" style="width: 100px" name="start_time_sundaySt" id ="start_time_sundaySt" disabled=true> To <input type="time" style="width: 100px" name="end_time_sundaySt" id ="end_time_sundaySt" disabled=true>
                                         </span>  
                                     </span>               
                                 </li>
@@ -928,7 +939,7 @@
                             <li class="section_break">
                                 <h3 style="color: #0b75b2; font-size: 13px;">
                                     <b>Availability</b>
-                                    <p align = "center" style = "font-size: 13px"> Enter duration in the format hh:mm:ss</p>
+                                    <p align = "center" style = "font-size: 13px"></p>
                                 </h3>
                             </li>
 
@@ -940,8 +951,8 @@
                                             <input id="mondayInC" name="mondayInC" type="checkbox" onclick="showMondayC()" />Monday&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
                                         </span>
                                         <span>
-                                            From 
-                                            <input type="text" style="width: 100px" name="start_time_mondayC" id ="start_time_mondayC" disabled=true/> To <input type="text" style="width: 100px" name="end_time_mondayC" id ="end_time_mondayC" disabled=true/>
+                                            From                                            
+                                            <input type="time" style="width: 100px" name="start_time_mondayC" id ="start_time_mondayC" disabled=true/> To <input type="time" style="width: 100px" name="end_time_mondayC" id ="end_time_mondayC" disabled=true/>
                                         </span>  
                                     </span>
                                 </li>
@@ -954,7 +965,7 @@
                                         </span>
                                         <span>
                                             From 
-                                            <input type="text" style="width: 100px" name="start_time_tuesdayC" id ="start_time_tuesdayC" disabled=true> To <input type="text" style="width: 100px" name="end_time_tuesdayC" id ="end_time_tuesdayC" disabled=true>
+                                            <input type="time" style="width: 100px" name="start_time_tuesdayC" id ="start_time_tuesdayC" disabled=true> To <input type="time" style="width: 100px" name="end_time_tuesdayC" id ="end_time_tuesdayC" disabled=true>
                                         </span>  
                                     </span>                   
                                 </li>
@@ -967,7 +978,7 @@
                                         </span>
                                         <span>
                                             From 
-                                            <input type="text" style="width: 100px" name="start_time_wednesdayC" id ="start_time_wednesdayC" disabled=true> To <input type="text" style="width: 100px" name="end_time_wednesdayC" id ="end_time_wednesdayC" disabled=true>
+                                            <input type="time" style="width: 100px" name="start_time_wednesdayC" id ="start_time_wednesdayC" disabled=true> To <input type="time" style="width: 100px" name="end_time_wednesdayC" id ="end_time_wednesdayC" disabled=true>
                                         </span>  
                                     </span>                
                                 </li>
@@ -980,7 +991,7 @@
                                         </span>
                                         <span>
                                             From 
-                                            <input type="text" style="width: 100px" name="start_time_thursdayC" id ="start_time_thursdayC" disabled=true> To <input type="text" style="width: 100px" name="end_time_thursdayC" id ="end_time_thursdayC" disabled=true>
+                                            <input type="time" style="width: 100px" name="start_time_thursdayC" id ="start_time_thursdayC" disabled=true> To <input type="time" style="width: 100px" name="end_time_thursdayC" id ="end_time_thursdayC" disabled=true>
                                         </span>  
                                     </span>                
                                 </li>
@@ -993,7 +1004,7 @@
                                         </span>
                                         <span>
                                             From 
-                                            <input type="text" style="width: 100px" name="start_time_fridayC" id ="start_time_fridayC" disabled=true> To <input type="text" style="width: 100px" name="end_time_fridayC" id ="end_time_fridayC" disabled=true>
+                                            <input type="time" style="width: 100px" name="start_time_fridayC" id ="start_time_fridayC" disabled=true> To <input type="time" style="width: 100px" name="end_time_fridayC" id ="end_time_fridayC" disabled=true>
                                         </span>  
                                     </span>                   
                                 </li>
@@ -1006,7 +1017,7 @@
                                         </span>
                                         <span>
                                             From 
-                                            <input type="text" style="width: 100px" name="start_time_saturdayC" id ="start_time_saturdayC" disabled=true> To <input type="text" style="width: 100px" name="end_time_saturdayC" id ="end_time_saturdayC" disabled=true>
+                                            <input type="time" style="width: 100px" name="start_time_saturdayC" id ="start_time_saturdayC" disabled=true> To <input type="time" style="width: 100px" name="end_time_saturdayC" id ="end_time_saturdayC" disabled=true>
                                         </span>  
                                     </span>                    
                                 </li>
@@ -1019,7 +1030,7 @@
                                         </span>
                                         <span>
                                             From 
-                                            <input type="text" style="width: 100px" name="start_time_sundayC" id ="start_time_sundayC" disabled=true> To <input type="text" style="width: 100px" name="end_time_sundayC" id ="end_time_sundayC" disabled=true>
+                                            <input type="time" style="width: 100px" name="start_time_sundayC" id ="start_time_sundayC" disabled=true> To <input type="time" style="width: 100px" name="end_time_sundayC" id ="end_time_sundayC" disabled=true>
                                         </span>  
                                     </span>               
                                 </li>
@@ -1140,7 +1151,6 @@
         }
     }
     ;
-
     function showHideTour()
     {
         if (document.getElementById('tour').checked)
@@ -1153,7 +1163,6 @@
         }
     }
     ;
-
     function showHideAirPort()
     {
         if (document.getElementById('airPort').checked)
@@ -1166,7 +1175,6 @@
         }
     }
     ;
-
     function showHideStation()
     {
         if (document.getElementById('station').checked)
@@ -1179,7 +1187,6 @@
         }
     }
     ;
-
     function showHideCeremony()
     {
         if (document.getElementById('ceremony').checked)
@@ -1192,7 +1199,6 @@
         }
     }
     ;
-
     function showHideConstruction() {
         if (document.getElementById('construction').checked)
         {
@@ -1252,7 +1258,7 @@
         if (document.getElementById('WithoutAcCt').checked)
 
 
-        
+
         {
             document.getElementById("pricewithoutacInCt").disabled = false;
             document.getElementById("pricewithoutacOptCt").disabled = false;
@@ -1538,7 +1544,6 @@
             document.getElementById("waitingChargeOptAp").disabled = false;
         } else {
             document.getElementById("waitingAp").disabled = true;
-
             document.getElementById("waitingChargeOptAp").disabled = true;
         }
     }
@@ -1658,7 +1663,7 @@
 
     function showWithoutAcSt() {
         if (document.getElementById('WithoutAcSt').checked)
-       
+
         {
             document.getElementById("pricewithoutacInSt").disabled = false;
             document.getElementById("pricewithoutacOptSt").disabled = false;
@@ -1675,7 +1680,6 @@
             document.getElementById("waitingChargeOptSt").disabled = false;
         } else {
             document.getElementById("waitingSt").disabled = true;
-
             document.getElementById("waitingChargeOptSt").disabled = true;
         }
     }
@@ -1793,7 +1797,7 @@
 
     function showWithoutAcC() {
         if (document.getElementById('WithoutAcC').checked)
-        
+
         {
             document.getElementById("pricewithoutacInC").disabled = false;
             document.getElementById("pricewithoutacOptC").disabled = false;
@@ -1941,7 +1945,6 @@
             if (helpText != null)
                 helpText.innerHTML = "";
             return true;
-
         }
     }
 
@@ -1952,7 +1955,15 @@
 
     function validateNonEmptyCapacity(inputField, helpText)
     {
-        return validateRegEx(/.+/, inputField.value, helpText, "Please enter a value");
+        var value = Number(document.getElementById('capacityin').value);
+        if (Math.floor(value) == value) {
+            // value is an integer, do something based on that
+            return validateRegEx(/.+/, inputField.value, helpText, "Please enter a value");
+        } else {
+            // value is not an integer, show some validation error
+            helpText.innerHTML = "Please enter an integer value";
+        }
+//        return validateRegEx(/.+/, inputField.value, helpText, "Please enter a value");
     }
 
     function validateNonEmptyVehDescription(inputField, helpText)
@@ -1963,7 +1974,7 @@
 
     function checkForm(form) {
         if (!validateNonEmptyRegNo(form["regNoin"], form["regNo_help"]) || !validateNonEmptyCapacity(form["capacityin"], form["capacity_help"]) || !validateNonEmptyVehDescription(form["describeVehicle"], form["description_help"])) {
-            alert("I'm sorry , please fill all the required fields.");
+            alert("Please fill all the required fields.");
             return false;
         }
         else {
@@ -1971,50 +1982,38 @@
         }
     }
 
-//    function checkForm(form){
-//        if (!validateNonEmptyRegNo(form["regNoin"], form["regNo_help"]) || !validateNonEmptyCapacity(form["capacityin"], form["capacity_help"]) || !validateNonEmptyVehDescription(form["describeVehicle"], form["description_help"]));
-//            return false;
+    function setOptions(d) {
+//        alert(d);
+        var selbox = document.vehicleRegister.opttwo;
+        selbox.options.length = 0;
+//        if (chosen == " ") {
+//            selbox.options[selbox.options.length] = new Option('Please select one of the options above first', ' ');
+//
 //        }
-//        else{
-//            return true;
-//        }          
-//    }
-//    
 
-
-    $("‪#‎manufacturer").change(function () {
-        var xmlhttp;
-        if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
-            xmlhttp = new XMLHttpRequest();
-        }
-        else {// code for IE6, IE5
-            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-        }
-        xmlhttp.onreadystatechange = function () {
-            if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
-            {
-                var model_list = xmlhttp.responseText;
-                var jsonobj = eval("(" + model_list + ")");
-                var x = document.getElementById("model");
-                x.innerHTML = "";
-                for (var i = 0; i < jsonobj.length; i++) {
-                    var option = document.createElement("option");
-                    option.text = jsonobj[i]['model'];
-                    try
-                    {
-                        x.add(option, x.options[null]);
-                    }
-                    catch (e)
-                    {
-                        x.add(option, null);
-                    }
-                }
-            }
-        }
+        <?php
         
-        xmlhttp.open("GET", "driverRegister/changeManufacturer/" + this.value, true);
-        xmlhttp.send();
-    });
+       echo "'pppppppppphgdd'";
+       
+//        $manufact = $_POST['manufacturer'];
+//        $manu = "Toyota";
+//        $sql = "SELECT model FROM brand_model WHERE manufacturer = "."Toyota";
+//        $result = mysql_query($sql);
+//        echo $sql;
+        ?>
+                <?php
+
+        while ($row = mysql_fetch_array($result)) {
+            ?>
+                    selbox.options[selbox.options.length] = new Option("<?=$row[0]?>");
+            <?php
+        }
+        ?>
+
+    }
+
+
+
 </script>
 
 

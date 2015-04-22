@@ -29,7 +29,7 @@
                 <label >The user name or password that you entered is incorrect</label>
                 <br>-->
                 <div id="password_error_message" style="font-size: 16px; color:red; font-weight:bold"></div>
-                <p><a href="#">Forgot your password?</a></p>
+                <p><a href="<?php echo URL; ?>forgetPassword">Forgot your password?</a></p>
                 <p><input type="submit" value="Sign in" class="belize-hole-flat-button" style="width: 200px"></p>
               
                 

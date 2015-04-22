@@ -55,11 +55,11 @@
 
 
                                 <div>
-                                    <label style="width:150px;">Tel. No </label>
+                                    <label style="width:200px;"><input type="checkbox" name="regNo" onclick='telClick();' id="regNoCheck"> Tel. No </label>
                                     <input id ="tel" calss="tableInput" value="" size="10" maxlength="10" type="text" name ="telephoneNo" >
                                 </div> <label></label><br>
                                 <div>
-                                    <label>Vehicle Reg.No</label>
+                                    <label style="width:200px;"><input type="checkbox" name="regNo" onclick='regClick();' id="regNoCheck"> Vehicle Reg.No</label>
                                     <input id ="regNo" calss="tableInput" style="width:180px;" value="" size="10" maxlength="10" type="text" name ="regNo"><br>
                                 </div>
 
@@ -74,7 +74,7 @@
                                 <input type="submit"  id ="go" name="Go"></input>
                             </form>
                             <?php
-                            if (isset($this->vehicleBasicInfo)&& count($this->vehicleBasicInfo)>0) {
+                            if (isset($this->vehicleBasicInfo) && count($this->vehicleBasicInfo) > 0) {
                                 $count = 0;
                                 ?>
                                 <div class="container" style="width: 100%; padding-top: 40px;">
@@ -155,13 +155,13 @@
 
                                 </div>
                             <?php }
-                            if(isset($this->vehicleBasicInfo ) &&(count($this->vehicleBasicInfo)==0) ){?>
-                                 <div class="container" style="width: 100%; padding-top: 40px; padding-left: 200px;"><h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NO VEHICLES<i class="fa fa-exclamation-triangle"></i></h1></div>
-                                
-                                
-                            <?php      
+                            if (isset($this->vehicleBasicInfo) && (count($this->vehicleBasicInfo) == 0)) {
+                                ?>
+                                <div class="container" style="width: 100%; padding-top: 40px; padding-left: 200px;"><h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NO VEHICLES<i class="fa fa-exclamation-triangle"></i></h1></div>
+
+
+                                <?php
                             }
-                            
                             ?>
 
                         </div>
@@ -180,7 +180,7 @@
                                         <input type="text" name="scheme_category" value="City Taxi Scheme" style="visibility: hidden; position: absolute;"/>
                                         <a href="javascript: submitlink()" ><i class="fa fa-search" ></i> Search Vehicle</a>
                                     </form>
-                                    <!--<a href="<?php // echo URL; ?>search" ><i class="fa fa-search" ></i> Search Vehicle</a>-->
+                                    <!--<a href="<?php // echo URL;  ?>search" ><i class="fa fa-search" ></i> Search Vehicle</a>-->
 
                                 </li>
                                 <li id="FAQ" >
@@ -204,43 +204,96 @@
         <script type="text/javascript" src="<?php echo URL; ?>public/js/faqabt/jquery.min.js"></script>
         <script src="<?php echo URL; ?>public/js/faqabt/admin.js" type="text/javascript"></script>
         <script type="text/javascript" src="<?php echo URL; ?>public/js/faqabt/jquery.ssd-vertical-navigation.min.js"></script>
-        <script type="text/javascript" src="<?php echo URL; ?>public/js/faqabt/app.js"></script>
+        <!--<script type="text/javascript" src="<?php // echo URL;  ?>public/js/faqabt/app.js"></script>-->
         <script type="text/javascript" src="<?php echo URL; ?>public/js/faqabt/helpsupport.js"></script>
         <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 
         <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
         <script src="<?php echo URL; ?>public/js/faqabt/smoothscroll.min.js" type="text/javascript"></script>
-        <script src="<?php echo URL; ?>public/js/faqabt/backbone.js" type="text/javascript"></script>
+        <!--<script src="<?php // echo URL;  ?>public/js/faqabt/backbone.js" type="text/javascript"></script>-->
         <script src="<?php echo URL; ?>public/js/faqabt/responsive-accordion.min.js" type="text/javascript"></script>
         <!-- <script src="http://code.jquery.com/jquery-1.10.2.js"></script>-->
         <script src="http://code.jquery.com/ui/1.11.3/jquery-ui.js"></script>
         <script>
 
-            $("#searchForm").submit(function(e) {
-                var telephoneNo = $('#tel').val();
-                var registerNo = $('#regNo').val();
+                                        $(document).ready(function() {
+                                            $('#tel').prop('disabled', true);
+                                            $('#regNo').prop('disabled', true);
 
-                if ($('#tel').val() == '' && $('#regNo').val() == '') {
-                    alert('You cannot leave input fields empty!');
-                    e.preventDefault(e);
+                                        });
+
+                                        function telClick() {
+                                            if (document.getElementById("tel").disabled) {
+                                                $('#tel').prop('disabled', false);
+                                            }
+                                            else {
+                                                $('#tel').prop('disabled', true);
+                                                $('#tel').val('');
+
+                                            }
+                                        }
+                                        function regClick() {
+                                            if (document.getElementById("regNo").disabled) {
+                                                $('#regNo').prop('disabled', false);
+                                            }
+                                            else {
+                                                $('#regNo').prop('disabled', true);
+                                                $('#regNo').val('');
+                                            }
+                                        }
 
 
-                }
-                else if (isNaN($('#tel').val()) || ($('#tel').val()).length != 10 || (($('#regNo').val().length < 6 || $('#regNo').val().length > 8) && $('#regNo').val() != '')) {
+                                        $("#searchForm").submit(function(e) {
+                                            var telephoneNo = $('#tel').val();
+                                            var registerNo = $('#regNo').val();
 
-                    alert('Invalid inputs!');
-                    e.preventDefault(e);
-                    $('#searchForm')[0].reset();
-                }
+                                            if ($('#tel').val() == '' && $('#regNo').val() == '') {
+                                                alert('You cannot leave input fields empty!');
+                                                e.preventDefault(e);
+                                                $('#regNo').prop('disabled', true);
+                                                $('#tel').prop('disabled', true);
+
+                                            }
+
+                                            else if ($('#tel').val() == '' && (($('#regNo').val().length < 6 || $('#regNo').val().length > 8) && $('#regNo').val() != '')) {
+
+                                                alert('Invalid inputs!');
+                                                e.preventDefault(e);
+                                                $('#searchForm')[0].reset();
+                                                $('#regNo').prop('disabled', true);
+                                                $('#tel').prop('disabled', true);
+                                            }
 
 
-            });
-            
-            function submitlink(){
-                document.getElementById('linkform').submit();
-            }
-            
-            
+                                            else if ((isNaN($('#tel').val()) || ($('#tel').val()).length != 10) && $('#regNo').val() == '') {
+
+                                                alert('Invalid inputs!');
+                                                e.preventDefault(e);
+                                                $('#searchForm')[0].reset();
+                                                $('#regNo').prop('disabled', true);
+                                                $('#tel').prop('disabled', true);
+                                            }/*
+                                             else if (($('#regNo').val()!='' && ($('#regNo').val().length < 6 || $('#regNo').val().length > 8))||($('#tel').val()!='' &&(isNaN($('#tel').val()) || ($('#tel').val()).length != 10))) {
+                                             
+                                             alert('Invalid inputs!');
+                                             e.preventDefault(e);
+                                             $('#searchForm')[0].reset();
+                                             }
+                                             };
+                                             */
+                                            else {
+                                                $('#regNo').prop('disabled', false);
+                                                $('#tel').prop('disabled', false);
+                                            }
+
+
+                                        });
+
+                                        function submitlink() {
+                                            document.getElementById('linkform').submit();
+                                        }
+
+
 
 
 

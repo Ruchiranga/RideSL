@@ -32,7 +32,7 @@ class admin extends Controller {
         $isPremium=array();
         $isSuspended=array();
         
-      
+      if(isset($this->view->vehicleBasicInfo))
         foreach ($this->view->vehicleBasicInfo as $key=>$value){
            array_push( $locationList,$this->model->vehicleLocatioList($value['vehicle_reg_no']));
            array_push( $categoryList,$this->model->vehicleSchemeTypes($value['vehicle_reg_no']));
@@ -49,7 +49,7 @@ class admin extends Controller {
         $this->view->locationList=$locationList;
                 $this->view->categoryList=$categoryList;
                 $this->view->isPremium= $isPremium;
-                $this->view->isSuspended= $isSuspended;
+      $this->view->isSuspended= $isSuspended;
          $this->view->render('admin/index');
     }
       function vehicleListRefresh(){

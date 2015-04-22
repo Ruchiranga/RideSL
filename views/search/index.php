@@ -55,6 +55,17 @@
         transition: opacity 0.3s 0s, visibility 0s 0s;
 
     }
+    
+    .tooltip {
+	display:none;
+	position:absolute;
+	border:1px solid #333;
+	background-color:#161616;
+	border-radius:5px;
+	padding:10px;
+	color:#fff;
+	font-size:12px Arial;
+    }
 
 </style>
 
@@ -163,14 +174,148 @@
                                 <tr>
                                     <td style="width: 25%" valign = "top">
                                         <div width ="225px" style="margin-left: 6px; float: left; height: auto; ">
-                                            <img class="vehicleimg" data-bind="attr: { id: $index, src :$parent.url+'/public/images/'+vehicle.owner_id+'/'+vehicle.image}" border="0" style="width:225px; height:225px; margin-top: 15px">
+                                            <img class="vehicleimg" data-bind="attr: { id: $index, src :$parent.url+'/public/images/'+vehicle.owner_id+'/'+vehicle.image}" border="0" style="width:225px; height:225px; margin-top: 15px ;padding-bottom: 10px">
                                         </div>
-                                        <div>
-                                            <img class="thumbup" src="<?php echo URL; ?>/public/images/thumb_up.png" data-bind="attr: { id: 'thumbup'+vehicle.vehicle_reg_no}" border="0" style="width:25px; height:25px">
-                                            <font style="font-size: 15px" data-bind="text: vehicle.thumbs_up, attr:{id:'upcount'+vehicle.vehicle_reg_no} "></font>
-                                            <img class="thumbdown" src="<?php echo URL; ?>/public/images/thumb_down.png" data-bind="attr: { id: 'thumbdown'+vehicle.vehicle_reg_no}" border="0" style="width:25px; height:25px">
-                                            <font style="font-size: 15px" data-bind="text: vehicle.thumbs_down, attr:{id:'downcount'+vehicle.vehicle_reg_no}"></font>
-                                            <!--<img href="#0" class="cd-popup-trigger" data-bind="attr: { id: 'comment-icon'+vehicle.vehicle_reg_no, src :$parent.url+'/public/images/comment_icon.png'}"  border="0" style="height: 20px;width: 24px; float: right; padding-left: 40px; padding-right: 40px; padding-top: 5px; ">-->
+                                        <div style="margin-left: 6px;">
+                                            
+                                            <?php if (Session::get('loggedIn') == true && isset($_SESSION['username'])): ?>
+                                            <table style="margin-left: auto; margin-right: auto">
+                                                <tr>
+                                                    <td style="padding-right: 2px">
+                                                        <img class="thumbup" src="<?php echo URL; ?>/public/images/thumb_up.png" data-bind="attr: { id: 'thumbup'+vehicle.vehicle_reg_no}" border="0" style="width:25px; height:25px">
+                                                    </td>
+                                                    <td style="padding-right: 20px">
+                                                        <font style="font-size: 15px; color: #2980b9;font-weight: bold" data-bind="text: vehicle.thumbs_up, attr:{id:'upcount'+vehicle.vehicle_reg_no} "></font>
+                                                    </td>
+                                                    <td style="padding-right: 2px">
+                                                        <img class="thumbdown" src="<?php echo URL; ?>/public/images/thumb_down.png" data-bind="attr: { id: 'thumbdown'+vehicle.vehicle_reg_no}" border="0" style="width:25px; height:25px">
+                                                    </td>
+                                                    <td style="padding-right: 20px">
+                                                        <font style="font-size: 15px;color: #ff0000;font-weight: bold" data-bind="text: vehicle.thumbs_down, attr:{id:'downcount'+vehicle.vehicle_reg_no}"></font>
+                                                    </td>
+                                                    <td style="padding-right: 20px;">
+                                                        <img href="#0" class="cd-popup-trigger" data-bind="attr: { id: 'comment-icon'+vehicle.vehicle_reg_no, src :$parent.url+'/public/images/comment_icon.png'}"  border="0" style="height: 20px;width: 24px;  padding-left: 10px; padding-top: 5px; ">
+
+                                                        <div class="cd-popup" data-bind="attr: { id: 'cd-popup'+vehicle.vehicle_reg_no}" role="alert">
+                                                            <div class="cd-popup-container">
+                                                                <div style="margin-left: 6px; margin-right: 6px; margin-top: 20px">
+                                                                    <text id="comments-header"><font style="color: #2980b9; cursor: pointer;margin-left: auto;margin-right: auto; font-weight: bold;font-size: larger">Comments</font></text>
+                                                                    <hr>
+                                                                    <div id="comment_panel" style="margin-top: 20px">
+                                                                        <!-- ko if: vehicle.comments.length > 0 -->
+                                                                        <table border = "0" style="margin: 0 auto;" data-bind="foreach: vehicle.comments">
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <div style="height: auto; padding-top: 10px;padding-bottom: 10px; margin-left: 30px">
+                                                                                        <?php if (Session::get('loggedIn') == true && isset($_SESSION['username'])): ?>
+                                                                                            <font style="color: #2980b9;" data-bind="text: $data.username===<?php echo "'".$_SESSION['username']."'";?>?'You wrote :':$data.username +' wrote :'"></font>
+                                                                                        <?php else: ?>
+                                                                                            <font style="color: #2980b9;" data-bind="text: $data.username +' wrote :'"></font>
+                                                                                        <?php endif; ?>
+
+                                                                                        <br>
+                                                                                        <span data-bind="text: $data.comment"></span>
+                                                                                        <br>
+                                                                                        <font style="color: #2980b9; font-size: 12px" data-bind="text: 'on '+ $data.comment_date"></font>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </table>
+                                                                        <!-- /ko -->
+                                                                        <!-- ko if: vehicle.comments.length == 0 -->
+                                                                            <font style="color: #2980b9; margin-top: 15px; font-weight: bold" >This vehicle has no comments. Be the first to add one!</font><br>
+                                                                        <!-- /ko -->
+
+                                                                        <hr>
+                                                                        <div style="background-color: #DCE5F0;border-radius: 10px;" data-bind="attr:{id:'addcomment'+vehicle.vehicle_reg_no} ">
+                                                                            <?php if (Session::get('loggedIn') == true && isset($_SESSION['username'])) : ?>
+                                                                                <font style="color: #2980b9; margin-top: 15px; font-weight: bold" >Add Your Comment</font><br>
+                                                                                <textarea class="commentbox"name="comment" data-bind="attr:{id:'comment'+vehicle.vehicle_reg_no}" rows="3" cols="90" onkeyup="validateComment(this)" style="resize: none;margin-top: 5px;margin-bottom: 5px;"></textarea><br>
+                                                                                <input type="submit" value="Post" data-bind="attr:{id:'postbutton'+vehicle.vehicle_reg_no}" class="postbutton" style="margin-bottom: 15px" disabled="disabled" >
+                                                                            <?php else: ?>
+                                                                                <font style="color: #2980b9; margin-top: 15px; font-weight: bold" >Login to add your Comment...</font><br>
+                                                                            <?php endif; ?>
+                                                                        </div>
+                                                                    </div>
+                                                                    <hr>
+                                                                </div>
+
+
+                                                                <a href="#0" class="cd-popup-close img-replace">Close</a>
+                                                            </div> 
+                                                        </div> 
+                                                    </td>
+                                                <!--</tr>-->
+                                            </table>
+                                            <?php else: ?>
+                                            <table style="margin-left: auto; margin-right: auto">
+                                                <tr>
+                                                    <td style="padding-right: 2px">
+                                                        <img title="Login to add your vote!" class="masterTooltip" src="<?php echo URL; ?>/public/images/thumb_up.png" data-bind="attr: { id: 'thumbup'+vehicle.vehicle_reg_no}" border="0" style="width:25px; height:25px">
+                                                    </td>
+                                                    <td style="padding-right: 20px">
+                                                        <font style="font-size: 15px;color: #2980b9;font-weight: bold" data-bind="text: vehicle.thumbs_up, attr:{id:'upcount'+vehicle.vehicle_reg_no} "></font>
+                                                    </td>
+                                                    <td style="padding-right: 2px">
+                                                        <img title="Login to add your vote!" class="masterTooltip" src="<?php echo URL; ?>/public/images/thumb_down.png" data-bind="attr: { id: 'thumbdown'+vehicle.vehicle_reg_no}" border="0" style="width:25px; height:25px">
+                                                    </td>
+                                                    <td style="padding-right: 20px">
+                                                        <font style="font-size: 15px;color: #ff0000;font-weight: bold" data-bind="text: vehicle.thumbs_down, attr:{id:'downcount'+vehicle.vehicle_reg_no}"></font>
+                                                    </td>
+                                                    <td style="padding-right: 20px;">
+                                                        <img href="#0" class="cd-popup-trigger" data-bind="attr: { id: 'comment-icon'+vehicle.vehicle_reg_no, src :$parent.url+'/public/images/comment_icon.png'}"  border="0" style="height: 20px;width: 24px;  padding-left: 10px; padding-top: 5px; ">
+
+                                                        <div class="cd-popup" data-bind="attr: { id: 'cd-popup'+vehicle.vehicle_reg_no}" role="alert">
+                                                            <div class="cd-popup-container">
+                                                                <div style="margin-left: 6px; margin-right: 6px; margin-top: 20px">
+                                                                    <text id="comments-header"><font style="color: #2980b9; cursor: pointer;margin-left: auto;margin-right: auto; font-weight: bold;font-size: larger">Comments</font></text>
+                                                                    <hr>
+                                                                    <div id="comment_panel" style="margin-top: 20px">
+                                                                        <!-- ko if: vehicle.comments.length > 0 -->
+                                                                        <table border = "0" style="margin: 0 auto;" data-bind="foreach: vehicle.comments">
+                                                                            <tr>
+                                                                                <td>
+                                                                                    <div style="height: auto; padding-top: 10px;padding-bottom: 10px; margin-left: 30px">
+                                                                                        <?php if (Session::get('loggedIn') == true && isset($_SESSION['username'])): ?>
+                                                                                            <font style="color: #2980b9;" data-bind="text: $data.username===<?php echo "'".$_SESSION['username']."'";?>?'You wrote :':$data.username +' wrote :'"></font>
+                                                                                        <?php else: ?>
+                                                                                            <font style="color: #2980b9;" data-bind="text: $data.username +' wrote :'"></font>
+                                                                                        <?php endif; ?>
+                                                                                        <br>
+                                                                                        <span data-bind="text: $data.comment"></span>
+                                                                                        <br>
+                                                                                        <font style="color: #2980b9; font-size: 12px" data-bind="text: 'on '+ $data.comment_date"></font>
+                                                                                    </div>
+                                                                                </td>
+                                                                            </tr>
+                                                                        </table>
+                                                                        <!-- /ko -->
+                                                                        <!-- ko if: vehicle.comments.length == 0 -->
+                                                                            <font style="color: #2980b9; margin-top: 15px; font-weight: bold" >This vehicle has no comments. Be the first to add one!</font><br>
+                                                                        <!-- /ko -->
+
+                                                                        <hr>
+                                                                        <div style="background-color: #DCE5F0;border-radius: 10px;" data-bind="attr:{id:'addcomment'+vehicle.vehicle_reg_no} ">
+                                                                            <?php if (Session::get('loggedIn') == true && isset($_SESSION['username'])) : ?>
+                                                                                <font style="color: #2980b9; margin-top: 15px; font-weight: bold" >Add Your Comment</font><br>
+                                                                                <textarea class="commentbox"name="comment" data-bind="attr:{id:'comment'+vehicle.vehicle_reg_no}" rows="3" cols="90" onkeyup="validateComment(this)" style="resize: none;margin-top: 5px;margin-bottom: 5px;"></textarea><br>
+                                                                                <input type="submit" value="Post" data-bind="attr:{id:'postbutton'+vehicle.vehicle_reg_no}" class="postbutton" style="margin-bottom: 15px" disabled="disabled" >
+                                                                            <?php else: ?>
+                                                                                <font style="color: #2980b9; margin-top: 15px; font-weight: bold" >Login to add your Comment...</font><br>
+                                                                            <?php endif; ?>
+                                                                        </div>
+                                                                    </div>
+                                                                    <hr>
+                                                                </div>
+
+
+                                                                <a href="#0" class="cd-popup-close img-replace">Close</a>
+                                                            </div> 
+                                                        </div> 
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                            <?php endif; ?>
                                         </div>
                                     </td>
                                     <td style="vertical-align: top">
@@ -294,70 +439,7 @@
                                         </div>
                                     </td>
                                 </tr>
-                                <tr>
-                                    <td></td>
-                                    <td>
-                                        <img href="#0" class="cd-popup-trigger" data-bind="attr: { id: 'comment-icon'+vehicle.vehicle_reg_no, src :$parent.url+'/public/images/comment_icon.png'}"  border="0" style="height: 20px;width: 24px; float: right; padding-left: 40px; padding-right: 40px; padding-top: 5px; ">
-
-                                        <div class="cd-popup" data-bind="attr: { id: 'cd-popup'+vehicle.vehicle_reg_no}" role="alert">
-                                            <div class="cd-popup-container">
-                                                <div style="margin-left: 6px; margin-right: 6px; margin-top: 20px">
-                                                    <text id="comments-header"><font style="color: #2980b9; cursor: pointer;margin-left: auto;margin-right: auto; font-weight: bold;font-size: larger">Comments</font></text>
-                                                    <hr>
-                                                    <div id="comment_panel" style="margin-top: 20px">
-                                                        <!-- ko if: vehicle.comments.length > 0 -->
-                                                        <table border = "0" style="margin: 0 auto;" data-bind="foreach: vehicle.comments">
-                                                            <tr>
-                                                                <td>
-                                                                    <div style="height: auto; padding-top: 10px;padding-bottom: 10px; margin-left: 30px">
-                                                                        <?php if (Session::get('loggedIn') == true && isset($_SESSION['username'])): ?>
-                                                                            <font style="color: #2980b9;" data-bind="text: $data.username===<?php echo "'".$_SESSION['username']."'";?>?'You wrote :':$data.username +' wrote :'"></font>
-                                                                        <?php else: ?>
-                                                                            <font style="color: #2980b9;" data-bind="text: $data.username +' wrote :'"></font>
-                                                                        <?php endif; ?>
-                                                                        
-                                                                        
-<!--                                                                        <font style="color: #2980b9;" data-bind="text: 
-                                                                                                                        <?php
-//                                                                        if (Session::get('loggedIn') == true && isset($_SESSION['username'])){ 
-//                                                                            echo "$data.username==='".$_SESSION['username']."'"; 
-//                                                                        }else{ 
-//                                                                            echo "0";
-//                                                                        }
-                                                                        ?>?'You wrote :':$data.username +' wrote :'"></font>-->
-                                                                        <br>
-                                                                        <span data-bind="text: $data.comment"></span>
-                                                                        <br>
-                                                                        <font style="color: #2980b9; font-size: 12px" data-bind="text: 'on '+ $data.comment_date"></font>
-                                                                    </div>
-                                                                </td>
-                                                            </tr>
-                                                        </table>
-                                                        <!-- /ko -->
-                                                        <!-- ko if: vehicle.comments.length == 0 -->
-                                                            <font style="color: #2980b9; margin-top: 15px; font-weight: bold" >This vehicle has no comments. Be the first to add one!</font><br>
-                                                        <!-- /ko -->
-                                                        
-                                                        <hr>
-                                                        <div style="background-color: #DCE5F0;border-radius: 10px;" data-bind="attr:{id:'addcomment'+vehicle.vehicle_reg_no} ">
-                                                            <?php if (Session::get('loggedIn') == true && isset($_SESSION['username'])) : ?>
-                                                                <font style="color: #2980b9; margin-top: 15px; font-weight: bold" >Add Your Comment</font><br>
-                                                                <textarea class="commentbox"name="comment" data-bind="attr:{id:'comment'+vehicle.vehicle_reg_no}" rows="3" cols="90" onkeyup="validateComment(this)" style="resize: none;margin-top: 5px;margin-bottom: 5px;"></textarea><br>
-                                                                <input type="submit" value="Post" data-bind="attr:{id:'postbutton'+vehicle.vehicle_reg_no}" class="postbutton" style="margin-bottom: 15px" disabled="disabled" >
-                                                            <?php else: ?>
-                                                                <font style="color: #2980b9; margin-top: 15px; font-weight: bold" >Login to add your Comment...</font><br>
-                                                            <?php endif; ?>
-                                                        </div>
-                                                    </div>
-                                                    <hr>
-                                                </div>
-
-
-                                                <a href="#0" class="cd-popup-close img-replace">Close</a>
-                                            </div> 
-                                        </div> 
-                                    </td>
-                                </tr>
+                                
                             </table>
                         </div>
                     </div>
@@ -686,13 +768,6 @@ if (isset($_POST['scheme_category'])) {
                             }
                             self.processFilters();
                         }
-//                            
-//                            self.toggleAvailability = function(parent){
-//                                var id = 'availability'+parent.vehicle_reg_no;
-//                                                                console.log(id);
-//
-//                                $(id).slideToggle(100, 'swing');
-//                            }
 
                         self.capitalizeFirstLetter = function(string) {
                             return string.charAt(0).toUpperCase() + string.slice(1);
@@ -707,6 +782,7 @@ if (isset($_POST['scheme_category'])) {
                     var viewModel;
 
                     jQuery(document).ready(function($) {
+                        
                         var results;
                         var xmlhttp;
                         if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -1026,8 +1102,24 @@ if (isset($_POST['scheme_category'])) {
                                         results = xmlhttp.responseText;
                                         console.log(results);
                                         if (results) {
-                                            $('#upcount'+reg_no)[0].innerText = parseInt($('#upcount'+reg_no)[0].innerText)+1;
+                                            if(results == 'success'){
+                                                $('#upcount'+reg_no)[0].innerText = parseInt($('#upcount'+reg_no)[0].innerText)+1;
+                                                $('#thumbup'+reg_no).toggleClass('thumbup');
+                                                $('#thumbup'+reg_no).prop('title', 'Vote recorded successfully!');
+                                                $('#thumbdown'+reg_no).toggleClass('thumbdown');
+                                                $('#thumbdown'+reg_no).prop('title', 'Vote recorded successfully!');
+                                            }else if(results == 'exists'){
+                                                $('#thumbup'+reg_no).toggleClass('thumbup');
+                                                $('#thumbup'+reg_no).prop('title', 'You have already voted for this vehicle.');
+                                                $('#thumbup'+reg_no).addClass('masterTooltip');
+                                                $('#thumbdown'+reg_no).toggleClass('thumbdown');
+                                                $('#thumbdown'+reg_no).prop('title', 'You have already voted for this vehicle.');
+                                                $('#thumbdown'+reg_no).addClass('masterTooltip');
+                                                
+                                            }
+                                            
                                         }
+                                        
     //                                    else{
     //                                        console.log('erorrrr');
     //                                    }
@@ -1054,7 +1146,24 @@ if (isset($_POST['scheme_category'])) {
                                         results = xmlhttp.responseText;
                                         console.log(results);
                                         if (results) {
-                                            $('#downcount'+reg_no)[0].innerText = parseInt($('#downcount'+reg_no)[0].innerText)+1;
+                                            if(results == 'success'){
+                                                $('#downcount'+reg_no)[0].innerText = parseInt($('#downcount'+reg_no)[0].innerText)+1;
+                                                $('#thumbup'+reg_no).toggleClass('thumbup');
+                                                $('#thumbup'+reg_no).prop('title', 'Vote recorded successfully!');
+                                                $('#thumbdown'+reg_no).toggleClass('thumbdown');
+                                                $('#thumbdown'+reg_no).prop('title', 'Vote recorded successfully!');
+                                            }else if(results == 'exists'){
+                                                $('#thumbup'+reg_no).toggleClass('thumbup');
+                                                $('#thumbup'+reg_no).prop('title', 'You have already voted for this vehicle.');
+                                                $('#thumbup'+reg_no).addClass('masterTooltip');
+                                                $('#thumbdown'+reg_no).toggleClass('thumbdown');
+                                                $('#thumbdown'+reg_no).prop('title', 'You have already voted for this vehicle.');
+                                                $('#thumbdown'+reg_no).addClass('masterTooltip');
+                                                
+                                            }else{
+                                                console.log('asdasd');
+                                            }
+                                            
                                         }
     //                                    else{
     //                                        console.log('erorrrr');
@@ -1069,6 +1178,25 @@ if (isset($_POST['scheme_category'])) {
                     <?php else: ?>
                     <?php endif; ?>
                         
+                        $('.masterTooltip').hover(function(){
+                                // Hover over code
+                                var title = $(this).attr('title');
+                                $(this).data('tipText', title).removeAttr('title');
+                                $('<p class="tooltip"></p>')
+                                .text(title)
+                                .appendTo('body')
+                                .fadeIn('fast');
+                        }, function() {
+                                // Hover out code
+                                $(this).attr('title', $(this).data('tipText'));
+                                $('.tooltip').remove();
+                        }).mousemove(function(e) {
+                                var mousex = e.pageX + 20; //Get X coordinates
+                                var mousey = e.pageY + 10; //Get Y coordinates
+                                $('.tooltip')
+                                .css({ top: mousey, left: mousex })
+                        });
+
                         
                     });
                     var keys = [37, 38, 39, 40];
@@ -1116,7 +1244,9 @@ if (isset($_POST['scheme_category'])) {
                             document.getElementById(btnid).disabled = true;
                         }
                     }
-
+                    
+                    // Tooltip only Text
+                    
                 </script>
 
                 </html>

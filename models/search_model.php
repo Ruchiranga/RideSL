@@ -162,7 +162,7 @@ class Search_Model extends Model {
                 ));
 
                 $sth = $this->db->prepare('UPDATE vehicle SET thumbs_down = :count WHERE vehicle_reg_no = :reg_no');
-                return $sth->execute(array(
+                $sth->execute(array(
                             ':reg_no' => $regno,
                             ':count' => $count
                 ));

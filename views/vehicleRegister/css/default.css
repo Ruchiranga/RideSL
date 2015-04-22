@@ -1,0 +1,27 @@
+#panel   { 
+    padding: 5px;
+    padding-top: 20px;
+    width:15%;
+    float:left;
+    margin-left: 20px;
+    height: 500px;
+}
+
+#vehiclePane{
+    padding: 5px;
+    width:1033px;
+    float:right;
+    margin-right: 40px;
+    align: left;
+}
+
+.box 
+{
+    background:white;
+    position: relative;
+    border:windowframe thin solid;
+    border-radius: 3px;
+    box-shadow: 5px 5px 2px #eeeeee;
+    border-color: #DDDDDD;
+}
+

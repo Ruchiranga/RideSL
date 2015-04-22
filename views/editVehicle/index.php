@@ -115,22 +115,14 @@
                     </div>';
 
                         $content .= '<div style="float: left; width: 190px; padding-top: 36px">
-                    <img src="' . URL . "public/images/" . $_SESSION['owner_id'] . "/" . $value['image'] . '" alt="" style="height: 220px; width: 220px; margin-top: 10px"/><br>
-                        <font>Rating</font><br>
+                    <img src="' . URL . "public/images/" . $_SESSION['owner_id'] . "/" . $value['image'] . '" alt="" style="height: 220px; width: 220px; margin-top: 10px"/><br>';
                         
-                        <span class="star-rating">';
-                        for($m = 1; $m <=5; $m++){
-                            
-                            if($m == $value['rating']){
-                                $content .= '<input checked type="radio" name="rating'.$m.'" disabled><i></i>';
-                            }else{
-                                $content .='<input type="radio" name="rating'.$m.'" disabled><i></i>';
-                            }
-                        }
-                        $content .='</span>
-                        <br>
                         
-                    </div>';
+                        $content .= '<br>';
+                        $content .= '<table><tr><td><img src="' . URL . 'public/images/thumb_up.png" alt="" style="height: 30px; width: 30px;" /></td><td><font style="font-size:22px;">'.$value['thumbs_up'].'</font></td>';
+                        $content .= '<td><img src="' . URL . 'public/images/thumb_down.png" alt="" style="height: 30px; width: 30px;" /></td><td><font style="font-size:22px;">'.$value['thumbs_down'].'</font></td></tr></table>';
+                        
+                    $content .= '</div>';
 
                         $content .= '<div id="yui-main">                
                         <div class="yui-b" style="margin-left: 25%;">
@@ -400,7 +392,6 @@
 
                                 $content .= '<form>
                         
-                        </p>
                         
                         <ul id="singleFieldTags' . $index . '"></ul>
                             <div id=loc_validate'.$index.' style="font-size: 14px; color:red; font-weight:bold"></div>
@@ -425,7 +416,7 @@
                                     if ($this->schemeAvailabilityList[$valueScheme['scheme_id']] != NULL) {
 
                                         foreach ($this->schemeAvailabilityList[$valueScheme['scheme_id']] as $key => $valueAvailability) {
-                                            if($days[$j] == $valueAvailability['day']){
+                                            if($days[$j] == ucfirst($valueAvailability['day'])){
                                                 $content .= '<tr>';
 
                                                 $content .= '<td width="12%"><input checked = true type="checkbox" name="day' . $index . $j . '" id="day' . $index . $j . '" value="'.$days[$j].'"> ' . $days[$j] . '</td>';

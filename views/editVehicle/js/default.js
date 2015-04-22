@@ -4,6 +4,8 @@ var email = '';
 var add_phone_no_count = 0;
 var arr = [];
 
+
+
 $(function() {
     var sampleTags = ['Anuradhapura', 'Pollonnaruwa', 'Galle', 'Matara', 'Hambantota'];
 
@@ -114,17 +116,17 @@ $(function() {
     var k = 0;
     for (k = 0; k <= 6; k++) {
 
-        $("#ac" + k+"_combo").change(function() {
-            var options = document.getElementById("non_"+ this.id).options;
+        $("#ac" + k + "_combo").change(function() {
+            var options = document.getElementById("non_" + this.id).options;
             for (var i = 0, n = options.length; i < n; i++) {
                 if (options[i].value == this.value) {
-                    document.getElementById("non_"+ this.id).selectedIndex = i;
+                    document.getElementById("non_" + this.id).selectedIndex = i;
                     break;
                 }
             }
         });
-        
-        $("#non_ac" + k+"_combo").change(function() {
+
+        $("#non_ac" + k + "_combo").change(function() {
             var str = this.id;
             var com_id = str.substring(4);
             var options = document.getElementById(com_id).options;
@@ -150,11 +152,11 @@ $(function() {
         $("#ac" + k).change(function() {
             if (this.checked) {
                 document.getElementById('price_' + this.id).disabled = false;
-                document.getElementById(this.id+'_combo').disabled = false;
+                document.getElementById(this.id + '_combo').disabled = false;
 
             } else {
                 document.getElementById('price_' + this.id).disabled = true;
-                document.getElementById(this.id+'_combo').disabled = true;
+                document.getElementById(this.id + '_combo').disabled = true;
 
             }
         });
@@ -162,11 +164,11 @@ $(function() {
         $("#non_ac" + k).change(function() {
             if (this.checked) {
                 document.getElementById('price_' + this.id).disabled = false;
-                document.getElementById(this.id+'_combo').disabled = false;
+                document.getElementById(this.id + '_combo').disabled = false;
 
             } else {
                 document.getElementById('price_' + this.id).disabled = true;
-                document.getElementById(this.id+'_combo').disabled = true;
+                document.getElementById(this.id + '_combo').disabled = true;
 
             }
         });
@@ -267,7 +269,7 @@ $(function() {
         xmlhttp.open("GET", "editVehicle/changeManufacturer/" + this.value, true);
         xmlhttp.send();
     });
-    
+
     //edit profile
 
     $('#pencil1').click(function() {
@@ -331,15 +333,15 @@ $(function() {
 
 
 function changePhone($id) {
-    var phone_no = $('#text_phoneNo'+$id).text().trim();
+    var phone_no = $('#text_phoneNo' + $id).text().trim();
     arr.push(phone_no);
     var $index = arr.length - 1;
-    $('#text_phone'+$id).replaceWith(function() {
-        var data = $id+' '+phone_no;
-        var string = '<form  onsubmit="return checkUpdatePhoneNo('+$id+')" id="edit_phone_no_form'+$id+'" name = "add_phone_no" method = post action = "http://localhost/Ridesl/editVehicle/updatePhoneNo/'+data+'" >';
-        string += '<input required type="text" value="'+phone_no+'" name="phone_no'+$id+'" id="update_new_phone_text'+$id+'" onkeypress="return isNumber(event)" onkeyup="limitText(this,10)"/> ';
-        string += '<div id="phone_validate'+$id+'" style="font-size: 12px; color:red; font-weight:bold"></div>';
-        string += '<div style="font-size: 13px;"><button  style="height:23px; width:40px">done</button> <input onclick="updatePhoneNoCancel('+$id+','+$index+')" type="button" id="cancel_btn" value="cancel"  style="height:23px; width:45px"></a></div>';
+    $('#text_phone' + $id).replaceWith(function() {
+        var data = $id + ' ' + phone_no;
+        var string = '<form  onsubmit="return checkUpdatePhoneNo(' + $id + ')" id="edit_phone_no_form' + $id + '" name = "add_phone_no" method = post action = "http://localhost/Ridesl/editVehicle/updatePhoneNo/' + data + '" >';
+        string += '<input required type="text" value="' + phone_no + '" name="phone_no' + $id + '" id="update_new_phone_text' + $id + '" onkeypress="return isNumber(event)" onkeyup="limitText(this,10)"/> ';
+        string += '<div id="phone_validate' + $id + '" style="font-size: 12px; color:red; font-weight:bold"></div>';
+        string += '<div style="font-size: 13px;"><button  style="height:23px; width:40px">done</button> <input onclick="updatePhoneNoCancel(' + $id + ',' + $index + ')" type="button" id="cancel_btn" value="cancel"  style="height:23px; width:45px"></a></div>';
         string += "</form>";
         return string;
     });
@@ -367,53 +369,53 @@ function phoneNoCancel() {
 }
 
 function updatePhoneNoCancel($id, $index) {
-    var dltNo = document.getElementById('dltNo'+$id).value;
-    $('#edit_phone_no_form'+$id).replaceWith(function() {
-        var string = '<div id="text_phone'+$id+'">';
-        string += '<font id="text_phoneNo'+$id+'">' +arr[$index]+'<font><font> </font>';
-        string += '<img onclick="changePhone('+$id+')" id = "phone'+$id+'" src="http://localhost/Ridesl/public/images/pencil.png" alt="" style="height: 13px; width: 13px; cursor:pointer"/><font> </font>';
-        string += '<a href="http://localhost/Ridesl/driverHome/dltPhoneNo/'+dltNo+'"><img onclick="return confirm(\'Are you sure you want to delete phone no '+dltNo+'?\');" id = "dlt_phone'+$id+'" src="http://localhost/Ridesl/public/images/dlt.png" alt="" style="height: 13px; width: 13px; cursor:pointer"/></a>';
+    var dltNo = document.getElementById('dltNo' + $id).value;
+    $('#edit_phone_no_form' + $id).replaceWith(function() {
+        var string = '<div id="text_phone' + $id + '">';
+        string += '<font id="text_phoneNo' + $id + '">' + arr[$index] + '<font><font> </font>';
+        string += '<img onclick="changePhone(' + $id + ')" id = "phone' + $id + '" src="http://localhost/Ridesl/public/images/pencil.png" alt="" style="height: 13px; width: 13px; cursor:pointer"/><font> </font>';
+        string += '<a href="http://localhost/Ridesl/driverHome/dltPhoneNo/' + dltNo + '"><img onclick="return confirm(\'Are you sure you want to delete phone no ' + dltNo + '?\');" id = "dlt_phone' + $id + '" src="http://localhost/Ridesl/public/images/dlt.png" alt="" style="height: 13px; width: 13px; cursor:pointer"/></a>';
         string += '</div>';
         return string;
     });
 }
 
-    //-------------------------------
-    // validation
-    //-------------------------------
+//-------------------------------
+// validation
+//-------------------------------
 
-function check(){
+function check() {
     var wrong = false;
-    for(var i =0; i<7; i++){
-        document.getElementById('loc_validate'+i).innerHTML = "";
-        document.getElementById('ava_validate'+i).innerHTML = "";
-        
-        var ck = document.getElementById('scheme_pane'+i).checked;
-        if(ck == true){
+    for (var i = 0; i < 7; i++) {
+        document.getElementById('loc_validate' + i).innerHTML = "";
+        document.getElementById('ava_validate' + i).innerHTML = "";
+
+        var ck = document.getElementById('scheme_pane' + i).checked;
+        if (ck == true) {
             //locations
-            var locs = document.getElementById('mySingleField'+i).value;
-            if(locs == ''){
+            var locs = document.getElementById('mySingleField' + i).value;
+            if (locs == '') {
                 wrong = true;
-                document.getElementById('loc_validate'+i).innerHTML = "You should add locations.";
+                document.getElementById('loc_validate' + i).innerHTML = "You should add locations.";
             }
             //availability
             var ava_set = false;
-            for(var j=0; j<7; j++){
-                var days = document.getElementById('day'+i+j).checked;
-                if(days == true){
+            for (var j = 0; j < 7; j++) {
+                var days = document.getElementById('day' + i + j).checked;
+                if (days == true) {
                     ava_set = true;
                     break;
                 }
             }
-            if(!ava_set){
+            if (!ava_set) {
                 wrong = true;
-                document.getElementById('ava_validate'+i).innerHTML = "You should set availability.";
+                document.getElementById('ava_validate' + i).innerHTML = "You should set availability.";
             }
         }
     }
-    if(!wrong){
+    if (!wrong) {
         return true;
-    }else{
+    } else {
         return false;
     }
 }
@@ -424,13 +426,13 @@ function limitText(limitField, limitNum) {
     }
 }
 
-function isFloat(sender,evt) { 
-    var txt = sender.value; 
-    var dotcontainer = txt.split('.'); 
-    var charCode = (evt.which) ? evt.which : event.keyCode; 
-    if (!(dotcontainer.length == 1 && charCode == 46) && charCode > 31 && (charCode < 48 || charCode > 57)) 
+function isFloat(sender, evt) {
+    var txt = sender.value;
+    var dotcontainer = txt.split('.');
+    var charCode = (evt.which) ? evt.which : event.keyCode;
+    if (!(dotcontainer.length == 1 && charCode == 46) && charCode > 31 && (charCode < 48 || charCode > 57))
         return false;
-    return true; 
+    return true;
 }
 
 function isNumber(evt) {
@@ -443,15 +445,15 @@ function isNumber(evt) {
 }
 
 function checkUpdatePhoneNo($id) {
-    var phoneno = document.getElementById('update_new_phone_text'+$id);
-    
-    var phoneno_text = document.getElementById('update_new_phone_text'+$id).value;
+    var phoneno = document.getElementById('update_new_phone_text' + $id);
+
+    var phoneno_text = document.getElementById('update_new_phone_text' + $id).value;
     if (phoneno_text.charAt(0) !== '0') {
-        document.getElementById('phone_validate'+$id).innerHTML = "Phone number should start with 0.";
+        document.getElementById('phone_validate' + $id).innerHTML = "Phone number should start with 0.";
         phoneno.focus;
         return false;
     } else if (phoneno_text.length !== 10) {
-        document.getElementById('phone_validate'+$id).innerHTML = "Phone number should contain 10 digits.";
+        document.getElementById('phone_validate' + $id).innerHTML = "Phone number should contain 10 digits.";
         phoneno.focus;
         return false;
     }

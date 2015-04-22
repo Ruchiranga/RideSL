@@ -40,7 +40,7 @@ class editVehicle_Model extends Model {
     }
 
     public function getVehicleDetails($vehicle_reg_no) {
-        $sth = $this->db->prepare("Select vehicle_type, manufacturer, model, capacity, vehicle_description, image, rating from owner o natural join vehicle v where o.owner_id = '" . $_SESSION['owner_id'] . "' and v.vehicle_reg_no='" . $vehicle_reg_no . "'");
+        $sth = $this->db->prepare("Select vehicle_type, manufacturer, model, capacity, vehicle_description, image, thumbs_up, thumbs_down from owner o natural join vehicle v where o.owner_id = '" . $_SESSION['owner_id'] . "' and v.vehicle_reg_no='" . $vehicle_reg_no . "'");
         $sth->execute();
 
         $count = $sth->rowCount();

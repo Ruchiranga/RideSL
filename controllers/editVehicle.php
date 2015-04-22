@@ -88,5 +88,7 @@ class editVehicle extends Controller {
         $this->model->dltPhoneNo($owner_id, $phone_no);
         header('location: '.URL.'editVehicle');
     }
+    
+
 
 }

@@ -1,5 +1,4 @@
 <?php
-
 error_reporting(E_ALL ^ E_NOTICE);
 session_start(); //Do not remove this
 //only assign a new timestamp if the session variable is empty
@@ -13,7 +12,6 @@ if (!isset($_SESSION['random_key']) || strlen($_SESSION['random_key']) == 0) {
 # CONSTANTS																								#
 # You can alter the options below																		#
 #########################################################################################################
-
 //$upload_dir = "upload_photo";    // The directory for the images to be saved in
 //$upload_path = "public/images/".$upload_dir . "/";    // The path to where the image will be saved
 
@@ -268,12 +266,12 @@ if ($_GET['a'] == "delete" && strlen($_GET['t']) > 0) {
     <body>
 
 
-        <?php
+<?php
 //Only display the javacript if an image has been uploaded
-        if (strlen($large_photo_exists) > 0) {
-            $current_large_image_width = getWidth($large_image_location);
-            $current_large_image_height = getHeight($large_image_location);
-            ?>
+if (strlen($large_photo_exists) > 0) {
+    $current_large_image_width = getWidth($large_image_location);
+    $current_large_image_height = getHeight($large_image_location);
+    ?>
             <script type="text/javascript">
                 function preview(img, selection) {
                     var scaleX = <?php echo $thumb_width; ?> / selection.width;
@@ -305,9 +303,11 @@ if ($_GET['a'] == "delete" && strlen($_GET['t']) > 0) {
                             alert("You must make a selection first");
                             return false;
                         } else {
+    //                            history.go(-1);
                             return true;
                         }
                     });
+
                 });
 
                 $(window).load(function () {
@@ -315,32 +315,33 @@ if ($_GET['a'] == "delete" && strlen($_GET['t']) > 0) {
                 });
 
             </script>
-            <?php } ?>
+<?php } ?>
         <h1 style="color: #0b75b2; font-size: 28px;" align="center">Photo Upload and Crop</h1>
         <hr>
-            <?php
+<?php
 //Display error message if there are any
-            if (strlen($error) > 0) {
-                echo "<ul><li><strong>Error!</strong></li><li>" . $error . "</li></ul>";
-            }
-            if (strlen($large_photo_exists) > 0 && strlen($thumb_photo_exists) > 0) {
+if (strlen($error) > 0) {
+    echo "<ul><li><strong>Error!</strong></li><li>" . $error . "</li></ul>";
+}
+if (strlen($large_photo_exists) > 0 && strlen($thumb_photo_exists) > 0) {
 
-                echo $large_photo_exists . "&nbsp;" . $thumb_photo_exists;
-                echo "<p><a href=\"" . $_SERVER["PHP_SELF"] . "?a=delete&t=" . $_SESSION['random_key'] . $_SESSION['user_file_ext'] . "\">Delete images</a></p>";
-                echo "<p><a href=\"" . $_SERVER["PHP_SELF"] . "\">Upload another</a></p>";
+    echo $large_photo_exists . "&nbsp;" . $thumb_photo_exists;
+//                echo "<p><a href=\"" . $_SERVER["PHP_SELF"] . "?a=delete&t=" . $_SESSION['random_key'] . $_SESSION['user_file_ext'] . "\">Delete images</a></p>";
+//                echo "<p><a href=\"" . $_SERVER["PHP_SELF"] . "\">Upload another</a></p>";
 
-                echo "<p><a href='##' onClick='history.go(-3); return false;'>Go back</a></p>";
+    echo "<p><button onClick='history.go(-3); return false;'>Next</button></p>";
 
 
-                //Clear the time stamp session and user file extension
-                $_SESSION['random_key'] = "";
-                $_SESSION['user_file_ext'] = "";
-            } else {
-                if (strlen($large_photo_exists) > 0) {
-                    ?>
+    //Clear the time stamp session and user file extension
+    $_SESSION['random_key'] = "";
+    $_SESSION['user_file_ext'] = "";
+} else {
+    if (strlen($large_photo_exists) > 0) {
+        ?>
                     <div style="float:left; width:25%;"></div>
                     <div style="float:right; width:74%;" >
                         <h2 style="color: #0b75b2; font-size: 20px;">Create Thumbnail</h2>
+                        <p style="color: #0b75b2;">Drag over the image to select the thumbnail</p>
                         <div>
                             <img src="<?php echo $upload_path . $large_image_name . $_SESSION['user_file_ext']; ?>" style="float: left; margin-right: 10px;" id="thumbnail" alt="Create Thumbnail" />
                             <div align="center" style="border:1px #e5e5e5 solid; float:left; position:relative; overflow:hidden; width:<?php echo $thumb_width; ?>px; height:<?php echo $thumb_height; ?>px;">
@@ -355,7 +356,7 @@ if ($_GET['a'] == "delete" && strlen($_GET['t']) > 0) {
                                 <input type="hidden" name="w" value="" id="w" />
                                 <input type="hidden" name="h" value="" id="h" />
                                 <br><br>
-                                        <input type="submit" name="upload_thumbnail" value="Save Thumbnail" id="save_thumb" />
+                                        <input type="submit" name="upload_thumbnail" value="Save Thumbnail" id="save_thumb" style="background: #2980b9; color: white; width: 130px; height: 30px; padding: 10px; font-size: 14px;" />
                                         </form>
                                         </div>
 
@@ -364,15 +365,17 @@ if ($_GET['a'] == "delete" && strlen($_GET['t']) > 0) {
                                     <h2 style="color: #0b75b2; font-size: 20px;">Upload Photo</h2>
 
 
-                                    <form name="photo" enctype="multipart/form-data" action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post" aligh="center">
-                                        Photo <input type="file" name="image" size="30" /> <input type="submit" name="upload" value="Upload" />
-                                    </form>
-                                    <br><br>
-                                            <a href="##" onClick="history.go(-1);
-                                                    return false;">Go back</a> 
+                                    <form name="photo" enctype="multipart/form-data" action="<?php echo $_SERVER["PHP_SELF"]; ?>" method="post" aligh="center"><br><br><br>
+                                                    <input type="file" name="image" size="30" />
+                                                    <br><br><br>
+                                                                <input type="submit" name="upload" value="Upload" style="background: #2980b9; color: white; width: 80px; height: 30px; padding: 10px; font-size: 14px;"  />
+                                                                </form>
+                                                                <br><br>
+                                                                        <!--                                            <a href="##" onClick="history.go(-1);
+                                                                                                                            return false;">Go back</a> -->
 <?php } ?>
 
 
-                                        <!-- Copyright (c) 2008 http://www.webmotionuk.com -->
-                                        </body>
-                                        </html>
+                                                                    <!-- Copyright (c) 2008 http://www.webmotionuk.com -->
+                                                                    </body>
+                                                                    </html>

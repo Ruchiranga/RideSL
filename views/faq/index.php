@@ -51,9 +51,9 @@
                                             <p>
                                                 Before adding a vehicle you should register as a driver.<br>
                                                 <br><span style="font-weight: 600;">Step1 :</span> Sign in to your account <br>
-                                                <span style="font-weight: 600;">Step2 : </span>  <br>
-                                                <span style="font-weight: 600;">Step3 : </span> <br>
-                                                <span style="font-weight: 600;">Step4 :</span>   
+                                                <span style="font-weight: 600;">Step2 : </span> Fill the main vehicle details <br>
+                                                <span style="font-weight: 600;">Step3 : </span> Specify the pricing scheme and availability.<br>
+                                                <br> Then your vehicle will be successfully registered.
                                                 <br>
 
                                             </p>
@@ -87,7 +87,7 @@
                                         <div class="responsive-accordion-panel">
                                             <p>
                                                 There are several methods to search a vehicle in RideSL.<br><br>
-                                                <span style="font-weight: 600;">Method1 :</span> You can make a instant search by entering  your 'pickup location' in homepage.<br>
+                                                <span style="font-weight: 600;">Method1 :</span> You can make a instant search by entering  your 'pickup location' in homepage.<br><br>
                                                 <span style="font-weight: 600;">Method2 :</span> You can use task bar at the bottom of the page in order to select special category of vehicle. <br>
                                                 Then you can filter the vehicle list you get by using various filters available.
 
@@ -100,10 +100,7 @@
                                         <div class="responsive-accordion-head">How to filter vehicle list?<i class="fa fa-chevron-down responsive-accordion-plus fa-fw"></i><i class="fa fa-chevron-up responsive-accordion-minus fa-fw"></i></div>
                                         <div class="responsive-accordion-panel">
                                             <p>
-                                                 <br><span style="font-weight: 600;">Step1 :</span> <br>
-                                                <span style="font-weight: 600;">Step2 : </span>  <br>
-                                                <span style="font-weight: 600;">Step3 : </span> <br>
-                                                <span style="font-weight: 600;">Step4 :</span>   
+                                                 <br>You can filter vehicle list that  you receive. You can filter them by vehicle model, category ,price , AC/nonAC , available time etc. 
                                                 <br>
                                             </p>
                                         </div>
@@ -113,10 +110,10 @@
                                         <div class="responsive-accordion-panel">
                                             <p>
                                                 As a driver your can add more than one vehicle to your account.<br>
-                                                <br><span style="font-weight: 600;">Step1 :</span> <br>
-                                                <span style="font-weight: 600;">Step2 : </span>  <br>
-                                                <span style="font-weight: 600;">Step3 : </span> <br>
-                                                <span style="font-weight: 600;">Step4 :</span>   
+                                                <br><span style="font-weight: 600;">Step1 :</span>  Go to driver home page.<br>
+                                                <span style="font-weight: 600;">Step2 :</span>  Click on 'Add new vehicle'  <br>
+                                                <span style="font-weight: 600;">Step3 : </span> Then fill the form you get  and click on 'Finish'. <br>
+                                                 
                                                 <br>
 
                                             </p>
@@ -142,23 +139,23 @@
                                         <div class="responsive-accordion-panel">
                                             <p>
                                                 You can suspend your vehicle account temporrary. By doing so can preventing your vehicle being seeing to passengers.
-                                                 <br><br><span style="font-weight: 600;">Step1 :</span> <br>
-                                                <span style="font-weight: 600;">Step2 : </span>  <br>
-                                                <span style="font-weight: 600;">Step3 : </span> <br>
-                                                <span style="font-weight: 600;">Step4 :</span>   
+                                                 <br><br><span style="font-weight: 600;">Step1 :</span> Go to driver home and select your vehicle<br>
+                                                <span style="font-weight: 600;">Step2 :</span>  Click on 'Suspend' button  <br>
+                                                <span style="font-weight: 600;">Step3 :</span>  Then your vehicle will appear in suspended vehicle list at the bottom.<br>
+                                                <span style="font-weight: 600;">Step4 :</span> If you want to activate them again use the 'Activate' button there.  
                                                 <br>
                                             </p>
                                         </div>
                                     </li>
                                     <li>
-                                        <div class="responsive-accordion-head">How to define a scheme for a vehicle?<i class="fa fa-chevron-down responsive-accordion-plus fa-fw"></i><i class="fa fa-chevron-up responsive-accordion-minus fa-fw"></i></div>
+                                        <div class="responsive-accordion-head">How to add a new scheme for a vehicle?<i class="fa fa-chevron-down responsive-accordion-plus fa-fw"></i><i class="fa fa-chevron-up responsive-accordion-minus fa-fw"></i></div>
                                         <div class="responsive-accordion-panel">
                                             <p>
                                                 You can define multiple schemes for your vehicle.By doing so your vehicle is been visible passengers under different categories.
-                                                <br><br><span style="font-weight: 600;">Step1 :</span> <br>
-                                                <span style="font-weight: 600;">Step2 : </span>  <br>
-                                                <span style="font-weight: 600;">Step3 : </span> <br>
-                                                <span style="font-weight: 600;">Step4 :</span>   
+                                                <br><br><span style="font-weight: 600;">Step1 :</span> Goto driver home and select your vehicle<br>
+                                                <span style="font-weight: 600;">Step2 : </span>  Click on 'Edit'<br>
+                                                <span style="font-weight: 600;">Step3 : </span> Check the relevant scheme type and fill details. <br>
+                                                <span style="font-weight: 600;">Step4 :</span> click on 'OK'  
                                                 <br>
                                                 
                                             </p>

@@ -1,6 +1,3 @@
-
-
-
 <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/textboxstyle.css">
 <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/schemestyle.css">
 <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/labelstyle.css">

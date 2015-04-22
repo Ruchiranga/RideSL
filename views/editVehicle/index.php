@@ -250,14 +250,14 @@
                         <select id="ac'.$index.'_combo" name="per_combo_ac'.$index.'" style="width: 100px">
                         <option id = "ac_'.$valueScheme['pricing_category'].$index.'" selected>'.$valueScheme['pricing_category'].'</option>';
                         
-                        if('km' !== $valueScheme['pricing_category']){
-                            $content .= '<option id="ac_km'.$index.'">km</option>';
+                        if('Per km' !== $valueScheme['pricing_category']){
+                            $content .= '<option id="ac_km'.$index.'">Per km</option>';
                         }
-                        if('hour' !== $valueScheme['pricing_category']){
-                            $content .= '<option id="ac_hour'.$index.'">hour</option>';
+                        if('Per hour' !== $valueScheme['pricing_category']){
+                            $content .= '<option id="ac_hour'.$index.'">Per hour</option>';
                         }
-                        if('day' !== $valueScheme['pricing_category']){
-                            $content .= '<option id="ac_day'.$index.'">day</option>';
+                        if('Per day' !== $valueScheme['pricing_category']){
+                            $content .= '<option id="ac_day'.$index.'">Per day</option>';
                         } 
                             
                         $content .= '</font></td></tr>';
@@ -269,9 +269,9 @@
                         <td width="20%">
                         <font>
                         <select id="ac'.$index.'_combo" name="per_combo_ac'.$index.'" disabled=true style="width: 100px">';
-                            $content .= '<option id="ac_km'.$index.'">km</option>';
-                            $content .= '<option id="ac_hour'.$index.'">hour</option>';
-                            $content .= '<option id="ac_day'.$index.'">day</option>';
+                            $content .= '<option id="ac_km'.$index.'">Per km</option>';
+                            $content .= '<option id="ac_hour'.$index.'">Per hour</option>';
+                            $content .= '<option id="ac_day'.$index.'">Per day</option>';
                             $content .= '</font></td></tr>';
                         
                             
@@ -286,14 +286,14 @@
                         <select id="non_ac'.$index.'_combo" name="per_combo_non_ac'.$index.'" style="width: 100px">
                         <option id = "non_ac_'.$valueScheme['pricing_category'].$index.'" selected>'.$valueScheme['pricing_category'].'</option>';
                         
-                        if('km' !== $valueScheme['pricing_category']){
-                            $content .= '<option id="non_ac_km'.$index.'">km</option>';
+                        if('Per km' !== $valueScheme['pricing_category']){
+                            $content .= '<option id="non_ac_km'.$index.'">Per km</option>';
                         }
-                        if('hour' !== $valueScheme['pricing_category']){
-                            $content .= '<option id="non_ac_hour'.$index.'">hour</option>';
+                        if('Per hour' !== $valueScheme['pricing_category']){
+                            $content .= '<option id="non_ac_hour'.$index.'">Per hour</option>';
                         }
-                        if('day' !== $valueScheme['pricing_category']){
-                            $content .= '<option id="non_ac_day'.$index.'">day</option>';
+                        if('Per day' !== $valueScheme['pricing_category']){
+                            $content .= '<option id="non_ac_day'.$index.'">Per day</option>';
                         } 
                             
                         $content .= '</font></td></tr>';
@@ -304,9 +304,9 @@
                         <td>
                         <font>
                         <select id="non_ac'.$index.'_combo" name="per_combo_non_ac'.$index.'" disabled=true style="width: 100px">';
-                            $content .= '<option id="non_ac_km'.$index.'">km</option>';
-                            $content .= '<option id="non_ac_hour'.$index.'">hour</option>';
-                            $content .= '<option id="non_ac_day'.$index.'">day</option>';
+                            $content .= '<option id="non_ac_km'.$index.'">Per km</option>';
+                            $content .= '<option id="non_ac_hour'.$index.'">Per hour</option>';
+                            $content .= '<option id="non_ac_day'.$index.'">Per day</option>';
                             $content .= '</font></td></tr>';
                                     }
                                     
@@ -346,14 +346,14 @@
                         <select id="per_normal'.$index.'" name="per_combo_non_ac'.$index.'" style="width: 100px">
                         <option id = "'.$valueScheme['pricing_category'].'" selected>'.$valueScheme['pricing_category'].'</option>';
                         
-                        if('km' !== $valueScheme['pricing_category']){
-                            $content .= '<option id="normal_km'.$index.'">km</option>';
+                        if('Per km' !== $valueScheme['pricing_category']){
+                            $content .= '<option id="normal_km'.$index.'">Per km</option>';
                         }
-                        if('hour' !== $valueScheme['pricing_category']){
-                            $content .= '<option id="normal_hour'.$index.'">hour</option>';
+                        if('Per hour' !== $valueScheme['pricing_category']){
+                            $content .= '<option id="normal_hour'.$index.'">Per hour</option>';
                         }
-                        if('day' !== $valueScheme['pricing_category']){
-                            $content .= '<option id="normal_day'.$index.'">day</option>';
+                        if('Per day' !== $valueScheme['pricing_category']){
+                            $content .= '<option id="normal_day'.$index.'">Per day</option>';
                         } 
                             
                         $content .= '</font></td></tr>';
@@ -364,9 +364,9 @@
                         <td>
                         <font>
                         <select id="per_normal'.$index.'_combo" name="per_combo_non_ac'.$index.'" disabled=true style="width: 100px">';
-                            $content .= '<option id="normal_km'.$index.'">km</option>';
-                            $content .= '<option id="normal_hour'.$index.'">hour</option>';
-                            $content .= '<option id="normal_day'.$index.'">day</option>';
+                            $content .= '<option id="normal_km'.$index.'">Per km</option>';
+                            $content .= '<option id="normal_hour'.$index.'">Per hour</option>';
+                            $content .= '<option id="normal_day'.$index.'">Per day</option>';
                             $content .= '</font></td></tr>';
                                     }
                                 }
@@ -483,9 +483,9 @@
                         <td width="20%"><font>Per 
                         
                         <select id = "ac'.$index.'_combo" disabled="true" name="per_combo_ac' . $index . '" id="pricewithac' . $index . '" style="width: 100px">
-                        <option>km</option>
-                        <option>hour</option> 
-                        <option>day</option> 
+                        <option>Per km</option>
+                        <option>Per hour</option> 
+                        <option>Per day</option> 
                         </select>
 
                         </font>
@@ -497,9 +497,9 @@
                         <td><font>Per 
                         
                         <select id = "non_ac'.$index.'_combo" disabled="true" name="per_combo_non_ac' . $index . '" id="pricewithoutac' . $index . '" style="width: 100px">
-                        <option>km</option>
-                        <option>hour</option> 
-                        <option>day</option> 
+                        <option>Per km</option>
+                        <option>Per hour</option> 
+                        <option>Per day</option> 
                         </select>
                         
                         </font>
@@ -512,9 +512,9 @@
                         <td width="20%"><font>Per 
                         
                         <select id = "per_normal'.$index.'" disabled="true" name="per_combo_non_ac' . $index . '" style="width: 100px">
-                        <option>km</option>
-                        <option>hour</option> 
-                        <option>day</option> 
+                        <option>Per km</option>
+                        <option>Per hour</option> 
+                        <option>Per day</option> 
                         </select>
 
                         </font>
@@ -544,7 +544,7 @@
 
                                 $content .= '<form>
                         
-                        </p>
+                        
                         <ul id="singleFieldTags' . $index . '" name="tags_list'.$index.'"></ul>
                         <div id=loc_validate'.$index.' style="font-size: 14px; color:red; font-weight:bold"></div>
                         </form>

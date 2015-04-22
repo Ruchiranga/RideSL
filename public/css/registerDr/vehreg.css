@@ -113,6 +113,7 @@ form ul
 	margin:0;
 	padding:0;
 	width:100%;
+        color: #0b75b2;
 }
 
 form li
@@ -121,6 +122,7 @@ form li
 	margin:0;
 	padding:4px 5px 2px 9px;
 	position:relative;
+        color: #0b75b2;
 }
 
 form li:after
@@ -130,6 +132,8 @@ form li:after
 	display:block;
 	height:0;
 	visibility:hidden;
+        color: #0b75b2;
+
 }
 
 .buttons:after
@@ -172,7 +176,8 @@ form li div
 
 form li span
 {
-	color:#444;
+	color: #0b75b2;
+
 	float:left;
 	margin:0 4px 0 0;
 	padding:0 0 8px;
@@ -221,7 +226,8 @@ form li div label
 form li span label
 {
 	clear:both;
-	color:#444;
+	color: #0b75b2;
+
 	display:block;
 	font-size:9px;
 	line-height:9px;
@@ -884,4 +890,8 @@ font-weight: bold;
 }
 
 
+span.help {
+  color:#660000;
+  font-style:italic;
+}
 

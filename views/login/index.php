@@ -13,7 +13,7 @@
 
     </head>
     <body>
-        <div style=" height: 40px; width: 1230px; padding-top:5px;padding-bottom: 35px; margin-left: auto;margin-right: auto;text-align: center;"> 
+        <div style=" width: 1230px; padding-top:5px;padding-bottom: 10px; margin-left: auto;margin-right: auto;text-align: center;"> 
                 
                 <img src="<?php echo URL; ?>public/images/logo1.png" alt=""/>
         </div>
@@ -43,4 +43,7 @@
 
 
     </body>
+    <script>
+        document.getElementById('name').focus();
+    </script>
 </html>

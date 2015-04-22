@@ -3,7 +3,6 @@
 class driverHome_Model extends Model {
 
     private $username;
-
     private $vList;
 
     function __construct() {
@@ -45,7 +44,7 @@ class driverHome_Model extends Model {
 
     public function getVehicleList() {
 
-        $sth = $this->db->prepare("Select vehicle_reg_no, vehicle_type, manufacturer, model, capacity, vehicle_description, image, rating from owner o natural join vehicle v where o.owner_id = '" . $_SESSION['owner_id'] . "' and isActive='1'");
+        $sth = $this->db->prepare("Select vehicle_reg_no, vehicle_type, manufacturer, model, capacity, vehicle_description, image, thumbs_up, thumbs_down from owner o natural join vehicle v where o.owner_id = '" . $_SESSION['owner_id'] . "' and isActive='1'");
         $sth->execute();
 
         $count = $sth->rowCount();
@@ -57,9 +56,9 @@ class driverHome_Model extends Model {
             return NULL;
         }
     }
-    
+
     public function getSuspendedVehicleList() {
-        $sth = $this->db->prepare("Select vehicle_reg_no, vehicle_type, manufacturer, model, capacity, vehicle_description, image, rating from owner o natural join vehicle v where o.owner_id = '" . $_SESSION['owner_id'] . "' and isActive='0'");
+        $sth = $this->db->prepare("Select vehicle_reg_no, vehicle_type, manufacturer, model, capacity, vehicle_description, image, thumbs_up, thumbs_down from owner o natural join vehicle v where o.owner_id = '" . $_SESSION['owner_id'] . "' and isActive='0'");
 
         $sth->execute();
 
@@ -105,9 +104,9 @@ class driverHome_Model extends Model {
         foreach ($schemeList as $key => $value) {
 
             if ($value['category'] === 'Station Drop Pickup Scheme' || $value['category'] === 'Airport Drop Pickup Scheme') {
-                if($value['category'] === 'Station Drop Pickup Scheme'){
-                     $sth2 = $this->db->prepare("Select * from scheme natural join station_drop_pickup_scheme where vehicle_reg_no = '" . $vehicle_reg_no . "'");
-                }else{
+                if ($value['category'] === 'Station Drop Pickup Scheme') {
+                    $sth2 = $this->db->prepare("Select * from scheme natural join station_drop_pickup_scheme where vehicle_reg_no = '" . $vehicle_reg_no . "'");
+                } else {
                     $sth2 = $this->db->prepare("Select * from scheme natural join air_port_drop_pickup_scheme where vehicle_reg_no = '" . $vehicle_reg_no . "'");
                 }
 
@@ -156,7 +155,7 @@ class driverHome_Model extends Model {
             return NULL;
         }
     }
-    
+
     public function initSchemeLocation($vehicleSchemeList) {
 
         $schemeLocationList = array(array());
@@ -196,7 +195,6 @@ class driverHome_Model extends Model {
         }
     }
 
-
     public function editName($firstName, $lastName) {
 
         $sth = $this->db->prepare("update owner set first_name = '" . $firstName . "', last_name = '" . $lastName . "' where owner_id = '" . $_SESSION['owner_id'] . "'");
@@ -223,8 +221,7 @@ class driverHome_Model extends Model {
         }
     }
 
-    
-    public function deleteScheme($scheme_id){
+    public function deleteScheme($scheme_id) {
         $sth = $this->db->prepare("delete from scheme where scheme_id = '" . $scheme_id . "'");
 
         $sth->execute();
@@ -235,8 +232,8 @@ class driverHome_Model extends Model {
             return false;
         }
     }
-    
-    public function suspendVehicle($vehicle_reg_no){
+
+    public function suspendVehicle($vehicle_reg_no) {
         $sth = $this->db->prepare("update vehicle set isActive = '0' where vehicle_reg_no = '" . $vehicle_reg_no . "'");
 
         $sth->execute();
@@ -247,8 +244,8 @@ class driverHome_Model extends Model {
             return false;
         }
     }
-    
-    public function makeActiveVehicle($vehicle_reg_no){
+
+    public function makeActiveVehicle($vehicle_reg_no) {
         $sth = $this->db->prepare("update vehicle set isActive = '1' where vehicle_reg_no = '" . $vehicle_reg_no . "'");
 
         $sth->execute();
@@ -259,19 +256,9 @@ class driverHome_Model extends Model {
             return false;
         }
     }
-    
-    public function updatePhoneNo($owner_id, $old_phone_no, $new_phone_no){
-        $sth = $this->db->prepare("update telephone_number set telephone_number = '" . $new_phone_no . "' where telephone_number = '" . $old_phone_no . "' and owner_id='".$owner_id."'");
-        $sth->execute();
-        if ($sth->rowCount() >= 1) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-    
-    public function dltPhoneNo($owner_id, $phone_no){
-        $sth = $this->db->prepare("delete from telephone_number where telephone_number = '" . $phone_no . "' and owner_id='".$owner_id."'");
+
+    public function updatePhoneNo($owner_id, $old_phone_no, $new_phone_no) {
+        $sth = $this->db->prepare("update telephone_number set telephone_number = '" . $new_phone_no . "' where telephone_number = '" . $old_phone_no . "' and owner_id='" . $owner_id . "'");
         $sth->execute();
         if ($sth->rowCount() >= 1) {
             return true;
@@ -280,8 +267,55 @@ class driverHome_Model extends Model {
         }
     }
 
+    public function dltPhoneNo($owner_id, $phone_no) {
+        $sth = $this->db->prepare("delete from telephone_number where telephone_number = '" . $phone_no . "' and owner_id='" . $owner_id . "'");
+        $sth->execute();
+        if ($sth->rowCount() >= 1) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    public function changeImage($vehicle_reg_no) {
+        $file_upload = "true";
+        $file_up_size = $_FILES['file_up' . $vehicle_reg_no]['size'];
+
+        $file_up = 'file_up' . $vehicle_reg_no;
+
+        echo $_FILES[$file_up]['name'];
+        $msg = '';
+        
+        if ($_FILES[$file_up]['size'] > 250000) {
+            $msg = $msg . "Your uploaded file size is more than 250KB
+                            so please reduce the file size and then upload.<BR>";
+            $file_upload = "false";
+        }
+
+        if (!($_FILES[$file_up]['type'] == "image/jpeg" OR $_FILES[$file_up]['type'] == "image/gif")) {
+            
+            $msg = $msg . "Your uploaded file must be of JPG or GIF. Other file types are not allowed<BR>";
+            
+            $file_upload = "false";
+        }
+
+        $arr = explode("/", $_FILES[$file_up]['type']);
+
+        $file_name = $_FILES[$file_up]['name'];
+        $add = 'public/images/' . $_SESSION['owner_id'] . '/' . $vehicle_reg_no . '.' . $arr[1]; // the path with the file name where the file will be stored
+
+        if ($file_upload == "true") {
+            if (move_uploaded_file($_FILES[$file_up]['tmp_name'], $add)) {
+                
+                $sth = $this->db->prepare("update vehicle set image = '".$vehicle_reg_no.".". $arr[1]."' where vehicle_reg_no='".$vehicle_reg_no."'");
+                $sth->execute();
+                
+                $msg = "Image saved successfully. Reload the page";
+            } else {
+                $msg = "Failed to upload file. Contact Site admin to fix the problem";
+            }
+        }
+        return $msg; 
+    }
 
 }
-?>
-
-

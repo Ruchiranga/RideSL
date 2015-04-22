@@ -18,7 +18,7 @@
 
     <div style=" height: 80px; text-align: right; margin-left: 28px; margin-right: 29px; margin-top: 10px;">
         <div style=" width: 310px; height: 40px; text-align: left; float: left;">
-            <img src="<?php echo URL; ?>public/images/logo1.png" alt="" style="text-align: left; height: 40px"/>
+            <a href ="<?php echo URL; ?>" ><img src="<?php echo URL; ?>public/images/logo1.png" alt="" style="text-align: left; height: 40px"/></a>
         </div>
         <div style=" height: 40px; text-align: right; float: right;">
 
@@ -36,10 +36,10 @@
                     <a href="<?php echo URL; ?>admin">Admin Page</a>
                     &nbsp;&nbsp;|&nbsp;&nbsp;
     <?php endif; ?>
-                <?php if (Session::get('privilege') == 'p'): ?>
-                    <a href="<?php echo URL; ?>#">Comment</a>
-                    &nbsp;&nbsp;|&nbsp;&nbsp;
-    <?php endif; ?>
+                <?php // if (Session::get('privilege') == 'p'): ?>
+                    <!--<a href="<?php // echo URL; ?>#">Comment</a>-->
+                    <!--&nbsp;&nbsp;|&nbsp;&nbsp;-->
+    <?php // endif; ?>
 
 <?php endif; ?>
             

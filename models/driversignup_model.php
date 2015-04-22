@@ -27,7 +27,8 @@ class driverSignup_Model extends Model {
         $sth->execute(array(':username' => $this->username));
         $count = $sth->rowCount();
         if ($count > 0) {
-            echo 'The user name already exists, please enter a new unique user name';
+            $message = "The user name already exists, please enter a new unique user name";       
+            echo "<script type='text/javascript'>alert('$message');window.location = \"../driverSignup\";</script>";
         }
         else{
             $sth = $this->db->prepare('insert into account(username,password,privilege) values(:username,Password(:password),\'d\')');

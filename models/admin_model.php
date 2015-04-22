@@ -7,7 +7,7 @@ class Admin_Model extends Model {
   
             
                 function __construct() {
-                    session_start();
+//                    session_start();
         parent::__construct();
                
     }

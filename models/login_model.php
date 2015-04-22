@@ -5,6 +5,7 @@ class Login_Model extends Model {
     private $username;
     private $password;
     private $privilege;
+    private $message="";
     
     function __construct() {
         parent::__construct();
@@ -40,13 +41,12 @@ class Login_Model extends Model {
             } else {
                 header('location: ../error');
             }
-            
+                      
         } else {
-            $message = "Username and/or Password incorrect.\\nTry again.";
+            $message = "The user name or password that you entered is incorrect.";
+            //header('location: ../login');             
             echo "<script type='text/javascript'>alert('$message');window.location = \"../login\";</script>";
-         
-            //header('location: ../login');
-            //echo "<script type='text/javascript'>document.getElementById('alertbox\").innerHTML = \"Username and/or Password incorrect.\\nTry again.\";</script>";
+           //echo "<script type='text/javascript'>document.getElementById('alertbox\").innerHTML = \"Username and/or Password incorrect.\\nTry again.\";</script>"
        
         }
     }

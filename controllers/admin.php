@@ -2,8 +2,15 @@
 class admin extends Controller {
 
     function __construct() {
-
         parent::__construct();
+        Session::init();
+        $logged = Session::get('loggedIn');
+        $privilege = Session::get('privilege');
+        if ($logged == false || $privilege != 'a') {
+            Session::destroy();
+            header('location: '.URL.'login');
+            exit();
+        }
     }
 
     public function index() {

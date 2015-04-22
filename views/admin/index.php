@@ -175,7 +175,12 @@
                             <ul id="leftNavigation">
 
                                 <li id="whatIsRidesl" >
-                                    <a href="<?php echo URL; ?>search" ><i class="fa fa-search" ></i> Search Vehicle</a>
+                                    <form id="linkform"action="search/resultList" method="post">                                       
+                                        <input type="text" name="location" value="" style="visibility: hidden;position: absolute">
+                                        <input type="text" name="scheme_category" value="City Taxi Scheme" style="visibility: hidden; position: absolute;"/>
+                                        <a href="javascript: submitlink()" ><i class="fa fa-search" ></i> Search Vehicle</a>
+                                    </form>
+                                    <!--<a href="<?php // echo URL; ?>search" ><i class="fa fa-search" ></i> Search Vehicle</a>-->
 
                                 </li>
                                 <li id="FAQ" >
@@ -230,6 +235,12 @@
 
 
             });
+            
+            function submitlink(){
+                document.getElementById('linkform').submit();
+            }
+            
+            
 
 
 

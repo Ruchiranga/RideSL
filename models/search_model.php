@@ -28,14 +28,14 @@ class Search_Model extends Model {
         $sth->execute();
 
         if ($this->location) {
-            $sth = $this->db->prepare('create view results as select vehicle_reg_no,o.owner_id,vehicle_type,manufacturer,model,capacity,vehicle_description,isActive,s.scheme_id,ac_price,non_ac_price,pricing_category,descrption,image from scheme_location natural join scheme s natural join vehicle v natural join owner o where location = :location and s.category = :scheme_category');
+            $sth = $this->db->prepare('create view results as select vehicle_reg_no,o.owner_id,vehicle_type,manufacturer,model,capacity,vehicle_description,thumbs_up,thumbs_down,s.scheme_id,ac_price,non_ac_price,pricing_category,descrption,image from scheme_location natural join scheme s natural join vehicle v natural join owner o where location = :location and s.category = :scheme_category and isActive = 1');
             $sth->setFetchMode(PDO::FETCH_ASSOC);
             $sth->execute(array(
                 ':location' => $this->location,
                 ':scheme_category' => $this->scheme_category
             ));
         } else {
-            $sth = $this->db->prepare('create view results as select distinct vehicle_reg_no,o.owner_id,vehicle_type,manufacturer,model,capacity,vehicle_description,isActive,s.scheme_id,ac_price,non_ac_price,pricing_category,descrption,image from scheme_location natural join scheme s natural join vehicle v natural join owner o where s.category = :scheme_category');
+            $sth = $this->db->prepare('create view results as select distinct vehicle_reg_no,o.owner_id,vehicle_type,manufacturer,model,capacity,vehicle_description,thumbs_up,thumbs_down,s.scheme_id,ac_price,non_ac_price,pricing_category,descrption,image from scheme_location natural join scheme s natural join vehicle v natural join owner o where s.category = :scheme_category and isActive = 1');
             $sth->setFetchMode(PDO::FETCH_ASSOC);
             $sth->execute(array(
                 ':scheme_category' => $this->scheme_category
@@ -92,10 +92,94 @@ class Search_Model extends Model {
 //        echo 'int he model';
         $sth = $this->db->prepare('INSERT INTO comment (vehicle_reg_no, comment, comment_date, username) VALUES (:reg_no, :comment , CURDATE(), :username)');
         return $sth->execute(array(
+                    ':reg_no' => $regno,
+                    ':comment' => $comment,
+                    ':username' => $username
+        ));
+    }
+
+    public function thumbUp($regno, $count, $username) {
+        $sth = $this->db->prepare('Select * from  vehicle_thumbs WHERE username = :username AND vehicle_reg_no = :reg_no');
+        $sth->setFetchMode(PDO::FETCH_ASSOC);
+        $sth->execute(array(
             ':reg_no' => $regno,
-            ':comment' => $comment,
             ':username' => $username
         ));
+
+        $results = $sth->fetchAll();
+        if (sizeof($results) == 0) {
+            try {
+                $sth = $this->db->prepare("SET AUTOCOMMIT=0");
+                $sth->execute();
+                $sth = $this->db->prepare("start transaction");
+                $sth->execute();
+
+                $sth = $this->db->prepare('INSERT INTO vehicle_thumbs (vehicle_reg_no, username) VALUES (:reg_no, :username)');
+                $sth->execute(array(
+                    ':reg_no' => $regno,
+                    ':username' => $username
+                ));
+
+                $sth = $this->db->prepare('UPDATE vehicle SET thumbs_up = :count WHERE vehicle_reg_no = :reg_no');
+                $sth->execute(array(
+                    ':reg_no' => $regno,
+                    ':count' => $count
+                ));
+
+                $sth = $this->db->prepare("commit");
+                $sth->execute();
+                return 'true';
+            } catch (Exception $e) {
+                $sth = $this->db->prepare("rollback");
+                $sth->execute();
+                return 'false';
+            }
+        } else {
+            return 'exists';
+        }
+    }
+
+    public function thumbDown($regno, $count, $username) {
+        $sth = $this->db->prepare('Select * from  vehicle_thumbs WHERE username = :username AND vehicle_reg_no = :reg_no');
+        $sth->setFetchMode(PDO::FETCH_ASSOC);
+        $sth->execute(array(
+            ':reg_no' => $regno,
+            ':username' => $username
+        ));
+
+        $results = $sth->fetchAll();
+        if (sizeof($results) == 0) {
+            try {
+                $sth = $this->db->prepare("SET AUTOCOMMIT=0");
+                $sth->execute();
+                $sth = $this->db->prepare("start transaction");
+                $sth->execute();
+
+                $sth = $this->db->prepare('INSERT INTO vehicle_thumbs (vehicle_reg_no, username) VALUES (:reg_no, :username)');
+                $sth->execute(array(
+                    ':reg_no' => $regno,
+                    ':username' => $username
+                ));
+
+                $sth = $this->db->prepare('UPDATE vehicle SET thumbs_down = :count WHERE vehicle_reg_no = :reg_no');
+                return $sth->execute(array(
+                            ':reg_no' => $regno,
+                            ':count' => $count
+                ));
+
+                $sth = $this->db->prepare("commit");
+                $sth->execute();
+                return 'true';
+            } catch (Exception $e) {
+                $sth = $this->db->prepare("rollback");
+                $sth->execute();
+                return 'false';
+            }
+        } else {
+            return 'exists';
+        }
+        
+        
     }
 
     public function initSession() {

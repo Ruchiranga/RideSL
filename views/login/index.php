@@ -43,4 +43,7 @@
 
 
     </body>
+    <script>
+        document.getElementById('name').focus();
+    </script>
 </html>

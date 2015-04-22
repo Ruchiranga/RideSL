@@ -7,7 +7,7 @@ class Admin_Model extends Model {
   
             
                 function __construct() {
-                    session_start();
+//                    session_start();
         parent::__construct();
                
     }
@@ -18,6 +18,18 @@ class Admin_Model extends Model {
         $this->regNo = $_POST['regNo'];
         $_SESSION['TP']=$_POST['telephoneNo'];
         $_SESSION['RN']=$_POST['regNo'];
+//        if(!isset($_POST['telephoneNo'])){
+//            $this->telephoneNo='';
+//        }else{
+//            $this->telephoneNo = $_POST['telephoneNo'];
+//             $_SESSION['TP']=$_POST['telephoneNo'];
+//        }
+//        if(!isset($_POST['regNo'])){
+//            $this->regNo='';
+//        }else{
+//            $this->regNo= $_POST['telephoneNo'];
+//             $_SESSION['RN']=$_POST['regNo'];
+//        }
        ///$GLOBALS['telephoneNo']=$_POST['telephoneNo'];
    //$GLOBALS['telephoneNumber']=$_POST['telephoneNo'];
      //   $GLOBALS['registerNo']=$_POST['regNo'];

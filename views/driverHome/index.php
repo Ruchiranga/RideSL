@@ -7,6 +7,8 @@
 <!--scheme list acordian-->
 <link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" type="text/css" media="all" />
 <link href="<?php echo URL; ?>public/css/faqabt/responsive-accordion.css" rel="stylesheet" type="text/css" media="all" />
+<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/commentpopupstyle.css">
+<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/commenticonstyle.css">
 
 <!-- Javascript -->
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
@@ -18,47 +20,8 @@
 <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
 <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
 <script src="<?php echo URL; ?>public/js/faqabt/smoothscroll.min.js" type="text/javascript"></script>
+
 <script src="<?php echo URL; ?>public/js/faqabt/responsive-accordion.min.js" type="text/javascript"></script>
-
-
-
-<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/faqabt/helpsuport.css">
-<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/faqabt/helpsuport.css">
-<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/faqabt/app.css">
-<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/faqabt/paragraphstyle.css">
-<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/faqabt/font-awesome.css">
-<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/faqabt/aboutUs.css">
-<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Open+Sans:400italic,400">
-<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Droid+Sans">
-<link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Lobster">
-
-<link href='http://fonts.googleapis.com/css?family=Open+Sans+Condensed:300|Open+Sans' rel='stylesheet' type='text/css'>
-
-<!--side bar-->
-<link href="http://fonts.googleapis.com/css?family=Open+Sans:400,700,600" rel="stylesheet" type="text/css">
-<link href="<?php echo URL; ?>public/css/faqabt/font-awesome.min.css" rel="stylesheet">
-
-<link href="<?php echo URL; ?>public/css/faqabt/app.css" rel="stylesheet" type="text/css">
-<!--Faq acordian-->
-<link href="http://netdna.bootstrapcdn.com/font-awesome/4.0.3/css/font-awesome.css" rel="stylesheet" type="text/css" media="all" />
-<link href="http://fonts.googleapis.com/css?family=Open+Sans" rel="stylesheet" type="text/css" media="all" />
-<link href="<?php echo URL; ?>public/css/faqabt/normalize.css" rel="stylesheet" type="text/css" media="all" />
-<link href="<?php echo URL; ?>public/css/faqabt/responsive-accordion.css" rel="stylesheet" type="text/css" media="all" />
-
-<script type="text/javascript" src="<?php echo URL; ?>public/js/faqabt/jquery.min.js"></script>
-<script type="text/javascript" src="<?php echo URL; ?>public/js/faqabt/jquery.ssd-vertical-navigation.min.js"></script>
-<script type="text/javascript" src="<?php echo URL; ?>public/js/faqabt/app.js"></script>
-<script type="text/javascript" src="<?php echo URL; ?>public/js/faqabt/helpsupport.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
-<script src="<?php echo URL; ?>public/js/faqabt/smoothscroll.min.js" type="text/javascript"></script>
-<script src="<?php echo URL; ?>public/js/faqabt/backbone.js" type="text/javascript"></script>
-<script src="<?php echo URL; ?>public/js/faqabt/responsive-accordion.min.js" type="text/javascript"></script>
-
-
-<script type="text/javascript">
-    var URL = <?php echo URL; ?>;
-</script>
 
 
 </head>
@@ -101,7 +64,7 @@
             </div>
             <div id = "vehiclePane" class="box">
                 <div style = 'width: 96%; padding: 2px; padding-bottom: 0px; padding-top: 20px; padding-left: 20px'>
-                    <input type="submit" value="Add new vehicle" class="button" style="float: left">
+                    <a href="<?php echo URL; ?>vehicleRegister"><input type="submit" value="Add new vehicle" class="button" style="float: left"></a>
                     <br><br><br>
                     <?php
                     if ($this->vehicleList != NULL) {
@@ -115,6 +78,7 @@
 
                 </div>
                 <?php
+                
                 if ($this->vehicleList != NULL) {
                     foreach ($this->vehicleList as $key => $value) {
                         $veh_index = 0;
@@ -129,22 +93,27 @@
                     </form>
                     &nbsp;&nbsp;<a href="driverHome/editVehicle/' . $value['vehicle_reg_no'] . '"><input type="submit" value="Edit" class="button" id= "edit" style="float: right"></a>
                     </div>';
+                        
                         $content .= '<div style="float: left; width: 190px; ">
-                    <img src="' . URL . "public/images/" . $_SESSION['owner_id'] . "/" . $value['image'] . '" alt="" style="height: 220px; width: 220px; margin-top: 10px"/><br>
-                        <font>Rating</font><br>
-                        <span class="star-rating">';
-                        for ($m = 1; $m <= 5; $m++) {
-
-
-                            if ($m == $value['rating']) {
-                                $content .= '<input checked type="radio" name="rating' . $m . '" disabled><i></i>';
-                            } else {
-                                $content .='<input type="radio" name="rating' . $m . '" disabled><i></i>';
-                            }
+                        <img src="' . URL . "public/images/" . $_SESSION['owner_id'] . "/" . $value['image'] . '" alt="" style="height: 220px; width: 220px; margin-top: 10px"/><br>
+                        
+                        <br><FORM id="upload'.$value['vehicle_reg_no'].'" ENCTYPE="multipart/form-data" ACTION="'.URL.'driverHome/changeImage/'.$value['vehicle_reg_no'].'" METHOD=POST>
+                        Change image to: <INPUT required NAME="file_up'.$value['vehicle_reg_no'].'" TYPE="file">
+                        <INPUT id = "submit'.$value['vehicle_reg_no'].' "TYPE="submit" VALUE="Save File"></FORM>';
+                        
+                        if(isset($_SESSION['image_error'.$value['vehicle_reg_no']])){
+                            $content .='<font id="error'.$value['vehicle_reg_no'].'" style="font-size: 12px; color:red; font-weight:bold">'.$_SESSION['image_error'.$value['vehicle_reg_no']].'</font><br>';
+                        }else{
+                            $content .= '<br>';
                         }
-                        $content .='</span>
-                        <br>
-                    </div>';
+                        
+                        $_SESSION['image_error'.$value['vehicle_reg_no']] = '';  
+                        
+                        $content .= '<table><tr><td><img src="' . URL . 'public/images/thumb_up.png" alt="" style="height: 30px; width: 30px;" /></td><td><font style="font-size:22px;">'.$value['thumbs_up'].'</font></td>';
+                        $content .= '<td><img src="' . URL . 'public/images/thumb_down.png" alt="" style="height: 30px; width: 30px;" /></td><td><font style="font-size:22px;">'.$value['thumbs_down'].'</font></td></tr></table>';
+                        
+                        $content .= '</div>';
+                        
                         $content .= '<div id="yui-main">                
                         <div class="yui-b" style="margin-left: 25%;">
                         <div class="content" id="rightContent" style="padding-top: 0px;">
@@ -183,14 +152,14 @@
                                     $content .= '<tr>
                         <td width="20%"><font style = "color: #2980b9; ">AC Price</font></td>
                         <td width="20%"><font>Rs. ' . $valueScheme['ac_price'] . '</font></td>
-                        <td width="20%"><font>Per ' . $valueScheme['pricing_category'] . '</font></td>
+                        <td width="20%"><font>' . $valueScheme['pricing_category'] . '</font></td>
                         </tr>';
                                 }
                                 if ($valueScheme['non_ac_price'] !== NULL) {
                                     $content .= '<tr>
                         <td><font style = "color: #2980b9; ">Non-AC Price</font></td>
                         <td><font>Rs. ' . $valueScheme['non_ac_price'] . '</font></td>
-                        <td><font>Per ' . $valueScheme['pricing_category'] . '</font></td>
+                        <td><font>' . $valueScheme['pricing_category'] . '</font></td>
                         </tr>';
                                 }
                                 if ($valueScheme['category'] == 'Airport Drop Pickup Scheme' || $valueScheme['category'] == 'Station Drop Pickup Scheme') {
@@ -212,13 +181,13 @@
                         <font>' . $valueScheme['descrption'] . '</font><br><br>
                         <div id = "locations">
                         <font style = "color: #2980b9; ">Locations Covered</font><br><br>
-                        <font><table style="width: 50%">';
+                        <font><table style="width: 90%">';
                                 if ($this->schemeLocationList[$valueScheme['scheme_id']] !== NULL) {
                                     $content .= '<tr>';
                                     $j = 0;
                                     foreach ($this->schemeLocationList[$valueScheme['scheme_id']] as $key => $valueAvailability) {
                                         $content .= '<td>' . $valueAvailability['location'] . '</td>';
-                                        if ($j > 4) {
+                                        if ($j != 0 && $j % 5 == 0) {
                                             $content .= '</tr><tr>';
                                         }
                                         $j++;
@@ -232,11 +201,10 @@
                         <font><table style="width:64%">';
                                 $days = array('Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun');
                                 for ($j = 0; $j <= 6; $j++) {
-                                    $content .= '<tr>';
                                     $done = false;
                                     if ($this->schemeAvailabilityList[$valueScheme['scheme_id']] != NULL) {
                                         foreach ($this->schemeAvailabilityList[$valueScheme['scheme_id']] as $key => $valueAvailability) {
-                                            if ($days[$j] == $valueAvailability['day']) {
+                                            if ($days[$j] == ucfirst($valueAvailability['day'])) {
                                                 $content .= '<tr>';
 
                                                 $content .= '<td width="12%">' . $days[$j] . '</td>';
@@ -274,7 +242,7 @@
                     <?php
                     if ($this->suspendedVehicleList != NULL) {
                         $title = '';
-                        $title .= '<font style="color: #2980b9; font-size: 18px; font-weight: bold; float: left">Suspended Vehicles</font>                   
+                        $title .= '<br><br><br><br><font style="color: #2980b9; font-size: 18px; font-weight: bold; float: left">Suspended Vehicles</font>                   
                     <br><br>
                     <hr style="">';
                         echo $title;
@@ -296,18 +264,12 @@
                     </div>';
                         $content .= '<div style="float: left; width: 190px; ">
                     <img src="' . URL . "public/images/" . $_SESSION['owner_id'] . "/" . $value['image'] . '" alt="" style="height: 220px; width: 220px; margin-top: 10px"/><br>
-                        <font>Rating</font><br>
-                        <span class="star-rating">';
-                        for ($m = 1; $m <= 5; $m++) {
-                            if ($m == $value['rating']) {
-                                $content .= '<input checked type="radio" name="rating' . $m . '" disabled><i></i>';
-                            } else {
-                                $content .='<input type="radio" name="rating' . $m . '" disabled><i></i>';
-                            }
-                        }
-                        $content .='</span>
-                        <br>
-                    </div>';
+                        
+                        <br>';
+                        
+                        $content .= '<table><tr><td><img src="' . URL . 'public/images/thumb_up.png" alt="" style="height: 30px; width: 30px;" /></td><td><font style="font-size:22px;">'.$value['thumbs_up'].'</font></td>';
+                        $content .= '<td><img src="' . URL . 'public/images/thumb_down.png" alt="" style="height: 30px; width: 30px;" /></td><td><font style="font-size:22px;">'.$value['thumbs_down'].'</font></td></tr></table>';
+                    $content .= '</div>';
                         $content .= '<div id="yui-main">                
                         <div class="yui-b" style="margin-left: 25%;">
 
@@ -349,14 +311,14 @@
                                     $content .= '<tr>
                         <td width="20%"><font style = "color: #2980b9; ">AC Price</font></td>
                         <td width="20%"><font>Rs. ' . $valueScheme['ac_price'] . '</font></td>
-                        <td width="20%"><font>Per ' . $valueScheme['pricing_category'] . '</font></td>
+                        <td width="20%"><font>' . $valueScheme['pricing_category'] . '</font></td>
                         </tr>';
                                 }
                                 if ($valueScheme['non_ac_price'] !== NULL) {
                                     $content .= '<tr>
                         <td><font style = "color: #2980b9; ">Non-AC Price</font></td>
                         <td><font>Rs. ' . $valueScheme['non_ac_price'] . '</font></td>
-                        <td><font>Per ' . $valueScheme['pricing_category'] . '</font></td>
+                        <td><font>' . $valueScheme['pricing_category'] . '</font></td>
                         </tr>';
                                 }
                                 if ($valueScheme['category'] == 'Airport Drop Pickup Scheme' || $valueScheme['category'] == 'Station Drop Pickup Scheme') {
@@ -378,13 +340,13 @@
                         <font>' . $valueScheme['descrption'] . '</font><br><br>
                         <div id = "locations">
                         <font style = "color: #2980b9; ">Locations Covered</font><br><br>
-                        <font><table style="width: 50%">';
+                        <font><table style="width: 90%">';
                                 if ($this->suspendedSchemeLocationList[$valueScheme['scheme_id']] !== NULL) {
                                     $content .= '<tr>';
                                     $j = 0;
                                     foreach ($this->suspendedSchemeLocationList[$valueScheme['scheme_id']] as $key => $valueAvailability) {
                                         $content .= '<td>' . $valueAvailability['location'] . '</td>';
-                                        if ($j > 4) {
+                                        if ($j != 0 && $j % 5 == 0) {
 
                                             $content .= '</tr><tr>';
                                         }
@@ -400,11 +362,10 @@
                         <font><table style="width:64%">';
                                 $days = array('Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun');
                                 for ($j = 0; $j <= 6; $j++) {
-                                    $content .= '<tr>';
                                     $done = false;
                                     if ($this->suspendedSchemeAvailabilityList[$valueScheme['scheme_id']] != NULL) {
                                         foreach ($this->suspendedSchemeAvailabilityList[$valueScheme['scheme_id']] as $key => $valueAvailability) {
-                                            if ($days[$j] == $valueAvailability['day']) {
+                                            if ($days[$j] == ucfirst($valueAvailability['day'])) {
                                                 $content .= '<tr>';
                                                 $content .= '<td width="12%">' . $days[$j] . '</td>';
                                                 $content .= '<td width="12%">From</td>';

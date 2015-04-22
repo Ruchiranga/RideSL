@@ -49,7 +49,7 @@
                             <div class="container" style="width: 70%; padding-left: 140px;padding-top: 20px">
                                  
 <br>
-                            <form class="form" id="form1" method="post" onsubmit="return validation()" name="contactForm" action="<?php echo URL; ?>contactUs/sendMail">
+<form class="form" id="form1" style="width: 475px" method="post" onsubmit="return validation()" name="contactForm" action="<?php echo URL; ?>contactUs/sendMail">
 
                                 <p class="name">
                                      <label for="name">Name</label>

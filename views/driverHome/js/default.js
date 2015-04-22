@@ -6,6 +6,7 @@ var arr = [];
 
 $(document).ready(function() {
 
+
     //edit profile
 
     $('#pencil1').click(function() {

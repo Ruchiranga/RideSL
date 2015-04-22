@@ -38,7 +38,7 @@
 
 
         <div id="doc" class="yui-t1">
-            
+
             <div id="bd">
                 <div id="yui-main">
                     <div class="yui-b" style="margin-left: 25%; ">
@@ -49,100 +49,59 @@
                                         <div class="responsive-accordion-head">How to add a vehicle?<i class="fa fa-chevron-down responsive-accordion-plus fa-fw"></i><i class="fa fa-chevron-up responsive-accordion-minus fa-fw"></i></div>
                                         <div class="responsive-accordion-panel">
                                             <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac fringilla nulla, sit amet consequat eros. Pellentesque pharetra blandit commodo.
-                                                Phasellus massa nisl, feugiat ac bibendum et, dictum id ipsum. Quisque sit amet accumsan tortor.
-                                                Etiam luctus, est ac iaculis posuere, justo elit aliquam risus, a interdum odio elit eleifend nisl. In vulputate lobortis lectus in eleifend.
-                                                Etiam eget luctus sapien. Curabitur auctor volutpat enim sit amet vulputate. Nullam fringilla odio eu nisl tempus venenatis.
-                                                Aliquam scelerisque ut lacus rhoncus hendrerit. Sed ut dolor et lorem faucibus imperdiet. Vivamus suscipit cursus sagittis. In sit amet dolor odio.
-                                                Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras eget convallis lorem.
+                                                Before adding a vehicle you should register as a driver.<br>
+                                                <br><span style="font-weight: 600;">Step1 :</span> Sign in to your account <br>
+                                                <span style="font-weight: 600;">Step2 : </span> Fill the main vehicle details <br>
+                                                <span style="font-weight: 600;">Step3 : </span> Specify the pricing scheme and availability.<br>
+                                                <br> Then your vehicle will be successfully registered.
+                                                <br>
+
                                             </p>
 
-                                            <p class="bm-remove">
-                                                Integer feugiat, nunc eu venenatis porttitor, tellus tortor sagittis enim, sed viverra mauris diam vel sem. Maecenas ac orci ipsum.
-                                                Nunc pellentesque purus at neque mattis consectetur. Pellentesque bibendum eros ante, ut aliquam nunc vestibulum ac. Praesent dignissim nibh ac nisl tempor ultricies.
-                                                Morbi vel dapibus mauris. Sed eu lorem non mauris vehicula posuere malesuada id ipsum. In tincidunt porta augue sit amet porttitor.
-                                                Vivamus laoreet arcu vitae rhoncus tincidunt. Donec elementum turpis vitae sem feugiat tristique. Nulla vestibulum quis erat at commodo.
-                                                Nunc sollicitudin, velit ut ultrices congue, nisi magna laoreet enim, sit amet pretium turpis sem ut est. Etiam nec blandit nisi.
-                                                Maecenas tempor vehicula purus viverra pulvinar.
-                                            </p>
-                                        </div>
+
                                     </li>
                                     <li>
                                         <div class="responsive-accordion-head">How to become a member in RideSL? <i class="fa fa-chevron-down responsive-accordion-plus fa-fw"></i><i class="fa fa-chevron-up responsive-accordion-minus fa-fw"></i></div>
                                         <div class="responsive-accordion-panel">
                                             <p>
-                                                Cras sagittis neque id tortor dictum tincidunt. Nulla volutpat cursus metus, sed pulvinar nibh vulputate a. Curabitur tristique pharetra elit quis tincidunt.
-                                                Nulla sed libero hendrerit, condimentum velit tincidunt, sollicitudin tortor. Nulla volutpat lacinia tortor. Aenean auctor consectetur adipiscing.
-                                                Proin venenatis, lacus in lacinia dapibus, urna lectus euismod erat, mollis vehicula diam elit sed est.
-                                                Integer libero ligula, tincidunt eget tincidunt ut, dignissim quis sem. Sed interdum auctor lacus id malesuada. Aenean in mauris ac sapien auctor ultrices at pretium dui.
-                                                Maecenas nec dictum turpis. Nam ipsum sapien, commodo at ligula ut, lobortis congue ante. Sed tincidunt dolor vitae libero congue pulvinar.
-                                                In ultricies arcu vitae leo feugiat dignissim. Suspendisse potenti. Vivamus et ornare eros.
+                                                To become a member you should have a valid email account.you can register as a passenger or as a driver.<br>
+                                               <br> <span style="font-weight: 600;">Register as a passenger</span><br>
+                                                Step1 : Go to Sign in<br>
+                                                Step2 :  Click on  'Create passenger account' <br>
+                                                Step3 :   Then fill the form that you recieve.<br>
+                                                Step4 :   Then fill the form that you recieve and click on 'Create account' <br>
+                                                <br><span style="font-weight: 600;">
+                                                Register as a driver</span><br>
+                                                Step1 : Go to Sign in<br>
+                                                Step2 :  Click on  'Create driver account' <br>
+                                                Step3 :   Then fill the form that you recieve.<br>
+                                                Step4 :   Then fill the form that you recieve and click on 'Create account' <br>
+                                                <br>Now you are free to use RideSL.
                                             </p>
 
-                                            <p class="bm-remove">
-                                                Ut mattis tempor semper. Praesent felis urna, tempus ac lobortis in, aliquam eget metus.
-                                                Nam imperdiet, augue sit amet vulputate tincidunt, dui libero ornare lacus, non adipiscing lacus dolor ac nulla. Maecenas ac lacinia neque.
-                                                Praesent et risus ac massa egestas dapibus. Donec sit amet tellus vestibulum, viverra mi at, aliquet felis. Morbi luctus venenatis turpis eu egestas.
-                                                Duis varius metus nec felis aliquet, vitae tincidunt arcu iaculis. Ut lacinia tempor felis ornare aliquam. Vestibulum convallis eleifend urna, ut placerat justo porta a.
-                                                Curabitur porta massa lacus, ultrices pulvinar lorem volutpat egestas. Mauris odio arcu, semper tristique fringilla non, pretium in nunc.
-                                                Pellentesque pharetra dui convallis odio scelerisque pellentesque.
-                                            </p>
+
                                         </div>
                                     </li>
-                                     <li>
+                                    <li>
                                         <div class="responsive-accordion-head">How to search a vehicle?<i class="fa fa-chevron-down responsive-accordion-plus fa-fw"></i><i class="fa fa-chevron-up responsive-accordion-minus fa-fw"></i></div>
                                         <div class="responsive-accordion-panel">
                                             <p>
-                                                Mauris vel placerat dolor. Morbi mattis venenatis feugiat. Vivamus nunc diam, luctus id ipsum ut, tempor pharetra augue. Ut sagittis orci at posuere venenatis.
-                                                Fusce at aliquam lacus. Sed id augue nisl. Nunc vitae ultricies dolor. Etiam rhoncus felis eget vulputate suscipit.
-                                                Praesent convallis bibendum urna, ultricies consequat enim ullamcorper et. Fusce scelerisque dolor ut porta bibendum.
-                                                Sed felis quam, vulputate cursus massa ac, sodales ullamcorper mauris.
+                                                There are several methods to search a vehicle in RideSL.<br><br>
+                                                <span style="font-weight: 600;">Method1 :</span> You can make a instant search by entering  your 'pickup location' in homepage.<br><br>
+                                                <span style="font-weight: 600;">Method2 :</span> You can use task bar at the bottom of the page in order to select special category of vehicle. <br>
+                                                Then you can filter the vehicle list you get by using various filters available.
+
                                             </p>
 
-                                            <p class="bm-remove">
-                                                Maecenas sit amet tincidunt felis. Maecenas ut tortor posuere, faucibus leo non, auctor ante. Vivamus egestas lectus in mi aliquam, a sodales felis feugiat.
-                                                Fusce eget pulvinar augue. Sed in leo id nibh egestas sollicitudin. Praesent a consectetur sem. Morbi posuere nisl libero, sed tempor quam viverra vitae.
-                                                Nulla placerat semper tortor sollicitudin ultricies. Curabitur ac nunc felis. Nunc interdum convallis egestas.
-                                                Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce et erat condimentum lorem mattis dignissim volutpat eget erat.
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus consectetur varius arcu vitae rhoncus.
-                                            </p>
                                         </div>
                                     </li>
-                                     <li>
-                                        <div class="responsive-accordion-head">How to search a vehicle?<i class="fa fa-chevron-down responsive-accordion-plus fa-fw"></i><i class="fa fa-chevron-up responsive-accordion-minus fa-fw"></i></div>
-                                        <div class="responsive-accordion-panel">
-                                            <p>
-                                                Mauris vel placerat dolor. Morbi mattis venenatis feugiat. Vivamus nunc diam, luctus id ipsum ut, tempor pharetra augue. Ut sagittis orci at posuere venenatis.
-                                                Fusce at aliquam lacus. Sed id augue nisl. Nunc vitae ultricies dolor. Etiam rhoncus felis eget vulputate suscipit.
-                                                Praesent convallis bibendum urna, ultricies consequat enim ullamcorper et. Fusce scelerisque dolor ut porta bibendum.
-                                                Sed felis quam, vulputate cursus massa ac, sodales ullamcorper mauris.
-                                            </p>
 
-                                            <p class="bm-remove">
-                                                Maecenas sit amet tincidunt felis. Maecenas ut tortor posuere, faucibus leo non, auctor ante. Vivamus egestas lectus in mi aliquam, a sodales felis feugiat.
-                                                Fusce eget pulvinar augue. Sed in leo id nibh egestas sollicitudin. Praesent a consectetur sem. Morbi posuere nisl libero, sed tempor quam viverra vitae.
-                                                Nulla placerat semper tortor sollicitudin ultricies. Curabitur ac nunc felis. Nunc interdum convallis egestas.
-                                                Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce et erat condimentum lorem mattis dignissim volutpat eget erat.
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus consectetur varius arcu vitae rhoncus.
-                                            </p>
-                                        </div>
-                                    </li>
                                     <li>
                                         <div class="responsive-accordion-head">How to filter vehicle list?<i class="fa fa-chevron-down responsive-accordion-plus fa-fw"></i><i class="fa fa-chevron-up responsive-accordion-minus fa-fw"></i></div>
                                         <div class="responsive-accordion-panel">
                                             <p>
-                                                Mauris vel placerat dolor. Morbi mattis venenatis feugiat. Vivamus nunc diam, luctus id ipsum ut, tempor pharetra augue. Ut sagittis orci at posuere venenatis.
-                                                Fusce at aliquam lacus. Sed id augue nisl. Nunc vitae ultricies dolor. Etiam rhoncus felis eget vulputate suscipit.
-                                                Praesent convallis bibendum urna, ultricies consequat enim ullamcorper et. Fusce scelerisque dolor ut porta bibendum.
-                                                Sed felis quam, vulputate cursus massa ac, sodales ullamcorper mauris.
-                                            </p>
-
-                                            <p class="bm-remove">
-                                                Maecenas sit amet tincidunt felis. Maecenas ut tortor posuere, faucibus leo non, auctor ante. Vivamus egestas lectus in mi aliquam, a sodales felis feugiat.
-                                                Fusce eget pulvinar augue. Sed in leo id nibh egestas sollicitudin. Praesent a consectetur sem. Morbi posuere nisl libero, sed tempor quam viverra vitae.
-                                                Nulla placerat semper tortor sollicitudin ultricies. Curabitur ac nunc felis. Nunc interdum convallis egestas.
-                                                Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce et erat condimentum lorem mattis dignissim volutpat eget erat.
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus consectetur varius arcu vitae rhoncus.
+                                                 <br>You can filter vehicle list that  you receive. You can filter them by vehicle model, category ,price , AC/nonAC , available time etc. 
+                                                <br>
                                             </p>
                                         </div>
                                     </li>
@@ -150,132 +109,59 @@
                                         <div class="responsive-accordion-head">How to add more than one vehicle?<i class="fa fa-chevron-down responsive-accordion-plus fa-fw"></i><i class="fa fa-chevron-up responsive-accordion-minus fa-fw"></i></div>
                                         <div class="responsive-accordion-panel">
                                             <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac fringilla nulla, sit amet consequat eros. Pellentesque pharetra blandit commodo.
-                                                Phasellus massa nisl, feugiat ac bibendum et, dictum id ipsum. Quisque sit amet accumsan tortor.
-                                                Etiam luctus, est ac iaculis posuere, justo elit aliquam risus, a interdum odio elit eleifend nisl. In vulputate lobortis lectus in eleifend.
-                                                Etiam eget luctus sapien. Curabitur auctor volutpat enim sit amet vulputate. Nullam fringilla odio eu nisl tempus venenatis.
-                                                Aliquam scelerisque ut lacus rhoncus hendrerit. Sed ut dolor et lorem faucibus imperdiet. Vivamus suscipit cursus sagittis. In sit amet dolor odio.
-                                                Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras eget convallis lorem.
-                                            </p>
+                                                As a driver your can add more than one vehicle to your account.<br>
+                                                <br><span style="font-weight: 600;">Step1 :</span>  Go to driver home page.<br>
+                                                <span style="font-weight: 600;">Step2 :</span>  Click on 'Add new vehicle'  <br>
+                                                <span style="font-weight: 600;">Step3 : </span> Then fill the form you get  and click on 'Finish'. <br>
+                                                 
+                                                <br>
 
-                                            <p class="bm-remove">
-                                                Integer feugiat, nunc eu venenatis porttitor, tellus tortor sagittis enim, sed viverra mauris diam vel sem. Maecenas ac orci ipsum.
-                                                Nunc pellentesque purus at neque mattis consectetur. Pellentesque bibendum eros ante, ut aliquam nunc vestibulum ac. Praesent dignissim nibh ac nisl tempor ultricies.
-                                                Morbi vel dapibus mauris. Sed eu lorem non mauris vehicula posuere malesuada id ipsum. In tincidunt porta augue sit amet porttitor.
-                                                Vivamus laoreet arcu vitae rhoncus tincidunt. Donec elementum turpis vitae sem feugiat tristique. Nulla vestibulum quis erat at commodo.
-                                                Nunc sollicitudin, velit ut ultrices congue, nisi magna laoreet enim, sit amet pretium turpis sem ut est. Etiam nec blandit nisi.
-                                                Maecenas tempor vehicula purus viverra pulvinar.
                                             </p>
                                         </div>
                                     </li>
                                     <li>
                                         <div class="responsive-accordion-head">How to become a premium member?<i class="fa fa-chevron-down responsive-accordion-plus fa-fw"></i><i class="fa fa-chevron-up responsive-accordion-minus fa-fw"></i></div>
                                         <div class="responsive-accordion-panel">
-                                            <p>
-                                                Cras sagittis neque id tortor dictum tincidunt. Nulla volutpat cursus metus, sed pulvinar nibh vulputate a. Curabitur tristique pharetra elit quis tincidunt.
-                                                Nulla sed libero hendrerit, condimentum velit tincidunt, sollicitudin tortor. Nulla volutpat lacinia tortor. Aenean auctor consectetur adipiscing.
-                                                Proin venenatis, lacus in lacinia dapibus, urna lectus euismod erat, mollis vehicula diam elit sed est.
-                                                Integer libero ligula, tincidunt eget tincidunt ut, dignissim quis sem. Sed interdum auctor lacus id malesuada. Aenean in mauris ac sapien auctor ultrices at pretium dui.
-                                                Maecenas nec dictum turpis. Nam ipsum sapien, commodo at ligula ut, lobortis congue ante. Sed tincidunt dolor vitae libero congue pulvinar.
-                                                In ultricies arcu vitae leo feugiat dignissim. Suspendisse potenti. Vivamus et ornare eros.
-                                            </p>
-
-                                            <p class="bm-remove">
-                                                Ut mattis tempor semper. Praesent felis urna, tempus ac lobortis in, aliquam eget metus.
-                                                Nam imperdiet, augue sit amet vulputate tincidunt, dui libero ornare lacus, non adipiscing lacus dolor ac nulla. Maecenas ac lacinia neque.
-                                                Praesent et risus ac massa egestas dapibus. Donec sit amet tellus vestibulum, viverra mi at, aliquet felis. Morbi luctus venenatis turpis eu egestas.
-                                                Duis varius metus nec felis aliquet, vitae tincidunt arcu iaculis. Ut lacinia tempor felis ornare aliquam. Vestibulum convallis eleifend urna, ut placerat justo porta a.
-                                                Curabitur porta massa lacus, ultrices pulvinar lorem volutpat egestas. Mauris odio arcu, semper tristique fringilla non, pretium in nunc.
-                                                Pellentesque pharetra dui convallis odio scelerisque pellentesque.
+                                            <p>Driver can become premium members of our site.Payments for each category are as follows.<br>
+                                                <br><span style="font-weight: 600;">Premium membership for six months period&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;         : Rs.1000<br>
+                                                                                    Premium membership for one year period&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; &nbsp;&nbsp;&nbsp;&nbsp;           : Rs.1800<br>
+                                                                                    Premium membership for one and half year period  : Rs.2500<br>
+                                                                                    Premium membership for two years period&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;              : Rs.3200</span><br>
+                                                <br>
+                                                Vehicles of premium members are being at the top of the search results.Therefor premium members have an extra advantage.Become a premium member and get the maxim out of RideSL.
                                             </p>
                                         </div>
                                     </li>
-                                    <li>
-                                        <div class="responsive-accordion-head">How to add a vehicle?<i class="fa fa-chevron-down responsive-accordion-plus fa-fw"></i><i class="fa fa-chevron-up responsive-accordion-minus fa-fw"></i></div>
-                                        <div class="responsive-accordion-panel">
-                                            <p>
-                                                Mauris vel placerat dolor. Morbi mattis venenatis feugiat. Vivamus nunc diam, luctus id ipsum ut, tempor pharetra augue. Ut sagittis orci at posuere venenatis.
-                                                Fusce at aliquam lacus. Sed id augue nisl. Nunc vitae ultricies dolor. Etiam rhoncus felis eget vulputate suscipit.
-                                                Praesent convallis bibendum urna, ultricies consequat enim ullamcorper et. Fusce scelerisque dolor ut porta bibendum.
-                                                Sed felis quam, vulputate cursus massa ac, sodales ullamcorper mauris.
-                                            </p>
 
-                                            <p class="bm-remove">
-                                                Maecenas sit amet tincidunt felis. Maecenas ut tortor posuere, faucibus leo non, auctor ante. Vivamus egestas lectus in mi aliquam, a sodales felis feugiat.
-                                                Fusce eget pulvinar augue. Sed in leo id nibh egestas sollicitudin. Praesent a consectetur sem. Morbi posuere nisl libero, sed tempor quam viverra vitae.
-                                                Nulla placerat semper tortor sollicitudin ultricies. Curabitur ac nunc felis. Nunc interdum convallis egestas.
-                                                Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Fusce et erat condimentum lorem mattis dignissim volutpat eget erat.
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus consectetur varius arcu vitae rhoncus.
-                                            </p>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="responsive-accordion-head">What are the advantage of being a premium member?<i class="fa fa-chevron-down responsive-accordion-plus fa-fw"></i><i class="fa fa-chevron-up responsive-accordion-minus fa-fw"></i></div>
-                                        <div class="responsive-accordion-panel">
-                                            <p>
-                                                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus ac fringilla nulla, sit amet consequat eros. Pellentesque pharetra blandit commodo.
-                                                Phasellus massa nisl, feugiat ac bibendum et, dictum id ipsum. Quisque sit amet accumsan tortor.
-                                                Etiam luctus, est ac iaculis posuere, justo elit aliquam risus, a interdum odio elit eleifend nisl. In vulputate lobortis lectus in eleifend.
-                                                Etiam eget luctus sapien. Curabitur auctor volutpat enim sit amet vulputate. Nullam fringilla odio eu nisl tempus venenatis.
-                                                Aliquam scelerisque ut lacus rhoncus hendrerit. Sed ut dolor et lorem faucibus imperdiet. Vivamus suscipit cursus sagittis. In sit amet dolor odio.
-                                                Interdum et malesuada fames ac ante ipsum primis in faucibus. Cras eget convallis lorem.
-                                            </p>
 
-                                            <p class="bm-remove">
-                                                Integer feugiat, nunc eu venenatis porttitor, tellus tortor sagittis enim, sed viverra mauris diam vel sem. Maecenas ac orci ipsum.
-                                                Nunc pellentesque purus at neque mattis consectetur. Pellentesque bibendum eros ante, ut aliquam nunc vestibulum ac. Praesent dignissim nibh ac nisl tempor ultricies.
-                                                Morbi vel dapibus mauris. Sed eu lorem non mauris vehicula posuere malesuada id ipsum. In tincidunt porta augue sit amet porttitor.
-                                                Vivamus laoreet arcu vitae rhoncus tincidunt. Donec elementum turpis vitae sem feugiat tristique. Nulla vestibulum quis erat at commodo.
-                                                Nunc sollicitudin, velit ut ultrices congue, nisi magna laoreet enim, sit amet pretium turpis sem ut est. Etiam nec blandit nisi.
-                                                Maecenas tempor vehicula purus viverra pulvinar.
-                                            </p>
-                                        </div>
-                                    </li>
                                     <li>
                                         <div class="responsive-accordion-head">How to suspend our account temporaly?<i class="fa fa-chevron-down responsive-accordion-plus fa-fw"></i><i class="fa fa-chevron-up responsive-accordion-minus fa-fw"></i></div>
                                         <div class="responsive-accordion-panel">
                                             <p>
-                                                Cras sagittis neque id tortor dictum tincidunt. Nulla volutpat cursus metus, sed pulvinar nibh vulputate a. Curabitur tristique pharetra elit quis tincidunt.
-                                                Nulla sed libero hendrerit, condimentum velit tincidunt, sollicitudin tortor. Nulla volutpat lacinia tortor. Aenean auctor consectetur adipiscing.
-                                                Proin venenatis, lacus in lacinia dapibus, urna lectus euismod erat, mollis vehicula diam elit sed est.
-                                                Integer libero ligula, tincidunt eget tincidunt ut, dignissim quis sem. Sed interdum auctor lacus id malesuada. Aenean in mauris ac sapien auctor ultrices at pretium dui.
-                                                Maecenas nec dictum turpis. Nam ipsum sapien, commodo at ligula ut, lobortis congue ante. Sed tincidunt dolor vitae libero congue pulvinar.
-                                                In ultricies arcu vitae leo feugiat dignissim. Suspendisse potenti. Vivamus et ornare eros.
-                                            </p>
-
-                                            <p class="bm-remove">
-                                                Ut mattis tempor semper. Praesent felis urna, tempus ac lobortis in, aliquam eget metus.
-                                                Nam imperdiet, augue sit amet vulputate tincidunt, dui libero ornare lacus, non adipiscing lacus dolor ac nulla. Maecenas ac lacinia neque.
-                                                Praesent et risus ac massa egestas dapibus. Donec sit amet tellus vestibulum, viverra mi at, aliquet felis. Morbi luctus venenatis turpis eu egestas.
-                                                Duis varius metus nec felis aliquet, vitae tincidunt arcu iaculis. Ut lacinia tempor felis ornare aliquam. Vestibulum convallis eleifend urna, ut placerat justo porta a.
-                                                Curabitur porta massa lacus, ultrices pulvinar lorem volutpat egestas. Mauris odio arcu, semper tristique fringilla non, pretium in nunc.
-                                                Pellentesque pharetra dui convallis odio scelerisque pellentesque.
+                                                You can suspend your vehicle account temporrary. By doing so can preventing your vehicle being seeing to passengers.
+                                                 <br><br><span style="font-weight: 600;">Step1 :</span> Go to driver home and select your vehicle<br>
+                                                <span style="font-weight: 600;">Step2 :</span>  Click on 'Suspend' button  <br>
+                                                <span style="font-weight: 600;">Step3 :</span>  Then your vehicle will appear in suspended vehicle list at the bottom.<br>
+                                                <span style="font-weight: 600;">Step4 :</span> If you want to activate them again use the 'Activate' button there.  
+                                                <br>
                                             </p>
                                         </div>
                                     </li>
                                     <li>
-                                        <div class="responsive-accordion-head">How to define a scheme for a vehicle?<i class="fa fa-chevron-down responsive-accordion-plus fa-fw"></i><i class="fa fa-chevron-up responsive-accordion-minus fa-fw"></i></div>
+                                        <div class="responsive-accordion-head">How to add a new scheme for a vehicle?<i class="fa fa-chevron-down responsive-accordion-plus fa-fw"></i><i class="fa fa-chevron-up responsive-accordion-minus fa-fw"></i></div>
                                         <div class="responsive-accordion-panel">
                                             <p>
-                                                Cras sagittis neque id tortor dictum tincidunt. Nulla volutpat cursus metus, sed pulvinar nibh vulputate a. Curabitur tristique pharetra elit quis tincidunt.
-                                                Nulla sed libero hendrerit, condimentum velit tincidunt, sollicitudin tortor. Nulla volutpat lacinia tortor. Aenean auctor consectetur adipiscing.
-                                                Proin venenatis, lacus in lacinia dapibus, urna lectus euismod erat, mollis vehicula diam elit sed est.
-                                                Integer libero ligula, tincidunt eget tincidunt ut, dignissim quis sem. Sed interdum auctor lacus id malesuada. Aenean in mauris ac sapien auctor ultrices at pretium dui.
-                                                Maecenas nec dictum turpis. Nam ipsum sapien, commodo at ligula ut, lobortis congue ante. Sed tincidunt dolor vitae libero congue pulvinar.
-                                                In ultricies arcu vitae leo feugiat dignissim. Suspendisse potenti. Vivamus et ornare eros.
-                                            </p>
-
-                                            <p class="bm-remove">
-                                                Ut mattis tempor semper. Praesent felis urna, tempus ac lobortis in, aliquam eget metus.
-                                                Nam imperdiet, augue sit amet vulputate tincidunt, dui libero ornare lacus, non adipiscing lacus dolor ac nulla. Maecenas ac lacinia neque.
-                                                Praesent et risus ac massa egestas dapibus. Donec sit amet tellus vestibulum, viverra mi at, aliquet felis. Morbi luctus venenatis turpis eu egestas.
-                                                Duis varius metus nec felis aliquet, vitae tincidunt arcu iaculis. Ut lacinia tempor felis ornare aliquam. Vestibulum convallis eleifend urna, ut placerat justo porta a.
-                                                Curabitur porta massa lacus, ultrices pulvinar lorem volutpat egestas. Mauris odio arcu, semper tristique fringilla non, pretium in nunc.
-                                                Pellentesque pharetra dui convallis odio scelerisque pellentesque.
+                                                You can define multiple schemes for your vehicle.By doing so your vehicle is been visible passengers under different categories.
+                                                <br><br><span style="font-weight: 600;">Step1 :</span> Goto driver home and select your vehicle<br>
+                                                <span style="font-weight: 600;">Step2 : </span>  Click on 'Edit'<br>
+                                                <span style="font-weight: 600;">Step3 : </span> Check the relevant scheme type and fill details. <br>
+                                                <span style="font-weight: 600;">Step4 :</span> click on 'OK'  
+                                                <br>
+                                                
                                             </p>
                                         </div>
                                     </li>
-                                   
+
                                 </ul>
 
 
@@ -326,10 +212,10 @@
         <script src="<?php echo URL; ?>public/js/faqabt/smoothscroll.min.js" type="text/javascript"></script>
         <script src="<?php echo URL; ?>public/js/faqabt/backbone.js" type="text/javascript"></script>
         <script src="<?php echo URL; ?>public/js/faqabt/responsive-accordion.min.js" type="text/javascript"></script>
-        
-        
+
+
     </body>
-    
-    
+
+
 
 </html>

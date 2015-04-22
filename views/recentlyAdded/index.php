@@ -56,30 +56,104 @@
                                 <button id="go" name="go" type="submit" >Go</button>
                             </form>
 
-
-                            <?php
+<!--
+                            <?php   /*
                             if (isset($this->vehicleBasicInfo)) {
                                 $count = 0;
                                 ?>
                                 <div class="container" style="width: 100%; padding-top: 40px;">
                                     <ul class="responsive-accordion responsive-accordion-default bm-larger">
+                                       
+                                        <?php 
+                                        foreach ($this->vehicleBasicInfo as $key => $value) {
+                                            $vehicleNo = $value['vehicle_reg_no'];
+                                            ?>
+                                                <li>
+                                                    <div class="responsive-accordion-head"><span style="font-weight: bold;"><?php echo $value['vehicle_reg_no']; ?></span><?php echo '   ' . $value['manufacturer'] . ' ' . $value['model']; ?><i class="fa fa-pencil"></i><i class="fa fa-pencil"></i></div>
+                                                    <div class="responsive-accordion-panel">
+
+
+                                                        <label class="info"><span style="font-weight: 600;">Owner name: </span> <?php echo $value['ownerName']; ?></label><br>
+                                                        <label class="info"><span style="font-weight: 600;">Owner registered date: </span><?php echo $value['date_of_registration']; ?></label><br>
+                                                        <label class="info"><span style="font-weight: 600;">Vehicle registered date: </span><?php echo $value['register_date']; ?></label><br>
+                                                        <label class="info"><span style="font-weight: 600;">Vehicle type: </span><?php echo $value['vehicle_Type']; ?></label><br>
+                                                        <label class="info"><span style="font-weight: 600;"><?php echo $this->isPremium[$count]; ?></span></label><br>
+
+                                                        <label class="info"><span style="font-weight: 600;">Status: </span><?php echo $this->isSuspended[$count]; ?></label><br>
+                                                        <label class="info"><span style="font-weight: 600;">Scheme type : </span>
+                                            <?php
+                                            foreach ($this->categoryList[$count] as $key => $value) {
+                                                echo $value['category'] . '/';
+                                            }
+                                            echo chr(8) . chr(8) . '';
+                                            ?>
+
+                                                        </label><br>
+                                                        <label class="info"><span style="font-weight: 600;">Covering areas: </span> <?php
+                                            foreach ($this->locationList[$count] as $key => $value) {
+                                                echo $value['location'] . '/';
+                                            }
+                                            echo chr(8) . '';
+                                            ?></label><br>
+
+                                                        <label class="info"></label><br>
+                                                        <div id="premium_form"></div>
+                                            <?php
+                                            if ($this->isPremium[$count] != "Premium vehicle") {
+
+
+
+                                                echo '<a href="' . URL . 'premium/addPremium/' . $vehicleNo . '">Add to premium </a>';
+                                            } else {
+
+                                                echo '<a href="' . URL . 'premium/editPremium/' . $vehicleNo . '">Edit premium </a>';
+                                            }
+                                            ?>
+
+
+
+
+                                            <?php if ($this->isSuspended[$count] == "Suspended") { //$reg_no=$value['vehicle_reg_no']; ?>
+
+
+                                                <?php echo '<a href="' . URL . 'recentlyAdded/activateVehicle/' . $vehicleNo . '">Activate</a>'; ?>
+                                            <?php } else { ?>
+
+
+                                                <?php echo '<a href="' . URL . 'recentlyAdded/suspendVehicle/' . $vehicleNo . '">Suspend</a>'; ?>
+
+                                            <?php } ?>
+
+
+                                            <?php echo '<a href="' . URL . 'recentlyAdded/deleteVehicle/' . $vehicleNo . '">Delete</a>'; ?>
+
+
+                                                    </div>
+
+                                                </li>
+                                            <?php
+                                            $count++;
+                                        }
+                                       ?>
+                                        
+
                                         <?php
                                         foreach ($this->vehicleBasicInfo as $key => $value) {
                                             $vehicleNo = $value['vehicle_reg_no'];
                                             ?>
-                                            <li>
+                                            <li> 
                                                 <div class="responsive-accordion-head"><span style="font-weight: bold;"><?php echo $value['vehicle_reg_no']; ?></span><?php echo '   ' . $value['manufacturer'] . ' ' . $value['model']; ?><i class="fa fa-pencil"></i><i class="fa fa-pencil"></i></div>
                                                 <div class="responsive-accordion-panel">
 
 
-                                                    <label class="info"><span style="font-weight: 600;">Owner name: </span> <?php echo $value['ownerName']; ?></label><br>
-                                                    <label class="info"><span style="font-weight: 600;">Owner registered date: </span><?php echo $value['date_of_registration']; ?></label><br>
-                                                    <label class="info"><span style="font-weight: 600;">Vehicle registered date: </span><?php echo $value['register_date']; ?></label><br>
-                                                    <label class="info"><span style="font-weight: 600;">Vehicle type: </span><?php echo $value['vehicle_Type']; ?></label><br>
-                                                    <label class="info"><span style="font-weight: 600;"><?php echo $this->isPremium[$count]; ?></span></label><br>
 
-                                                    <label class="info"><span style="font-weight: 600;">Status: </span><?php echo $this->isSuspended[$count]; ?></label><br>
-                                                    <label class="info"><span style="font-weight: 600;">Scheme type : </span>
+                                                    <label class="info"><span style="font-weight: 600;">Owner name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><?php echo ':' . $value['ownerName']; ?></label>  <br>             
+                                                    <label class="info"><span style="font-weight: 600;">Registered date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>   <?php echo ':' . $value['date_of_registration']; ?></label>  <br>           
+                                                    <label class="info"><span style="font-weight: 600;">Vehicle type &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>   <?php echo ':' . $value['vehicle_Type']; ?></label>  <br>           
+                                                    <label class="info"><span style="font-weight: 600;"><?php echo $this->isPremium[$count]; ?></span>   </label><br>
+
+                                                    <label class="info"><span style="font-weight: 600;">Status </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <?php echo ':' . $this->isSuspended[$count]; ?></label>  <br>           
+                                                    <label class="info"><span style="font-weight: 600;">Scheme type &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>:   
                                                         <?php
                                                         foreach ($this->categoryList[$count] as $key => $value) {
                                                             echo $value['category'] . '/';
@@ -87,15 +161,15 @@
                                                         echo chr(8) . chr(8) . '';
                                                         ?>
 
-                                                    </label><br>
-                                                    <label class="info"><span style="font-weight: 600;">Covering areas: </span> <?php
+                                                    </label>  <br>           
+                                                    <label class="info"><span style="font-weight: 600;">Covering areas &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>:    <?php
                                                         foreach ($this->locationList[$count] as $key => $value) {
                                                             echo $value['location'] . '/';
                                                         }
                                                         echo chr(8) . '';
-                                                        ?></label><br>
+                                                        ?></label>  <br>      
 
-                                                    <label class="info"></label><br>
+                                                    <label class="info"></label><br>           
                                                     <div id="premium_form"></div>
                                                     <?php
                                                     if ($this->isPremium[$count] != "Premium vehicle") {
@@ -105,26 +179,26 @@
                                                         echo '<a href="' . URL . 'premium/addPremium/' . $vehicleNo . '">Add to premium </a>';
                                                     } else {
 
-                                                        echo '<a href="' . URL . 'premium/editPremium/' . $vehicleNo . '">Edit premium </a>';
+                                                        echo '<a href="' . URL . 'premium/editPremium/' . $vehicleNo . '"> Edit premium </a>';
                                                     }
                                                     ?>
 
-
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;
 
 
                                                     <?php if ($this->isSuspended[$count] == "Suspended") { //$reg_no=$value['vehicle_reg_no']; ?>
 
 
-                                                        <?php echo '<a href="' . URL . 'recentlyAdded/activateVehicle/' . $vehicleNo . '">Activate</a>'; ?>
+                                                        <?php echo '<a href="' . URL . 'admin/activateVehicle/' . $vehicleNo . '">  Activate</a>'; ?>
                                                     <?php } else { ?>
 
 
-                                                        <?php echo '<a href="' . URL . 'recentlyAdded/suspendVehicle/' . $vehicleNo . '">Suspend</a>'; ?>
+                                                        <?php echo '<a href="' . URL . 'admin/suspendVehicle/' . $vehicleNo . '">  Suspend</a>'; ?>
 
                                                     <?php } ?>
 
-
-                                                    <?php echo '<a href="' . URL . 'recentlyAdded/deleteVehicle/' . $vehicleNo . '">Delete</a>'; ?>
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <?php echo '<a href="' . URL . 'admin/deleteVehicle/' . $vehicleNo . '">  Delete</a>'; ?>
 
 
                                                 </div>
@@ -139,7 +213,99 @@
 
                                 </div>
                             <?php }
-                            if(count($this->vehicleBasicInfo)==0){?>
+                            if (count($this->vehicleBasicInfo) == 0) {
+                                ?>
+                                <div class="container" style="width: 100%; padding-top: 40px; padding-left: 200px;"><h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NO VEHICLES<i class="fa fa-exclamation-triangle"></i></h1></div>
+
+
+                                <?php
+                            }
+                            */?>
+-->
+
+<?php
+                            if (isset($this->vehicleBasicInfo)&& count($this->vehicleBasicInfo)>0) {
+                                $count = 0;
+                                ?>
+                                <div class="container" style="width: 100%; padding-top: 40px;">
+                                    <ul class="responsive-accordion responsive-accordion-default bm-larger">
+                                        <?php
+                                        foreach ($this->vehicleBasicInfo as $key => $value) {
+                                            $vehicleNo = $value['vehicle_reg_no'];
+                                            ?>
+                                            <li> 
+                                                <div class="responsive-accordion-head"><span style="font-weight: bold;"><?php echo $value['vehicle_reg_no']; ?></span><?php echo '   ' . $value['manufacturer'] . ' ' . $value['model']; ?><i class="fa fa-pencil"></i><i class="fa fa-pencil"></i></div>
+                                                <div class="responsive-accordion-panel">
+
+
+
+                                                    <label class="info"><span style="font-weight: 600;">Owner name &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><?php echo ':' . $value['ownerName']; ?></label>  <br>             
+                                                    <label class="info"><span style="font-weight: 600;">Registered date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>   <?php echo ':' . $value['date_of_registration']; ?></label>  <br>           
+                                                    <label class="info"><span style="font-weight: 600;">Vehicle type &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>   <?php echo ':' . $value['vehicle_Type']; ?></label>  <br>           
+                                                    <label class="info"><span style="font-weight: 600;"><?php echo $this->isPremium[$count]; ?></span>   </label><br>
+
+                                                    <label class="info"><span style="font-weight: 600;">Status </span> &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;  <?php echo ':' . $this->isSuspended[$count]; ?></label>  <br>           
+                                                    <label class="info"><span style="font-weight: 600;">Scheme type &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>:   
+                                                        <?php
+                                                        foreach ($this->categoryList[$count] as $key => $value) {
+                                                            echo $value['category'] . '/';
+                                                        }
+                                                        echo chr(8) . chr(8) . '';
+                                                        ?>
+
+                                                    </label>  <br>           
+                                                    <label class="info"><span style="font-weight: 600;">Covering areas &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span>:    <?php
+                                                        foreach ($this->locationList[$count] as $key => $value) {
+                                                            echo $value['location'] . '/';
+                                                        }
+                                                        echo chr(8) . '';
+                                                        ?></label>  <br>      
+
+                                                    <label class="info"></label><br>           
+                                                    <div id="premium_form"></div>
+                                                    <?php
+                                                    if ($this->isPremium[$count] != "Premium vehicle") {
+
+
+
+                                                        echo '<a href="' . URL . 'premium/addPremium/' . $vehicleNo . '">Add to premium </a>';
+                                                    } else {
+
+                                                        echo '<a href="' . URL . 'premium/editPremium/' . $vehicleNo . '"> Edit premium </a>';
+                                                    }
+                                                    ?>
+
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;
+
+
+                                                    <?php if ($this->isSuspended[$count] == "Suspended") { //$reg_no=$value['vehicle_reg_no']; ?>
+
+
+                                                        <?php echo '<a href="' . URL . 'admin/activateVehicle/' . $vehicleNo . '">  Activate</a>'; ?>
+                                                    <?php } else { ?>
+
+
+                                                        <?php echo '<a href="' . URL . 'admin/suspendVehicle/' . $vehicleNo . '">  Suspend</a>'; ?>
+
+                                                    <?php } ?>
+
+                                                    &nbsp;&nbsp;&nbsp;&nbsp;
+                                                    <?php echo '<a href="' . URL . 'admin/deleteVehicle/' . $vehicleNo . '">  Delete</a>'; ?>
+
+
+                                                </div>
+
+                                            </li>
+                                            <?php
+                                            $count++;
+                                        }
+                                        ?>
+
+                                    </ul>
+
+                                </div>
+                            <?php }
+                            if(isset($this->vehicleBasicInfo ) &&(count($this->vehicleBasicInfo)==0) ){?>
                                  <div class="container" style="width: 100%; padding-top: 40px; padding-left: 200px;"><h1>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;NO VEHICLES<i class="fa fa-exclamation-triangle"></i></h1></div>
                                 
                                 
@@ -213,15 +379,15 @@
                 dateFormat: "yy-mm-dd"
             });
 
- $("#searchForm").submit(function(e) {
-              
-                if ($('#datepicker1').val() == ''|| $('#datepicker2').val() == '' ) {
+            $("#searchForm").submit(function(e) {
+
+                if ($('#datepicker1').val() == '' || $('#datepicker2').val() == '') {
                     alert('You cannot leave input fields empty!');
                     e.preventDefault(e);
 
 
                 }
-               
+
 
             });
 

@@ -46,5 +46,18 @@ class Search extends Controller {
         return ;
 
     }
+    function thumbUp(){
+        if(isset($_POST['vehicle_reg_no']) && isset($_POST['count'])){
+            if($this->model->thumbUp($_POST['vehicle_reg_no'],$_POST['count'])){
+                echo 'success';
+            }else{
+                echo '';
+            }
+        }else{
+            echo '';
+        }
+        return ;
+
+    }
 
 }

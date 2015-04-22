@@ -14,7 +14,7 @@
 <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/normalize.css">
 <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/checkboxstyle.css">
 <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/commentpopupstyle.css">
-<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/commenticonstyle.css">
+<link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/iconstyle.css">
 <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/jquery-ui.css">
 <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/jquery-ui.theme.css">
 <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/jquery-ui.structure.css">
@@ -68,7 +68,9 @@
                 <div id = "filters" style = "margin-top: 70px;height: 500px;">
                     <div><font style = "color: #2980b9; margin-top: 10px;"> <b> Filter Results</b></font></div>
 
+                    <!-- ko if: types().length > 0 -->
                     <div style = "margin-top: 20px"><font style = "color: #2980b9;;margin-left: 20px"> Vehicle Type</font></div>
+                    <!-- /ko -->
 
 
                     <div class = "checkbox" style = "padding-left: 40px;padding-top: 20px" data-bind="foreach: types ">
@@ -77,9 +79,9 @@
                         <br>
                     </div>
 
-
+                    <!-- ko if: manufacturers().length > 0 -->
                     <div style = "margin-top: 20px"><font style = "color: #2980b9;;margin-left: 20px"> Manufacturer | Model</font></div>
-
+                    <!-- /ko -->
 
                     <div class = "checkbox" style = "padding-left: 40px;padding-top: 20px" data-bind="foreach: { data: manufacturers, as: 'manufacturer' } ">
                         <input data-bind="attr :{id :'check'+$index(), name:$data,value :'check'+$index()}" class = "cbox" type = "checkbox">
@@ -91,6 +93,8 @@
                         </div>
                         <br>
                     </div>
+                    
+                    <!-- ko if: types().length > 0 -->
                     <div style = "margin-top: 20px"><font style = "color: #2980b9;margin-left: 20px"> Available</font></div>
 
                     <div>
@@ -103,15 +107,12 @@
                                     <input id="datepicktext" type="text" type="text" class="form-control" style="  width: 110px;  font-size: 80%;   border: 1px solid #DDD;" readonly>
                                 </td>
                             </tr>
-<!--                            <tr>
-                                <td>
-                                    <input type="time" name="start_day" id="start_day">
-                                </td>
-                            </tr>-->
                         </table>
-
-
                     </div>
+                    <!-- /ko -->
+                    <!-- ko if: types().length == 0 && manufacturers().length == 0-->
+                    <div style = "margin-top: 20px"><font style = "color: #2980b9;margin-left: 20px">No filters available.</font></div>
+                    <!-- /ko -->
 
                 </div>
             </div>
@@ -138,40 +139,21 @@
 
                     <select  id = "categoryCombo" data-bind="options: schemes,value: selectedScheme,valueAllowUnset: true"></select>
 
-
-<!--                    <select name = "search" id = "categoryCombo">
-    <option value = "city_taxi_scheme">City Taxi</option>
-    <option value = "tour_scheme">Tours</option>
-    <option value = "ceramonial_scheme">Ceramonial</option>
-    <option value = "airport_drop_pickup_sceheme">Airport Drop/Pickup</option>
-    <option value = "station_drop_pickup_sceheme">Station Drop/Pickup</option>
-    <option value = "cargo_sceheme">Cargo</option>
-    <option value = "construction_sceheme">Construction</option>
-</select>-->
                     <input type = "submit" value = "Search" id = "search-button" class="rslbutton">
                     <!--</form>-->
                 </div>
-                <!--                <div id = 'categories'>
-                                    <table id = "category-table">
-                                        <tr>
-                                            <td>Car</td>
-                                            <td>Nano</td>
-                                            <td>Trishaw</td>
-                                        </tr>
-                                    </table>
-                                </div>-->
+
                 <div class = 'resultsPane' style="margin-top: 10px;">
 
                     <div id = "sort-bar">
-                        <p style = "margin-left: 820px; display: inline-block">Sort : </p>
+                        <p style = "margin-left: 720px; display: inline-block">Sort : </p>
                         <select name = "search" id = "sort-combo" data-bind="options : sortOp, value:sortBy">
-<!--                            <option value = "Best Match">Best Match</option>
-                            <option value = "Rating">Rating: highest fisrt</option>
-                            <option value = "location">Location: closest first</option>-->
                         </select>
                     </div>
+                    <!-- ko if: vehicles().length > 0 -->
 
                     <div id="results" data-bind="foreach: { data: vehicles , as: 'vehicle' }">
+                        
                         <div class="result" data-bind="visible: $parent.isVisible(vehicle.vehicle_reg_no)">
                             <hr>
                             <div style="margin-left: 6px; margin-right: 6px; ">
@@ -182,6 +164,13 @@
                                     <td style="width: 25%" valign = "top">
                                         <div width ="225px" style="margin-left: 6px; float: left; height: auto; ">
                                             <img class="vehicleimg" data-bind="attr: { id: $index, src :$parent.url+'/public/images/'+vehicle.owner_id+'/'+vehicle.image}" border="0" style="width:225px; height:225px; margin-top: 15px">
+                                        </div>
+                                        <div>
+                                            <img class="thumbup" src="<?php echo URL; ?>/public/images/thumb_up.png" data-bind="attr: { id: 'thumbup'+vehicle.vehicle_reg_no}" border="0" style="width:25px; height:25px">
+                                            <font style="font-size: 15px" data-bind="text: vehicle.thumbs_up, attr:{id:'upcount'+vehicle.vehicle_reg_no} "></font>
+                                            <img class="thumbdown" src="<?php echo URL; ?>/public/images/thumb_down.png" data-bind="attr: { id: 'thumbdown'+vehicle.vehicle_reg_no}" border="0" style="width:25px; height:25px">
+                                            <font style="font-size: 15px" data-bind="text: vehicle.thumbs_down, attr:{id:'downcount'+vehicle.vehicle_reg_no}"></font>
+                                            <!--<img href="#0" class="cd-popup-trigger" data-bind="attr: { id: 'comment-icon'+vehicle.vehicle_reg_no, src :$parent.url+'/public/images/comment_icon.png'}"  border="0" style="height: 20px;width: 24px; float: right; padding-left: 40px; padding-right: 40px; padding-top: 5px; ">-->
                                         </div>
                                     </td>
                                     <td style="vertical-align: top">
@@ -316,6 +305,7 @@
                                                     <text id="comments-header"><font style="color: #2980b9; cursor: pointer;margin-left: auto;margin-right: auto; font-weight: bold;font-size: larger">Comments</font></text>
                                                     <hr>
                                                     <div id="comment_panel" style="margin-top: 20px">
+                                                        <!-- ko if: vehicle.comments.length > 0 -->
                                                         <table border = "0" style="margin: 0 auto;" data-bind="foreach: vehicle.comments">
                                                             <tr>
                                                                 <td>
@@ -343,12 +333,17 @@
                                                                 </td>
                                                             </tr>
                                                         </table>
+                                                        <!-- /ko -->
+                                                        <!-- ko if: vehicle.comments.length == 0 -->
+                                                            <font style="color: #2980b9; margin-top: 15px; font-weight: bold" >This vehicle has no comments. Be the first to add one!</font><br>
+                                                        <!-- /ko -->
+                                                        
                                                         <hr>
                                                         <div style="background-color: #DCE5F0;border-radius: 10px;" data-bind="attr:{id:'addcomment'+vehicle.vehicle_reg_no} ">
                                                             <?php if (Session::get('loggedIn') == true && isset($_SESSION['username'])) : ?>
                                                                 <font style="color: #2980b9; margin-top: 15px; font-weight: bold" >Add Your Comment</font><br>
-                                                                <textarea name="comment" data-bind="attr:{id:'comment'+vehicle.vehicle_reg_no}" rows="3" cols="90" style="resize: none;margin-top: 5px;margin-bottom: 5px;"></textarea><br>
-                                                                <input type="submit" value="Post" id="postbutton"class="rslbutton" style="margin-bottom: 15px">
+                                                                <textarea class="commentbox"name="comment" data-bind="attr:{id:'comment'+vehicle.vehicle_reg_no}" rows="3" cols="90" onkeyup="validateComment(this)" style="resize: none;margin-top: 5px;margin-bottom: 5px;"></textarea><br>
+                                                                <input type="submit" value="Post" data-bind="attr:{id:'postbutton'+vehicle.vehicle_reg_no}" class="postbutton" style="margin-bottom: 15px" disabled="disabled" >
                                                             <?php else: ?>
                                                                 <font style="color: #2980b9; margin-top: 15px; font-weight: bold" >Login to add your Comment...</font><br>
                                                             <?php endif; ?>
@@ -366,6 +361,15 @@
                             </table>
                         </div>
                     </div>
+                                            
+                    <!-- /ko -->
+                    <!-- ko if: vehicles().length == 0 -->
+                    <div id="results" >
+                        <hr>
+                        <img style="width: 1000px;" src="<?php echo URL; ?>public/images/noresults.png">
+                        
+                    </div>
+                    <!-- /ko -->
                 </div>
 
                 <br><br><br><br><br><br><br><br><br>
@@ -388,8 +392,8 @@ require 'views/search/js/multizoom.js';
                             var daysref = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
                             for (i = 0; i < self.response.length; i++) {
                                 self.response[i].availability.sort(function(x, y) {
-                                    x = daysref.indexOf(x.day)
-                                    y = daysref.indexOf(y.day)
+                                    x = daysref.indexOf(x.day);
+                                    y = daysref.indexOf(y.day);
                                     if (x < y) {
                                         return -1;
                                     }
@@ -399,16 +403,27 @@ require 'views/search/js/multizoom.js';
                                     return 0;
                                 });
                             }
-
                         });
                         
-                        self.sortOp = ['nonacprice','acprice'];
+                        self.sortOp = ['Non AC Price : Lowest first','Non AC Price : Highest first','AC Price : Lowest first','AC Price : Highest first' ];
                         self.sortBy = ko.observable();
                         
                         ko.computed(function (){
-                            if(self.sortBy() === 'acprice'){
+                            if(self.sortBy() === 'AC Price : Lowest first'){
                                 self.vehicles.sort(function(left, right) {
                                     return parseFloat(left.ac_price) === parseFloat(right.ac_price) ? 0 : (parseFloat(left.ac_price) < parseFloat(right.ac_price) ? -1 : 1) 
+                                });
+                            }else if(self.sortBy() === 'AC Price : Highest first'){
+                                self.vehicles.sort(function(left, right) {
+                                    return parseFloat(left.ac_price) === parseFloat(right.ac_price) ? 0 : (parseFloat(left.ac_price) < parseFloat(right.ac_price) ? 1 : -1) 
+                                });
+                            }else if(self.sortBy() === 'Non AC Price : Highest first'){
+                                self.vehicles.sort(function(left, right) {
+                                    return parseFloat(left.non_ac_price) === parseFloat(right.non_ac_price) ? 0 : (parseFloat(left.non_ac_price) < parseFloat(right.non_ac_price) ? 1 : -1) 
+                                });
+                            }else if(self.sortBy() === 'Non AC Price : Lowest first'){
+                                self.vehicles.sort(function(left, right) {
+                                    return parseFloat(left.non_ac_price) === parseFloat(right.non_ac_price) ? 0 : (parseFloat(left.non_ac_price) < parseFloat(right.non_ac_price) ? -1 : 1) 
                                 });
                             }
                         });
@@ -472,7 +487,7 @@ if (isset($_POST['scheme_category'])) {
                             self.dummyob();
                             var models = [];
                             for (i = 0; i < response.length; i++) {
-                                if (response[i]['manufacturer'] === manufacturer) {
+                                if (response[i]['manufacturer'] === manufacturer && models.indexOf(response[i]['model']) === -1) {
                                     models[models.length] = response[i]['model'];
                                 }
                             }
@@ -888,7 +903,7 @@ if (isset($_POST['scheme_category'])) {
                             xmlhttp.send("location=" + $('#searchBox').val() + "&scheme_category=" + scheme);
                         })
 
-                        $(document).on("click", "#postbutton", function() {
+                        $(document).on("click", ".postbutton", function() {
                             console.log('clicked');
                             var xmlhttp;
                             if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -898,7 +913,7 @@ if (isset($_POST['scheme_category'])) {
                                 xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
                             }
                             var context = ko.contextFor(this);
-                            console.log($(this)[0].parentElement.id.replace('addcomment', ''));
+//                            console.log($(this)[0].parentElement.id.replace('addcomment', ''));
                             var reg_no = $(this)[0].parentElement.id.replace('addcomment', '');
                             xmlhttp.onreadystatechange = function() {
                                 if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
@@ -957,7 +972,7 @@ if (isset($_POST['scheme_category'])) {
 
                         $(document).on("click", ".cd-popup-trigger", function(o) {
 //                                console.log(o.target.id.replace("comment-icon", ""));
-console.log('triggered');
+//console.log('triggered');
                             var regno = o.target.id.replace("comment-icon", "");
 
                             event.preventDefault();
@@ -993,10 +1008,40 @@ console.log('triggered');
                                 }
                             }
                         });
+                        
+                        $(document).on("click", ".thumbup", function(o) {
+//                                console.log(o.target.id.replace("comment-icon", ""));
+console.log('triggered thumb');
+                            var xmlhttp;
+                            if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+                                xmlhttp = new XMLHttpRequest();
+                            }
+                            else {// code for IE6, IE5
+                                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                            }
+                            console.log(o.target.id);
 
+                            var reg_no = o.target.id;
+                            xmlhttp.onreadystatechange = function() {
+                                if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
+                                {
 
+                                    results = xmlhttp.responseText;
+                                    console.log(results);
+                                    if (results) {
+                                        $('#upcount'+reg_no).val(parseInt($('#upcount'+reg_no).val())+1);
+                                        
+                                    }
+//                                    else{
+//                                        console.log('erorrrr');
+//                                    }
+                                }
+                            }
 
-
+                            xmlhttp.open("POST", "thumbUp", true);
+                            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                            xmlhttp.send("vehicle_reg_no=" + reg_no + "&count=" + (parseInt($('#upcount'+reg_no).val())+1));
+                        })
                     });
 
                     var keys = [37, 38, 39, 40];
@@ -1032,6 +1077,17 @@ console.log('triggered');
                             window.removeEventListener('DOMMouseScroll', wheel, false);
                         }
                         window.onmousewheel = document.onmousewheel = document.onkeydown = null;
+                    }
+                    
+
+                    function validateComment(element){
+                        var reg_no = element.id.replace('comment', '');
+                        var btnid = 'postbutton'+reg_no;
+                        if(element.value !== ''){
+                            document.getElementById(btnid).disabled = false;
+                        }else{
+                            document.getElementById(btnid).disabled = true;
+                        }
                     }
 
                 </script>

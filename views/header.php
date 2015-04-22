@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html>
     <head>
+        <title>RideSL</title>
+        <link rel="shortcut icon" href="<?php  echo URL; ?>public/images/icon.ico">
 
         <link rel="stylesheet" type="text/css" href="<?php  echo URL; ?>public/css/buttonstyle.css">
         <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/hyperlinkstyle.css">        

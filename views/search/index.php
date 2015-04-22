@@ -1009,41 +1009,68 @@ if (isset($_POST['scheme_category'])) {
                             }
                         });
                         
-                        $(document).on("click", ".thumbup", function(o) {
-//                                console.log(o.target.id.replace("comment-icon", ""));
-console.log('triggered thumb');
-                            var xmlhttp;
-                            if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
-                                xmlhttp = new XMLHttpRequest();
-                            }
-                            else {// code for IE6, IE5
-                                xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
-                            }
-                            console.log(o.target.id);
-
-                            var reg_no = o.target.id;
-                            xmlhttp.onreadystatechange = function() {
-                                if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
-                                {
-
-                                    results = xmlhttp.responseText;
-                                    console.log(results);
-                                    if (results) {
-                                        $('#upcount'+reg_no).val(parseInt($('#upcount'+reg_no).val())+1);
-                                        
-                                    }
-//                                    else{
-//                                        console.log('erorrrr');
-//                                    }
+                        <?php if (Session::get('loggedIn') == true && isset($_SESSION['username'])): ?>
+                            $(document).on("click", ".thumbup", function(o) {
+                                var xmlhttp;
+                                if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+                                    xmlhttp = new XMLHttpRequest();
                                 }
-                            }
+                                else {// code for IE6, IE5
+                                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                                }
 
-                            xmlhttp.open("POST", "thumbUp", true);
-                            xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-                            xmlhttp.send("vehicle_reg_no=" + reg_no + "&count=" + (parseInt($('#upcount'+reg_no).val())+1));
-                        })
+                                var reg_no = o.target.id.replace('thumbup', '');
+                                xmlhttp.onreadystatechange = function() {
+                                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
+                                    {
+                                        results = xmlhttp.responseText;
+                                        console.log(results);
+                                        if (results) {
+                                            $('#upcount'+reg_no)[0].innerText = parseInt($('#upcount'+reg_no)[0].innerText)+1;
+                                        }
+    //                                    else{
+    //                                        console.log('erorrrr');
+    //                                    }
+                                    }
+                                }
+                                xmlhttp.open("POST", "thumbUp", true);
+                                xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                                xmlhttp.send("vehicle_reg_no=" + reg_no + "&count=" + (parseInt($('#upcount'+reg_no)[0].innerText)+1)+ "&username=<?php echo $_SESSION['username'];?>");
+                            });
+                        
+                            $(document).on("click", ".thumbdown", function(o) {
+                                var xmlhttp;
+                                if (window.XMLHttpRequest) {// code for IE7+, Firefox, Chrome, Opera, Safari
+                                    xmlhttp = new XMLHttpRequest();
+                                }
+                                else {// code for IE6, IE5
+                                    xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+                                }
+
+                                var reg_no = o.target.id.replace('thumbdown', '');
+                                xmlhttp.onreadystatechange = function() {
+                                    if (xmlhttp.readyState == 4 && xmlhttp.status == 200)
+                                    {
+                                        results = xmlhttp.responseText;
+                                        console.log(results);
+                                        if (results) {
+                                            $('#downcount'+reg_no)[0].innerText = parseInt($('#downcount'+reg_no)[0].innerText)+1;
+                                        }
+    //                                    else{
+    //                                        console.log('erorrrr');
+    //                                    }
+                                    }
+                                }
+                                xmlhttp.open("POST", "thumbDown", true);
+                                xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+                                xmlhttp.send("vehicle_reg_no=" + reg_no + "&count=" + (parseInt($('#downcount'+reg_no)[0].innerText)+1)+ "&username=<?php echo $_SESSION['username'];?>");
+                            });
+                        
+                    <?php else: ?>
+                    <?php endif; ?>
+                        
+                        
                     });
-
                     var keys = [37, 38, 39, 40];
                     function preventDefault(e) {
                         e = e || window.event;

@@ -92,17 +92,59 @@ class Search_Model extends Model {
 //        echo 'int he model';
         $sth = $this->db->prepare('INSERT INTO comment (vehicle_reg_no, comment, comment_date, username) VALUES (:reg_no, :comment , CURDATE(), :username)');
         return $sth->execute(array(
-            ':reg_no' => $regno,
-            ':comment' => $comment,
-            ':username' => $username
+                    ':reg_no' => $regno,
+                    ':comment' => $comment,
+                    ':username' => $username
         ));
     }
-    public function thumbUp($regno,$count) {
-//        echo 'int he model';
-        $sth = $this->db->prepare('UPDATE vehicle SET thumbs_up = :count WHERE vehicle_reg_no = :reg_no');
-        return $sth->execute(array(
+
+    public function thumbUp($regno, $count, $username) {
+        $sth = $this->db->prepare('Select * from  vehicle_thumbs WHERE username = :username AND vehicle_reg_no = :reg_no');
+        $sth->setFetchMode(PDO::FETCH_ASSOC);
+        $sth->execute(array(
             ':reg_no' => $regno,
-            ':count' => $count
+            ':username' => $username
+        ));
+
+        $results = $sth->fetchAll();
+        if (sizeof($results) == 0) {
+            try {
+                $sth = $this->db->prepare("SET AUTOCOMMIT=0");
+                $sth->execute();
+                $sth = $this->db->prepare("start transaction");
+                $sth->execute();
+
+                $sth = $this->db->prepare('INSERT INTO vehicle_thumbs (vehicle_reg_no, username) VALUES (:reg_no, :username)');
+                $sth->execute(array(
+                    ':reg_no' => $regno,
+                    ':username' => $username
+                ));
+
+                $sth = $this->db->prepare('UPDATE vehicle SET thumbs_up = :count WHERE vehicle_reg_no = :reg_no');
+                $sth->execute(array(
+                    ':reg_no' => $regno,
+                    ':count' => $count
+                ));
+
+                $sth = $this->db->prepare("commit");
+                $sth->execute();
+                return 'true';
+            } catch (Exception $e) {
+                $sth = $this->db->prepare("rollback");
+                $sth->execute();
+                return 'false';
+            }
+        } else {
+            return 'exists';
+        }
+    }
+
+    public function thumbDown($regno, $count, $username) {
+        $sth = $this->db->prepare('UPDATE vehicle SET thumbs_down = :count WHERE vehicle_reg_no = :reg_no');
+        error_log($regno . $count);
+        return $sth->execute(array(
+                    ':reg_no' => $regno,
+                    ':count' => $count
         ));
     }
 

@@ -19,4 +19,8 @@ class forgetPassword  extends Controller{
     function index() {
         $this->view->render('forgetPassword/index');
     }
+    
+    function run(){
+        $this->model->run();
+    }
 }

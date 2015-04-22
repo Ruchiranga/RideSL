@@ -76,7 +76,7 @@
                             echo '<font id="text_phoneNo' . $no . '">' . $value['telephone_number'] . '<font>';
 
                             echo ' <img onclick="changePhone(' . $no . ')" id = "phone' . $no . '" src="' . URL . 'public/images/pencil.png" alt="" style="height: 13px; width: 13px; cursor:pointer"/><font> </font>';
-                            echo '<a href="' . URL . 'driverHome/dltPhoneNo/' . $value['telephone_number'] . '"><img onclick="return confirm(\'Are you sure you want to delete phone no ' . $value['telephone_number'] . '?\');" id = "dlt_phone' . $no . '" src="' . URL . 'public/images/dlt.png" alt="" style="height: 13px; width: 13px; cursor:pointer"/></a>';
+                            echo '<a href="' . URL . 'editVehicle/dltPhoneNo/' . $value['telephone_number'] . '"><img onclick="return confirm(\'Are you sure you want to delete phone no ' . $value['telephone_number'] . '?\');" id = "dlt_phone' . $no . '" src="' . URL . 'public/images/dlt.png" alt="" style="height: 13px; width: 13px; cursor:pointer"/></a>';
                             echo '</div>';
                             $no++;
                             $i++;

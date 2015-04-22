@@ -11,104 +11,138 @@
         <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/registerDr/buttonstyle.css">
         <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/registerDr/hyperlinkstyle.css">
         <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/registerDr/paragraphstyle.css">
-        <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/registerDr/dualpanestyle.css">
         <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/registerDr/ratingstyle.css">
         <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/registerDr/tooltipstyle.css">
         <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/registerDr/slidingpanelstyle.css">
         <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/registerDr/combostyle.css">
         <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>public/css/registerDr/font-awesome.css">
+        <link rel="stylesheet" type="text/css" href="<?php echo URL; ?>views/vehicleRegister/css/default.css">
 
         <script type="text/javascript" src="<?php echo URL; ?>public/js/registerDr/view.js"></script>
         <script type="text/javascript" src="<?php echo URL; ?>public/js/registerDr/function.js"></script>
 
+        <!-- Javascript -->
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+        <script src="<?php echo URL; ?>views/vehicleRegister/js/default.js"></script>
 
-    <div style=" width: 1310px; height: 1x; text-align: right; float: right; line-height: 30px; float: left">   
-        You are logged in as <text>Driver&nbsp;</text>
-        <!--<a href="#">| Sign out |</a>-->
-    </div>
-
-    <!--create connection-->
-    <?php
-    mysql_connect('localhost', 'root', '');
-    mysql_select_db('ridesl');
-    ?>
-
-    <script type="text/javascript">
-        var URL = <?php echo URL; ?>;</script>
-</head
+        <script type="text/javascript" src="<?php echo URL; ?>public/js/faqabt/jquery.min.js"></script>
+        <script type="text/javascript" src="<?php echo URL; ?>public/js/faqabt/jquery.ssd-vertical-navigation.min.js"></script>
+        <script type="text/javascript" src="<?php echo URL; ?>public/js/faqabt/helpsupport.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.10.3/jquery-ui.min.js"></script>
+        <script src="<?php echo URL; ?>public/js/faqabt/smoothscroll.min.js" type="text/javascript"></script>
+        <script src="<?php echo URL; ?>public/js/faqabt/responsive-accordion.min.js" type="text/javascript"></script>
 
 
-<body style="width:100%;">
+        <!--create connection-->
+        <?php
+        mysql_connect('localhost', 'root', '');
+        mysql_select_db('ridesl');
+        ?>
 
-    <div id='panel1' style="float:left; width:14%;">
+        <script type="text/javascript">
+            var URL = <?php echo URL; ?>;</script>
+    </head>
 
-        <font style="color: #2980b9; font-size: 18px; font-weight: bold">Personal Profile</font>
-        <br><br><font style="color: #2980b9; font-weight: bold">Name &nbsp;</font><img id = "pencil1" src="<?php echo URL; ?>public/images/pencil.png" alt="" style="height: 13px; width: 13px"/>
-<!--        <br><font id="edit_name"><?php echo $this->owner['first_name'] . ' ' . $this->owner['last_name']; ?></font>
-        <br><br><font style="color: #2980b9; font-weight: bold">Telphone &nbsp;</font><img src="<?php echo URL; ?>public/images/pencil.png" alt="" style="height: 13px; width: 13px"/>-->
 
-    </div>
+    <body>
+        <div id='frame'>
+            <div id='body'>
+                <div id='panel' align='left' >
+                    <font style="color: #2980b9; font-size: 18px; font-weight: bold; ">Personal Profile</font>
 
-    <div id='panel2' style="float:right; width:85%; margin-left:10px;">
-        <img src = "<?php echo URL; ?>public/images/registerDr/top.png" alt = "" style = " width: 660px;"/>
-        <div id = "form_container" style = " border-left: 1px solid #CCCCCC;  border-right: 1px solid #CCCCCC;  border-top: 1px solid #CCCCCC;  border-bottom: 1px solid #CCCCCC;">
-            <h1><a> Add New Vehicle </a></h1>
+                    <br><br><font style="color: #2980b9; font-weight: bold">Name &nbsp;</font><img id = "pencil1" src="<?php echo URL; ?>public/images/pencil.png" alt="" style="height: 13px; width: 13px; cursor:pointer"/>
+                    <br><div id="edit_name"><font id="edit_first_name"><?php echo $this->owner['first_name'] . '</font> <font id="edit_last_name">' . $this->owner['last_name']; ?></font></div>
+                    <br><br><font style="color: #2980b9; font-weight: bold">Telphone &nbsp;</font><br><br>
 
-            <form id = "vehicleRegister" name = "vehicleRegister" class = "appnitro" method = "POST" action = "views/vehicleRegister/dbDriverRegister.php"  onsubmit="return checkForm(this);">
-                <div class = "form_description" style="color: #0b75b2; font-size: 30px; font-family: Times New Roman;">
-                    <center> Add New Vehicle </center>
+                    <div id='phone_numbers'>
+                        <font>
+                        <?php
+                        $i = 0;
+                        if ($this->phoneNoList != NULL) {
+
+                            $no = 0;
+                            foreach ($this->phoneNoList as $key => $value) {
+                                echo '<input type="hidden" id="dltNo' . $no . '" value="' . $value['telephone_number'] . '">';
+                                echo '<div id="text_phone' . $no . '">';
+
+                                echo '<font id="text_phoneNo' . $no . '">' . $value['telephone_number'] . '<font>';
+
+                                echo ' <img onclick="changePhone(' . $no . ')" id = "phone' . $no . '" src="' . URL . 'public/images/pencil.png" alt="" style="height: 13px; width: 13px; cursor:pointer"/><font> </font>';
+                                echo '<a href="' . URL . 'vehicleRegister/dltPhoneNo/' . $value['telephone_number'] . '"><img onclick="return confirm(\'Are you sure you want to delete phone no ' . $value['telephone_number'] . '?\');" id = "dlt_phone' . $no . '" src="' . URL . 'public/images/dlt.png" alt="" style="height: 13px; width: 13px; cursor:pointer"/></a>';
+                                echo '</div>';
+                                $no++;
+                                $i++;
+                            }
+                        }
+                        ?>
+                        </font>
+                    </div>
+                    <img id = "add_phone" src="<?php echo URL; ?>public/images/add.png" alt="" style="height: 20px; width: 20px; cursor:pointer"/>
+                    <br><br><font style="color: #2980b9; font-weight: bold">Email &nbsp;</font><img id = "pencil3" src="<?php echo URL; ?>public/images/pencil.png" alt="" style="height: 13px; width: 13px; cursor:pointer"/>
+                    <br><font id="edit_email"><?php echo $this->owner['email']; ?></font>
                 </div>
 
-                <div align="center">
-                    <ul>
-                        <li>
-                            <div>
-                                <label class = "description" style="color: #0b75b2; font-size: 14px;">Registration Number</label>
-                                <input id="regNoin" name="regNoin" type="text" style="font-family: Times New Roman; font-size: 18px; width: 150px" onblur="validateNonEmptyRegNo(this, document.getElementById('regNo_help'))"/>
-                                <span id="regNo_help" class="help" style="width:300px;  color:#0b75b2; font-style:italic;" align="right"></span>
+                <div id = "vehiclePane" class="box">
+                    <img src = "<?php echo URL; ?>public/images/registerDr/top.png" alt = "" style = " width: 660px;"/>
+                    <div id = "form_container" style = " border-left: 1px solid #CCCCCC;  border-right: 1px solid #CCCCCC;  border-top: 1px solid #CCCCCC;  border-bottom: 1px solid #CCCCCC;">
+                        <h1><a> Add New Vehicle </a></h1>
+
+                        <form id = "vehicleRegister" name = "vehicleRegister" class = "appnitro" method = "POST" action = "views/vehicleRegister/dbDriverRegister.php"  onsubmit="return checkForm(this);">
+                            <div class = "form_description" style="color: #0b75b2; font-size: 30px; font-family: Times New Roman;">
+                                <center> Add New Vehicle </center>
                             </div>
-                        </li>
+
+                            <div align="center">
+                                <ul>
+                                    <li>
+                                        <div>
+                                            <label class = "description" style="color: #0b75b2; font-size: 14px;">Registration Number</label>
+                                            <input id="regNoin" name="regNoin" type="text" style="font-family: Times New Roman; font-size: 18px; width: 150px" onblur="validateNonEmptyRegNo(this, document.getElementById('regNo_help'))"/>
+                                            <span id="regNo_help" class="help" style="width:300px;  color:#0b75b2; font-style:italic;" align="right"></span>
+                                        </div>
+                                    </li>
 
 
-                        <!--Type of vehicle-->
-                        <li id = "type" ><label class = "description" style="color: #0b75b2; font-size: 14px;">Type </label>
-                            <div>
-                                <?php
-                                $sql = "SELECT vehicle_type FROM vehicle_type";
-                                $result = mysql_query($sql);
+                                    <!--Type of vehicle-->
+                                    <li id = "type" ><label class = "description" style="color: #0b75b2; font-size: 14px;">Type </label>
+                                        <div>
+                                            <?php
+                                            $sql = "SELECT vehicle_type FROM vehicle_type";
+                                            $result = mysql_query($sql);
 
-                                echo "<select id = 'vehtype' name = 'type' style='width: 150px; height: 28px; font-family: Times New Roman; font-size: 18px;'>";
-                                while ($row = mysql_fetch_array($result)) {
-                                    echo "<option style='font-family: Times New Roman; font-size: 18px;' value='" . $row['vehicle_type'] . "'>" . $row['vehicle_type'] . "</option>";
-                                }
-                                echo '</select>';
-                                ?>                          
-                            </div>	
-                        </li>
+                                            echo "<select id = 'vehtype' name = 'type' style='width: 150px; height: 28px; font-family: Times New Roman; font-size: 18px;'>";
+                                            while ($row = mysql_fetch_array($result)) {
+                                                echo "<option style='font-family: Times New Roman; font-size: 18px;' value='" . $row['vehicle_type'] . "'>" . $row['vehicle_type'] . "</option>";
+                                            }
+                                            echo '</select>';
+                                            ?>                          
+                                        </div>	
+                                    </li>
 
 
 
-                        <!--Manufacturer-->
-                        <li><label class = "description" style = "color: #0b75b2; font-size: 14px;">Manufacturer</label>
-                            <div>
-                                <?php
-                                $sql = "SELECT distinct manufacturer FROM brand_model";
-                                $result = mysql_query($sql);
-                                $sql = "SELECT model FROM brand_model WHERE manufacturer = "."Toyota";
+                                    <!--Manufacturer-->
+                                    <li><label class = "description" style = "color: #0b75b2; font-size: 14px;">Manufacturer</label>
+                                        <div>
+                                            <?php
+                                            $sql = "SELECT distinct manufacturer FROM brand_model";
+                                            $result = mysql_query($sql);
+                                            $sql = "SELECT model FROM brand_model WHERE manufacturer = " . "Toyota";
 //                                echo $sql;
-                                ?>
-                                
-                                
-                                <select id = 'manufacturer' name = 'manufacturer' style='width: 150px; height: 28px; font-family: Times New Roman; font-size: 18px;' >";
-                                
-                                    <?php
-                                        while ($row = mysql_fetch_array($result)) {
-                                    echo "<option style='font-family: Times New Roman; font-size: 18px;' value='" . $row['manufacturer'] . "'>" . $row['manufacturer'] . "</option>";
-                                }
-                                echo '</select>';
-                                ?>      
-                            </div>
-                        </li>
+                                            ?>
+
+
+                                            <select id = 'manufacturer' name = 'manufacturer' style='width: 150px; height: 28px; font-family: Times New Roman; font-size: 18px;' >";
+
+                                                <?php
+                                                while ($row = mysql_fetch_array($result)) {
+                                                    echo "<option style='font-family: Times New Roman; font-size: 18px;' value='" . $row['manufacturer'] . "'>" . $row['manufacturer'] . "</option>";
+                                                }
+                                                echo '</select>';
+                                                ?>      
+                                        </div>
+                                    </li>
 
 <!--                        <select name="opttwo" size="1">
                             <option value=" " selected="selected"> Please select one of the options above</option>
@@ -118,1024 +152,1025 @@
                             <option value=" " selected>First select a car</option> 
                         </select><br><br> -->
 
-                        <!--Model-->
-                        <li><label class="description" style="color: #0b75b2; font-size: 14px;">Model</label>
-                            <div id="modelPane">
-                                <?php
-                                $sql = "SELECT model FROM brand_model";
-                                $result = mysql_query($sql);
+                                    <!--Model-->
+                                    <li><label class="description" style="color: #0b75b2; font-size: 14px;">Model</label>
+                                        <div id="modelPane">
+                                            <?php
+                                            $sql = "SELECT model FROM brand_model";
+                                            $result = mysql_query($sql);
 
-                                echo "<select id = 'model' name = 'model' style='width: 150px; height: 28px; font-family: Times New Roman; font-size: 18px;'>";
-                                while ($row = mysql_fetch_array($result)) {
-                                    echo "<option style='font-family: Times New Roman; font-size: 18px;' value='" . $row['model'] . "'>" . $row['model'] . "</option>";
-                                }
+                                            echo "<select id = 'model' name = 'model' style='width: 150px; height: 28px; font-family: Times New Roman; font-size: 18px;'>";
+                                            while ($row = mysql_fetch_array($result)) {
+                                                echo "<option style='font-family: Times New Roman; font-size: 18px;' value='" . $row['model'] . "'>" . $row['model'] . "</option>";
+                                            }
 
-                                echo '</select>';
-                                ?>      
+                                            echo '</select>';
+                                            ?>      
+                                        </div>
+                                    </li>
+
+
+                                    <!--Capacity-->
+                                    <li>
+                                        <div>
+                                            <label class = "description" style="color: #0b75b2; font-size: 14px;">Capacity</label>
+                                            <input id="capacityin" name="capacity" type="text" style="font-family: Times New Roman; font-size: 18px; width: 150px" onblur="validateNonEmptyCapacity(this, document.getElementById('capacity_help'))"/>
+                                            <span id="capacity_help" class="help" style="width:300px;  color:#0b75b2; font-style:italic;" align="right"></span>
+                                        </div>
+                                    </li>
+
+                                    <!--Vehicle Description-->
+                                    <li>
+                                        <div>
+                                            <label class = "description" style="color: #0b75b2; font-size: 14px;">Description of the Vehicle</label>
+                                            <textarea id="describeVehicle" name="describeVehicle" class="description" style ="width : 300px; font-family: Times New Roman; font-size: 16px;" rows="5" onblur="validateNonEmptyVehDescription(this, document.getElementById('description_help'))"/></textarea> 
+                                            <span id="description_help" class="help" style="width:300px;  color:#0b75b2; font-style:italic;" align="right"></span>
+                                        </div>
+
+                                    </li>
+                                    <br>
+
+                                    <!--Image-->
+                                    <a href="http://localhost/ridesl/views/vehicleRegister/image_cropper/upload_crop.php?number=" onclick="location.href = this.href + document.getElementById('regNoin').value;
+                                            return false;" style="color: #0b75b2; font-size: 14px;">
+
+                                        <b>Upload Images >></b></a>
+                                    <br> <br> <br> 
+                                    </li>
+                                    </div>
+
+                                    <!--------------------------------Pricing scheme and availability-------------------------------------->
+                                    <li class="section_break">                        
+                                        <h3 style="color: #0b75b2;">
+                                            <b><center>Pricing Scheme and Availability</center></b>
+                                        </h3>
+                                        <p style="color: #0b75b2;"><center>Please specify your pricing schemes for each selected category</center></p>
+                                    </li>    
+
+                                    <!------------------------------------City Taxi------------------------------------------------->
+                                    <li>
+                                        <span>
+                                            <input id="cityTaxi" name="cityTaxi" type="checkbox"  onclick="showHide()"/> 
+                                            <b style="color: #0b75b2; font-size: 14px;">City Taxi Service</b>
+                                        </span>
+                                    </li>
+
+                                    <!--******************Pricing scheme***********************-->
+                                    <div id="pricingSchemeTaxi" style="display: none; padding: 10px; border: 1px dashed #999;">
+                                        <h3 style="color: #0b75b2; font-size: 13px"><b>Pricing Scheme</b></h3>
+                                        <!--With AC-->
+                                        <span>
+                                            <input id="WithAcCt" name="WithAcCt"  type="checkbox" onclick="showWithAcCt()"/>
+                                            Price with AC
+                                        </span>
+                                        <br>
+                                        Rs:
+                                        <span>
+                                            <input id="pricewithacInCt" name ="pricewithacInCt" type="text" disabled=true></input>
+                                        </span>
+                                        per   	
+                                        <span>
+                                            <select name="pricewithacOptCt" id ="pricewithacOptCt" disabled=true>
+                                                <option>Per km</option>
+                                                <option>Per hour</option> 
+                                                <option>Per day</option> 
+                                            </select>
+                                        </span>	
+                                        <br><br>
+                                        <!--Without AC-->
+                                        <span> 
+                                            <input id="WithoutAcCt" name="WithoutAcCt" type="checkbox" onclick="showWithoutAcCt()"/>
+                                            Price without AC
+                                        </span>
+                                        <br>
+                                        Rs:
+                                        <span>
+                                            <input id="pricewithoutacInCt" name="pricewithoutacInCt" type="text" disabled=true></input>
+                                        </span>
+                                        per   	
+                                        <span>
+                                            <select name="pricewithoutacOptCt" id ="pricewithoutacOptCt" disabled=true>
+                                                <option>Per km</option>
+                                                <option>Per hour</option> 
+                                                <option>Per day</option>                 
+                                            </select>
+                                        </span>	  
+                                        <br><br>
+
+
+
+                                        <!-- *****************Availability *****************-->
+                                        <li class="section_break">
+                                            <h3 style="color: #0b75b2; font-size: 13px">
+                                                <b>Availability</b>
+                                                <p align = "center" style = "font-size: 13px"></p>
+                                            </h3>
+                                        </li>
+
+                                        <ul>
+                                            <!--Monday-->
+                                            <li id="monday">
+                                                <span style="width: 500px">
+                                                    <span>                                 
+                                                        <input id="mondayInCt" name="mondayInCt" type="checkbox" onclick="showMondayCt()" />Monday&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+                                                    </span>
+                                                    <span>
+                                                        From 
+                                                        <input type="time" name="start_time_mondayCt" id ="start_time_mondayCt" disabled=true>To <input type="time" style="width: 100px" id="end_time_mondayCt" name="end_time_mondayCt" disabled=true/>
+                                                    </span>  
+                                                </span>
+                                            </li>
+
+                                            <!--Tuesday-->
+                                            <li id="tuesday">
+                                                <span style="width: 500px">
+                                                    <span> 
+                                                        <input id="tuesdayInCt" name="tuesdayInCt" type="checkbox" onclick="showTuesdayCt()">Tuesday&ensp;&ensp;&ensp;&ensp;&ensp;&nbsp;
+                                                    </span>
+                                                    <span>
+                                                        From 
+                                                        <input type="time" style="width: 100px" name="start_time_tuesdayCt" id ="start_time_tuesdayCt" disabled=true> To <input type="time" style="width: 100px" name="end_time_tuesdayCt" id ="end_time_tuesdayCt" disabled=true>
+                                                    </span>  
+                                                </span>                   
+                                            </li>
+
+                                            <!--Wednesday-->
+                                            <li id="wednesday">
+                                                <span style="width: 500px">
+                                                    <span> 
+                                                        <input id="wednesdayInCt" name="wednesdayInCt" type="checkbox" onclick="showWednesdayCt()">Wednesday&ensp;&ensp;&nbsp;&nbsp;
+                                                    </span>
+                                                    <span>
+                                                        From 
+                                                        <input type="time" style="width: 100px" name="start_time_wednesdayCt" id ="start_time_wednesdayCt" disabled=true> To <input type="time" style="width: 100px" name="end_time_wednesdayCt" id ="end_time_wednesdayCt" disabled=true>
+                                                    </span>  
+                                                </span>                
+                                            </li>
+
+                                            <!--Thursday-->
+                                            <li id="thursday">
+                                                <span style="width: 500px">
+                                                    <span> 
+                                                        <input id="thursdayInCt" name="thursdayInCt" type="checkbox" onclick="showThursdayCt()">Thursday&ensp;&ensp;&nbsp;&nbsp;&ensp;&ensp;
+                                                    </span>
+                                                    <span>
+                                                        From 
+                                                        <input type="time" style="width: 100px" name="start_time_thursdayCt" id ="start_time_thursdayCt" disabled=true> To <input type="time" style="width: 100px" name="end_time_thursdayCt" id ="end_time_thursdayCt" disabled=true>
+                                                    </span>  
+                                                </span>                
+                                            </li>
+
+                                            <!--Friday-->
+                                            <li id="friday">
+                                                <span style="width: 500px">
+                                                    <span> 
+                                                        <input id="fridayInCt" name="fridayInCt" type="checkbox" onclick="showFridayCt()">Friday&ensp;&ensp;&nbsp;&nbsp;&ensp;&ensp;&ensp;&nbsp;&nbsp;&nbsp;
+                                                    </span>
+                                                    <span>
+                                                        From 
+                                                        <input type="time" style="width: 100px" name="start_time_fridayCt" id ="start_time_fridayCt" disabled=true> To <input type="time" style="width: 100px" name="end_time_fridayCt" id ="end_time_fridayCt" disabled=true>
+                                                    </span>  
+                                                </span>                   
+                                            </li>
+
+                                            <!--Saturday-->
+                                            <li id="saturday">
+                                                <span style="width: 500px">
+                                                    <span> 
+                                                        <input id="saturdayInCt" name="saturdayInCt" type="checkbox" onclick="showSaturdayCt()">Saturday&ensp;&ensp;&nbsp;&nbsp;&ensp;&ensp;&nbsp;
+                                                    </span>
+                                                    <span>
+                                                        From 
+                                                        <input type="time" style="width: 100px" name="start_time_saturdayCt" id ="start_time_saturdayCt" disabled=true> To <input type="time" style="width: 100px" name="end_time_saturdayCt" id ="end_time_saturdayCt" disabled=true>
+                                                    </span>  
+                                                </span>                    
+                                            </li>
+
+                                            <!--Sunday-->
+                                            <li id="sunday">
+                                                <span style="width: 500px">
+                                                    <span> 
+                                                        <input id="sundayInCt" name="sundayInCt" type="checkbox" onclick="showSundayCt()">Sunday&ensp;&ensp;&nbsp;&nbsp;&ensp;&ensp;&nbsp;&nbsp;&nbsp;
+                                                    </span>
+                                                    <span>
+                                                        From 
+                                                        <input type="time" style="width: 100px" name="start_time_sundayCt" id ="start_time_sundayCt" disabled=true> To <input type="time" style="width: 100px" name="end_time_sundayCt" id ="end_time_sundayCt" disabled=true>
+                                                    </span>  
+                                                </span>               
+                                            </li>
+                                        </ul>
+
+                                        <!--Vehicle Description-->
+                                        <li id="describeVehicleCt"><label class="description" style="color: #0b75b2;">Any Description</label>
+                                            <textarea id="describeVehicleCt" name="describeVehicleCt" style ="width : 550px; font-family: Times New Roman; font-size: 16px;" rows="2"></textarea>                        
+                                        </li>     
+
+                                    </div> 
+
+                                    <!------------------------------------Tour service------------------------------------------------->
+                                    <li>
+                                        <span>
+                                            <input id="tour" name="tour" type="checkbox"  onclick="showHideTour()" style="color: #0b75b2;"/> 
+                                            <b style="color: #0b75b2; font-size: 14px;">Tour Service</b>
+                                        </span>
+                                    </li>
+
+                                    <!--******************Pricing scheme***********************-->
+                                    <div id="pricingSchemeTour" style="display: none; padding: 10px; border: 1px dashed #999;">
+                                        <h3 style="color: #0b75b2; font-size: 13px"><b>Pricing Scheme</b></h3>
+                                        <!--With AC-->
+                                        <span>
+                                            <input id="WithAcT" name="WithAcT"  type="checkbox" onclick="showWithAcT()"/>
+                                            Price with AC
+                                        </span>
+                                        <br>
+                                        Rs:
+                                        <span>
+                                            <input id="pricewithacInT" name="pricewithacInT" type="text" disabled=true></input>
+                                        </span>
+                                        per   	
+                                        <span>
+                                            <select name="pricewithacOptT" id ="pricewithacOptT" disabled=true>
+                                                <option>Per km</option>
+                                                <option>Per hour</option> 
+                                                <option>Per day</option>            
+                                            </select>
+                                        </span>	
+                                        <br><br>
+                                        <!--Without AC-->
+                                        <span> 
+                                            <input id="WithoutAcT" name="WithoutAcT" type="checkbox" onclick="showWithoutAcT()"/>
+                                            Price without AC
+                                        </span>
+                                        <br>
+                                        Rs:
+                                        <span>
+                                            <input id="pricewithoutacInT" name="pricewithoutacInT" type="text" disabled=true></input>
+                                        </span>
+                                        per   	
+                                        <span>
+                                            <select name="pricewithoutacOptT" id ="pricewithoutacOptT" disabled=true>
+                                                <option>Per km</option>
+                                                <option>Per hour</option> 
+                                                <option>Per day</option>              
+                                            </select>
+                                        </span>	  
+                                        <br><br>    
+
+                                        <!-- *****************Availability *****************-->
+                                        <li class="section_break">
+                                            <h3 style="color: #0b75b2; font-size: 13px;">
+                                                <b>Availability</b>
+                                                <p align = "center" style = "font-size: 13px"></p>
+                                            </h3>
+                                        </li>
+
+                                        <ul>
+                                            <!--Monday-->
+                                            <li id="monday">
+                                                <span style="width: 500px">
+                                                    <span>                                 
+                                                        <input id="mondayInT" name="mondayInT" type="checkbox" onclick="showMondayT()" />Monday&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+                                                    </span>
+                                                    <span>
+                                                        From 
+                                                        <input type="time" style="width: 100px" name="start_time_mondayT" id ="start_time_mondayT" disabled=true/> To <input type="time" style="width: 100px" name="end_time_mondayT" id ="end_time_mondayT" disabled=true/>
+                                                    </span>  
+                                                </span>
+                                            </li>
+
+                                            <!--Tuesday-->
+                                            <li id="tuesday">
+                                                <span style="width: 500px">
+                                                    <span> 
+                                                        <input id="tuesdayInT" name="tuesdayInT" type="checkbox" onclick="showTuesdayT()">Tuesday&ensp;&ensp;&ensp;&ensp;&ensp;&nbsp;
+                                                    </span>
+                                                    <span>
+                                                        From 
+                                                        <input type="time" style="width: 100px" name="start_time_tuesdayT" id ="start_time_tuesdayT" disabled=true> To <input type="time" style="width: 100px" name="end_time_tuesdayT" id ="end_time_tuesdayT" disabled=true>
+                                                    </span>  
+                                                </span>                   
+                                            </li>
+
+                                            <!--Wednesday-->
+                                            <li id="wednesday">
+                                                <span style="width: 500px">
+                                                    <span> 
+                                                        <input id="wednesdayInT" name="wednesdayInT" type="checkbox" onclick="showWednesdayT()">Wednesday&ensp;&ensp;&nbsp;&nbsp;
+                                                    </span>
+                                                    <span>
+                                                        From 
+                                                        <input type="time" style="width: 100px" name="start_time_wednesdayT" id ="start_time_wednesdayT" disabled=true> To <input type="time" style="width: 100px" name="end_time_wednesdayT" id ="end_time_wednesdayT" disabled=true>
+                                                    </span>  
+                                                </span>                
+                                            </li>
+
+                                            <!--Thursday-->
+                                            <li id="thursday">
+                                                <span style="width: 500px">
+                                                    <span> 
+                                                        <input id="thursdayInT" name="thursdayInT" type="checkbox" onclick="showThursdayT()">Thursday&ensp;&ensp;&nbsp;&nbsp;&ensp;&ensp;
+                                                    </span>
+                                                    <span>
+                                                        From 
+                                                        <input type="time" style="width: 100px" name="start_time_thursdayT" id ="start_time_thursdayT" disabled=true> To <input type="time" style="width: 100px" name="end_time_thursdayT" id ="end_time_thursdayT" disabled=true>
+                                                    </span>  
+                                                </span>                
+                                            </li>
+
+                                            <!--Friday-->
+                                            <li id="friday">
+                                                <span style="width: 500px">
+                                                    <span> 
+                                                        <input id="fridayInT" name="fridayInT" type="checkbox" onclick="showFridayT()">Friday&ensp;&ensp;&nbsp;&nbsp;&ensp;&ensp;&ensp;&nbsp;&nbsp;&nbsp;
+                                                    </span>
+                                                    <span>
+                                                        From 
+                                                        <input type="time" style="width: 100px" name="start_time_fridayT" id ="start_time_fridayT" disabled=true> To <input type="time" style="width: 100px" name="end_time_fridayT" id ="end_time_fridayT" disabled=true>
+                                                    </span>  
+                                                </span>                   
+                                            </li>
+
+                                            <!--Saturday-->
+                                            <li id="saturday">
+                                                <span style="width: 500px">
+                                                    <span> 
+                                                        <input id="saturdayInT" name="saturdayInT" type="checkbox" onclick="showSaturdayT()">Saturday&ensp;&ensp;&nbsp;&nbsp;&ensp;&ensp;&nbsp;
+                                                    </span>
+                                                    <span>
+                                                        From 
+                                                        <input type="time" style="width: 100px" name="start_time_saturdayT" id ="start_time_saturdayT" disabled=true> To <input type="time" style="width: 100px" name="end_time_saturdayT" id ="end_time_saturdayT" disabled=true>
+                                                    </span>  
+                                                </span>                    
+                                            </li>
+
+                                            <!--Sunday-->
+                                            <li id="sunday">
+                                                <span style="width: 500px">
+                                                    <span> 
+                                                        <input id="sundayInT" name="sundayInT" type="checkbox" onclick="showSundayT()">Sunday&ensp;&ensp;&nbsp;&nbsp;&ensp;&ensp;&nbsp;&nbsp;&nbsp;
+                                                    </span>
+                                                    <span>
+                                                        From 
+                                                        <input type="time" style="width: 100px" name="start_time_sundayT" id ="start_time_sundayT" disabled=true> To <input type="time" style="width: 100px" name="end_time_sundayT" id ="end_time_sundayT" disabled=true>
+                                                    </span>  
+                                                </span>               
+                                            </li>
+                                        </ul>
+
+                                        <!--Vehicle Description-->
+                                        <li id="describeVehicleT"><label class="description" style="color: #0b75b2;">Any Description</label>
+                                            <textarea id="describeVehicleT" name="describeVehicleT" style ="width : 550px; font-family: Times New Roman; font-size: 16px;" rows="2"></textarea>                        
+                                        </li>  
+
+
+                                    </div> 
+
+                                    <!------------------------------------Air Port Drop/Pickup------------------------------------------------->
+                                    <li>
+                                        <span>
+                                            <input id="airPort" name="airPort" type="checkbox"  onclick="showHideAirPort()" style="color: #0b75b2;"/> 
+                                            <b style="color: #0b75b2; font-size: 14px;">Air Port Drop/Pickup</b>
+                                        </span>
+                                    </li>
+
+                                    <!--******************Pricing scheme***********************-->
+                                    <div id="pricingSchemeAirPort" style="display: none; padding: 10px; border: 1px dashed #999;">
+                                        <h3 style="color: #0b75b2; font-size: 13px"><b>Pricing Scheme</b></h3>
+                                        <!--With AC-->
+                                        <span>
+                                            <input id="WithAcAp" name="WithAcAp"  type="checkbox" onclick="showWithAcAp()"/>
+                                            Price with AC
+                                        </span>
+                                        <br>
+                                        Rs:
+                                        <span>
+                                            <input id="pricewithacInAp" name="pricewithacInAp" type="text" disabled=true></input>
+                                        </span>
+                                        per   	
+                                        <span>
+                                            <select name="pricewithacOptAp" id ="pricewithacOptAp" disabled=true>
+                                                <option>Per km</option>
+                                                <option>Per hour</option> 
+                                                <option>Per day</option>                
+                                            </select>
+                                        </span>	
+                                        <br><br>
+                                        <!--Without AC-->
+                                        <span> 
+                                            <input id="WithoutAcAp" name="WithoutAcAp" type="checkbox" onclick="showWithoutAcAp()"/>
+                                            Price without AC
+                                        </span>
+                                        <br>
+                                        Rs:
+                                        <span>
+                                            <input id="pricewithoutacInAp" name="pricewithoutacInAp" type="text" disabled=true></input>
+                                        </span>
+                                        per   	
+                                        <span>
+                                            <select name="pricewithoutacOptAp" id ="pricewithoutacOptAp" disabled=true>
+                                                <option>Per km</option>
+                                                <option>Per hour</option> 
+                                                <option>Per day</option>             
+                                            </select>
+                                        </span>	  
+                                        <br><br>
+                                        <!--Luggage Charges-->
+                                        <span> 
+                                            <input id="luggageInAp" name="luggageInAp" type="checkbox" onclick="showLuggageAp()"/>
+                                            Luggage Charges 
+                                        </span>
+                                        <br>
+                                        Rs:
+                                        <span>
+                                            <input id="luggageChargeAp" name="luggageChargeAp" type="text" disabled=true></input>
+                                        </span>
+                                        per   	
+                                        <span>
+                                            <select name="luggageChargeOptAp" id ="luggageChargeOptAp" disabled=true>
+                                                <option>Per km</option>
+                                                <option>Per hour</option> 
+                                                <option>Per day</option>              
+                                            </select>
+                                        </span>	  
+                                        <br><br>
+                                        <!--Waiting charges-->
+                                        <span> 
+                                            <input id="waitingInAp" name="waitingInAp" type="checkbox" onclick="showWaitingAp()" />
+                                            Waiting Charges 
+                                        </span>
+                                        <br>
+                                        Rs:
+                                        <span>
+                                            <input id="waitingAp" name="waitingAp" type="text" disabled=true ></input>
+                                        </span>
+                                        per   	
+                                        <span>
+                                            <select name="waitingChargeOptAp" id ="waitingChargeOptAp" disabled=true>
+                                                <option>Per km</option>
+                                                <option>Per hour</option> 
+                                                <option>Per day</option>               
+                                            </select>
+                                        </span>		
+                                        <br><br>
+
+                                        <!-- *****************Availability *****************-->
+                                        <li class="section_break">
+                                            <h3 style="color: #0b75b2; font-size: 13px;">
+                                                <b>Availability</b>
+                                                <p align = "center" style = "font-size: 13px"></p>
+                                            </h3>
+                                        </li>
+
+                                        <ul>
+                                            <!--Monday-->
+                                            <li id="monday">
+                                                <span style="width: 500px">
+                                                    <span>                                 
+                                                        <input id="mondayInAp" name="mondayInAp" type="checkbox" onclick="showMondayAp()" />Monday&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+                                                    </span>
+                                                    <span>
+                                                        From 
+                                                        <input type="time" style="width: 100px" name="start_time_mondayAp" id ="start_time_mondayAp" disabled=true/> To <input type="time" style="width: 100px" name="end_time_mondayAp" id ="end_time_mondayAp" disabled=true/>
+                                                    </span>  
+                                                </span>
+                                            </li>
+
+                                            <!--Tuesday-->
+                                            <li id="tuesday">
+                                                <span style="width: 500px">
+                                                    <span> 
+                                                        <input id="tuesdayInAp" name="tuesdayInAp" type="checkbox" onclick="showTuesdayAp()">Tuesday&ensp;&ensp;&ensp;&ensp;&ensp;&nbsp;
+                                                    </span>
+                                                    <span>
+                                                        From 
+                                                        <input type="time" style="width: 100px" name="start_time_tuesdayAp" id ="start_time_tuesdayAp" disabled=true> To <input type="time" style="width: 100px" name="end_time_tuesdayAp" id ="end_time_tuesdayAp" disabled=true>
+                                                    </span>  
+                                                </span>                   
+                                            </li>
+
+                                            <!--Wednesday-->
+                                            <li id="wednesday">
+                                                <span style="width: 500px">
+                                                    <span> 
+                                                        <input id="wednesdayInAp" name="wednesdayInAp" type="checkbox" onclick="showWednesdayAp()">Wednesday&ensp;&ensp;&nbsp;&nbsp;
+                                                    </span>
+                                                    <span>
+                                                        From 
+                                                        <input type="time" style="width: 100px" name="start_time_wednesdayAp" id ="start_time_wednesdayAp" disabled=true> To <input type="time" style="width: 100px" name="end_time_wednesdayAp" id ="end_time_wednesdayAp" disabled=true>
+                                                    </span>  
+                                                </span>                
+                                            </li>
+
+                                            <!--Thursday-->
+                                            <li id="thursday">
+                                                <span style="width: 500px">
+                                                    <span> 
+                                                        <input id="thursdayInAp" name="thursdayInAp" type="checkbox" onclick="showThursdayAp()">Thursday&ensp;&ensp;&nbsp;&nbsp;&ensp;&ensp;
+                                                    </span>
+                                                    <span>
+                                                        From 
+                                                        <input type="time" style="width: 100px" name="start_time_thursdayAp" id ="start_time_thursdayAp" disabled=true> To <input type="time" style="width: 100px" name="end_time_thursdayAp" id ="end_time_thursdayAp" disabled=true>
+                                                    </span>  
+                                                </span>                
+                                            </li>
+
+                                            <!--Friday-->
+                                            <li id="friday">
+                                                <span style="width: 500px">
+                                                    <span> 
+                                                        <input id="fridayInAp" name="fridayInAp" type="checkbox" onclick="showFridayAp()">Friday&ensp;&ensp;&nbsp;&nbsp;&ensp;&ensp;&ensp;&nbsp;&nbsp;&nbsp;
+                                                    </span>
+                                                    <span>
+                                                        From 
+                                                        <input type="time" style="width: 100px" name="start_time_fridayAp" id ="start_time_fridayAp" disabled=true> To <input type="time" style="width: 100px" name="end_time_fridayAp" id ="end_time_fridayAp" disabled=true>
+                                                    </span>  
+                                                </span>                   
+                                            </li>
+
+                                            <!--Saturday-->
+                                            <li id="saturday">
+                                                <span style="width: 500px">
+                                                    <span> 
+                                                        <input id="saturdayInAp" name="saturdayInAp" type="checkbox" onclick="showSaturdayAp()">Saturday&ensp;&ensp;&nbsp;&nbsp;&ensp;&ensp;&nbsp;
+                                                    </span>
+                                                    <span>
+                                                        From 
+                                                        <input type="time" style="width: 100px" name="start_time_saturdayAp" id ="start_time_saturdayAp" disabled=true> To <input type="time" style="width: 100px" name="end_time_saturdayAp" id ="end_time_saturdayAp" disabled=true>
+                                                    </span>  
+                                                </span>                    
+                                            </li>
+
+                                            <!--Sunday-->
+                                            <li id="sunday">
+                                                <span style="width: 500px">
+                                                    <span> 
+                                                        <input id="sundayInAp" name="sundayInAp" type="checkbox" onclick="showSundayAp()">Sunday&ensp;&ensp;&nbsp;&nbsp;&ensp;&ensp;&nbsp;&nbsp;&nbsp;
+                                                    </span>
+                                                    <span>
+                                                        From 
+                                                        <input type="time" style="width: 100px" name="start_time_sundayAp" id ="start_time_sundayAp" disabled=true> To <input type="time" style="width: 100px" name="end_time_sundayAp" id ="end_time_sundayAp" disabled=true>
+                                                    </span>  
+                                                </span>               
+                                            </li>
+                                        </ul>
+
+                                        <!--Vehicle Description-->
+                                        <li id="describeVehicleAp"><label class="description" style="color: #0b75b2;">Any Description</label>
+                                            <textarea id="describeVehicleAp" name="describeVehicleAp" style ="width : 550px; font-family: Times New Roman; font-size: 16px;" rows="2"></textarea>                        
+                                        </li>  
+
+                                    </div> 
+
+                                    <!------------------------------------Station Drop/Pickup------------------------------------------------->
+                                    <li>
+                                        <span>
+                                            <input id="station" name="station" type="checkbox"  onclick="showHideStation()" style="color: #0b75b2;"/> 
+                                            <b style="color: #0b75b2; font-size: 14px;">Station Drop/Pickup</b>
+                                        </span>
+                                    </li>
+
+                                    <!--******************Pricing scheme***********************-->
+                                    <div id="pricingSchemeStation" style="display: none;  padding: 10px; border: 1px dashed #999;">
+                                        <h3 style="color: #0b75b2; font-size: 13px"><b>Pricing Scheme</b></h3>
+                                        <!--With AC-->
+                                        <span>
+                                            <input id="WithAcSt" name="WithAcSt"  type="checkbox" onclick="showWithAcSt()"/>
+                                            Price with AC
+                                        </span>
+                                        <br>
+                                        Rs:
+                                        <span>
+                                            <input id="pricewithacInSt" name="pricewithacInSt" type="text" disabled=true></input>
+                                        </span>
+                                        per   	
+                                        <span>
+                                            <select name="pricewithacOptSt" id ="pricewithacOptSt" disabled=true>
+                                                <option>Per km</option>
+                                                <option>Per hour</option> 
+                                                <option>Per day</option>               
+                                            </select>
+                                        </span>	
+                                        <br><br>
+                                        <!--Without AC-->
+                                        <span> 
+                                            <input id="WithoutAcSt" name="WithoutAcSt" type="checkbox" onclick="showWithoutAcSt()"/>
+                                            Price without AC
+                                        </span>
+                                        <br>
+                                        Rs:
+                                        <span>
+                                            <input id="pricewithoutacInSt" name="pricewithoutacInSt" type="text" disabled=true></input>
+                                        </span>
+                                        per   	
+                                        <span>
+                                            <select name="pricewithoutacOptSt" id ="pricewithoutacOptSt" disabled=true>
+                                                <option>Per km</option>
+                                                <option>Per hour</option> 
+                                                <option>Per day</option>                
+                                            </select>
+                                        </span>	  
+                                        <br><br>
+                                        <!--Luggage Charges-->
+                                        <span> 
+                                            <input id="luggageInSt" name="luggageInSt" type="checkbox" onclick="showLuggageSt()"/>
+                                            Luggage Charges 
+                                        </span>
+                                        <br>
+                                        Rs:
+                                        <span>
+                                            <input id="luggageChargeSt" name="luggageChargeSt" type="text" disabled=true></input>
+                                        </span>
+                                        per   	
+                                        <span>
+                                            <select name="luggageChargeOptSt" id ="luggageChargeOptSt" disabled=true>
+                                                <option>Per km</option>
+                                                <option>Per hour</option> 
+                                                <option>Per day</option>           
+                                            </select>
+                                        </span>	  
+                                        <br><br>
+                                        <!--Waiting charges-->
+                                        <span> 
+                                            <input id="waitingInSt" name="waitingInSt" type="checkbox" onclick="showWaitingSt()" />
+                                            Waiting Charges 
+                                        </span>
+                                        <br>
+                                        Rs:
+                                        <span>
+                                            <input id="waitingSt" name="waitingSt" type="text" disabled=true ></input>
+                                        </span>
+                                        per   	
+                                        <span>
+                                            <select name="waitingChargeOptSt" id ="waitingChargeOptSt" disabled=true>
+                                                <option>Per km</option>
+                                                <option>Per hour</option> 
+                                                <option>Per day</option>               
+                                            </select>
+                                        </span>		
+                                        <br><br>
+
+                                        <!-- *****************Availability *****************-->
+                                        <li class="section_break">
+                                            <h3 style="color: #0b75b2; font-size: 13px;">
+                                                <b>Availability</b>
+                                                <p align = "center" style = "font-size: 13px"></p>
+                                            </h3>
+                                        </li>
+
+                                        <ul>
+                                            <!--Monday-->
+                                            <li id="monday">
+                                                <span style="width: 500px">
+                                                    <span>                                 
+                                                        <input id="mondayInSt" name="mondayInSt" type="checkbox" onclick="showMondaySt()" />Monday&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+                                                    </span>
+                                                    <span>
+                                                        From 
+                                                        <input type="time" style="width: 100px" name="start_time_mondaySt" id ="start_time_mondaySt" disabled=true/> To <input type="time" style="width: 100px" name="end_time_mondaySt" id ="end_time_mondaySt" disabled=true/>
+                                                    </span>  
+                                                </span>
+                                            </li>
+
+                                            <!--Tuesday-->
+                                            <li id="tuesday">
+                                                <span style="width: 500px">
+                                                    <span> 
+                                                        <input id="tuesdayInSt" name="tuesdayInSt" type="checkbox" onclick="showTuesdaySt()">Tuesday&ensp;&ensp;&ensp;&ensp;&ensp;&nbsp;
+                                                    </span>
+                                                    <span>
+                                                        From 
+                                                        <input type="time" style="width: 100px" name="start_time_tuesdaySt" id ="start_time_tuesdaySt" disabled=true> To <input type="time" style="width: 100px" name="end_time_tuesdaySt" id ="end_time_tuesdaySt" disabled=true>
+                                                    </span>  
+                                                </span>                   
+                                            </li>
+
+                                            <!--Wednesday-->
+                                            <li id="wednesday">
+                                                <span style="width: 500px">
+                                                    <span> 
+                                                        <input id="wednesdayInSt" name="wednesdayInSt" type="checkbox" onclick="showWednesdaySt()">Wednesday&ensp;&ensp;&nbsp;&nbsp;
+                                                    </span>
+                                                    <span>
+                                                        From 
+                                                        <input type="time" style="width: 100px" name="start_time_wednesdaySt" id ="start_time_wednesdaySt" disabled=true> To <input type="time" style="width: 100px" name="end_time_wednesdaySt" id ="end_time_wednesdaySt" disabled=true>
+                                                    </span>  
+                                                </span>                
+                                            </li>
+
+                                            <!--Thursday-->
+                                            <li id="thursday">
+                                                <span style="width: 500px">
+                                                    <span> 
+                                                        <input id="thursdayInSt" name="thursdayInSt" type="checkbox" onclick="showThursdaySt()">Thursday&ensp;&ensp;&nbsp;&nbsp;&ensp;&ensp;
+                                                    </span>
+                                                    <span>
+                                                        From 
+                                                        <input type="time" style="width: 100px" name="start_time_thursdaySt" id ="start_time_thursdaySt" disabled=true> To <input type="time" style="width: 100px" name="end_time_thursdaySt" id ="end_time_thursdaySt" disabled=true>
+                                                    </span>  
+                                                </span>                
+                                            </li>
+
+                                            <!--Friday-->
+                                            <li id="friday">
+                                                <span style="width: 500px">
+                                                    <span> 
+                                                        <input id="fridayInSt" name="fridayInSt" type="checkbox" onclick="showFridaySt()">Friday&ensp;&ensp;&nbsp;&nbsp;&ensp;&ensp;&ensp;&nbsp;&nbsp;&nbsp;
+                                                    </span>
+                                                    <span>
+                                                        From 
+                                                        <input type="time" style="width: 100px" name="start_time_fridaySt" id ="start_time_fridaySt" disabled=true> To <input type="time" style="width: 100px" name="end_time_fridaySt" id ="end_time_fridaySt" disabled=true>
+                                                    </span>  
+                                                </span>                   
+                                            </li>
+
+                                            <!--Saturday-->
+                                            <li id="saturday">
+                                                <span style="width: 500px">
+                                                    <span> 
+                                                        <input id="saturdayInSt" name="saturdayInSt" type="checkbox" onclick="showSaturdaySt()">Saturday&ensp;&ensp;&nbsp;&nbsp;&ensp;&ensp;&nbsp;
+                                                    </span>
+                                                    <span>
+                                                        From 
+                                                        <input type="time" style="width: 100px" name="start_time_saturdaySt" id ="start_time_saturdaySt" disabled=true> To <input type="time" style="width: 100px" name="end_time_saturdaySt" id ="end_time_saturdaySt" disabled=true>
+                                                    </span>  
+                                                </span>                    
+                                            </li>
+
+                                            <!--Sunday-->
+                                            <li id="sunday">
+                                                <span style="width: 500px">
+                                                    <span> 
+                                                        <input id="sundayInSt" name="sundayInSt" type="checkbox" onclick="showSundaySt()">Sunday&ensp;&ensp;&nbsp;&nbsp;&ensp;&ensp;&nbsp;&nbsp;&nbsp;
+                                                    </span>
+                                                    <span>
+                                                        From 
+                                                        <input type="time" style="width: 100px" name="start_time_sundaySt" id ="start_time_sundaySt" disabled=true> To <input type="time" style="width: 100px" name="end_time_sundaySt" id ="end_time_sundaySt" disabled=true>
+                                                    </span>  
+                                                </span>               
+                                            </li>
+                                        </ul>
+
+                                        <!--Vehicle Description-->
+                                        <li id="describeVehicleSt"><label class="description" style="color: #0b75b2;">Any Description</label>
+                                            <textarea id="describeVehicleSt" name="describeVehicleSt" style ="width : 550px; font-family: Times New Roman; font-size: 16px;" rows="2"></textarea>                        
+                                        </li>  
+
+                                    </div> 
+
+                                    <!------------------------------------Ceremonial Hires------------------------------------------------->
+                                    <li>
+                                        <span>
+                                            <input id="ceremony" name="ceremony" type="checkbox"  onclick="showHideCeremony()" style="color: #0b75b2;"/> 
+                                            <b style="color: #0b75b2; font-size: 14px;">Ceremonial Hires</b>
+                                        </span>
+                                    </li>
+
+
+                                    <!--******************Pricing scheme***********************-->
+                                    <div id="pricingSchemeCeremony" style="display: none; padding: 10px; border: 1px dashed #999;">
+                                        <h3 style="color: #0b75b2; font-size: 13px;"><b>Pricing Scheme</b></h3>
+                                        <!--With AC-->
+                                        <span>
+                                            <input id="WithAcC" name="WithAcC"  type="checkbox" onclick="showWithAcC()"/>
+                                            Price with AC
+                                        </span>
+                                        <br>
+                                        Rs:
+                                        <span>
+                                            <input id="pricewithacInC" name="pricewithacInC" type="text" disabled=true></input>
+                                        </span>
+                                        per   	
+                                        <span>
+                                            <select name="pricewithacOptC" id ="pricewithacOptC" disabled=true>
+                                                <option>Per km</option>
+                                                <option>Per hour</option> 
+                                                <option>Per day</option>       
+                                            </select>
+                                        </span>	
+                                        <br><br>
+                                        <!--Without AC-->
+                                        <span> 
+                                            <input id="WithoutAcC" name="WithoutAcC" type="checkbox" onclick="showWithoutAcC()"/>
+                                            Price without AC
+                                        </span>
+                                        <br>
+                                        Rs:
+                                        <span>
+                                            <input id="pricewithoutacInC" name="pricewithoutacInC" type="text" disabled=true></input>
+                                        </span>
+                                        per   	
+                                        <span>
+                                            <select name="pricewithoutacOptC" id ="pricewithoutacOptC" disabled=true>
+                                                <option>Per km</option>
+                                                <option>Per hour</option> 
+                                                <option>Per day</option>            
+                                            </select>
+                                        </span>	  
+                                        <br><br>
+
+                                        <!-- *****************Availability *****************-->
+                                        <li class="section_break">
+                                            <h3 style="color: #0b75b2; font-size: 13px;">
+                                                <b>Availability</b>
+                                                <p align = "center" style = "font-size: 13px"></p>
+                                            </h3>
+                                        </li>
+
+                                        <ul>
+                                            <!--Monday-->
+                                            <li id="monday">
+                                                <span style="width: 500px">
+                                                    <span>                                 
+                                                        <input id="mondayInC" name="mondayInC" type="checkbox" onclick="showMondayC()" />Monday&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
+                                                    </span>
+                                                    <span>
+                                                        From                                            
+                                                        <input type="time" style="width: 100px" name="start_time_mondayC" id ="start_time_mondayC" disabled=true/> To <input type="time" style="width: 100px" name="end_time_mondayC" id ="end_time_mondayC" disabled=true/>
+                                                    </span>  
+                                                </span>
+                                            </li>
+
+                                            <!--Tuesday-->
+                                            <li id="tuesday">
+                                                <span style="width: 500px">
+                                                    <span> 
+                                                        <input id="tuesdayInC" name="tuesdayInC" type="checkbox" onclick="showTuesdayC()">Tuesday&ensp;&ensp;&ensp;&ensp;&ensp;&nbsp;
+                                                    </span>
+                                                    <span>
+                                                        From 
+                                                        <input type="time" style="width: 100px" name="start_time_tuesdayC" id ="start_time_tuesdayC" disabled=true> To <input type="time" style="width: 100px" name="end_time_tuesdayC" id ="end_time_tuesdayC" disabled=true>
+                                                    </span>  
+                                                </span>                   
+                                            </li>
+
+                                            <!--Wednesday-->
+                                            <li id="wednesday">
+                                                <span style="width: 500px">
+                                                    <span> 
+                                                        <input id="wednesdayInC" name="wednesdayInC" type="checkbox" onclick="showWednesdayC()">Wednesday&ensp;&ensp;&nbsp;&nbsp;
+                                                    </span>
+                                                    <span>
+                                                        From 
+                                                        <input type="time" style="width: 100px" name="start_time_wednesdayC" id ="start_time_wednesdayC" disabled=true> To <input type="time" style="width: 100px" name="end_time_wednesdayC" id ="end_time_wednesdayC" disabled=true>
+                                                    </span>  
+                                                </span>                
+                                            </li>
+
+                                            <!--Thursday-->
+                                            <li id="thursday">
+                                                <span style="width: 500px">
+                                                    <span> 
+                                                        <input id="thursdayInC" name="thursdayInC" type="checkbox" onclick="showThursdayC()">Thursday&ensp;&ensp;&nbsp;&nbsp;&ensp;&ensp;
+                                                    </span>
+                                                    <span>
+                                                        From 
+                                                        <input type="time" style="width: 100px" name="start_time_thursdayC" id ="start_time_thursdayC" disabled=true> To <input type="time" style="width: 100px" name="end_time_thursdayC" id ="end_time_thursdayC" disabled=true>
+                                                    </span>  
+                                                </span>                
+                                            </li>
+
+                                            <!--Friday-->
+                                            <li id="friday">
+                                                <span style="width: 500px">
+                                                    <span> 
+                                                        <input id="fridayInC" name="fridayInC" type="checkbox" onclick="showFridayC()">Friday&ensp;&ensp;&nbsp;&nbsp;&ensp;&ensp;&ensp;&nbsp;&nbsp;&nbsp;
+                                                    </span>
+                                                    <span>
+                                                        From 
+                                                        <input type="time" style="width: 100px" name="start_time_fridayC" id ="start_time_fridayC" disabled=true> To <input type="time" style="width: 100px" name="end_time_fridayC" id ="end_time_fridayC" disabled=true>
+                                                    </span>  
+                                                </span>                   
+                                            </li>
+
+                                            <!--Saturday-->
+                                            <li id="saturday">
+                                                <span style="width: 500px">
+                                                    <span> 
+                                                        <input id="saturdayInC" name="saturdayInC" type="checkbox" onclick="showSaturdayC()">Saturday&ensp;&ensp;&nbsp;&nbsp;&ensp;&ensp;&nbsp;
+                                                    </span>
+                                                    <span>
+                                                        From 
+                                                        <input type="time" style="width: 100px" name="start_time_saturdayC" id ="start_time_saturdayC" disabled=true> To <input type="time" style="width: 100px" name="end_time_saturdayC" id ="end_time_saturdayC" disabled=true>
+                                                    </span>  
+                                                </span>                    
+                                            </li>
+
+                                            <!--Sunday-->
+                                            <li id="sunday">
+                                                <span style="width: 500px">
+                                                    <span> 
+                                                        <input id="sundayInC" name="sundayInC" type="checkbox" onclick="showSundayC()">Sunday&ensp;&ensp;&nbsp;&nbsp;&ensp;&ensp;&nbsp;&nbsp;&nbsp;
+                                                    </span>
+                                                    <span>
+                                                        From 
+                                                        <input type="time" style="width: 100px" name="start_time_sundayC" id ="start_time_sundayC" disabled=true> To <input type="time" style="width: 100px" name="end_time_sundayC" id ="end_time_sundayC" disabled=true>
+                                                    </span>  
+                                                </span>               
+                                            </li>
+                                        </ul>
+
+                                        <!--Vehicle Description-->
+                                        <li id="describeVehicleC"><label class="description" style="color: #0b75b2;">Any Description</label>
+                                            <textarea id="describeVehicleC" name="describeVehicleC" style ="width : 550px; font-family: Times New Roman; font-size: 16px;" rows="2"></textarea>                        
+                                        </li>  
+
+                                    </div> 
+
+                                    <!------------------------------------Construction------------------------------------------------->
+                                    <li>
+                                        <span>
+                                            <input id="construction" name="construction" type="checkbox"  onclick="showHideConstruction()" style="color: #0b75b2;"/> 
+                                            <b style="color: #0b75b2; font-size: 14px;">Constructions</b>
+                                        </span>
+                                    </li>
+
+                                    <!--******************Pricing scheme***********************-->
+                                    <div id="pricingSchemeConstructions" style="display: none;  padding: 10px; border: 1px dashed #999;">
+                                        <h3 style="color: #0b75b2; font-size: 13px"><b>Pricing Scheme</b></h3>
+
+                                        <span>
+                                            <input id="priceInCn" name="priceInCn"  type="checkbox" onclick="showPriceConstruction()"/>
+                                            Price
+                                        </span>
+                                        <br>
+                                        Rs:
+                                        <span>
+                                            <input id="priceCn" name="priceCn" type="text" disabled=true></input>
+                                        </span>
+                                        per   	
+                                        <span>
+                                            <select name="pricOptCn" id ="priceOptCn" disabled=true>
+                                                <option>Per km</option>
+                                                <option>Per hour</option> 
+                                                <option>Per day</option>               
+                                            </select>
+                                        </span>	
+                                        <br><br>
+
+
+                                        <!--Vehicle Description-->
+                                        <li id="describeVehicleCn"><label class="description" style="color: #0b75b2;">Any Description</label>
+                                            <textarea id="describeVehicleCn" name="describeVehicleCn" style ="width : 550px; font-family: Times New Roman; font-size: 16px;" rows="2"></textarea>                        
+                                        </li>  
+
+                                    </div> 
+
+                                    <!------------------------------------Cargo------------------------------------------------->
+                                    <li>
+                                        <span>
+                                            <input id="cargo" name="cargo" type="checkbox"  onclick="showHideCargo()" style="color: #0b75b2;"/> 
+                                            <b style="color: #0b75b2; font-size: 14px;">Cargo</b>
+                                        </span>
+                                    </li>
+
+                                    <!--******************Pricing scheme***********************-->
+                                    <div id="pricingSchemeCargo" style="display: none;  padding: 10px; border: 1px dashed #999;">
+                                        <h3 style="color: #0b75b2; font-size: 13px"><b>Pricing Scheme</b></h3>
+
+                                        <span>
+                                            <input id="priceInCg" name="priceInCg"  type="checkbox" onclick="showPriceCargo()"/>
+                                            Price
+                                        </span>
+                                        <br>
+                                        Rs:
+                                        <span>
+                                            <input id="priceCg" name="priceCg" type="text" disabled=true></input>
+                                        </span>
+                                        per   	
+                                        <span>
+                                            <select name="pricOptCg" id ="priceOptCg" disabled=true>
+                                                <option>Per km</option>
+                                                <option>Per hour</option> 
+                                                <option>Per day</option>               
+                                            </select>
+                                        </span>	
+                                        <br><br>
+
+
+                                        <!--Vehicle Description-->
+                                        <li id="describeVehicleCg"><label class="description" style="color: #0b75b2;">Any Description</label>
+                                            <textarea id="describeVehicleCg" name="describeVehicleCg" style ="width : 550px; font-family: Times New Roman; font-size: 16px;" rows="2"></textarea>                        
+                                        </li>  
+
+                                    </div> 
+
+                                    <br>
+                                    <!--Submit Button-->
+                                    <center><input type="submit" value="Register vehicle" class="belize-hole-flat-button"/></center>
+
+                                    </form>
+
+                                    <!--Footer-->
+                                    <div id="footer">            
+                                    </div>
+
                             </div>
-                        </li>
-
-
-                        <!--Capacity-->
-                        <li>
-                            <div>
-                                <label class = "description" style="color: #0b75b2; font-size: 14px;">Capacity</label>
-                                <input id="capacityin" name="capacity" type="text" style="font-family: Times New Roman; font-size: 18px; width: 150px" onblur="validateNonEmptyCapacity(this, document.getElementById('capacity_help'))"/>
-                                <span id="capacity_help" class="help" style="width:300px;  color:#0b75b2; font-style:italic;" align="right"></span>
-                            </div>
-                        </li>
-
-                        <!--Vehicle Description-->
-                        <li>
-                            <div>
-                                <label class = "description" style="color: #0b75b2; font-size: 14px;">Description of the Vehicle</label>
-                                <textarea id="describeVehicle" name="describeVehicle" class="description" style ="width : 300px; font-family: Times New Roman; font-size: 16px;" rows="5" onblur="validateNonEmptyVehDescription(this, document.getElementById('description_help'))"/></textarea> 
-                                <span id="description_help" class="help" style="width:300px;  color:#0b75b2; font-style:italic;" align="right"></span>
-                            </div>
-
-                        </li>
-                        <br>
-
-                        <!--Image-->
-                        <a href="http://localhost/ridesl/views/vehicleRegister/image_cropper/upload_crop.php?number=" onclick="location.href = this.href + document.getElementById('regNoin').value;
-                                return false;" style="color: #0b75b2; font-size: 14px;">
-
-                            <b>Upload Images >></b></a>
-                        <br> <br> <br> 
-                        </li>
-                        </div>
-
-                        <!--------------------------------Pricing scheme and availability-------------------------------------->
-                        <li class="section_break">                        
-                            <h3 style="color: #0b75b2;">
-                                <b><center>Pricing Scheme and Availability</center></b>
-                            </h3>
-                            <p style="color: #0b75b2;"><center>Please specify your pricing schemes for each selected category</center></p>
-                        </li>    
-
-                        <!------------------------------------City Taxi------------------------------------------------->
-                        <li>
-                            <span>
-                                <input id="cityTaxi" name="cityTaxi" type="checkbox"  onclick="showHide()"/> 
-                                <b style="color: #0b75b2; font-size: 14px;">City Taxi Service</b>
-                            </span>
-                        </li>
-
-                        <!--******************Pricing scheme***********************-->
-                        <div id="pricingSchemeTaxi" style="display: none; padding: 10px; border: 1px dashed #999;">
-                            <h3 style="color: #0b75b2; font-size: 13px"><b>Pricing Scheme</b></h3>
-                            <!--With AC-->
-                            <span>
-                                <input id="WithAcCt" name="WithAcCt"  type="checkbox" onclick="showWithAcCt()"/>
-                                Price with AC
-                            </span>
-                            <br>
-                            Rs:
-                            <span>
-                                <input id="pricewithacInCt" name ="pricewithacInCt" type="text" disabled=true></input>
-                            </span>
-                            per   	
-                            <span>
-                                <select name="pricewithacOptCt" id ="pricewithacOptCt" disabled=true>
-                                    <option>Per km</option>
-                                    <option>Per hour</option> 
-                                    <option>Per day</option> 
-                                </select>
-                            </span>	
-                            <br><br>
-                            <!--Without AC-->
-                            <span> 
-                                <input id="WithoutAcCt" name="WithoutAcCt" type="checkbox" onclick="showWithoutAcCt()"/>
-                                Price without AC
-                            </span>
-                            <br>
-                            Rs:
-                            <span>
-                                <input id="pricewithoutacInCt" name="pricewithoutacInCt" type="text" disabled=true></input>
-                            </span>
-                            per   	
-                            <span>
-                                <select name="pricewithoutacOptCt" id ="pricewithoutacOptCt" disabled=true>
-                                    <option>Per km</option>
-                                    <option>Per hour</option> 
-                                    <option>Per day</option>                 
-                                </select>
-                            </span>	  
-                            <br><br>
-
-
-
-                            <!-- *****************Availability *****************-->
-                            <li class="section_break">
-                                <h3 style="color: #0b75b2; font-size: 13px">
-                                    <b>Availability</b>
-                                    <p align = "center" style = "font-size: 13px"></p>
-                                </h3>
-                            </li>
-
-                            <ul>
-                                <!--Monday-->
-                                <li id="monday">
-                                    <span style="width: 500px">
-                                        <span>                                 
-                                            <input id="mondayInCt" name="mondayInCt" type="checkbox" onclick="showMondayCt()" />Monday&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
-                                        </span>
-                                        <span>
-                                            From 
-                                            <input type="time" name="start_time_mondayCt" id ="start_time_mondayCt" disabled=true>To <input type="time" style="width: 100px" id="end_time_mondayCt" name="end_time_mondayCt" disabled=true/>
-                                        </span>  
-                                    </span>
-                                </li>
-
-                                <!--Tuesday-->
-                                <li id="tuesday">
-                                    <span style="width: 500px">
-                                        <span> 
-                                            <input id="tuesdayInCt" name="tuesdayInCt" type="checkbox" onclick="showTuesdayCt()">Tuesday&ensp;&ensp;&ensp;&ensp;&ensp;&nbsp;
-                                        </span>
-                                        <span>
-                                            From 
-                                            <input type="time" style="width: 100px" name="start_time_tuesdayCt" id ="start_time_tuesdayCt" disabled=true> To <input type="time" style="width: 100px" name="end_time_tuesdayCt" id ="end_time_tuesdayCt" disabled=true>
-                                        </span>  
-                                    </span>                   
-                                </li>
-
-                                <!--Wednesday-->
-                                <li id="wednesday">
-                                    <span style="width: 500px">
-                                        <span> 
-                                            <input id="wednesdayInCt" name="wednesdayInCt" type="checkbox" onclick="showWednesdayCt()">Wednesday&ensp;&ensp;&nbsp;&nbsp;
-                                        </span>
-                                        <span>
-                                            From 
-                                            <input type="time" style="width: 100px" name="start_time_wednesdayCt" id ="start_time_wednesdayCt" disabled=true> To <input type="time" style="width: 100px" name="end_time_wednesdayCt" id ="end_time_wednesdayCt" disabled=true>
-                                        </span>  
-                                    </span>                
-                                </li>
-
-                                <!--Thursday-->
-                                <li id="thursday">
-                                    <span style="width: 500px">
-                                        <span> 
-                                            <input id="thursdayInCt" name="thursdayInCt" type="checkbox" onclick="showThursdayCt()">Thursday&ensp;&ensp;&nbsp;&nbsp;&ensp;&ensp;
-                                        </span>
-                                        <span>
-                                            From 
-                                            <input type="time" style="width: 100px" name="start_time_thursdayCt" id ="start_time_thursdayCt" disabled=true> To <input type="time" style="width: 100px" name="end_time_thursdayCt" id ="end_time_thursdayCt" disabled=true>
-                                        </span>  
-                                    </span>                
-                                </li>
-
-                                <!--Friday-->
-                                <li id="friday">
-                                    <span style="width: 500px">
-                                        <span> 
-                                            <input id="fridayInCt" name="fridayInCt" type="checkbox" onclick="showFridayCt()">Friday&ensp;&ensp;&nbsp;&nbsp;&ensp;&ensp;&ensp;&nbsp;&nbsp;&nbsp;
-                                        </span>
-                                        <span>
-                                            From 
-                                            <input type="time" style="width: 100px" name="start_time_fridayCt" id ="start_time_fridayCt" disabled=true> To <input type="time" style="width: 100px" name="end_time_fridayCt" id ="end_time_fridayCt" disabled=true>
-                                        </span>  
-                                    </span>                   
-                                </li>
-
-                                <!--Saturday-->
-                                <li id="saturday">
-                                    <span style="width: 500px">
-                                        <span> 
-                                            <input id="saturdayInCt" name="saturdayInCt" type="checkbox" onclick="showSaturdayCt()">Saturday&ensp;&ensp;&nbsp;&nbsp;&ensp;&ensp;&nbsp;
-                                        </span>
-                                        <span>
-                                            From 
-                                            <input type="time" style="width: 100px" name="start_time_saturdayCt" id ="start_time_saturdayCt" disabled=true> To <input type="time" style="width: 100px" name="end_time_saturdayCt" id ="end_time_saturdayCt" disabled=true>
-                                        </span>  
-                                    </span>                    
-                                </li>
-
-                                <!--Sunday-->
-                                <li id="sunday">
-                                    <span style="width: 500px">
-                                        <span> 
-                                            <input id="sundayInCt" name="sundayInCt" type="checkbox" onclick="showSundayCt()">Sunday&ensp;&ensp;&nbsp;&nbsp;&ensp;&ensp;&nbsp;&nbsp;&nbsp;
-                                        </span>
-                                        <span>
-                                            From 
-                                            <input type="time" style="width: 100px" name="start_time_sundayCt" id ="start_time_sundayCt" disabled=true> To <input type="time" style="width: 100px" name="end_time_sundayCt" id ="end_time_sundayCt" disabled=true>
-                                        </span>  
-                                    </span>               
-                                </li>
-                            </ul>
-
-                            <!--Vehicle Description-->
-                            <li id="describeVehicleCt"><label class="description" style="color: #0b75b2;">Any Description</label>
-                                <textarea id="describeVehicleCt" name="describeVehicleCt" style ="width : 550px; font-family: Times New Roman; font-size: 16px;" rows="2"></textarea>                        
-                            </li>     
-
-                        </div> 
-
-                        <!------------------------------------Tour service------------------------------------------------->
-                        <li>
-                            <span>
-                                <input id="tour" name="tour" type="checkbox"  onclick="showHideTour()" style="color: #0b75b2;"/> 
-                                <b style="color: #0b75b2; font-size: 14px;">Tour Service</b>
-                            </span>
-                        </li>
-
-                        <!--******************Pricing scheme***********************-->
-                        <div id="pricingSchemeTour" style="display: none; padding: 10px; border: 1px dashed #999;">
-                            <h3 style="color: #0b75b2; font-size: 13px"><b>Pricing Scheme</b></h3>
-                            <!--With AC-->
-                            <span>
-                                <input id="WithAcT" name="WithAcT"  type="checkbox" onclick="showWithAcT()"/>
-                                Price with AC
-                            </span>
-                            <br>
-                            Rs:
-                            <span>
-                                <input id="pricewithacInT" name="pricewithacInT" type="text" disabled=true></input>
-                            </span>
-                            per   	
-                            <span>
-                                <select name="pricewithacOptT" id ="pricewithacOptT" disabled=true>
-                                    <option>Per km</option>
-                                    <option>Per hour</option> 
-                                    <option>Per day</option>            
-                                </select>
-                            </span>	
-                            <br><br>
-                            <!--Without AC-->
-                            <span> 
-                                <input id="WithoutAcT" name="WithoutAcT" type="checkbox" onclick="showWithoutAcT()"/>
-                                Price without AC
-                            </span>
-                            <br>
-                            Rs:
-                            <span>
-                                <input id="pricewithoutacInT" name="pricewithoutacInT" type="text" disabled=true></input>
-                            </span>
-                            per   	
-                            <span>
-                                <select name="pricewithoutacOptT" id ="pricewithoutacOptT" disabled=true>
-                                    <option>Per km</option>
-                                    <option>Per hour</option> 
-                                    <option>Per day</option>              
-                                </select>
-                            </span>	  
-                            <br><br>    
-
-                            <!-- *****************Availability *****************-->
-                            <li class="section_break">
-                                <h3 style="color: #0b75b2; font-size: 13px;">
-                                    <b>Availability</b>
-                                    <p align = "center" style = "font-size: 13px"></p>
-                                </h3>
-                            </li>
-
-                            <ul>
-                                <!--Monday-->
-                                <li id="monday">
-                                    <span style="width: 500px">
-                                        <span>                                 
-                                            <input id="mondayInT" name="mondayInT" type="checkbox" onclick="showMondayT()" />Monday&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
-                                        </span>
-                                        <span>
-                                            From 
-                                            <input type="time" style="width: 100px" name="start_time_mondayT" id ="start_time_mondayT" disabled=true/> To <input type="time" style="width: 100px" name="end_time_mondayT" id ="end_time_mondayT" disabled=true/>
-                                        </span>  
-                                    </span>
-                                </li>
-
-                                <!--Tuesday-->
-                                <li id="tuesday">
-                                    <span style="width: 500px">
-                                        <span> 
-                                            <input id="tuesdayInT" name="tuesdayInT" type="checkbox" onclick="showTuesdayT()">Tuesday&ensp;&ensp;&ensp;&ensp;&ensp;&nbsp;
-                                        </span>
-                                        <span>
-                                            From 
-                                            <input type="time" style="width: 100px" name="start_time_tuesdayT" id ="start_time_tuesdayT" disabled=true> To <input type="time" style="width: 100px" name="end_time_tuesdayT" id ="end_time_tuesdayT" disabled=true>
-                                        </span>  
-                                    </span>                   
-                                </li>
-
-                                <!--Wednesday-->
-                                <li id="wednesday">
-                                    <span style="width: 500px">
-                                        <span> 
-                                            <input id="wednesdayInT" name="wednesdayInT" type="checkbox" onclick="showWednesdayT()">Wednesday&ensp;&ensp;&nbsp;&nbsp;
-                                        </span>
-                                        <span>
-                                            From 
-                                            <input type="time" style="width: 100px" name="start_time_wednesdayT" id ="start_time_wednesdayT" disabled=true> To <input type="time" style="width: 100px" name="end_time_wednesdayT" id ="end_time_wednesdayT" disabled=true>
-                                        </span>  
-                                    </span>                
-                                </li>
-
-                                <!--Thursday-->
-                                <li id="thursday">
-                                    <span style="width: 500px">
-                                        <span> 
-                                            <input id="thursdayInT" name="thursdayInT" type="checkbox" onclick="showThursdayT()">Thursday&ensp;&ensp;&nbsp;&nbsp;&ensp;&ensp;
-                                        </span>
-                                        <span>
-                                            From 
-                                            <input type="time" style="width: 100px" name="start_time_thursdayT" id ="start_time_thursdayT" disabled=true> To <input type="time" style="width: 100px" name="end_time_thursdayT" id ="end_time_thursdayT" disabled=true>
-                                        </span>  
-                                    </span>                
-                                </li>
-
-                                <!--Friday-->
-                                <li id="friday">
-                                    <span style="width: 500px">
-                                        <span> 
-                                            <input id="fridayInT" name="fridayInT" type="checkbox" onclick="showFridayT()">Friday&ensp;&ensp;&nbsp;&nbsp;&ensp;&ensp;&ensp;&nbsp;&nbsp;&nbsp;
-                                        </span>
-                                        <span>
-                                            From 
-                                            <input type="time" style="width: 100px" name="start_time_fridayT" id ="start_time_fridayT" disabled=true> To <input type="time" style="width: 100px" name="end_time_fridayT" id ="end_time_fridayT" disabled=true>
-                                        </span>  
-                                    </span>                   
-                                </li>
-
-                                <!--Saturday-->
-                                <li id="saturday">
-                                    <span style="width: 500px">
-                                        <span> 
-                                            <input id="saturdayInT" name="saturdayInT" type="checkbox" onclick="showSaturdayT()">Saturday&ensp;&ensp;&nbsp;&nbsp;&ensp;&ensp;&nbsp;
-                                        </span>
-                                        <span>
-                                            From 
-                                            <input type="time" style="width: 100px" name="start_time_saturdayT" id ="start_time_saturdayT" disabled=true> To <input type="time" style="width: 100px" name="end_time_saturdayT" id ="end_time_saturdayT" disabled=true>
-                                        </span>  
-                                    </span>                    
-                                </li>
-
-                                <!--Sunday-->
-                                <li id="sunday">
-                                    <span style="width: 500px">
-                                        <span> 
-                                            <input id="sundayInT" name="sundayInT" type="checkbox" onclick="showSundayT()">Sunday&ensp;&ensp;&nbsp;&nbsp;&ensp;&ensp;&nbsp;&nbsp;&nbsp;
-                                        </span>
-                                        <span>
-                                            From 
-                                            <input type="time" style="width: 100px" name="start_time_sundayT" id ="start_time_sundayT" disabled=true> To <input type="time" style="width: 100px" name="end_time_sundayT" id ="end_time_sundayT" disabled=true>
-                                        </span>  
-                                    </span>               
-                                </li>
-                            </ul>
-
-                            <!--Vehicle Description-->
-                            <li id="describeVehicleT"><label class="description" style="color: #0b75b2;">Any Description</label>
-                                <textarea id="describeVehicleT" name="describeVehicleT" style ="width : 550px; font-family: Times New Roman; font-size: 16px;" rows="2"></textarea>                        
-                            </li>  
-
-
-                        </div> 
-
-                        <!------------------------------------Air Port Drop/Pickup------------------------------------------------->
-                        <li>
-                            <span>
-                                <input id="airPort" name="airPort" type="checkbox"  onclick="showHideAirPort()" style="color: #0b75b2;"/> 
-                                <b style="color: #0b75b2; font-size: 14px;">Air Port Drop/Pickup</b>
-                            </span>
-                        </li>
-
-                        <!--******************Pricing scheme***********************-->
-                        <div id="pricingSchemeAirPort" style="display: none; padding: 10px; border: 1px dashed #999;">
-                            <h3 style="color: #0b75b2; font-size: 13px"><b>Pricing Scheme</b></h3>
-                            <!--With AC-->
-                            <span>
-                                <input id="WithAcAp" name="WithAcAp"  type="checkbox" onclick="showWithAcAp()"/>
-                                Price with AC
-                            </span>
-                            <br>
-                            Rs:
-                            <span>
-                                <input id="pricewithacInAp" name="pricewithacInAp" type="text" disabled=true></input>
-                            </span>
-                            per   	
-                            <span>
-                                <select name="pricewithacOptAp" id ="pricewithacOptAp" disabled=true>
-                                    <option>Per km</option>
-                                    <option>Per hour</option> 
-                                    <option>Per day</option>                
-                                </select>
-                            </span>	
-                            <br><br>
-                            <!--Without AC-->
-                            <span> 
-                                <input id="WithoutAcAp" name="WithoutAcAp" type="checkbox" onclick="showWithoutAcAp()"/>
-                                Price without AC
-                            </span>
-                            <br>
-                            Rs:
-                            <span>
-                                <input id="pricewithoutacInAp" name="pricewithoutacInAp" type="text" disabled=true></input>
-                            </span>
-                            per   	
-                            <span>
-                                <select name="pricewithoutacOptAp" id ="pricewithoutacOptAp" disabled=true>
-                                    <option>Per km</option>
-                                    <option>Per hour</option> 
-                                    <option>Per day</option>             
-                                </select>
-                            </span>	  
-                            <br><br>
-                            <!--Luggage Charges-->
-                            <span> 
-                                <input id="luggageInAp" name="luggageInAp" type="checkbox" onclick="showLuggageAp()"/>
-                                Luggage Charges 
-                            </span>
-                            <br>
-                            Rs:
-                            <span>
-                                <input id="luggageChargeAp" name="luggageChargeAp" type="text" disabled=true></input>
-                            </span>
-                            per   	
-                            <span>
-                                <select name="luggageChargeOptAp" id ="luggageChargeOptAp" disabled=true>
-                                    <option>Per km</option>
-                                    <option>Per hour</option> 
-                                    <option>Per day</option>              
-                                </select>
-                            </span>	  
-                            <br><br>
-                            <!--Waiting charges-->
-                            <span> 
-                                <input id="waitingInAp" name="waitingInAp" type="checkbox" onclick="showWaitingAp()" />
-                                Waiting Charges 
-                            </span>
-                            <br>
-                            Rs:
-                            <span>
-                                <input id="waitingAp" name="waitingAp" type="text" disabled=true ></input>
-                            </span>
-                            per   	
-                            <span>
-                                <select name="waitingChargeOptAp" id ="waitingChargeOptAp" disabled=true>
-                                    <option>Per km</option>
-                                    <option>Per hour</option> 
-                                    <option>Per day</option>               
-                                </select>
-                            </span>		
-                            <br><br>
-
-                            <!-- *****************Availability *****************-->
-                            <li class="section_break">
-                                <h3 style="color: #0b75b2; font-size: 13px;">
-                                    <b>Availability</b>
-                                    <p align = "center" style = "font-size: 13px"></p>
-                                </h3>
-                            </li>
-
-                            <ul>
-                                <!--Monday-->
-                                <li id="monday">
-                                    <span style="width: 500px">
-                                        <span>                                 
-                                            <input id="mondayInAp" name="mondayInAp" type="checkbox" onclick="showMondayAp()" />Monday&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
-                                        </span>
-                                        <span>
-                                            From 
-                                            <input type="time" style="width: 100px" name="start_time_mondayAp" id ="start_time_mondayAp" disabled=true/> To <input type="time" style="width: 100px" name="end_time_mondayAp" id ="end_time_mondayAp" disabled=true/>
-                                        </span>  
-                                    </span>
-                                </li>
-
-                                <!--Tuesday-->
-                                <li id="tuesday">
-                                    <span style="width: 500px">
-                                        <span> 
-                                            <input id="tuesdayInAp" name="tuesdayInAp" type="checkbox" onclick="showTuesdayAp()">Tuesday&ensp;&ensp;&ensp;&ensp;&ensp;&nbsp;
-                                        </span>
-                                        <span>
-                                            From 
-                                            <input type="time" style="width: 100px" name="start_time_tuesdayAp" id ="start_time_tuesdayAp" disabled=true> To <input type="time" style="width: 100px" name="end_time_tuesdayAp" id ="end_time_tuesdayAp" disabled=true>
-                                        </span>  
-                                    </span>                   
-                                </li>
-
-                                <!--Wednesday-->
-                                <li id="wednesday">
-                                    <span style="width: 500px">
-                                        <span> 
-                                            <input id="wednesdayInAp" name="wednesdayInAp" type="checkbox" onclick="showWednesdayAp()">Wednesday&ensp;&ensp;&nbsp;&nbsp;
-                                        </span>
-                                        <span>
-                                            From 
-                                            <input type="time" style="width: 100px" name="start_time_wednesdayAp" id ="start_time_wednesdayAp" disabled=true> To <input type="time" style="width: 100px" name="end_time_wednesdayAp" id ="end_time_wednesdayAp" disabled=true>
-                                        </span>  
-                                    </span>                
-                                </li>
-
-                                <!--Thursday-->
-                                <li id="thursday">
-                                    <span style="width: 500px">
-                                        <span> 
-                                            <input id="thursdayInAp" name="thursdayInAp" type="checkbox" onclick="showThursdayAp()">Thursday&ensp;&ensp;&nbsp;&nbsp;&ensp;&ensp;
-                                        </span>
-                                        <span>
-                                            From 
-                                            <input type="time" style="width: 100px" name="start_time_thursdayAp" id ="start_time_thursdayAp" disabled=true> To <input type="time" style="width: 100px" name="end_time_thursdayAp" id ="end_time_thursdayAp" disabled=true>
-                                        </span>  
-                                    </span>                
-                                </li>
-
-                                <!--Friday-->
-                                <li id="friday">
-                                    <span style="width: 500px">
-                                        <span> 
-                                            <input id="fridayInAp" name="fridayInAp" type="checkbox" onclick="showFridayAp()">Friday&ensp;&ensp;&nbsp;&nbsp;&ensp;&ensp;&ensp;&nbsp;&nbsp;&nbsp;
-                                        </span>
-                                        <span>
-                                            From 
-                                            <input type="time" style="width: 100px" name="start_time_fridayAp" id ="start_time_fridayAp" disabled=true> To <input type="time" style="width: 100px" name="end_time_fridayAp" id ="end_time_fridayAp" disabled=true>
-                                        </span>  
-                                    </span>                   
-                                </li>
-
-                                <!--Saturday-->
-                                <li id="saturday">
-                                    <span style="width: 500px">
-                                        <span> 
-                                            <input id="saturdayInAp" name="saturdayInAp" type="checkbox" onclick="showSaturdayAp()">Saturday&ensp;&ensp;&nbsp;&nbsp;&ensp;&ensp;&nbsp;
-                                        </span>
-                                        <span>
-                                            From 
-                                            <input type="time" style="width: 100px" name="start_time_saturdayAp" id ="start_time_saturdayAp" disabled=true> To <input type="time" style="width: 100px" name="end_time_saturdayAp" id ="end_time_saturdayAp" disabled=true>
-                                        </span>  
-                                    </span>                    
-                                </li>
-
-                                <!--Sunday-->
-                                <li id="sunday">
-                                    <span style="width: 500px">
-                                        <span> 
-                                            <input id="sundayInAp" name="sundayInAp" type="checkbox" onclick="showSundayAp()">Sunday&ensp;&ensp;&nbsp;&nbsp;&ensp;&ensp;&nbsp;&nbsp;&nbsp;
-                                        </span>
-                                        <span>
-                                            From 
-                                            <input type="time" style="width: 100px" name="start_time_sundayAp" id ="start_time_sundayAp" disabled=true> To <input type="time" style="width: 100px" name="end_time_sundayAp" id ="end_time_sundayAp" disabled=true>
-                                        </span>  
-                                    </span>               
-                                </li>
-                            </ul>
-
-                            <!--Vehicle Description-->
-                            <li id="describeVehicleAp"><label class="description" style="color: #0b75b2;">Any Description</label>
-                                <textarea id="describeVehicleAp" name="describeVehicleAp" style ="width : 550px; font-family: Times New Roman; font-size: 16px;" rows="2"></textarea>                        
-                            </li>  
-
-                        </div> 
-
-                        <!------------------------------------Station Drop/Pickup------------------------------------------------->
-                        <li>
-                            <span>
-                                <input id="station" name="station" type="checkbox"  onclick="showHideStation()" style="color: #0b75b2;"/> 
-                                <b style="color: #0b75b2; font-size: 14px;">Station Drop/Pickup</b>
-                            </span>
-                        </li>
-
-                        <!--******************Pricing scheme***********************-->
-                        <div id="pricingSchemeStation" style="display: none;  padding: 10px; border: 1px dashed #999;">
-                            <h3 style="color: #0b75b2; font-size: 13px"><b>Pricing Scheme</b></h3>
-                            <!--With AC-->
-                            <span>
-                                <input id="WithAcSt" name="WithAcSt"  type="checkbox" onclick="showWithAcSt()"/>
-                                Price with AC
-                            </span>
-                            <br>
-                            Rs:
-                            <span>
-                                <input id="pricewithacInSt" name="pricewithacInSt" type="text" disabled=true></input>
-                            </span>
-                            per   	
-                            <span>
-                                <select name="pricewithacOptSt" id ="pricewithacOptSt" disabled=true>
-                                    <option>Per km</option>
-                                    <option>Per hour</option> 
-                                    <option>Per day</option>               
-                                </select>
-                            </span>	
-                            <br><br>
-                            <!--Without AC-->
-                            <span> 
-                                <input id="WithoutAcSt" name="WithoutAcSt" type="checkbox" onclick="showWithoutAcSt()"/>
-                                Price without AC
-                            </span>
-                            <br>
-                            Rs:
-                            <span>
-                                <input id="pricewithoutacInSt" name="pricewithoutacInSt" type="text" disabled=true></input>
-                            </span>
-                            per   	
-                            <span>
-                                <select name="pricewithoutacOptSt" id ="pricewithoutacOptSt" disabled=true>
-                                    <option>Per km</option>
-                                    <option>Per hour</option> 
-                                    <option>Per day</option>                
-                                </select>
-                            </span>	  
-                            <br><br>
-                            <!--Luggage Charges-->
-                            <span> 
-                                <input id="luggageInSt" name="luggageInSt" type="checkbox" onclick="showLuggageSt()"/>
-                                Luggage Charges 
-                            </span>
-                            <br>
-                            Rs:
-                            <span>
-                                <input id="luggageChargeSt" name="luggageChargeSt" type="text" disabled=true></input>
-                            </span>
-                            per   	
-                            <span>
-                                <select name="luggageChargeOptSt" id ="luggageChargeOptSt" disabled=true>
-                                    <option>Per km</option>
-                                    <option>Per hour</option> 
-                                    <option>Per day</option>           
-                                </select>
-                            </span>	  
-                            <br><br>
-                            <!--Waiting charges-->
-                            <span> 
-                                <input id="waitingInSt" name="waitingInSt" type="checkbox" onclick="showWaitingSt()" />
-                                Waiting Charges 
-                            </span>
-                            <br>
-                            Rs:
-                            <span>
-                                <input id="waitingSt" name="waitingSt" type="text" disabled=true ></input>
-                            </span>
-                            per   	
-                            <span>
-                                <select name="waitingChargeOptSt" id ="waitingChargeOptSt" disabled=true>
-                                    <option>Per km</option>
-                                    <option>Per hour</option> 
-                                    <option>Per day</option>               
-                                </select>
-                            </span>		
-                            <br><br>
-
-                            <!-- *****************Availability *****************-->
-                            <li class="section_break">
-                                <h3 style="color: #0b75b2; font-size: 13px;">
-                                    <b>Availability</b>
-                                    <p align = "center" style = "font-size: 13px"></p>
-                                </h3>
-                            </li>
-
-                            <ul>
-                                <!--Monday-->
-                                <li id="monday">
-                                    <span style="width: 500px">
-                                        <span>                                 
-                                            <input id="mondayInSt" name="mondayInSt" type="checkbox" onclick="showMondaySt()" />Monday&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
-                                        </span>
-                                        <span>
-                                            From 
-                                            <input type="time" style="width: 100px" name="start_time_mondaySt" id ="start_time_mondaySt" disabled=true/> To <input type="time" style="width: 100px" name="end_time_mondaySt" id ="end_time_mondaySt" disabled=true/>
-                                        </span>  
-                                    </span>
-                                </li>
-
-                                <!--Tuesday-->
-                                <li id="tuesday">
-                                    <span style="width: 500px">
-                                        <span> 
-                                            <input id="tuesdayInSt" name="tuesdayInSt" type="checkbox" onclick="showTuesdaySt()">Tuesday&ensp;&ensp;&ensp;&ensp;&ensp;&nbsp;
-                                        </span>
-                                        <span>
-                                            From 
-                                            <input type="time" style="width: 100px" name="start_time_tuesdaySt" id ="start_time_tuesdaySt" disabled=true> To <input type="time" style="width: 100px" name="end_time_tuesdaySt" id ="end_time_tuesdaySt" disabled=true>
-                                        </span>  
-                                    </span>                   
-                                </li>
-
-                                <!--Wednesday-->
-                                <li id="wednesday">
-                                    <span style="width: 500px">
-                                        <span> 
-                                            <input id="wednesdayInSt" name="wednesdayInSt" type="checkbox" onclick="showWednesdaySt()">Wednesday&ensp;&ensp;&nbsp;&nbsp;
-                                        </span>
-                                        <span>
-                                            From 
-                                            <input type="time" style="width: 100px" name="start_time_wednesdaySt" id ="start_time_wednesdaySt" disabled=true> To <input type="time" style="width: 100px" name="end_time_wednesdaySt" id ="end_time_wednesdaySt" disabled=true>
-                                        </span>  
-                                    </span>                
-                                </li>
-
-                                <!--Thursday-->
-                                <li id="thursday">
-                                    <span style="width: 500px">
-                                        <span> 
-                                            <input id="thursdayInSt" name="thursdayInSt" type="checkbox" onclick="showThursdaySt()">Thursday&ensp;&ensp;&nbsp;&nbsp;&ensp;&ensp;
-                                        </span>
-                                        <span>
-                                            From 
-                                            <input type="time" style="width: 100px" name="start_time_thursdaySt" id ="start_time_thursdaySt" disabled=true> To <input type="time" style="width: 100px" name="end_time_thursdaySt" id ="end_time_thursdaySt" disabled=true>
-                                        </span>  
-                                    </span>                
-                                </li>
-
-                                <!--Friday-->
-                                <li id="friday">
-                                    <span style="width: 500px">
-                                        <span> 
-                                            <input id="fridayInSt" name="fridayInSt" type="checkbox" onclick="showFridaySt()">Friday&ensp;&ensp;&nbsp;&nbsp;&ensp;&ensp;&ensp;&nbsp;&nbsp;&nbsp;
-                                        </span>
-                                        <span>
-                                            From 
-                                            <input type="time" style="width: 100px" name="start_time_fridaySt" id ="start_time_fridaySt" disabled=true> To <input type="time" style="width: 100px" name="end_time_fridaySt" id ="end_time_fridaySt" disabled=true>
-                                        </span>  
-                                    </span>                   
-                                </li>
-
-                                <!--Saturday-->
-                                <li id="saturday">
-                                    <span style="width: 500px">
-                                        <span> 
-                                            <input id="saturdayInSt" name="saturdayInSt" type="checkbox" onclick="showSaturdaySt()">Saturday&ensp;&ensp;&nbsp;&nbsp;&ensp;&ensp;&nbsp;
-                                        </span>
-                                        <span>
-                                            From 
-                                            <input type="time" style="width: 100px" name="start_time_saturdaySt" id ="start_time_saturdaySt" disabled=true> To <input type="time" style="width: 100px" name="end_time_saturdaySt" id ="end_time_saturdaySt" disabled=true>
-                                        </span>  
-                                    </span>                    
-                                </li>
-
-                                <!--Sunday-->
-                                <li id="sunday">
-                                    <span style="width: 500px">
-                                        <span> 
-                                            <input id="sundayInSt" name="sundayInSt" type="checkbox" onclick="showSundaySt()">Sunday&ensp;&ensp;&nbsp;&nbsp;&ensp;&ensp;&nbsp;&nbsp;&nbsp;
-                                        </span>
-                                        <span>
-                                            From 
-                                            <input type="time" style="width: 100px" name="start_time_sundaySt" id ="start_time_sundaySt" disabled=true> To <input type="time" style="width: 100px" name="end_time_sundaySt" id ="end_time_sundaySt" disabled=true>
-                                        </span>  
-                                    </span>               
-                                </li>
-                            </ul>
-
-                            <!--Vehicle Description-->
-                            <li id="describeVehicleSt"><label class="description" style="color: #0b75b2;">Any Description</label>
-                                <textarea id="describeVehicleSt" name="describeVehicleSt" style ="width : 550px; font-family: Times New Roman; font-size: 16px;" rows="2"></textarea>                        
-                            </li>  
-
-                        </div> 
-
-                        <!------------------------------------Ceremonial Hires------------------------------------------------->
-                        <li>
-                            <span>
-                                <input id="ceremony" name="ceremony" type="checkbox"  onclick="showHideCeremony()" style="color: #0b75b2;"/> 
-                                <b style="color: #0b75b2; font-size: 14px;">Ceremonial Hires</b>
-                            </span>
-                        </li>
-
-
-                        <!--******************Pricing scheme***********************-->
-                        <div id="pricingSchemeCeremony" style="display: none; padding: 10px; border: 1px dashed #999;">
-                            <h3 style="color: #0b75b2; font-size: 13px;"><b>Pricing Scheme</b></h3>
-                            <!--With AC-->
-                            <span>
-                                <input id="WithAcC" name="WithAcC"  type="checkbox" onclick="showWithAcC()"/>
-                                Price with AC
-                            </span>
-                            <br>
-                            Rs:
-                            <span>
-                                <input id="pricewithacInC" name="pricewithacInC" type="text" disabled=true></input>
-                            </span>
-                            per   	
-                            <span>
-                                <select name="pricewithacOptC" id ="pricewithacOptC" disabled=true>
-                                    <option>Per km</option>
-                                    <option>Per hour</option> 
-                                    <option>Per day</option>       
-                                </select>
-                            </span>	
-                            <br><br>
-                            <!--Without AC-->
-                            <span> 
-                                <input id="WithoutAcC" name="WithoutAcC" type="checkbox" onclick="showWithoutAcC()"/>
-                                Price without AC
-                            </span>
-                            <br>
-                            Rs:
-                            <span>
-                                <input id="pricewithoutacInC" name="pricewithoutacInC" type="text" disabled=true></input>
-                            </span>
-                            per   	
-                            <span>
-                                <select name="pricewithoutacOptC" id ="pricewithoutacOptC" disabled=true>
-                                    <option>Per km</option>
-                                    <option>Per hour</option> 
-                                    <option>Per day</option>            
-                                </select>
-                            </span>	  
-                            <br><br>
-
-                            <!-- *****************Availability *****************-->
-                            <li class="section_break">
-                                <h3 style="color: #0b75b2; font-size: 13px;">
-                                    <b>Availability</b>
-                                    <p align = "center" style = "font-size: 13px"></p>
-                                </h3>
-                            </li>
-
-                            <ul>
-                                <!--Monday-->
-                                <li id="monday">
-                                    <span style="width: 500px">
-                                        <span>                                 
-                                            <input id="mondayInC" name="mondayInC" type="checkbox" onclick="showMondayC()" />Monday&ensp;&ensp;&ensp;&ensp;&ensp;&ensp;
-                                        </span>
-                                        <span>
-                                            From                                            
-                                            <input type="time" style="width: 100px" name="start_time_mondayC" id ="start_time_mondayC" disabled=true/> To <input type="time" style="width: 100px" name="end_time_mondayC" id ="end_time_mondayC" disabled=true/>
-                                        </span>  
-                                    </span>
-                                </li>
-
-                                <!--Tuesday-->
-                                <li id="tuesday">
-                                    <span style="width: 500px">
-                                        <span> 
-                                            <input id="tuesdayInC" name="tuesdayInC" type="checkbox" onclick="showTuesdayC()">Tuesday&ensp;&ensp;&ensp;&ensp;&ensp;&nbsp;
-                                        </span>
-                                        <span>
-                                            From 
-                                            <input type="time" style="width: 100px" name="start_time_tuesdayC" id ="start_time_tuesdayC" disabled=true> To <input type="time" style="width: 100px" name="end_time_tuesdayC" id ="end_time_tuesdayC" disabled=true>
-                                        </span>  
-                                    </span>                   
-                                </li>
-
-                                <!--Wednesday-->
-                                <li id="wednesday">
-                                    <span style="width: 500px">
-                                        <span> 
-                                            <input id="wednesdayInC" name="wednesdayInC" type="checkbox" onclick="showWednesdayC()">Wednesday&ensp;&ensp;&nbsp;&nbsp;
-                                        </span>
-                                        <span>
-                                            From 
-                                            <input type="time" style="width: 100px" name="start_time_wednesdayC" id ="start_time_wednesdayC" disabled=true> To <input type="time" style="width: 100px" name="end_time_wednesdayC" id ="end_time_wednesdayC" disabled=true>
-                                        </span>  
-                                    </span>                
-                                </li>
-
-                                <!--Thursday-->
-                                <li id="thursday">
-                                    <span style="width: 500px">
-                                        <span> 
-                                            <input id="thursdayInC" name="thursdayInC" type="checkbox" onclick="showThursdayC()">Thursday&ensp;&ensp;&nbsp;&nbsp;&ensp;&ensp;
-                                        </span>
-                                        <span>
-                                            From 
-                                            <input type="time" style="width: 100px" name="start_time_thursdayC" id ="start_time_thursdayC" disabled=true> To <input type="time" style="width: 100px" name="end_time_thursdayC" id ="end_time_thursdayC" disabled=true>
-                                        </span>  
-                                    </span>                
-                                </li>
-
-                                <!--Friday-->
-                                <li id="friday">
-                                    <span style="width: 500px">
-                                        <span> 
-                                            <input id="fridayInC" name="fridayInC" type="checkbox" onclick="showFridayC()">Friday&ensp;&ensp;&nbsp;&nbsp;&ensp;&ensp;&ensp;&nbsp;&nbsp;&nbsp;
-                                        </span>
-                                        <span>
-                                            From 
-                                            <input type="time" style="width: 100px" name="start_time_fridayC" id ="start_time_fridayC" disabled=true> To <input type="time" style="width: 100px" name="end_time_fridayC" id ="end_time_fridayC" disabled=true>
-                                        </span>  
-                                    </span>                   
-                                </li>
-
-                                <!--Saturday-->
-                                <li id="saturday">
-                                    <span style="width: 500px">
-                                        <span> 
-                                            <input id="saturdayInC" name="saturdayInC" type="checkbox" onclick="showSaturdayC()">Saturday&ensp;&ensp;&nbsp;&nbsp;&ensp;&ensp;&nbsp;
-                                        </span>
-                                        <span>
-                                            From 
-                                            <input type="time" style="width: 100px" name="start_time_saturdayC" id ="start_time_saturdayC" disabled=true> To <input type="time" style="width: 100px" name="end_time_saturdayC" id ="end_time_saturdayC" disabled=true>
-                                        </span>  
-                                    </span>                    
-                                </li>
-
-                                <!--Sunday-->
-                                <li id="sunday">
-                                    <span style="width: 500px">
-                                        <span> 
-                                            <input id="sundayInC" name="sundayInC" type="checkbox" onclick="showSundayC()">Sunday&ensp;&ensp;&nbsp;&nbsp;&ensp;&ensp;&nbsp;&nbsp;&nbsp;
-                                        </span>
-                                        <span>
-                                            From 
-                                            <input type="time" style="width: 100px" name="start_time_sundayC" id ="start_time_sundayC" disabled=true> To <input type="time" style="width: 100px" name="end_time_sundayC" id ="end_time_sundayC" disabled=true>
-                                        </span>  
-                                    </span>               
-                                </li>
-                            </ul>
-
-                            <!--Vehicle Description-->
-                            <li id="describeVehicleC"><label class="description" style="color: #0b75b2;">Any Description</label>
-                                <textarea id="describeVehicleC" name="describeVehicleC" style ="width : 550px; font-family: Times New Roman; font-size: 16px;" rows="2"></textarea>                        
-                            </li>  
-
-                        </div> 
-
-                        <!------------------------------------Construction------------------------------------------------->
-                        <li>
-                            <span>
-                                <input id="construction" name="construction" type="checkbox"  onclick="showHideConstruction()" style="color: #0b75b2;"/> 
-                                <b style="color: #0b75b2; font-size: 14px;">Constructions</b>
-                            </span>
-                        </li>
-
-                        <!--******************Pricing scheme***********************-->
-                        <div id="pricingSchemeConstructions" style="display: none;  padding: 10px; border: 1px dashed #999;">
-                            <h3 style="color: #0b75b2; font-size: 13px"><b>Pricing Scheme</b></h3>
-
-                            <span>
-                                <input id="priceInCn" name="priceInCn"  type="checkbox" onclick="showPriceConstruction()"/>
-                                Price
-                            </span>
-                            <br>
-                            Rs:
-                            <span>
-                                <input id="priceCn" name="priceCn" type="text" disabled=true></input>
-                            </span>
-                            per   	
-                            <span>
-                                <select name="pricOptCn" id ="priceOptCn" disabled=true>
-                                    <option>Per km</option>
-                                    <option>Per hour</option> 
-                                    <option>Per day</option>               
-                                </select>
-                            </span>	
-                            <br><br>
-
-
-                            <!--Vehicle Description-->
-                            <li id="describeVehicleCn"><label class="description" style="color: #0b75b2;">Any Description</label>
-                                <textarea id="describeVehicleCn" name="describeVehicleCn" style ="width : 550px; font-family: Times New Roman; font-size: 16px;" rows="2"></textarea>                        
-                            </li>  
-
-                        </div> 
-
-                        <!------------------------------------Cargo------------------------------------------------->
-                        <li>
-                            <span>
-                                <input id="cargo" name="cargo" type="checkbox"  onclick="showHideCargo()" style="color: #0b75b2;"/> 
-                                <b style="color: #0b75b2; font-size: 14px;">Cargo</b>
-                            </span>
-                        </li>
-
-                        <!--******************Pricing scheme***********************-->
-                        <div id="pricingSchemeCargo" style="display: none;  padding: 10px; border: 1px dashed #999;">
-                            <h3 style="color: #0b75b2; font-size: 13px"><b>Pricing Scheme</b></h3>
-
-                            <span>
-                                <input id="priceInCg" name="priceInCg"  type="checkbox" onclick="showPriceCargo()"/>
-                                Price
-                            </span>
-                            <br>
-                            Rs:
-                            <span>
-                                <input id="priceCg" name="priceCg" type="text" disabled=true></input>
-                            </span>
-                            per   	
-                            <span>
-                                <select name="pricOptCg" id ="priceOptCg" disabled=true>
-                                    <option>Per km</option>
-                                    <option>Per hour</option> 
-                                    <option>Per day</option>               
-                                </select>
-                            </span>	
-                            <br><br>
-
-
-                            <!--Vehicle Description-->
-                            <li id="describeVehicleCg"><label class="description" style="color: #0b75b2;">Any Description</label>
-                                <textarea id="describeVehicleCg" name="describeVehicleCg" style ="width : 550px; font-family: Times New Roman; font-size: 16px;" rows="2"></textarea>                        
-                            </li>  
-
-                        </div> 
-
-                        <br>
-                        <!--Submit Button-->
-                        <center><input type="submit" value="Register vehicle" class="belize-hole-flat-button"/></center>
-
-                        </form>
-
-                        <!--Footer-->
-                        <div id="footer">            
-                        </div>
-
+                            <img src="<?php echo URL; ?>public/images/registerDr/bottom.png" alt="" style=" width: 660px;"/>
+                    </div>
                 </div>
-                <img src="<?php echo URL; ?>public/images/registerDr/bottom.png" alt="" style=" width: 660px;"/>
-        </div>
-
-</body>
+            </div>
+    </body>
 </html>
 
 <script>
@@ -1991,24 +2026,22 @@
 //
 //        }
 
-        <?php
-        
-       echo "'pppppppppphgdd'";
-       
+<?php
+echo "'pppppppppphgdd'";
+
 //        $manufact = $_POST['manufacturer'];
 //        $manu = "Toyota";
 //        $sql = "SELECT model FROM brand_model WHERE manufacturer = "."Toyota";
 //        $result = mysql_query($sql);
 //        echo $sql;
-        ?>
-                <?php
-
-        while ($row = mysql_fetch_array($result)) {
-            ?>
-                    selbox.options[selbox.options.length] = new Option("<?=$row[0]?>");
-            <?php
-        }
-        ?>
+?>
+<?php
+while ($row = mysql_fetch_array($result)) {
+    ?>
+            selbox.options[selbox.options.length] = new Option("<?= $row[0] ?>");
+    <?php
+}
+?>
 
     }
 

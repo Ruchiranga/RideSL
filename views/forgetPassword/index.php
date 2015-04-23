@@ -25,11 +25,6 @@
                 return true;
             }
         }
-        
-        function successMessege() {
-                document.getElementById('success_message').innerHTML = "A message has been sent to your email successfully.";              
-                return true;
-        }
         </script>
     </head>
     <body>
@@ -51,7 +46,7 @@
                 <div id="error_message" style="font-size: 16px; color:red; font-weight:bold"></div>
                 <p><input type="submit" value="Submit" class="belize-hole-flat-button" style="width: 200px"></p>
                 <br>
-                <div id="success_message" style="font-size: 16px"></div>
+               
                 
             </div>
 </form> 

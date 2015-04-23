@@ -175,7 +175,7 @@
                             <ul id="leftNavigation">
 
                                 <li id="whatIsRidesl" >
-                                    <form id="linkform"action="search/resultList" method="post">                                       
+                                    <form id="linkform"action="<?php echo URL; ?>search/resultList" method="post">                                       
                                         <input type="text" name="location" value="" style="visibility: hidden;position: absolute">
                                         <input type="text" name="scheme_category" value="City Taxi Scheme" style="visibility: hidden; position: absolute;"/>
                                         <a href="javascript: submitlink()" ><i class="fa fa-search" ></i> Search Vehicle</a>

@@ -310,7 +310,7 @@ class driverHome_Model extends Model {
                 $sth = $this->db->prepare("update vehicle set image = '".$vehicle_reg_no.".". $arr[1]."' where vehicle_reg_no='".$vehicle_reg_no."'");
                 $sth->execute();
                 
-                $msg = "Image saved successfully. Reload the page";
+                $msg = "Image saved successfully. If image does not appear please reload the page";
             } else {
                 $msg = "Failed to upload file. Contact Site admin to fix the problem";
             }

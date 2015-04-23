@@ -10,25 +10,19 @@
     -webkit-transition: opacity 0.2s linear;
 }
 
-.thumbup{
+.thumbup,.thumbdown{
     opacity: 1;
     filter: alpha(opacity=100);
     -webkit-transition: opacity 0.2s linear;
 }
 
-.thumbup:hover{
+.thumbup:hover,.thumbdown:hover{
     opacity: 0.5;
     filter: alpha(opacity=50);
     -webkit-transition: opacity 0.2s linear;
 }
-.thumbdown{
+/*.thumbdeact{
     opacity: 1;
     filter: alpha(opacity=100);
     -webkit-transition: opacity 0.2s linear;
-}
-
-.thumbdown:hover{
-    opacity: 0.5;
-    filter: alpha(opacity=50);
-    -webkit-transition: opacity 0.2s linear;
-}
+}*/

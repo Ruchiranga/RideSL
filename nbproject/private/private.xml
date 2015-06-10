@@ -14,6 +14,8 @@
             <file>file:/C:/xampp/htdocs/RideSL/models/driverHome_model.php</file>
             <file>file:/C:/xampp/htdocs/RideSL/views/search/js/resultspage.js</file>
             <file>file:/C:/xampp/htdocs/RideSL/views/driverSignup/index.php</file>
+            <file>file:/C:/xampp/htdocs/RideSL/libs/Bootstrap.php</file>
+            <file>file:/C:/xampp/htdocs/RideSL/models/resetPassword_model.php</file>
             <file>file:/C:/xampp/htdocs/RideSL/models/editVehicle_model.php</file>
             <file>file:/C:/xampp/htdocs/RideSL/controllers/forgetPassword.php</file>
             <file>file:/C:/xampp/htdocs/RideSL/controllers/login.php</file>
@@ -24,12 +26,15 @@
             <file>file:/C:/xampp/htdocs/RideSL/models/forgetPassword_model.php</file>
             <file>file:/C:/xampp/htdocs/RideSL/models/search_model.php</file>
             <file>file:/C:/xampp/htdocs/RideSL/views/error/index.php</file>
+            <file>file:/C:/xampp/htdocs/RideSL/controllers/resetPassword.php</file>
+            <file>file:/C:/xampp/htdocs/RideSL/controllers/driverSignup.php</file>
             <file>file:/C:/xampp/htdocs/RideSL/views/passengerSignup/index.php</file>
             <file>file:/C:/xampp/htdocs/RideSL/views/search/js/timepicker.js</file>
             <file>file:/C:/xampp/htdocs/RideSL/controllers/driverHome.php</file>
             <file>file:/C:/xampp/htdocs/RideSL/views/contactUs/index.php</file>
             <file>file:/C:/xampp/htdocs/RideSL/controllers/editVehicle.php</file>
             <file>file:/C:/xampp/htdocs/RideSL/views/header.php</file>
+            <file>file:/C:/xampp/htdocs/RideSL/views/resetPassword/index.php</file>
         </group>
     </open-files>
 </project-private>

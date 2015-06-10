@@ -26,8 +26,18 @@ class driverSignup_Model extends Model {
         $sth = $this->db->prepare('Select * from account where username = :username');
         $sth->execute(array(':username' => $this->username));
         $count = $sth->rowCount();
+        
+        //check whether the email address already exists
+        $sth2 = $this->db->prepare('Select * from owner where email = :email');
+        $sth2->execute(array(':email' => $this->email));
+        $count2 = $sth2->rowCount();
+        
         if ($count > 0) {
             $message = "The user name already exists, please enter a new unique user name";       
+            echo "<script type='text/javascript'>alert('$message');window.location = \"../driverSignup\";</script>";
+        }
+        else if($count2 >0){
+            $message = "The email address already exists, please enter a another email address";       
             echo "<script type='text/javascript'>alert('$message');window.location = \"../driverSignup\";</script>";
         }
         else{

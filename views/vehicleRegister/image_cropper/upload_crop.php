@@ -8,20 +8,22 @@ if (!isset($_SESSION['random_key']) || strlen($_SESSION['random_key']) == 0) {
     $regNo = $_GET['number'];
     $_SESSION['num'] = $regNo;
 }
-#########################################################################################################
-# CONSTANTS																								#
-# You can alter the options below																		#
-#########################################################################################################
+
 //$upload_dir = "upload_photo";    // The directory for the images to be saved in
-//$upload_path = "public/images/".$upload_dir . "/";    // The path to where the image will be saved
+//$upload_path = "../../../public/images/".$upload_dir . "/";    // The path to where the image will be saved
+
+$structure = $_SESSION["own"];
 
 
-$upload_dir = "upload_pic";    // The directory for the images to be saved in
-$upload_path = $upload_dir . "/";    // The path to where the image will be saved
+$upload_dir = $structure;    // The directory for the images to be saved in
+$upload_path = "../../../public/images/".$upload_dir . "/";    // The path to where the image will be saved
+
 $large_image_prefix = "resize_";    // The prefix name to large image
 $thumb_image_prefix = $_SESSION['num'];   // The prefix name to the thumb image
 $large_image_name = $large_image_prefix . $_SESSION['random_key'];     // New name of the large image (append the timestamp to the filename)
 $thumb_image_name = $thumb_image_prefix;     // New name of the thumbnail image (append the timestamp to the filename)
+
+
 $max_file = "3";        // Maximum file size in MB
 $max_width = "500";       // Max width allowed for the large image
 $thumb_width = "100";      // Width of thumbnail image
@@ -139,6 +141,8 @@ function getWidth($image) {
 //Image Locations
 $large_image_location = $upload_path . $large_image_name . $_SESSION['user_file_ext'];
 $thumb_image_location = $upload_path . $thumb_image_name . $_SESSION['user_file_ext'];
+$_SESSION['photo'] = $thumb_image_name. $_SESSION['user_file_ext'];
+
 
 //Create the upload directory with the right permissions if it doesn't exist
 if (!is_dir($upload_dir)) {

@@ -21,10 +21,12 @@
         </file>
     </editor-bookmarks>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+
         <group>
             <file>file:/C:/xampp/htdocs/RideSL/controllers/error.php</file>
             <file>file:/C:/xampp/htdocs/RideSL/views/error/index.php</file>
             <file>file:/C:/xampp/htdocs/RideSL/views/search/index.php</file>
         </group>
+
     </open-files>
 </project-private>

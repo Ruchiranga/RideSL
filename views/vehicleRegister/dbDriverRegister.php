@@ -1,9 +1,14 @@
 <?php
+session_start();
+//mysql_connect('localhost', 'root', '');
+//mysql_select_db('ridesl');
+//echo 'Connected succesfully  NANDS <br>';
 
-mysql_connect('localhost', 'root', '');
-mysql_select_db('ridesl');
-echo 'Connected succesfully  NANDS <br>';
-
+$conn = new mysqli('localhost', 'root', '', 'ridesl');
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
 
 $regNo = $_POST['regNoin'];
 $type = $_POST['type'];
@@ -12,13 +17,13 @@ $model = $_POST['model'];
 $capacity = $_POST['capacity'];
 $describeVehicle = $_POST['describeVehicle'];
 $isActive = 1;
-$ownerid = 1;
+$ownerid = $_SESSION["own"];
+$image = $_SESSION['photo'];
+$date = date("Y-m-d");
 
 
-$sql = "INSERT INTO vehicle(vehicle_reg_no,vehicle_type,manufacturer,model,capacity,vehicle_description, isActive,owner_id,image) VALUES ('$regNo','$type','$manufacturer','$model','$capacity','$describeVehicle','$isActive','$ownerid','jhdjh.jpg')";
-if (!mysql_query($sql)) {
-    die('Error: ' . mysql_error());
-}
+$stmt = $conn->prepare("INSERT INTO vehicle(vehicle_reg_no,vehicle_type,manufacturer,model,capacity,vehicle_description, isActive,owner_id,image,register_date) VALUES ('$regNo','$type','$manufacturer','$model','$capacity','$describeVehicle','$isActive','$ownerid','$image','$date')");
+$stmt->execute();
 
 
 //-------------------------------------------------City Taxi-----------------------------------------------------------
@@ -30,6 +35,7 @@ if (isset($_POST['cityTaxi'])) {
     $regNo = $_POST['regNoin'];
     $nonac_price = NULL;
     $ac_price = NULL;
+    $locate = $_POST['taxies'];
 
     if (isset($_POST['WithAcCt'])) {
 
@@ -42,11 +48,9 @@ if (isset($_POST['cityTaxi'])) {
         $nonac_price = $_POST['pricewithoutacInCt'];
     }
 
-    $sql = "INSERT INTO scheme(pricing_category,descrption, category, vehicle_reg_no, ac_price, non_ac_price) VALUES ('$pricing_category','$description','$category','$regNo','$ac_price','$nonac_price')";
-
-    if (!mysql_query($sql)) {
-        die('Error: ' . mysql_error());
-    }
+    $stmt = $conn->prepare("INSERT INTO scheme(pricing_category,descrption, category, vehicle_reg_no, ac_price, non_ac_price) VALUES ('$pricing_category','$locate','$category','$regNo','$ac_price','$nonac_price')");
+    $stmt->execute();
+    
 
     //to get the scheme_id
     $sql = mysql_fetch_assoc(mysql_query("SELECT scheme_id FROM scheme WHERE pricing_category = '$pricing_category' AND descrption = '$description' AND category = '$category' AND vehicle_reg_no = '$regNo' AND ac_price = '$ac_price' AND non_ac_price = '$nonac_price'"));
@@ -59,10 +63,8 @@ if (isset($_POST['cityTaxi'])) {
         $to = $_POST['end_time_mondayCt'];
         $day = 'mon';
 
-        $sql = "INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')";
-        if (!mysql_query($sql)) {
-            die('Error: ' . mysql_error());
-        }
+        $stmt = $conn->prepare("INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')");
+        $stmt->execute();
     }
 
     if (isset($_POST['tuesdayInCt'])) {
@@ -71,10 +73,8 @@ if (isset($_POST['cityTaxi'])) {
         $to = $_POST['end_time_tuesdayCt'];
         $day = 'tue';
 
-        $sql = "INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')";
-        if (!mysql_query($sql)) {
-            die('Error: ' . mysql_error());
-        }
+        $stmt = $conn->prepare("INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')");
+        $stmt->execute();
     }
 
     if (isset($_POST['wednesdayInCt'])) {
@@ -83,10 +83,8 @@ if (isset($_POST['cityTaxi'])) {
         $to = $_POST['end_time_wednesdayCt'];
         $day = 'wed';
 
-        $sql = "INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')";
-        if (!mysql_query($sql)) {
-            die('Error: ' . mysql_error());
-        }
+        $stmt = $conn->prepare("INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')");
+        $stmt->execute();
     }
 
     if (isset($_POST['thursdayInCt'])) {
@@ -95,10 +93,8 @@ if (isset($_POST['cityTaxi'])) {
         $to = $_POST['end_time_thursdayCt'];
         $day = 'thu';
 
-        $sql = "INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')";
-        if (!mysql_query($sql)) {
-            die('Error: ' . mysql_error());
-        }
+        $stmt = $conn->prepare("INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')");
+        $stmt->execute();
     }
 
     if (isset($_POST['fridayInCt'])) {
@@ -107,10 +103,8 @@ if (isset($_POST['cityTaxi'])) {
         $to = $_POST['end_time_fridayCt'];
         $day = 'fri';
 
-        $sql = "INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')";
-        if (!mysql_query($sql)) {
-            die('Error: ' . mysql_error());
-        }
+        $stmt = $conn->prepare("INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')");
+        $stmt->execute();
     }
 
     if (isset($_POST['saturdayInCt'])) {
@@ -119,10 +113,8 @@ if (isset($_POST['cityTaxi'])) {
         $to = $_POST['end_time_saturdayCt'];
         $day = 'sat';
 
-        $sql = "INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')";
-        if (!mysql_query($sql)) {
-            die('Error: ' . mysql_error());
-        }
+        $stmt = $conn->prepare("INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')");
+        $stmt->execute();
     }
 
     if (isset($_POST['sundayInCt'])) {
@@ -131,10 +123,8 @@ if (isset($_POST['cityTaxi'])) {
         $to = $_POST['end_time_sundayCt'];
         $day = 'sun';
 
-        $sql = "INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')";
-        if (!mysql_query($sql)) {
-            die('Error: ' . mysql_error());
-        }
+        $stmt = $conn->prepare("INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')");
+        $stmt->execute();
     }
 }
 
@@ -158,10 +148,8 @@ if (isset($_POST['tour'])) {
         $nonac_price = $_POST['pricewithoutacInT'];
     }
 
-    $sql = "INSERT INTO scheme(pricing_category,descrption, category, vehicle_reg_no, ac_price, non_ac_price) VALUES ('$pricing_category','$description','$category','$regNo','$ac_price','$nonac_price')";
-    if (!mysql_query($sql)) {
-        die('Error: ' . mysql_error());
-    }
+    $stmt = $conn->prepare("INSERT INTO scheme(pricing_category,descrption, category, vehicle_reg_no, ac_price, non_ac_price) VALUES ('$pricing_category','$description','$category','$regNo','$ac_price','$nonac_price')");
+    $stmt->execute();
     
     //to get the scheme_id
     $sql = mysql_fetch_assoc(mysql_query("SELECT scheme_id FROM scheme WHERE pricing_category = '$pricing_category' AND descrption = '$description' AND category = '$category' AND vehicle_reg_no = '$regNo' AND ac_price = '$ac_price' AND non_ac_price = '$nonac_price'"));
@@ -174,10 +162,8 @@ if (isset($_POST['tour'])) {
         $to = $_POST['end_time_mondayT'];
         $day = 'mon';
 
-        $sql = "INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')";
-        if (!mysql_query($sql)) {
-            die('Error: ' . mysql_error());
-        }
+        $stmt = $conn->prepare("INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')");
+        $stmt->execute();
     }
 
     if (isset($_POST['tuesdayInT'])) {
@@ -186,10 +172,8 @@ if (isset($_POST['tour'])) {
         $to = $_POST['end_time_tuesdayT'];
         $day = 'tue';
 
-        $sql = "INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')";
-        if (!mysql_query($sql)) {
-            die('Error: ' . mysql_error());
-        }
+        $stmt = $conn->prepare("INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')");
+        $stmt->execute(); 
     }
 
     if (isset($_POST['wednesdayInT'])) {
@@ -198,10 +182,8 @@ if (isset($_POST['tour'])) {
         $to = $_POST['end_time_wednesdayT'];
         $day = 'wed';
 
-        $sql = "INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')";
-        if (!mysql_query($sql)) {
-            die('Error: ' . mysql_error());
-        }
+        $stmt = $conn->prepare("INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')");
+        $stmt->execute();
     }
 
     if (isset($_POST['thursdayInT'])) {
@@ -210,10 +192,8 @@ if (isset($_POST['tour'])) {
         $to = $_POST['end_time_thursdayT'];
         $day = 'thu';
 
-        $sql = "INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')";
-        if (!mysql_query($sql)) {
-            die('Error: ' . mysql_error());
-        }
+        $stmt = $conn->prepare("INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')");
+        $stmt->execute();
     }
 
     if (isset($_POST['fridayInT'])) {
@@ -222,10 +202,8 @@ if (isset($_POST['tour'])) {
         $to = $_POST['end_time_fridayT'];
         $day = 'fri';
 
-        $sql = "INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')";
-        if (!mysql_query($sql)) {
-            die('Error: ' . mysql_error());
-        }
+        $stmt = $conn->prepare("INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')");
+        $stmt->execute();
     }
 
     if (isset($_POST['saturdayInT'])) {
@@ -234,10 +212,8 @@ if (isset($_POST['tour'])) {
         $to = $_POST['end_time_saturdayT'];
         $day = 'sat';
 
-        $sql = "INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')";
-        if (!mysql_query($sql)) {
-            die('Error: ' . mysql_error());
-        }
+        $stmt = $conn->prepare("INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')");
+        $stmt->execute();
     }
 
     if (isset($_POST['sundayInT'])) {
@@ -246,10 +222,8 @@ if (isset($_POST['tour'])) {
         $to = $_POST['end_time_sundayT'];
         $day = 'sun';
 
-        $sql = "INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')";
-        if (!mysql_query($sql)) {
-            die('Error: ' . mysql_error());
-        }
+        $stmt = $conn->prepare("INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')");
+        $stmt->execute();
     }
 }
 
@@ -272,10 +246,8 @@ if (isset($_POST['airPort'])) {
         $nonac_price = $_POST['pricewithoutacInAp'];
     }
 
-    $sql = "INSERT INTO scheme(pricing_category,descrption, category, vehicle_reg_no, ac_price, non_ac_price) VALUES ('$pricing_category','$description','$category','$regNo','$ac_price','$nonac_price')";
-    if (!mysql_query($sql)) {
-        die('Error: ' . mysql_error());
-    }
+    $stmt = $conn->prepare("INSERT INTO scheme(pricing_category,descrption, category, vehicle_reg_no, ac_price, non_ac_price) VALUES ('$pricing_category','$description','$category','$regNo','$ac_price','$nonac_price')");
+    $stmt->execute();
     
     //to get the scheme_id
     $sql = mysql_fetch_assoc(mysql_query("SELECT scheme_id FROM scheme WHERE pricing_category = '$pricing_category' AND descrption = '$description' AND category = '$category' AND vehicle_reg_no = '$regNo' AND ac_price = '$ac_price' AND non_ac_price = '$nonac_price'"));
@@ -300,10 +272,8 @@ if (isset($_POST['airPort'])) {
             $waiting_price = $_POST['waitingAp'];
         }
 
-        $sql = "INSERT INTO air_port_drop_pickup_scheme(scheme_id, luggage_charge, waiting_charge) VALUES ('$scheme_id','$luggage_price','$waiting_price')";
-        if (!mysql_query($sql)) {
-            die('Error: ' . mysql_error());
-        }
+        $stmt = $conn->prepare("INSERT INTO air_port_drop_pickup_scheme(scheme_id, luggage_charge, waiting_charge) VALUES ('$scheme_id','$luggage_price','$waiting_price')");
+        $stmt->execute();
     }
 
     if (isset($_POST['mondayInAp'])) {
@@ -312,10 +282,8 @@ if (isset($_POST['airPort'])) {
         $to = $_POST['end_time_mondayAp'];
         $day = 'mon';
 
-        $sql = "INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')";
-        if (!mysql_query($sql)) {
-            die('Error: ' . mysql_error());
-        }
+        $stmt = $conn->prepare("INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')");
+        $stmt->execute();
     }
 
     if (isset($_POST['tuesdayInAp'])) {
@@ -324,10 +292,8 @@ if (isset($_POST['airPort'])) {
         $to = $_POST['end_time_tuesdayAp'];
         $day = 'tue';
 
-        $sql = "INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')";
-        if (!mysql_query($sql)) {
-            die('Error: ' . mysql_error());
-        }
+        $stmt = $conn->prepare("INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')");
+        $stmt->execute();
     }
 
     if (isset($_POST['wednesdayInAp'])) {
@@ -336,10 +302,8 @@ if (isset($_POST['airPort'])) {
         $to = $_POST['end_time_wednesdayAp'];
         $day = 'wed';
 
-        $sql = "INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')";
-        if (!mysql_query($sql)) {
-            die('Error: ' . mysql_error());
-        }
+        $stmt = $conn->prepare("INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')");
+        $stmt->execute();
     }
 
     if (isset($_POST['thursdayInAp'])) {
@@ -348,10 +312,8 @@ if (isset($_POST['airPort'])) {
         $to = $_POST['end_time_thursdayAp'];
         $day = 'thu';
 
-        $sql = "INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')";
-        if (!mysql_query($sql)) {
-            die('Error: ' . mysql_error());
-        }
+        $stmt = $conn->prepare("INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')");
+        $stmt->execute();
     }
 
     if (isset($_POST['fridayInAp'])) {
@@ -360,10 +322,8 @@ if (isset($_POST['airPort'])) {
         $to = $_POST['end_time_fridayAp'];
         $day = 'fri';
 
-        $sql = "INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')";
-        if (!mysql_query($sql)) {
-            die('Error: ' . mysql_error());
-        }
+        $stmt = $conn->prepare("INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')");
+        $stmt->execute();
     }
 
     if (isset($_POST['saturdayInAp'])) {
@@ -372,10 +332,8 @@ if (isset($_POST['airPort'])) {
         $to = $_POST['end_time_saturdayAp'];
         $day = 'sat';
 
-        $sql = "INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')";
-        if (!mysql_query($sql)) {
-            die('Error: ' . mysql_error());
-        }
+        $stmt = $conn->prepare("INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')");
+        $stmt->execute();
     }
 
     if (isset($_POST['sundayInAp'])) {
@@ -384,11 +342,8 @@ if (isset($_POST['airPort'])) {
         $to = $_POST['end_time_sundayAp'];
         $day = 'sun';
 
-        $sql = "INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')";
-
-        if (!mysql_query($sql)) {
-            die('Error: ' . mysql_error());
-        }
+        $stmt = $conn->prepare("INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')");
+        $stmt->execute();
     }
 }
 
@@ -440,10 +395,8 @@ if (isset($_POST['station'])) {
             $waiting_price = $_POST['waitingSt'];
         }
 
-        $sql = "INSERT INTO station_drop_pickup_scheme(scheme_id, luggage_charge, waiting_charge) VALUES ('$scheme_id','$luggage_price','$waiting_price')";
-        if (!mysql_query($sql)) {
-            die('Error: ' . mysql_error());
-        }
+        $stmt = $conn->prepare("INSERT INTO station_drop_pickup_scheme(scheme_id, luggage_charge, waiting_charge) VALUES ('$scheme_id','$luggage_price','$waiting_price')");
+        $stmt->execute();
     }
 
 
@@ -453,10 +406,8 @@ if (isset($_POST['station'])) {
         $to = $_POST['end_time_mondaySt'];
         $day = 'mon';
 
-        $sql = "INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')";
-        if (!mysql_query($sql)) {
-            die('Error: ' . mysql_error());
-        }
+        $stmt = $conn->prepare("INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')");
+        $stmt->execute();
     }
 
     if (isset($_POST['tuesdayInSt'])) {
@@ -465,10 +416,8 @@ if (isset($_POST['station'])) {
         $to = $_POST['end_time_tuesdaySt'];
         $day = 'tue';
 
-        $sql = "INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')";
-        if (!mysql_query($sql)) {
-            die('Error: ' . mysql_error());
-        }
+        $stmt = $conn->prepare("INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')");
+        $stmt->execute();
     }
 
     if (isset($_POST['wednesdayInSt'])) {
@@ -477,10 +426,8 @@ if (isset($_POST['station'])) {
         $to = $_POST['end_time_wednesdaySt'];
         $day = 'wed';
 
-        $sql = "INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')";
-        if (!mysql_query($sql)) {
-            die('Error: ' . mysql_error());
-        }
+        $stmt = $conn->prepare("INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')");
+        $stmt->execute();
     }
 
     if (isset($_POST['thursdayInSt'])) {
@@ -489,10 +436,8 @@ if (isset($_POST['station'])) {
         $to = $_POST['end_time_thursdaySt'];
         $day = 'thu';
 
-        $sql = "INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')";
-        if (!mysql_query($sql)) {
-            die('Error: ' . mysql_error());
-        }
+        $stmt = $conn->prepare("INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')");
+        $stmt->execute();
     }
 
     if (isset($_POST['fridayInSt'])) {
@@ -501,10 +446,8 @@ if (isset($_POST['station'])) {
         $to = $_POST['end_time_fridaySt'];
         $day = 'fri';
 
-        $sql = "INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')";
-        if (!mysql_query($sql)) {
-            die('Error: ' . mysql_error());
-        }
+        $stmt = $conn->prepare("INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')");
+        $stmt->execute();
     }
 
     if (isset($_POST['saturdayInSt'])) {
@@ -513,10 +456,8 @@ if (isset($_POST['station'])) {
         $to = $_POST['end_time_saturdaySt'];
         $day = 'sat';
 
-        $sql = "INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')";
-        if (!mysql_query($sql)) {
-            die('Error: ' . mysql_error());
-        }
+        $stmt = $conn->prepare("INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')");
+        $stmt->execute();
     }
 
     if (isset($_POST['sundayInSt'])) {
@@ -525,10 +466,8 @@ if (isset($_POST['station'])) {
         $to = $_POST['end_time_sundaySt'];
         $day = 'sun';
 
-        $sql = "INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')";
-        if (!mysql_query($sql)) {
-            die('Error: ' . mysql_error());
-        }
+        $stmt = $conn->prepare("INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')");
+        $stmt->execute();
     }
 }
 
@@ -568,10 +507,8 @@ if (isset($_POST['ceremony'])) {
         $to = $_POST['end_time_mondayC'];
         $day = 'mon';
 
-        $sql = "INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')";
-        if (!mysql_query($sql)) {
-            die('Error: ' . mysql_error());
-        }
+        $stmt = $conn->prepare("INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')");
+        $stmt->execute();
     }
 
     if (isset($_POST['tuesdayInC'])) {
@@ -580,10 +517,8 @@ if (isset($_POST['ceremony'])) {
         $to = $_POST['end_time_tuesdayC'];
         $day = 'tue';
 
-        $sql = "INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')";
-        if (!mysql_query($sql)) {
-            die('Error: ' . mysql_error());
-        }
+        $stmt = $conn->prepare("INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')");
+        $stmt->execute();
     }
 
     if (isset($_POST['wednesdayInC'])) {
@@ -592,10 +527,8 @@ if (isset($_POST['ceremony'])) {
         $to = $_POST['end_time_wednesdayC'];
         $day = 'wed';
 
-        $sql = "INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')";
-        if (!mysql_query($sql)) {
-            die('Error: ' . mysql_error());
-        }
+        $stmt = $conn->prepare("INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')");
+        $stmt->execute();
     }
 
     if (isset($_POST['thursdayInC'])) {
@@ -604,10 +537,8 @@ if (isset($_POST['ceremony'])) {
         $to = $_POST['end_time_thursdayC'];
         $day = 'thu';
 
-        $sql = "INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')";
-        if (!mysql_query($sql)) {
-            die('Error: ' . mysql_error());
-        }
+        $stmt = $conn->prepare("INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')");
+        $stmt->execute();
     }
 
     if (isset($_POST['fridayInC'])) {
@@ -616,10 +547,8 @@ if (isset($_POST['ceremony'])) {
         $to = $_POST['end_time_fridayC'];
         $day = 'fri';
 
-        $sql = "INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')";
-        if (!mysql_query($sql)) {
-            die('Error: ' . mysql_error());
-        }
+        $stmt = $conn->prepare("INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')");
+        $stmt->execute();
     }
 
     if (isset($_POST['saturdayInC'])) {
@@ -628,10 +557,8 @@ if (isset($_POST['ceremony'])) {
         $to = $_POST['end_time_saturdayC'];
         $day = 'sat';
 
-        $sql = "INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')";
-        if (!mysql_query($sql)) {
-            die('Error: ' . mysql_error());
-        }
+        $stmt = $conn->prepare("INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')");
+        $stmt->execute();
     }
 
     if (isset($_POST['sundayInC'])) {
@@ -640,10 +567,8 @@ if (isset($_POST['ceremony'])) {
         $to = $_POST['end_time_sundayC'];
         $day = 'sun';
 
-        $sql = "INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')";
-        if (!mysql_query($sql)) {
-            die('Error: ' . mysql_error());
-        }
+        $stmt = $conn->prepare("INSERT INTO availability(scheme_id, day, start_time, end_time) VALUES ('$scheme_id','$day','$from','$to')");
+        $stmt->execute();
     }
 }
 
@@ -662,10 +587,8 @@ if (isset($_POST['construction'])) {
         $nonac_price = $_POST['priceCn'];
     }
    
-    $sql = "INSERT INTO scheme(pricing_category,descrption, category, vehicle_reg_no, ac_price, non_ac_price) VALUES ('$pricing_category','$description','$category','$regNo','$ac_price','$nonac_price')";
-    if (!mysql_query($sql)) {
-        die('Error: ' . mysql_error());
-    }
+    $stmt = $conn->prepare("INSERT INTO scheme(pricing_category,descrption, category, vehicle_reg_no, ac_price, non_ac_price) VALUES ('$pricing_category','$description','$category','$regNo','$ac_price','$nonac_price')");
+    $stmt->execute();
 }
 
 //-------------------------------Cargo------------------------------------------------
@@ -683,10 +606,8 @@ if (isset($_POST['cargo'])) {
         $nonac_price = $_POST['priceCg'];
     }
    
-    $sql = "INSERT INTO scheme(pricing_category,descrption, category, vehicle_reg_no, ac_price, non_ac_price) VALUES ('$pricing_category','$description','$category','$regNo','$ac_price','$nonac_price')";
-    if (!mysql_query($sql)) {
-        die('Error: ' . mysql_error());
-    }
+    $stmt = $conn->prepare("INSERT INTO scheme(pricing_category,descrption, category, vehicle_reg_no, ac_price, non_ac_price) VALUES ('$pricing_category','$description','$category','$regNo','$ac_price','$nonac_price')");
+    $stmt->execute();
 }
 
 header('Location: http://localhost/RideSL/driverhome');  

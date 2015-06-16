@@ -402,8 +402,19 @@
                                 
 
                                 $content .= '<div id = "avaliability">
-                        <font style = "color: #2980b9; ">Availiability</font><br><br>
+                                    <font style = "color: #2980b9; ">Availiability</font><br><br>
+                                    
+
+
                         <input type="hidden" required name="mytags'.$index.'" id="mySingleField' . $index . '" value="' . $locations . '" >
+                            
+
+
+
+
+
+
+
                         <font><table style="width:64%">';
 
                                 $days = array('Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun');

@@ -19,23 +19,27 @@ class vehicleRegister extends Controller {
     public function index() {
         
         $this->view->owner = $this->model->run();
-        $this->view->phoneNoList = $this->model->getPhoneNoList();
+        $this->view->phoneNoList = $this->model->getPhoneNoList();        
+       
+        $vehicleList = $this->model->getVehicleList();
+        $this->view->vehicleList = $vehicleList;
         
-        $this->view->manufacturerList = $this->model->getManufacturers();
+        if($vehicleList != NULL){
+            $vehicleSchemeList = $this->model->initVehicleSchemes($vehicleList);
+            $this->view->vehicleSchemesList = $vehicleSchemeList;
+        
+//            $this->view->schemeAvailabilityList = $this->model->initSchemeAvailability($vehicleSchemeList);
+//            $this->view->schemeLocationList = $this->model->initSchemeLocation($vehicleSchemeList);
+        }        
+        
         $this->view->render('vehicleRegister/index');
         
         
         
-//        $manufactList = $this->model->getAllModels($manufacturer) ;
-//        $this->view->manufacturerList = $manufactList;
-//        $models = $this->model->getNewModels($manufacturer);
+
     }
     
-    public function changeManufacturer($manufacturer) {
-        $models = $this->model->getNewModels($manufacturer);
-    }
     
-    //profile details edit
     
     function addPhoneNo() {
         $phoneNo = $_POST['phone_no'];
@@ -70,6 +74,12 @@ class vehicleRegister extends Controller {
         $owner_id = $_SESSION['owner_id'];
         $this->model->dltPhoneNo($owner_id, $phone_no);
         header('location: '.URL.'vehicleRegister');
+    }
+    
+    function logout() {
+        Session::destroy();
+        header('location: '.URL.'index');
+        exit();
     }
 
 }

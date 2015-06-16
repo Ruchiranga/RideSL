@@ -4,7 +4,6 @@ class Error extends Controller {
 
     function __construct() {
         parent::__construct();
-        echo 'this is and error';
     }
 
     function index() {

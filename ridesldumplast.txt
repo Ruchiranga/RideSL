@@ -62,7 +62,7 @@ CREATE TABLE `air_port_drop_pickup_scheme` (
 
 LOCK TABLES `air_port_drop_pickup_scheme` WRITE;
 /*!40000 ALTER TABLE `air_port_drop_pickup_scheme` DISABLE KEYS */;
-INSERT INTO `air_port_drop_pickup_scheme` VALUES (4,30.00,NULL);
+INSERT INTO `air_port_drop_pickup_scheme` VALUES (4,30.00,NULL),(8,50.00,0.00);
 /*!40000 ALTER TABLE `air_port_drop_pickup_scheme` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -89,7 +89,7 @@ CREATE TABLE `availability` (
 
 LOCK TABLES `availability` WRITE;
 /*!40000 ALTER TABLE `availability` DISABLE KEYS */;
-INSERT INTO `availability` VALUES (1,'Fri','08:00:00','23:00:00'),(1,'Mon','08:00:00','23:01:22'),(1,'Sat','07:00:00','00:00:00'),(1,'Sun','07:00:00','00:00:00'),(2,'Fri','06:00:00','21:00:00'),(2,'Mon','06:00:00','21:00:00'),(2,'Sat','06:00:00','21:00:00'),(2,'Sun','06:00:00','21:00:00'),(2,'Thu','06:00:00','21:00:00'),(2,'Tue','06:00:00','21:00:00'),(2,'Wed','06:00:00','21:00:00'),(3,'sat','06:00:00','23:00:00'),(3,'sun','06:00:00','23:00:00'),(4,'Mon','01:00:00','21:00:00'),(5,'mon','10:00:00','20:00:00'),(6,'mon','06:00:00','21:00:00'),(6,'tue','06:00:00','21:00:00'),(6,'wed','06:00:00','21:00:00');
+INSERT INTO `availability` VALUES (1,'Fri','08:00:00','23:00:00'),(1,'Mon','08:00:00','23:01:22'),(1,'Sat','07:00:00','00:00:00'),(1,'Sun','07:00:00','00:00:00'),(2,'Fri','06:00:00','21:00:00'),(2,'Mon','06:00:00','21:00:00'),(2,'Sat','06:00:00','21:00:00'),(2,'Sun','06:00:00','21:00:00'),(2,'Thu','06:00:00','21:00:00'),(2,'Tue','06:00:00','21:00:00'),(2,'Wed','06:00:00','21:00:00'),(3,'sat','06:00:00','23:00:00'),(3,'sun','06:00:00','23:00:00'),(4,'Mon','01:00:00','21:00:00'),(5,'mon','10:00:00','20:00:00'),(6,'mon','06:00:00','21:00:00'),(6,'tue','06:00:00','21:00:00'),(6,'wed','06:00:00','21:00:00'),(7,'fri','08:00:00','23:59:00'),(7,'mon','06:00:00','23:59:00'),(7,'sat','08:08:00','23:59:00'),(7,'thu','07:00:00','23:59:00'),(7,'tue','06:00:00','23:59:00'),(7,'wed','06:00:00','23:59:00'),(8,'sat','06:00:00','23:00:00'),(8,'sun','06:00:00','23:00:00'),(9,'sun','06:00:00','17:00:00');
 /*!40000 ALTER TABLE `availability` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -204,7 +204,7 @@ CREATE TABLE `owner` (
 
 LOCK TABLES `owner` WRITE;
 /*!40000 ALTER TABLE `owner` DISABLE KEYS */;
-INSERT INTO `owner` VALUES (1,'Kalpani','Welivita','anu.welivita@gmail.com','2015-02-25','anu'),(2,'Ruchiranga','Wickramasinghe','truchiranga@gmail.com','2015-02-25','nandz'),(3,'Thanuditha','Wiki','truchiranga@gmail.com','2015-04-19','Ruchzz');
+INSERT INTO `owner` VALUES (1,'Kalpaniyy','Welivita','anu.welivita@gmail.com','2015-02-25','anu'),(2,'Ruchiranga','Wickramasinghe','truchiranga@gmail.com','2015-02-25','nandz'),(3,'Thanuditha','Wiki','truchiranga@gmail.com','2015-04-19','Ruchzz');
 /*!40000 ALTER TABLE `owner` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -229,7 +229,7 @@ CREATE TABLE `premiumpayment` (
   KEY `vehicle_reg_no` (`vehicle_reg_no`),
   CONSTRAINT `premiumpayment_ibfk_2` FOREIGN KEY (`owner_id`) REFERENCES `owner` (`owner_id`),
   CONSTRAINT `premiumpayment_ibfk_3` FOREIGN KEY (`vehicle_reg_no`) REFERENCES `vehicle` (`vehicle_reg_no`) ON DELETE CASCADE
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -318,7 +318,7 @@ CREATE TABLE `scheme` (
   KEY `category` (`category`),
   CONSTRAINT `scheme_ibfk_1` FOREIGN KEY (`vehicle_reg_no`) REFERENCES `vehicle` (`vehicle_reg_no`) ON DELETE CASCADE,
   CONSTRAINT `scheme_ibfk_2` FOREIGN KEY (`category`) REFERENCES `scheme_category` (`category`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=latin1;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -327,7 +327,7 @@ CREATE TABLE `scheme` (
 
 LOCK TABLES `scheme` WRITE;
 /*!40000 ALTER TABLE `scheme` DISABLE KEYS */;
-INSERT INTO `scheme` VALUES (1,'Per km','Safest mode of transport for the cheapest price. ','City Taxi Scheme','AAA-0232',100.00,80.00),(2,'Per day','Safest mode of transport for the chapest price for long journeys and trips','Tour Scheme','AAA-0232',5000.00,4000.00),(3,'Per km','Safest mode of transport for the cheapest price. ','City Taxi Scheme','KG-3324',90.00,80.00),(4,'Per km','Go to airport with us.','Airport Drop Pickup Scheme','AAA-0232',500.00,NULL),(5,'Per km','Good city taxi','City Taxi Scheme','GS-3456',650.00,700.00),(6,'Per km','Best service for the cheapest prices','City Taxi Scheme','AA-4433',80.00,70.00);
+INSERT INTO `scheme` VALUES (1,'Per km','Safest mode of transport for the cheapest price. ','City Taxi Scheme','AAA-0232',100.00,80.00),(2,'Per day','Safest mode of transport for the chapest price for long journeys and trips','Tour Scheme','AAA-0232',5000.00,4000.00),(3,'Per km','Safest mode of transport for the cheapest price. ','City Taxi Scheme','KG-3324',90.00,80.00),(4,'Per km','Go to airport with us.','Airport Drop Pickup Scheme','AAA-0232',500.00,NULL),(5,'Per km','Good city taxi','City Taxi Scheme','GS-3456',650.00,700.00),(6,'Per km','Best service for the cheapest prices','City Taxi Scheme','AA-4433',80.00,70.00),(7,'Per km','Chepest of all with safest vehicle\n','City Taxi Scheme','KG-6678',70.00,60.00),(8,'Per km','All you have to do is call us. We will safely drop you on the airport.','Airport Drop Pickup Scheme','KG-6678',300.00,200.00),(9,'Per km','All you have to do is call us. We will safely drop you on the station.','Station Drop Pickup Scheme','KG-6678',0.00,400.00),(10,'Per km','','City Taxi Scheme','KK-5055',500.00,0.00);
 /*!40000 ALTER TABLE `scheme` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -375,7 +375,7 @@ CREATE TABLE `scheme_location` (
 
 LOCK TABLES `scheme_location` WRITE;
 /*!40000 ALTER TABLE `scheme_location` DISABLE KEYS */;
-INSERT INTO `scheme_location` VALUES (1,'Katubedda'),(1,'Moratuwa'),(1,'Rawathawaththa'),(2,'Anuradhapura'),(2,'Dambulla'),(2,'Galle'),(2,'Hambanthota'),(2,'Katharagama'),(2,'Katubedda'),(2,'Kithulgala'),(2,'Matara'),(2,'Welipanna'),(3,'Hikkaduwa'),(3,'Katubedda'),(3,'Rathmalana'),(3,'Rawathawaththa'),(4,'Colombo'),(4,'Gampaha'),(4,'Katubedda'),(5,'Katubedda'),(5,'Piliyandala'),(5,'Rathmalana'),(5,'Rawathawaththa'),(6,'Galle'),(6,'Karapitiya'),(6,'Kithulampitiya'),(6,'Labuduwa');
+INSERT INTO `scheme_location` VALUES (1,'Katubedda'),(1,'Moratuwa'),(1,'Rawathawaththa'),(2,'Anuradhapura'),(2,'Dambulla'),(2,'Galle'),(2,'Hambanthota'),(2,'Katharagama'),(2,'Katubedda'),(2,'Kithulgala'),(2,'Matara'),(2,'Welipanna'),(3,'Hikkaduwa'),(3,'Katubedda'),(3,'Rathmalana'),(3,'Rawathawaththa'),(4,'Colombo'),(4,'Gampaha'),(4,'Katubedda'),(5,'Katubedda'),(5,'Piliyandala'),(5,'Rathmalana'),(5,'Rawathawaththa'),(6,'Galle'),(6,'Karapitiya'),(6,'Kithulampitiya'),(6,'Labuduwa'),(7,'Akuressa'),(7,'Mathara'),(7,'Panatiyana'),(8,'Katunayaka'),(8,'Rathmalana'),(9,'Moratuwa');
 /*!40000 ALTER TABLE `scheme_location` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -401,6 +401,7 @@ CREATE TABLE `station_drop_pickup_scheme` (
 
 LOCK TABLES `station_drop_pickup_scheme` WRITE;
 /*!40000 ALTER TABLE `station_drop_pickup_scheme` DISABLE KEYS */;
+INSERT INTO `station_drop_pickup_scheme` VALUES (9,0.00,200.00);
 /*!40000 ALTER TABLE `station_drop_pickup_scheme` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -425,7 +426,7 @@ CREATE TABLE `telephone_number` (
 
 LOCK TABLES `telephone_number` WRITE;
 /*!40000 ALTER TABLE `telephone_number` DISABLE KEYS */;
-INSERT INTO `telephone_number` VALUES (1,'0725647394'),(1,'0778372437'),(1,'0779977666'),(2,'0779283741'),(2,'0785744437'),(3,'0783924439');
+INSERT INTO `telephone_number` VALUES (1,'0435643875'),(1,'0725647394'),(1,'0778372437'),(1,'0779977666'),(2,'0779283741'),(2,'0785744437'),(3,'0783924439');
 /*!40000 ALTER TABLE `telephone_number` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -465,7 +466,7 @@ CREATE TABLE `vehicle` (
 
 LOCK TABLES `vehicle` WRITE;
 /*!40000 ALTER TABLE `vehicle` DISABLE KEYS */;
-INSERT INTO `vehicle` VALUES ('AA-4433','Cab','Honda','Civic',3,'Good condition',1,2,'AA-4433.jpg','2015-04-21',8,5),('AAA-0232','Car','Toyota','Corolla',4,'The car has an awesome sound system with full AC. Has so much leg space for the passengers to make the journey a comfortable one.',1,1,'AAA-0232.jpeg','2015-04-10',7,3),('GS-3456','Cab','Zuzuki','Swift',5,'Hi fi vehicle',1,2,'GS-3456.jpg','2015-04-21',6,0),('KG-3324','Car','Zuzuki','Swift',4,'The car has an awesome sound system with full AC. Has so much leg space for the passengers to make the journey a comfortable one.',1,1,'KG-3324.jpeg','2015-04-06',6,5);
+INSERT INTO `vehicle` VALUES ('AA-4433','Cab','Honda','Civic',3,'Good condition',1,2,'AA-4433.jpg','2015-04-21',14,6),('AAA-0232','Car','Toyota','Corolla',5,'The car has an awesome sound system with full AC. Has so much leg space for the passengers to make the journey a comfortable one.',1,1,'AAA-0232.jpeg','2015-04-10',7,3),('GS-3456','Cab','Zuzuki','Swift',5,'Hi fi vehicle',1,2,'GS-3456.jpg','2015-04-21',6,1),('KG-3324','Car','Zuzuki','Swift',4,'The car has an awesome sound system with full AC. Has so much leg space for the passengers to make the journey a comfortable one.',1,1,'KG-3324.jpeg','2015-04-06',7,5),('KG-6678','Nano Car','Toyota','Corolla',3,'Small car. Best for short distance travelling.',1,1,'KG-6678.jpg','2015-04-23',0,0),('KK-5055','Car','Honda','Prius',4,'Good',1,1,'KK-5055.jpg','2015-06-16',0,0);
 /*!40000 ALTER TABLE `vehicle` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -512,7 +513,7 @@ CREATE TABLE `vehicle_thumbs` (
 
 LOCK TABLES `vehicle_thumbs` WRITE;
 /*!40000 ALTER TABLE `vehicle_thumbs` DISABLE KEYS */;
-INSERT INTO `vehicle_thumbs` VALUES ('AA-4433','prasad'),('AA-4433','ruchi');
+INSERT INTO `vehicle_thumbs` VALUES ('AA-4433','prasad'),('AA-4433','ruchi'),('GS-3456','ruchi');
 /*!40000 ALTER TABLE `vehicle_thumbs` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -553,7 +554,7 @@ UNLOCK TABLES;
 /*!50001 SET collation_connection      = latin1_swedish_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `results` AS select distinct `s`.`vehicle_reg_no` AS `vehicle_reg_no`,`o`.`owner_id` AS `owner_id`,`v`.`vehicle_type` AS `vehicle_type`,`v`.`manufacturer` AS `manufacturer`,`v`.`model` AS `model`,`v`.`capacity` AS `capacity`,`v`.`vehicle_description` AS `vehicle_description`,`v`.`thumbs_up` AS `thumbs_up`,`v`.`thumbs_down` AS `thumbs_down`,`s`.`scheme_id` AS `scheme_id`,`s`.`ac_price` AS `ac_price`,`s`.`non_ac_price` AS `non_ac_price`,`s`.`pricing_category` AS `pricing_category`,`s`.`descrption` AS `descrption`,`v`.`image` AS `image` from (((`scheme_location` join `scheme` `s` on((`scheme_location`.`scheme_id` = `s`.`scheme_id`))) join `vehicle` `v` on((`s`.`vehicle_reg_no` = `v`.`vehicle_reg_no`))) join `owner` `o` on((`v`.`owner_id` = `o`.`owner_id`))) where ((`s`.`category` = 'City Taxi Scheme') and (`v`.`isActive` = 1)) */;
+/*!50001 VIEW `results` AS select `s`.`vehicle_reg_no` AS `vehicle_reg_no`,`o`.`owner_id` AS `owner_id`,`v`.`vehicle_type` AS `vehicle_type`,`v`.`manufacturer` AS `manufacturer`,`v`.`model` AS `model`,`v`.`capacity` AS `capacity`,`v`.`vehicle_description` AS `vehicle_description`,`v`.`thumbs_up` AS `thumbs_up`,`v`.`thumbs_down` AS `thumbs_down`,`s`.`scheme_id` AS `scheme_id`,`s`.`ac_price` AS `ac_price`,`s`.`non_ac_price` AS `non_ac_price`,`s`.`pricing_category` AS `pricing_category`,`s`.`descrption` AS `descrption`,`v`.`image` AS `image` from (((`scheme_location` join `scheme` `s` on((`scheme_location`.`scheme_id` = `s`.`scheme_id`))) join `vehicle` `v` on((`s`.`vehicle_reg_no` = `v`.`vehicle_reg_no`))) join `owner` `o` on((`v`.`owner_id` = `o`.`owner_id`))) where ((`scheme_location`.`location` = 'katubedda') and (`s`.`category` = 'City Taxi Scheme') and (`v`.`isActive` = 1)) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -586,4 +587,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2015-04-22 18:32:15
+-- Dump completed on 2015-06-16 11:01:48

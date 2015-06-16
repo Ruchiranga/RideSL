@@ -7,29 +7,43 @@
             <file>file:/C:/xampp/htdocs/RideSL/views/login/index.php</file>
             <file>file:/C:/xampp/htdocs/RideSL/models/passengersignup_model.php</file>
             <file>file:/C:/xampp/htdocs/RideSL/views/editVehicle/index.php</file>
+            <file>file:/C:/xampp/htdocs/RideSL/models/admin_model.php</file>
             <file>file:/C:/xampp/htdocs/RideSL/views/search/js/resultspage.js.php</file>
             <file>file:/C:/xampp/htdocs/RideSL/views/driverHome/js/default.js</file>
             <file>file:/C:/xampp/htdocs/RideSL/models/login_model.php</file>
             <file>file:/C:/xampp/htdocs/RideSL/views/login/css/default.css</file>
             <file>file:/C:/xampp/htdocs/RideSL/models/driverHome_model.php</file>
+            <file>file:/C:/xampp/htdocs/RideSL/views/search/js/modernizr.js</file>
+            <file>file:/C:/xampp/htdocs/RideSL/views/vehicleRegister/index.php</file>
             <file>file:/C:/xampp/htdocs/RideSL/views/search/js/resultspage.js</file>
             <file>file:/C:/xampp/htdocs/RideSL/views/driverSignup/index.php</file>
             <file>file:/C:/xampp/htdocs/RideSL/libs/Bootstrap.php</file>
             <file>file:/C:/xampp/htdocs/RideSL/models/resetPassword_model.php</file>
+            <file>file:/C:/xampp/htdocs/RideSL/controllers/contactUs.php</file>
+            <file>file:/C:/xampp/htdocs/RideSL/views/admin/index.php</file>
             <file>file:/C:/xampp/htdocs/RideSL/models/editVehicle_model.php</file>
             <file>file:/C:/xampp/htdocs/RideSL/controllers/forgetPassword.php</file>
+            <file>file:/C:/xampp/htdocs/RideSL/views/search/js/jquery-ui.js</file>
+            <file>file:/C:/xampp/htdocs/RideSL/models/vehicleRegister_model.php</file>
+            <file>file:/C:/xampp/htdocs/RideSL/views/search/js/popup.js</file>
             <file>file:/C:/xampp/htdocs/RideSL/controllers/login.php</file>
             <file>file:/C:/xampp/htdocs/RideSL/models/driversignup_model.php</file>
             <file>file:/C:/xampp/htdocs/RideSL/models/recentlyAdded_model.php</file>
             <file>file:/C:/xampp/htdocs/RideSL/views/forgetPassword/index.php</file>
+            <file>file:/C:/xampp/htdocs/RideSL/views/search/js/ko.js</file>
             <file>file:/C:/xampp/htdocs/RideSL/public/images/logo1.png</file>
             <file>file:/C:/xampp/htdocs/RideSL/models/forgetPassword_model.php</file>
             <file>file:/C:/xampp/htdocs/RideSL/models/search_model.php</file>
             <file>file:/C:/xampp/htdocs/RideSL/views/error/index.php</file>
             <file>file:/C:/xampp/htdocs/RideSL/controllers/resetPassword.php</file>
             <file>file:/C:/xampp/htdocs/RideSL/controllers/driverSignup.php</file>
+            <file>file:/C:/xampp/htdocs/RideSL/views/search/js/bootstrap.js</file>
             <file>file:/C:/xampp/htdocs/RideSL/views/passengerSignup/index.php</file>
+            <file>file:/C:/xampp/htdocs/RideSL/views/search/js/multizoom.js</file>
+            <file>file:/C:/xampp/htdocs/RideSL/views/search/index.php</file>
             <file>file:/C:/xampp/htdocs/RideSL/views/search/js/timepicker.js</file>
+            <file>file:/C:/xampp/htdocs/RideSL/views/search/js/jquery-1.11.2.js</file>
+            <file>file:/C:/xampp/htdocs/RideSL/controllers/passengerSignup.php</file>
             <file>file:/C:/xampp/htdocs/RideSL/controllers/driverHome.php</file>
             <file>file:/C:/xampp/htdocs/RideSL/views/contactUs/index.php</file>
             <file>file:/C:/xampp/htdocs/RideSL/controllers/editVehicle.php</file>

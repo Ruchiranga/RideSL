@@ -32,14 +32,11 @@ class PassengerSignup_Model extends Model {
         $sth2->execute(array(':email_address' => $this->email_address));
         $count2 = $sth2->rowCount();
         
-        if ($count > 0) {
-            $message = "The user name already exists, please enter a new unique user name";       
+        if ($count > 0 || $count2 >0) {
+            $message = "The user name / email already exists, please enter a new unique user name or email address";       
             echo "<script type='text/javascript'>alert('$message');window.location = \"../passengerSignup\";</script>";
         }
-        else if($count2 >0){
-            $message = "The email address already exists, please enter a another email address";       
-            echo "<script type='text/javascript'>alert('$message');window.location = \"../passengerSignup\";</script>";
-        }
+        
         else{
             $sth = $this->db->prepare('insert into account(username,password,privilege) values(:username,Password(:password),\'p\')');
             $sth->execute([':username' => $this->username,

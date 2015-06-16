@@ -1,11 +1,11 @@
 input[type=text], textarea {    
-    /*width: 200px;*/
+     width: 250px;
     -moz-transition: all 0.3s ease-in-out;
     -o-transition: all 0.3s ease-in-out;
     -webkit-transition: all 0.3s ease-in-out;
     transition: all 0.3s ease-in-out;
     outline: none;
-    padding: 3px 0px 3px 3px;
+    padding: 3px 0px 3px 6px;
     margin: 5px 1px 3px 0px;
     border: 1px solid #DDDDDD;
     /*-webkit-border-radius: 55px;*/

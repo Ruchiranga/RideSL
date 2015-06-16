@@ -33,7 +33,52 @@
         <script src="<?php echo URL; ?>public/js/faqabt/smoothscroll.min.js" type="text/javascript"></script>
         <script src="<?php echo URL; ?>public/js/faqabt/responsive-accordion.min.js" type="text/javascript"></script>
 
+        
+        
+        <link rel="stylesheet" type="text/css" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1/themes/flick/jquery-ui.css">
+        <link href="<?php echo URL; ?>views/vehicleRegister/css/jquery.tagit.css" rel="stylesheet" type="text/css">
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.5.2/jquery.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.12/jquery-ui.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="<?php echo URL; ?>views/vehicleRegister/js/tag-it.js" type="text/javascript" charset="utf-8"></script>
+        <script type="text/javascript">
+            $(document).ready(function() {
 
+//                var array = ["1", "2", "3", "4","5","6","7"];
+                
+                $("#taxies").tagit({
+                    placeholderText:"Add Location..."
+                });
+                
+                $("#tours").tagit({
+                    placeholderText:"Add Location..."
+                });
+                
+                $("#airports").tagit({
+                    placeholderText:"Add Location..."
+                });
+                
+                $("#stations").tagit({
+                    placeholderText:"Add Location..."
+                });
+                
+                $("#ceremonies").tagit({
+                    placeholderText:"Add Location..."
+                });
+                
+                $("#constructions").tagit({
+                    placeholderText:"Add Location..."
+                });
+                
+                $("#cargoes").tagit({
+                    placeholderText:"Add Location..."
+                });
+                
+            });
+        </script>
+        
+        
+        
+        
         <!--create connection-->
         <?php
         mysql_connect('localhost', 'root', '');
@@ -48,7 +93,7 @@
     <body>
         <div id='frame'>
             <div id='body'>
-                <div id='panel' align='left' >
+                <div id='panel' align='center' style="width: 300px">
                     <font style="color: #2980b9; font-size: 18px; font-weight: bold; ">Personal Profile</font>
 
                     <br><br><font style="color: #2980b9; font-weight: bold">Name &nbsp;</font><img id = "pencil1" src="<?php echo URL; ?>public/images/pencil.png" alt="" style="height: 13px; width: 13px; cursor:pointer"/>
@@ -83,17 +128,17 @@
                     <br><font id="edit_email"><?php echo $this->owner['email']; ?></font>
                 </div>
 
-                <div id = "vehiclePane" class="box">
-                    <img src = "<?php echo URL; ?>public/images/registerDr/top.png" alt = "" style = " width: 660px;"/>
-                    <div id = "form_container" style = " border-left: 1px solid #CCCCCC;  border-right: 1px solid #CCCCCC;  border-top: 1px solid #CCCCCC;  border-bottom: 1px solid #CCCCCC;">
-                        <h1><a> Add New Vehicle </a></h1>
+                <div id = "vehiclePane" class="box" style = "width: 900px;">
+                    <!--<img src = "<?php echo URL; ?>public/images/registerDr/top.png" alt = "" style = " width: 660px;"/>-->
+                    <div id = "form_container" style = " width:800px">
+                       
 
-                        <form id = "vehicleRegister" name = "vehicleRegister" class = "appnitro" method = "POST" action = "views/vehicleRegister/dbDriverRegister.php"  onsubmit="return checkForm(this);">
+                        <form id = "vehicleRegister" name = "vehicleRegister"  style="width:700px" class = "appnitro" method = "POST" action = "views/vehicleRegister/dbDriverRegister.php"  onsubmit="return checkForm(this);">
                             <div class = "form_description" style="color: #0b75b2; font-size: 30px; font-family: Times New Roman;">
                                 <center> Add New Vehicle </center>
                             </div>
 
-                            <div align="center">
+                            <div align ="center">
                                 <ul>
                                     <li>
                                         <div>
@@ -103,7 +148,11 @@
                                         </div>
                                     </li>
 
-
+                                    <?php
+                                  
+                                    $_SESSION["own"] = $this->owner['owner_id'];
+                                    ?>
+                                     
                                     <!--Type of vehicle-->
                                     <li id = "type" ><label class = "description" style="color: #0b75b2; font-size: 14px;">Type </label>
                                         <div>
@@ -119,55 +168,51 @@
                                             ?>                          
                                         </div>	
                                     </li>
+                                    
+                                    
+                                       <!--Image-->
+                                    <li>
+                                        <div>
+                                            <br>
+                                            <a href="http://localhost/ridesl/views/vehicleRegister/image_cropper/upload_crop.php?number=" onclick="location.href = this.href + document.getElementById('regNoin').value;
+                                            return false;" style="color: #0b75b2; font-size: 14px;">
+
+                                            <b>Upload Image >></b></a>
+                                            <br><br> 
+                                        </div>
+                                    </li>
 
 
 
                                     <!--Manufacturer-->
-                                    <li><label class = "description" style = "color: #0b75b2; font-size: 14px;">Manufacturer</label>
-                                        <div>
-                                            <?php
-                                            $sql = "SELECT distinct manufacturer FROM brand_model";
-                                            $result = mysql_query($sql);
-                                            $sql = "SELECT model FROM brand_model WHERE manufacturer = " . "Toyota";
-//                                echo $sql;
-                                            ?>
+                            <li><label class = "description" style = "color: #0b75b2; font-size: 14px;">Manufacturer</label>
+                                <div>
+                                    <?php
+                                    $sql = "SELECT distinct manufacturer FROM brand_model";
+                                    $result = mysql_query($sql);
+                                    ?> 
+                                    <select id = 'manufacturer' name = 'manufacturer' style='width: 150px; height: 28px; font-family: Times New Roman; font-size: 18px;' onchange='setOptions(document.vehicleRegister.manufacturer.options[document.vehicleRegister.manufacturer.selectedIndex].value);'>;
+                                        <?php
+                                        while ($row = mysql_fetch_array($result)) {
+                                            echo "<option style='font-family: Times New Roman; font-size: 18px;' value='" . $row['manufacturer'] . "'>" . $row['manufacturer'] . "</option>";
+                                        }
+                                        echo '</select>';
+                                        ?>      
+                                </div>
+                            </li>
 
 
-                                            <select id = 'manufacturer' name = 'manufacturer' style='width: 150px; height: 28px; font-family: Times New Roman; font-size: 18px;' >";
 
-                                                <?php
-                                                while ($row = mysql_fetch_array($result)) {
-                                                    echo "<option style='font-family: Times New Roman; font-size: 18px;' value='" . $row['manufacturer'] . "'>" . $row['manufacturer'] . "</option>";
-                                                }
-                                                echo '</select>';
-                                                ?>      
-                                        </div>
-                                    </li>
 
-<!--                        <select name="opttwo" size="1">
-                            <option value=" " selected="selected"> Please select one of the options above</option>
-                        </select>-->
-
-<!--                        <select name="selectmodel" size="1"> 
-                            <option value=" " selected>First select a car</option> 
-                        </select><br><br> -->
-
-                                    <!--Model-->
-                                    <li><label class="description" style="color: #0b75b2; font-size: 14px;">Model</label>
-                                        <div id="modelPane">
-                                            <?php
-                                            $sql = "SELECT model FROM brand_model";
-                                            $result = mysql_query($sql);
-
-                                            echo "<select id = 'model' name = 'model' style='width: 150px; height: 28px; font-family: Times New Roman; font-size: 18px;'>";
-                                            while ($row = mysql_fetch_array($result)) {
-                                                echo "<option style='font-family: Times New Roman; font-size: 18px;' value='" . $row['model'] . "'>" . $row['model'] . "</option>";
-                                            }
-
-                                            echo '</select>';
-                                            ?>      
-                                        </div>
-                                    </li>
+                            <!--Model-->
+                            <li><label class="description" style="color: #0b75b2; font-size: 14px;">Model</label>
+                                <div id="modelPane">
+                                    <select id = "model" name = "model" size="1" style="width: 150px; height: 28px; font-family: Times New Roman; font-size: 18px;"> 
+                                        <option value="" selected></option> 
+                                    </select>
+                                    
+                                </div>
+                            </li>
 
 
                                     <!--Capacity-->
@@ -188,16 +233,8 @@
                                         </div>
 
                                     </li>
-                                    <br>
-
-                                    <!--Image-->
-                                    <a href="http://localhost/ridesl/views/vehicleRegister/image_cropper/upload_crop.php?number=" onclick="location.href = this.href + document.getElementById('regNoin').value;
-                                            return false;" style="color: #0b75b2; font-size: 14px;">
-
-                                        <b>Upload Images >></b></a>
-                                    <br> <br> <br> 
-                                    </li>
-                                    </div>
+                                    <br>                       
+                                    
 
                                     <!--------------------------------Pricing scheme and availability-------------------------------------->
                                     <li class="section_break">                        
@@ -216,7 +253,7 @@
                                     </li>
 
                                     <!--******************Pricing scheme***********************-->
-                                    <div id="pricingSchemeTaxi" style="display: none; padding: 10px; border: 1px dashed #999;">
+                                    <div id="pricingSchemeTaxi" class ="box" style="display: none; padding: 10px; width:750px">
                                         <h3 style="color: #0b75b2; font-size: 13px"><b>Pricing Scheme</b></h3>
                                         <!--With AC-->
                                         <span>
@@ -228,7 +265,7 @@
                                         <span>
                                             <input id="pricewithacInCt" name ="pricewithacInCt" type="text" disabled=true></input>
                                         </span>
-                                        per   	
+                                          	
                                         <span>
                                             <select name="pricewithacOptCt" id ="pricewithacOptCt" disabled=true>
                                                 <option>Per km</option>
@@ -247,7 +284,7 @@
                                         <span>
                                             <input id="pricewithoutacInCt" name="pricewithoutacInCt" type="text" disabled=true></input>
                                         </span>
-                                        per   	
+                                           	
                                         <span>
                                             <select name="pricewithoutacOptCt" id ="pricewithoutacOptCt" disabled=true>
                                                 <option>Per km</option>
@@ -257,6 +294,22 @@
                                         </span>	  
                                         <br><br>
 
+                                        <!--Locations-->
+                                        <li class="section_break">
+                                            <h3 style="color: #0b75b2; font-size: 13px">
+                                                <b>Possible Locations</b>
+                                                <p align = "center" style = "font-size: 13px"></p>
+                                            </h3>
+                                        </li>
+                                        
+                                        <ul id="taxies" style="width: 260px" align="right">
+                                        <li></li>
+                                        </ul>
+                                        
+                                        
+                                        
+                                        <!--<input type="hidden" id="mySingleField' . $index . '" value="' . $locations . '" >-->
+                                        <br>
 
 
                                         <!-- *****************Availability *****************-->
@@ -360,9 +413,10 @@
                                             </li>
                                         </ul>
 
+                                                                      
                                         <!--Vehicle Description-->
                                         <li id="describeVehicleCt"><label class="description" style="color: #0b75b2;">Any Description</label>
-                                            <textarea id="describeVehicleCt" name="describeVehicleCt" style ="width : 550px; font-family: Times New Roman; font-size: 16px;" rows="2"></textarea>                        
+                                            <textarea id="describeVehicleCt" name="describeVehicleCt" style ="width : 370px; font-family: Times New Roman; font-size: 16px;" rows="2"></textarea>                        
                                         </li>     
 
                                     </div> 
@@ -376,7 +430,7 @@
                                     </li>
 
                                     <!--******************Pricing scheme***********************-->
-                                    <div id="pricingSchemeTour" style="display: none; padding: 10px; border: 1px dashed #999;">
+                                    <div id="pricingSchemeTour" class ="box" style="display: none; padding: 10px; width:750px">
                                         <h3 style="color: #0b75b2; font-size: 13px"><b>Pricing Scheme</b></h3>
                                         <!--With AC-->
                                         <span>
@@ -388,7 +442,7 @@
                                         <span>
                                             <input id="pricewithacInT" name="pricewithacInT" type="text" disabled=true></input>
                                         </span>
-                                        per   	
+                                           	
                                         <span>
                                             <select name="pricewithacOptT" id ="pricewithacOptT" disabled=true>
                                                 <option>Per km</option>
@@ -407,7 +461,7 @@
                                         <span>
                                             <input id="pricewithoutacInT" name="pricewithoutacInT" type="text" disabled=true></input>
                                         </span>
-                                        per   	
+                                           	
                                         <span>
                                             <select name="pricewithoutacOptT" id ="pricewithoutacOptT" disabled=true>
                                                 <option>Per km</option>
@@ -415,7 +469,20 @@
                                                 <option>Per day</option>              
                                             </select>
                                         </span>	  
-                                        <br><br>    
+                                        <br><br>   
+                                        
+                                        <!--Locations-->
+                                        <li class="section_break">
+                                            <h3 style="color: #0b75b2; font-size: 13px">
+                                                <b>Possible Locations</b>
+                                                <p align = "center" style = "font-size: 13px"></p>
+                                            </h3>
+                                        </li>
+                                        
+                                        <ul id="tours" style="width: 260px" align="right">
+                                        <li></li>
+                                        </ul>
+                                        <br>
 
                                         <!-- *****************Availability *****************-->
                                         <li class="section_break">
@@ -517,10 +584,11 @@
                                                 </span>               
                                             </li>
                                         </ul>
-
+                                        
+                                       
                                         <!--Vehicle Description-->
                                         <li id="describeVehicleT"><label class="description" style="color: #0b75b2;">Any Description</label>
-                                            <textarea id="describeVehicleT" name="describeVehicleT" style ="width : 550px; font-family: Times New Roman; font-size: 16px;" rows="2"></textarea>                        
+                                            <textarea id="describeVehicleT" name="describeVehicleT" style ="width : 370px; font-family: Times New Roman; font-size: 16px;" rows="2"></textarea>                        
                                         </li>  
 
 
@@ -535,7 +603,7 @@
                                     </li>
 
                                     <!--******************Pricing scheme***********************-->
-                                    <div id="pricingSchemeAirPort" style="display: none; padding: 10px; border: 1px dashed #999;">
+                                    <div id="pricingSchemeAirPort" class ="box" style="display: none; padding: 10px; width:750px ">
                                         <h3 style="color: #0b75b2; font-size: 13px"><b>Pricing Scheme</b></h3>
                                         <!--With AC-->
                                         <span>
@@ -547,7 +615,7 @@
                                         <span>
                                             <input id="pricewithacInAp" name="pricewithacInAp" type="text" disabled=true></input>
                                         </span>
-                                        per   	
+                                          	
                                         <span>
                                             <select name="pricewithacOptAp" id ="pricewithacOptAp" disabled=true>
                                                 <option>Per km</option>
@@ -566,7 +634,7 @@
                                         <span>
                                             <input id="pricewithoutacInAp" name="pricewithoutacInAp" type="text" disabled=true></input>
                                         </span>
-                                        per   	
+                                           	
                                         <span>
                                             <select name="pricewithoutacOptAp" id ="pricewithoutacOptAp" disabled=true>
                                                 <option>Per km</option>
@@ -585,7 +653,7 @@
                                         <span>
                                             <input id="luggageChargeAp" name="luggageChargeAp" type="text" disabled=true></input>
                                         </span>
-                                        per   	
+                                          	
                                         <span>
                                             <select name="luggageChargeOptAp" id ="luggageChargeOptAp" disabled=true>
                                                 <option>Per km</option>
@@ -604,7 +672,7 @@
                                         <span>
                                             <input id="waitingAp" name="waitingAp" type="text" disabled=true ></input>
                                         </span>
-                                        per   	
+                                           	
                                         <span>
                                             <select name="waitingChargeOptAp" id ="waitingChargeOptAp" disabled=true>
                                                 <option>Per km</option>
@@ -613,6 +681,19 @@
                                             </select>
                                         </span>		
                                         <br><br>
+                                        
+                                        <!--Locations-->
+                                        <li class="section_break">
+                                            <h3 style="color: #0b75b2; font-size: 13px">
+                                                <b>Possible Locations</b>
+                                                <p align = "center" style = "font-size: 13px"></p>
+                                            </h3>
+                                        </li>
+                                        
+                                        <ul id="airports" style="width: 260px" align="right">
+                                        <li></li>
+                                        </ul>
+                                        <br>
 
                                         <!-- *****************Availability *****************-->
                                         <li class="section_break">
@@ -714,10 +795,12 @@
                                                 </span>               
                                             </li>
                                         </ul>
+                                        
+                                        
 
                                         <!--Vehicle Description-->
                                         <li id="describeVehicleAp"><label class="description" style="color: #0b75b2;">Any Description</label>
-                                            <textarea id="describeVehicleAp" name="describeVehicleAp" style ="width : 550px; font-family: Times New Roman; font-size: 16px;" rows="2"></textarea>                        
+                                            <textarea id="describeVehicleAp" name="describeVehicleAp" style ="width : 370px; font-family: Times New Roman; font-size: 16px;" rows="2"></textarea>                        
                                         </li>  
 
                                     </div> 
@@ -731,7 +814,7 @@
                                     </li>
 
                                     <!--******************Pricing scheme***********************-->
-                                    <div id="pricingSchemeStation" style="display: none;  padding: 10px; border: 1px dashed #999;">
+                                    <div id="pricingSchemeStation" class ="box" style="display: none;  padding: 10px; width:750px">
                                         <h3 style="color: #0b75b2; font-size: 13px"><b>Pricing Scheme</b></h3>
                                         <!--With AC-->
                                         <span>
@@ -743,7 +826,7 @@
                                         <span>
                                             <input id="pricewithacInSt" name="pricewithacInSt" type="text" disabled=true></input>
                                         </span>
-                                        per   	
+                                           	
                                         <span>
                                             <select name="pricewithacOptSt" id ="pricewithacOptSt" disabled=true>
                                                 <option>Per km</option>
@@ -762,7 +845,7 @@
                                         <span>
                                             <input id="pricewithoutacInSt" name="pricewithoutacInSt" type="text" disabled=true></input>
                                         </span>
-                                        per   	
+                                          	
                                         <span>
                                             <select name="pricewithoutacOptSt" id ="pricewithoutacOptSt" disabled=true>
                                                 <option>Per km</option>
@@ -781,7 +864,7 @@
                                         <span>
                                             <input id="luggageChargeSt" name="luggageChargeSt" type="text" disabled=true></input>
                                         </span>
-                                        per   	
+                                           	
                                         <span>
                                             <select name="luggageChargeOptSt" id ="luggageChargeOptSt" disabled=true>
                                                 <option>Per km</option>
@@ -800,7 +883,7 @@
                                         <span>
                                             <input id="waitingSt" name="waitingSt" type="text" disabled=true ></input>
                                         </span>
-                                        per   	
+                                          	
                                         <span>
                                             <select name="waitingChargeOptSt" id ="waitingChargeOptSt" disabled=true>
                                                 <option>Per km</option>
@@ -809,6 +892,19 @@
                                             </select>
                                         </span>		
                                         <br><br>
+                                        
+                                        <!--Locations-->
+                                        <li class="section_break">
+                                            <h3 style="color: #0b75b2; font-size: 13px">
+                                                <b>Possible Locations</b>
+                                                <p align = "center" style = "font-size: 13px"></p>
+                                            </h3>
+                                        </li>
+                                        
+                                        <ul id="stations" style="width: 260px" align="right">
+                                        <li></li>
+                                        </ul>
+                                        <br>
 
                                         <!-- *****************Availability *****************-->
                                         <li class="section_break">
@@ -910,10 +1006,12 @@
                                                 </span>               
                                             </li>
                                         </ul>
+                                        
+                                       
 
                                         <!--Vehicle Description-->
                                         <li id="describeVehicleSt"><label class="description" style="color: #0b75b2;">Any Description</label>
-                                            <textarea id="describeVehicleSt" name="describeVehicleSt" style ="width : 550px; font-family: Times New Roman; font-size: 16px;" rows="2"></textarea>                        
+                                            <textarea id="describeVehicleSt" name="describeVehicleSt" style ="width : 370px; font-family: Times New Roman; font-size: 16px;" rows="2"></textarea>                        
                                         </li>  
 
                                     </div> 
@@ -928,7 +1026,7 @@
 
 
                                     <!--******************Pricing scheme***********************-->
-                                    <div id="pricingSchemeCeremony" style="display: none; padding: 10px; border: 1px dashed #999;">
+                                    <div id="pricingSchemeCeremony" class ="box" style="display: none; padding: 10px; width:750px">
                                         <h3 style="color: #0b75b2; font-size: 13px;"><b>Pricing Scheme</b></h3>
                                         <!--With AC-->
                                         <span>
@@ -940,7 +1038,7 @@
                                         <span>
                                             <input id="pricewithacInC" name="pricewithacInC" type="text" disabled=true></input>
                                         </span>
-                                        per   	
+                                           	
                                         <span>
                                             <select name="pricewithacOptC" id ="pricewithacOptC" disabled=true>
                                                 <option>Per km</option>
@@ -959,7 +1057,7 @@
                                         <span>
                                             <input id="pricewithoutacInC" name="pricewithoutacInC" type="text" disabled=true></input>
                                         </span>
-                                        per   	
+                                           	
                                         <span>
                                             <select name="pricewithoutacOptC" id ="pricewithoutacOptC" disabled=true>
                                                 <option>Per km</option>
@@ -968,6 +1066,19 @@
                                             </select>
                                         </span>	  
                                         <br><br>
+                                        
+                                        <!--Locations-->
+                                        <li class="section_break">
+                                            <h3 style="color: #0b75b2; font-size: 13px">
+                                                <b>Possible Locations</b>
+                                                <p align = "center" style = "font-size: 13px"></p>
+                                            </h3>
+                                        </li>
+                                        
+                                        <ul id="ceremon" style="width: 260px" align="right">
+                                        <li></li>
+                                        </ul>
+                                        <br>
 
                                         <!-- *****************Availability *****************-->
                                         <li class="section_break">
@@ -1069,10 +1180,12 @@
                                                 </span>               
                                             </li>
                                         </ul>
+                                        
+                                        
 
                                         <!--Vehicle Description-->
                                         <li id="describeVehicleC"><label class="description" style="color: #0b75b2;">Any Description</label>
-                                            <textarea id="describeVehicleC" name="describeVehicleC" style ="width : 550px; font-family: Times New Roman; font-size: 16px;" rows="2"></textarea>                        
+                                            <textarea id="describeVehicleC" name="describeVehicleC" style ="width : 370px; font-family: Times New Roman; font-size: 16px;" rows="2"></textarea>                        
                                         </li>  
 
                                     </div> 
@@ -1086,7 +1199,7 @@
                                     </li>
 
                                     <!--******************Pricing scheme***********************-->
-                                    <div id="pricingSchemeConstructions" style="display: none;  padding: 10px; border: 1px dashed #999;">
+                                    <div id="pricingSchemeConstructions" class ="box" style="display: none;  padding: 10px; width:750px ">
                                         <h3 style="color: #0b75b2; font-size: 13px"><b>Pricing Scheme</b></h3>
 
                                         <span>
@@ -1098,7 +1211,7 @@
                                         <span>
                                             <input id="priceCn" name="priceCn" type="text" disabled=true></input>
                                         </span>
-                                        per   	
+                                          	
                                         <span>
                                             <select name="pricOptCn" id ="priceOptCn" disabled=true>
                                                 <option>Per km</option>
@@ -1108,10 +1221,22 @@
                                         </span>	
                                         <br><br>
 
+                                       <!--Locations-->
+                                        <li class="section_break">
+                                            <h3 style="color: #0b75b2; font-size: 13px">
+                                                <b>Possible Locations</b>
+                                                <p align = "center" style = "font-size: 13px"></p>
+                                            </h3>
+                                        </li>
+                                        
+                                        <ul id="constructions" style="width: 260px" align="right">
+                                        <li></li>
+                                        </ul>
+                                        <br>
 
                                         <!--Vehicle Description-->
                                         <li id="describeVehicleCn"><label class="description" style="color: #0b75b2;">Any Description</label>
-                                            <textarea id="describeVehicleCn" name="describeVehicleCn" style ="width : 550px; font-family: Times New Roman; font-size: 16px;" rows="2"></textarea>                        
+                                            <textarea id="describeVehicleCn" name="describeVehicleCn" style ="width : 370px; font-family: Times New Roman; font-size: 16px;" rows="2"></textarea>                        
                                         </li>  
 
                                     </div> 
@@ -1125,7 +1250,7 @@
                                     </li>
 
                                     <!--******************Pricing scheme***********************-->
-                                    <div id="pricingSchemeCargo" style="display: none;  padding: 10px; border: 1px dashed #999;">
+                                    <div id="pricingSchemeCargo" class ="box" style="display: none;  padding: 10px; width:750px">
                                         <h3 style="color: #0b75b2; font-size: 13px"><b>Pricing Scheme</b></h3>
 
                                         <span>
@@ -1137,7 +1262,7 @@
                                         <span>
                                             <input id="priceCg" name="priceCg" type="text" disabled=true></input>
                                         </span>
-                                        per   	
+                                           	
                                         <span>
                                             <select name="pricOptCg" id ="priceOptCg" disabled=true>
                                                 <option>Per km</option>
@@ -1146,11 +1271,23 @@
                                             </select>
                                         </span>	
                                         <br><br>
-
+                                        
+                                        <!--Locations-->
+                                        <li class="section_break">
+                                            <h3 style="color: #0b75b2; font-size: 13px">
+                                                <b>Possible Locations</b>
+                                                <p align = "center" style = "font-size: 13px"></p>
+                                            </h3>
+                                        </li>
+                                        
+                                        <ul id="cargoes" style="width: 260px" align="right">
+                                        <li></li>
+                                        </ul>
+                                        <br>
 
                                         <!--Vehicle Description-->
                                         <li id="describeVehicleCg"><label class="description" style="color: #0b75b2;">Any Description</label>
-                                            <textarea id="describeVehicleCg" name="describeVehicleCg" style ="width : 550px; font-family: Times New Roman; font-size: 16px;" rows="2"></textarea>                        
+                                            <textarea id="describeVehicleCg" name="describeVehicleCg" style ="width : 370px; font-family: Times New Roman; font-size: 16px;" rows="2"></textarea>                        
                                         </li>  
 
                                     </div> 
@@ -2017,31 +2154,43 @@
         }
     }
 
-    function setOptions(d) {
-//        alert(d);
-        var selbox = document.vehicleRegister.opttwo;
+    function setOptions(chosen) {
+//            alert(chosen);
+        var selbox = document.vehicleRegister.model;
         selbox.options.length = 0;
-//        if (chosen == " ") {
-//            selbox.options[selbox.options.length] = new Option('Please select one of the options above first', ' ');
-//
-//        }
+        if (chosen == "0") {
+            selbox.options[selbox.options.length] = new Option('First select a manufacturer', '0');
+        }
+        var set = new Set([]);
 
-<?php
-echo "'pppppppppphgdd'";
-
-//        $manufact = $_POST['manufacturer'];
-//        $manu = "Toyota";
-//        $sql = "SELECT model FROM brand_model WHERE manufacturer = "."Toyota";
-//        $result = mysql_query($sql);
-//        echo $sql;
-?>
-<?php
-while ($row = mysql_fetch_array($result)) {
-    ?>
-            selbox.options[selbox.options.length] = new Option("<?= $row[0] ?>");
     <?php
-}
-?>
+    $car_result = mysql_query("SELECT * FROM brand_model") or die(mysql_error());
+    while (@($c = mysql_fetch_array($car_result))) {
+        ?>
+
+        if (chosen == "<?= $c['manufacturer']; ?>") {
+
+        <?php
+        $c_id = $c['manufacturer'];
+        $mod_result = mysql_query("SELECT * FROM brand_model WHERE manufacturer='$c_id'") or die(mysql_error());
+        while (@($m = mysql_fetch_array($mod_result))) {
+            ?>
+                        set.add('<?= $m['model']; ?>');
+
+            <?php
+        }
+        ?>
+
+                }
+        <?php
+    }
+    ?>
+
+            set.forEach(function (value, key, setObj) {
+    //                    alert(value);
+    //                    console.log(value, key, key === value, set === setObj);
+                selbox.options[selbox.options.length] = new Option(value);
+            });
 
     }
 

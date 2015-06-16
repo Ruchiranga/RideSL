@@ -15,9 +15,10 @@ class forgetPassword_model extends Model {
             $data = $sth->fetch();
             $this->username = $data['username'];
             $this->initSession();
-            mail($this->email, 'Reset your password', 'Dear'.$this->username.'\n You can reset your RideSL password by following this link.\n Thanks you\r\n\r\nRegards,\r\nRideSL Team\r\n', 'From: zetacseuom@gmail.com');
+            $emailbody="Dear.$this->username.\n You can reset your RideSL password by following this link.\n<br><a href=\"<?php echo URL; ?>resetPassword\"></a><br>Thanks you!\r\n\r\nRegards,\r\nRideSL Team\r\n";
+            mail($this->email, 'Reset your password',$emailbody, 'From: zetacseuom@gmail.com');
             $msg = "The email has been sent successfully to ".$this->email."";
-            
+            echo "<script type='text/javascript'>alert('$msg');window.location = \"../login\";</script>";
             
                       
         } else {
@@ -28,24 +29,26 @@ class forgetPassword_model extends Model {
             $data = $sth->fetch();
             $this->username = $data['username'];
             $this->initSession();
-            mail($this->email, 'Reset your password', 'Dear'.$this->username.'\n You can reset your RideSL password by following this link.\n Thanks you\r\n\r\nRegards,\r\nRideSL Team\r\n', 'From: zetacseuom@gmail.com');
+             $emailbody="Dear.$this->username.\n You can reset your RideSL password by following this link.\n<br><a href=\"<?php echo URL; ?>resetPassword\"></a><br>Thanks you!\r\n\r\nRegards,\r\nRideSL Team\r\n";
+            mail($this->email, 'Reset your password',$emailbody, 'From: zetacseuom@gmail.com');
             $msg = "The email has been sent successfully to ".$this->email."";
-           
+            echo "<script type='text/javascript'>alert('$msg');window.location = \"../login\";</script>";
             }
             else{
                //$this->initSession();
                $msg = "A user with the email address ".$this->email." does not exist"; 
+               echo "<script type='text/javascript'>alert('$msg');window.location = \"../forgetPassword\";</script>";
             }
         }
-        echo "<script type='text/javascript'>alert('$msg');window.location = \"../forgetPassword\";</script>";
+        
        
     } 
     
        
     public function initSession() {
         Session::init();
-        Session::set('email', $this->email);
-        Session::set('username', $this->username);
+        Session::set('forgotemail', $this->email);
+        Session::set('forgotusername', $this->username);
         
     }
 
